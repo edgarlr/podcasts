@@ -14,6 +14,10 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
+    "/[channel]/[podcast]": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -25,10 +29,6 @@
     "/_polyfills": [
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
-    ],
-    "/channel": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
     ],
     "/index": [
       "static/runtime/webpack.js",

@@ -1,9 +1,13 @@
 {
-  "name": "podcasts",
+  "name": "podcasts-app",
+  "alias": [
+    "podcasts"
+  ],
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "now-build": "npm run build",
     "dev": "next",
     "build": "next build",
     "start": "next start",
@@ -16,6 +20,8 @@
     "isomorphic-fetch": "2.2.1",
     "next": "9.3.6",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-icons": "3.10.0",
+    "react-modal": "3.11.2"
   }
 }
