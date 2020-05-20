@@ -1,9 +1,12 @@
 import {PlayerState} from '../contexts/PlayerState';
+import { FavsState } from '../contexts/FavsContext';
 
 function MyApp({ Component, pageProps }) {
   return (
     <PlayerState>
-      <Component {...pageProps} />
+      <FavsState>
+        <Component {...pageProps} />
+      </FavsState>
     </PlayerState>
   );
 }

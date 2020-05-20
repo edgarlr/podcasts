@@ -4,6 +4,8 @@ import PodcastGrid from '../components/PodcastGrid';
 import Error from 'next/error'
 import PodcastGridCarousel from '../components/PodcastGridCarousel';
 import Header from '../components/Header';
+import {FavsContext} from '../contexts/FavsContext'
+import { useContext } from 'react';
 
 export async function getServerSideProps(context) {
   try {
@@ -19,6 +21,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home ({channels, statusCode}) {
+  const {myList} = useContext(FavsContext)
+  
   if (statusCode !== 200) {
     return <Error statusCode={statusCode} />;
   }
@@ -26,7 +30,9 @@ export default function Home ({channels, statusCode}) {
     <Layout title='Podcast'>
       <Header headerText='Podcast' />
 
-      <PodcastGridCarousel channels={channels} title={'tus seguidos'} />
+      {myList.length !== 0 && (
+        <PodcastGridCarousel channels={myList} title={'tus seguidos'} />
+      )}
 
       <div className='content'>
         <PodcastGrid channels={channels} title={'programas'} />

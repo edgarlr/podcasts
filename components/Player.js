@@ -1,6 +1,10 @@
+import { useContext, useEffect } from 'react';
 import {MdPause} from 'react-icons/md'
 import TranslucentImage from './TranslucentImage';
+import {PlayerContext} from '../contexts/PlayerContext'
+
 export default function Player() {
+  const { currentSong } = useContext(PlayerContext);
   return (
     <div>
       <div className='player'>
@@ -10,17 +14,25 @@ export default function Player() {
               clipUrls={clip.urls}
               channelUrls={clip.channel.urls}
             /> */}
-            <img src='https://images.theabcdn.com/i/21285758' alt='' srcset='' />
+            <TranslucentImage
+              clipUrls={currentSong.urls}
+              channelUrls={currentSong.channel.urls}
+            />
+            {/* <img
+              src='https://images.theabcdn.com/i/21285758'
+              alt=''
+              srcSet=''
+            />
             <div
               className='banner-shadow'
               style={{
                 backgroundImage: `url(https://images.theabcdn.com/i/21285758})`,
               }}
-            />
+            /> */}
           </div>
           <div className='info'>
-            <h3>Teaser: Juro que es Posta</h3>
-            <h4>Posta</h4>
+            <h3>{currentSong.title}</h3>
+            <h4>{currentSong.channel.title}</h4>
           </div>
         </div>
         <MdPause size='2em' color='white' />
@@ -30,6 +42,7 @@ export default function Player() {
         .info-container {
           display: flex;
           align-items: center;
+          position: relative;
         }
         .player {
           background: #131414;
@@ -38,14 +51,23 @@ export default function Player() {
           right: 0;
           left: 0;
           bottom: 0;
+          margin: 0 -1px -1px -1px;
           border-radius: 20px 20px 0 0;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 .8em;
+          padding: 0 0.8em;
         }
         .info {
           margin-left: 1em;
+          position: relative;
+        }
+        .info h3,
+        .info h4 {
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .img-container {
           width: 3.5em;
@@ -70,13 +92,13 @@ export default function Player() {
         }
         h3 {
           color: #fff;
-          font-size: .85em;
+          font-size: 0.85em;
           font-weight: bold;
           margin: 0 0 4px;
         }
         h4 {
           color: #a8a8a8;
-          font-size: .7em;
+          font-size: 0.7em;
           font-weight: 400;
           margin: 0;
           text-transform: uppercase;

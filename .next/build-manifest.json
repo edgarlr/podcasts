@@ -14,7 +14,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/[channel]/[podcast]": [
+    "/[channel]": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],

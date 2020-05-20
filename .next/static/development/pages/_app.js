@@ -1,5 +1,132 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/_app.js"],{
 
+/***/ "./contexts/FavsContext.js":
+/*!*********************************!*\
+  !*** ./contexts/FavsContext.js ***!
+  \*********************************/
+/*! exports provided: FavsContext, FavsState */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FavsContext", function() { return FavsContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FavsState", function() { return FavsState; });
+/* harmony import */ var _babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types */ "./contexts/types.js");
+/* harmony import */ var _FavsReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FavsReducer */ "./contexts/FavsReducer.js");
+/* harmony import */ var _hooks_useLocalStorage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../hooks/useLocalStorage */ "./hooks/useLocalStorage.js");
+
+
+var _this = undefined,
+    _jsxFileName = "/Users/edgarlopez/Code/courses/react/next/podcasts/contexts/FavsContext.js";
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+var FavsContext = Object(react__WEBPACK_IMPORTED_MODULE_1__["createContext"])();
+var FavsState = function FavsState(props) {
+  var _useLocalStorage = Object(_hooks_useLocalStorage__WEBPACK_IMPORTED_MODULE_4__["useLocalStorage"])('favs', undefined),
+      _useLocalStorage2 = Object(_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useLocalStorage, 1),
+      favs = _useLocalStorage2[0];
+
+  var empyArr = [];
+
+  var initialValue = function initialValue() {
+    if (favs !== undefined) {
+      return favs;
+    }
+
+    return empyArr;
+  };
+
+  var initialState = {
+    myList: initialValue()
+  };
+
+  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_1__["useReducer"])(_FavsReducer__WEBPACK_IMPORTED_MODULE_3__["FavsReducer"], initialState),
+      state = _useReducer[0],
+      dispatch = _useReducer[1];
+
+  var Follow = function Follow(channel) {
+    return dispatch({
+      type: _types__WEBPACK_IMPORTED_MODULE_2__["ADD_TO_FOLLOW"],
+      data: channel
+    });
+  };
+
+  var Unfollow = function Unfollow(channel) {
+    return dispatch({
+      type: _types__WEBPACK_IMPORTED_MODULE_2__["REMOVE_FROM_FOLLOW"],
+      data: channel
+    });
+  };
+
+  return __jsx(FavsContext.Provider, {
+    value: {
+      myList: state.myList,
+      Follow: Follow,
+      Unfollow: Unfollow
+    },
+    __self: _this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31,
+      columnNumber: 5
+    }
+  }, props.children);
+};
+
+/***/ }),
+
+/***/ "./contexts/FavsReducer.js":
+/*!*********************************!*\
+  !*** ./contexts/FavsReducer.js ***!
+  \*********************************/
+/*! exports provided: FavsReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FavsReducer", function() { return FavsReducer; });
+/* harmony import */ var _babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types */ "./contexts/types.js");
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
+var FavsReducer = function FavsReducer(state, action) {
+  switch (action.type) {
+    case _types__WEBPACK_IMPORTED_MODULE_2__["ADD_TO_FOLLOW"]:
+      return _objectSpread({}, state, {
+        myList: [].concat(Object(_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(state.myList), [action.data])
+      });
+
+    case _types__WEBPACK_IMPORTED_MODULE_2__["REMOVE_FROM_FOLLOW"]:
+      return _objectSpread({}, state, {
+        myList: state.myList.filter(function (items) {
+          return items.id !== action.data.id;
+        })
+      });
+
+    default:
+      return {
+        state: state
+      };
+  }
+};
+
+/***/ }),
+
 /***/ "./contexts/PlayerContext.js":
 /*!***********************************!*\
   !*** ./contexts/PlayerContext.js ***!
@@ -38,15 +165,30 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 var PlayerReducer = function PlayerReducer(state, action) {
   switch (action.type) {
+    case _types__WEBPACK_IMPORTED_MODULE_1__["SET_LOADING"]:
+      return _objectSpread({}, state, {
+        loading: action.data
+      });
+
     case _types__WEBPACK_IMPORTED_MODULE_1__["SET_CURRENT_SONG"]:
       return _objectSpread({}, state, {
-        currentSong: action.data,
+        currentSong: action.data
+      });
+
+    case _types__WEBPACK_IMPORTED_MODULE_1__["SET_CURRENT_SONG_INDEX"]:
+      return _objectSpread({}, state, {
+        currentSongIndex: action.data,
         playing: true
       });
 
     case _types__WEBPACK_IMPORTED_MODULE_1__["TOGGLE_PLAYING"]:
       return _objectSpread({}, state, {
         playing: action.data
+      });
+
+    case _types__WEBPACK_IMPORTED_MODULE_1__["SET_PLAYLIST"]:
+      return _objectSpread({}, state, {
+        playlist: action.data
       });
 
     default:
@@ -83,14 +225,44 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 var PlayerState = function PlayerState(props) {
   var initialState = {
     currentSong: 0,
-    // songs: songsArr,
+    currentSongIndex: null,
+    playlist: null,
     playing: false,
-    audio: null
+    audio: null,
+    loading: true
   };
 
   var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(_PlayerReducer__WEBPACK_IMPORTED_MODULE_2__["PlayerReducer"], initialState),
       state = _useReducer[0],
       dispatch = _useReducer[1];
+
+  var SetLoading = function SetLoading(loading) {
+    return dispatch({
+      type: _types__WEBPACK_IMPORTED_MODULE_3__["SET_LOADING"],
+      data: loading
+    });
+  };
+
+  var SetCurrent = function SetCurrent(currentSong) {
+    return dispatch({
+      type: _types__WEBPACK_IMPORTED_MODULE_3__["SET_CURRENT_SONG"],
+      data: currentSong
+    });
+  };
+
+  var SetCurrentIndex = function SetCurrentIndex(index) {
+    return dispatch({
+      type: _types__WEBPACK_IMPORTED_MODULE_3__["SET_CURRENT_SONG_INDEX"],
+      data: index
+    });
+  };
+
+  var SetPlaylist = function SetPlaylist(playlistArray) {
+    return dispatch({
+      type: _types__WEBPACK_IMPORTED_MODULE_3__["SET_PLAYLIST"],
+      data: playlistArray
+    });
+  };
 
   var togglePlaying = function togglePlaying() {
     return dispatch({
@@ -99,25 +271,39 @@ var PlayerState = function PlayerState(props) {
     });
   };
 
-  var SetCurrent = function SetCurrent(id) {
-    return dispatch({
-      type: _types__WEBPACK_IMPORTED_MODULE_3__["SET_CURRENT_SONG"],
-      data: id
-    });
+  var prevSong = function prevSong() {
+    if (state.currentSong === 0) {
+      SetCurrentIndex(0);
+    } else {
+      SetCurrentIndex(state.currentSongIndex - 1);
+    } // console.log('hola');
+
+  };
+
+  var nextSong = function nextSong() {
+    console.log('hola');
   };
 
   return __jsx(_PlayerContext__WEBPACK_IMPORTED_MODULE_1__["PlayerContext"].Provider, {
     value: {
       currentSong: state.currentSong,
+      currentSongIndex: state.currentSongIndex,
+      playlist: state.playlist,
       playing: state.playing,
       audio: state.audio,
+      loading: state.loading,
+      SetLoading: SetLoading,
       SetCurrent: SetCurrent,
+      SetCurrentIndex: SetCurrentIndex,
+      SetPlaylist: SetPlaylist,
+      prevSong: prevSong,
+      nextSong: nextSong,
       togglePlaying: togglePlaying
     },
     __self: _this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 49,
       columnNumber: 5
     }
   }, props.children);
@@ -129,15 +315,74 @@ var PlayerState = function PlayerState(props) {
 /*!***************************!*\
   !*** ./contexts/types.js ***!
   \***************************/
-/*! exports provided: SET_CURRENT_SONG, TOGGLE_PLAYING */
+/*! exports provided: SET_CURRENT_SONG, TOGGLE_PLAYING, SET_CURRENT_SONG_INDEX, SET_PLAYLIST, SET_LOADING, ADD_TO_FOLLOW, REMOVE_FROM_FOLLOW */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CURRENT_SONG", function() { return SET_CURRENT_SONG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TOGGLE_PLAYING", function() { return TOGGLE_PLAYING; });
-var SET_CURRENT_SONG = 'SET_CURRENT_SONT';
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CURRENT_SONG_INDEX", function() { return SET_CURRENT_SONG_INDEX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PLAYLIST", function() { return SET_PLAYLIST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LOADING", function() { return SET_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TO_FOLLOW", function() { return ADD_TO_FOLLOW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FROM_FOLLOW", function() { return REMOVE_FROM_FOLLOW; });
+// PLAYER REDUCER 
+var SET_CURRENT_SONG = 'SET_CURRENT_SONG';
 var TOGGLE_PLAYING = 'TOGGLE_PLAYING';
+var SET_CURRENT_SONG_INDEX = 'SET_CURRENT_SONG_INDEX';
+var SET_PLAYLIST = 'SET_PLAYLIST';
+var SET_LOADING = 'SET_LOADING'; // FAVS REDUCER
+
+var ADD_TO_FOLLOW = 'ADD_TO_FOLLOW';
+var REMOVE_FROM_FOLLOW = 'REMOVE_FROM_FOLLOW';
+
+/***/ }),
+
+/***/ "./hooks/useLocalStorage.js":
+/*!**********************************!*\
+  !*** ./hooks/useLocalStorage.js ***!
+  \**********************************/
+/*! exports provided: useLocalStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLocalStorage", function() { return useLocalStorage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var useLocalStorage = function useLocalStorage(key, initialValue) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(function () {
+    try {
+      var item = window.localStorage.getItem(key);
+      return item !== null ? JSON.parse(item) : initialValue;
+    } catch (e) {
+      return initialValue;
+    }
+  }),
+      storedValue = _useState[0],
+      setStoredValue = _useState[1];
+
+  var setLocalStorage = function setLocalStorage(value) {
+    try {
+      var itemValue = function itemValue() {
+        if (typeof value === String) {
+          return value;
+        }
+
+        return JSON.stringify(value);
+      };
+
+      window.localStorage.setItem(key, itemValue());
+      setStoredValue(value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return [storedValue, setLocalStorage];
+};
 
 /***/ }),
 
@@ -243,6 +488,44 @@ module.exports = _createClass;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _arrayWithHoles; });
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _arrayWithoutHoles; });
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/defineProperty.js ***!
@@ -296,6 +579,140 @@ function _extends() {
   };
 
   return _extends.apply(this, arguments);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _iterableToArray; });
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _iterableToArrayLimit; });
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _nonIterableRest; });
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _nonIterableSpread; });
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _slicedToArray; });
+/* harmony import */ var _arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js");
+/* harmony import */ var _iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js");
+/* harmony import */ var _nonIterableRest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js");
+
+
+
+function _slicedToArray(arr, i) {
+  return Object(_arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || Object(_iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || Object(_nonIterableRest__WEBPACK_IMPORTED_MODULE_2__["default"])();
+}
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _toConsumableArray; });
+/* harmony import */ var _arrayWithoutHoles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js");
+/* harmony import */ var _iterableToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/esm/iterableToArray.js");
+/* harmony import */ var _nonIterableSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js");
+
+
+
+function _toConsumableArray(arr) {
+  return Object(_arrayWithoutHoles__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || Object(_iterableToArray__WEBPACK_IMPORTED_MODULE_1__["default"])(arr) || Object(_nonIterableSpread__WEBPACK_IMPORTED_MODULE_2__["default"])();
 }
 
 /***/ }),
@@ -3215,10 +3632,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _contexts_PlayerState__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contexts/PlayerState */ "./contexts/PlayerState.js");
+/* harmony import */ var _contexts_FavsContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../contexts/FavsContext */ "./contexts/FavsContext.js");
 
 var _jsxFileName = "/Users/edgarlopez/Code/courses/react/next/podcasts/pages/_app.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 function MyApp(_ref) {
@@ -3228,17 +3647,24 @@ function MyApp(_ref) {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5,
+      lineNumber: 6,
       columnNumber: 5
+    }
+  }, __jsx(_contexts_FavsContext__WEBPACK_IMPORTED_MODULE_3__["FavsState"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7,
+      columnNumber: 7
     }
   }, __jsx(Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
     __self: this,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6,
-      columnNumber: 7
+      lineNumber: 8,
+      columnNumber: 9
     }
-  })));
+  }))));
 } // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
 // perform automatic static optimization, causing every page in your app to

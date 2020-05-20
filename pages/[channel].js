@@ -3,8 +3,10 @@ import Layout from '../components/Layout';
 import EpisodeList from '../components/EpisodeList';
 import PodcastGrid from '../components/PodcastGrid';
 import Error from './_error';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Header from '../components/Header';
+import {FavsContext} from '../contexts/FavsContext'
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export async function getServerSideProps(context) {
   let idChannel = context.query.channel;
@@ -51,29 +53,49 @@ export async function getServerSideProps(context) {
 }
 
 export default function channel({ channel, audioClips, series, statusCode }) {
-  // console.log(channel);
-  
-  
+  const {myList, Follow, Unfollow } = useContext(FavsContext)
   const [bannerImage, setBannerImage] = useState({})
+  const [isFollowed, setIsFollowed] = useState(false)
+  const [, setLocalStorage] = useLocalStorage('favs', [])
 
-  useEffect(() => {
+  useEffect(() => {  
     if (channel.urls.banner_image.original === null) {
       setBannerImage(channel.urls.logo_image.original);
     } else {
       setBannerImage(channel.urls.banner_image.original)
     }
-  })
+
+    for (let i = 0; i < myList.length; i++) {
+      if (myList[i].id == channel.id) {
+        setIsFollowed(true)
+        break;
+      }
+    }
+
+    setLocalStorage(myList)
+  }, [myList])
 
   if (statusCode !== 200) {
     return <Error statusCode={statusCode} />;
   }
+
+
+  const handleFollowClick = () => {
+    Follow(channel)
+  }
+  const handleUnfollowClick = () => {    
+    Unfollow(channel)
+    setIsFollowed(false)
+  };
   
   return (
     <Layout title={`${channel.title} | Podcast`}>
       <Header
         headerText={channel.title}
         nav={true}
-        seguir={true}
+        followed={isFollowed}
+        handleFollowClick={handleFollowClick}
+        handleUnfollowClick={handleUnfollowClick}
         serie={channel.parent_channel_id}
       />
       <div className='content'>

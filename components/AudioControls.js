@@ -4,13 +4,16 @@ import {PlayerContext} from '../contexts/PlayerContext'
 
 export default function AudioControls({clipSrc}) {
   const {
-    currentSong,
     playing,
-    togglePlaying
+    togglePlaying,
+    currentSong,
+    prevSong,
+    nextSong,
+    playlist,
+    currentSongIndex
   } = useContext(PlayerContext)
 
   const audio = useRef('audio_tag')
-
   const [stateVolume, setStateVolume] = useState(0.5);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -28,27 +31,38 @@ export default function AudioControls({clipSrc}) {
     audio.current.currentTime = compute;   
   }
 
-  useEffect(() => {
-    audio.current.volume = stateVolume
-    if (playing) {
-      toggleAudio();
-    }
-  }, [currentSong])
+  // useEffect(() => {
+  //   audio.current.volume = stateVolume
+  //   if (playing) {
+  //     toggleAudio();
+  //   }
+  //   console.log(playlist[currentSongIndex + 1 ]);
+    
+
+  // }, [])
 
   return (
     <div className='player'>
       <audio
         onCanPlay={(e) => setDuration(e.target.duration)}
-        onTimeUpdate={e => setCurrentTime(e.target.currentTime)}
-
+        onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
+        preload='true'
         ref={audio}
-        autoPlay={false}
+        autoPlay
       >
-        <source preload='true' src={clipSrc} type='audio/mpeg' />
+        <source
+          preload='true'
+          src={currentSong.urls.high_mp3 || clipSrc}
+          type='audio/mpeg'
+        />
       </audio>
 
       <div className='main-player'>
-        <button className='controller-button'>
+        <button
+          disabled={currentSongIndex === 0 ? true : false}
+          className='controller-button'
+          onClick={() => prevSong()}
+        >
           <MdSkipPrevious color='white' size='3em' />
         </button>
         <button
@@ -63,9 +77,12 @@ export default function AudioControls({clipSrc}) {
           ) : (
             <MdPlayArrow color='white' size='3em' />
           )}
-          {/* <MdPlayArrow color='white' size='3em' /> */}
         </button>
-        <button className='controller-button'>
+        <button
+          disabled={currentSongIndex === playlist.length - 1 ? true : false}
+          className='controller-button'
+          onClick={()=> nextSong()}
+        >
           <MdSkipNext color='white' size='3em' />
         </button>
       </div>
@@ -90,6 +107,14 @@ export default function AudioControls({clipSrc}) {
       </div>
 
       <style jsx>{`
+        button {
+          outline: none;
+        }
+
+        button[disabled] {
+          opacity: 0.3;
+        }
+
         .slider {
           -webkit-appearance: none;
           height: 4px;
@@ -136,7 +161,7 @@ export default function AudioControls({clipSrc}) {
           border: 1px solid white;
           background: none;
         }
-        .play-button:focus{
+        .play-button:focus {
           outline: none;
         }
         .control-bar {

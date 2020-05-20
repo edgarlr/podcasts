@@ -1,17 +1,15 @@
 import PodcastCover from './PodcastCover';
-import FiltersIcon from './FiltersIcon';
 
 export default function PodcastGrid({channels, title}) {
   return (
     <div>
       <div className='header-channels'>
         <p>{title}</p>
-        <FiltersIcon />
       </div>
 
       <div className='channels'>
         {channels.map((channel, index) => (
-          <PodcastCover channel={channel} index={index} />
+          <PodcastCover channel={channel} index={index} key={index}/>
         ))}
       </div>
 
@@ -22,7 +20,6 @@ export default function PodcastGrid({channels, title}) {
           align-items: center;
           padding: 30px 0;
           border-bottom: 1px solid #e2e2e2;
-          border-top: 1px solid #e2e2e2;
         }
         p {
           font-size: 12px;

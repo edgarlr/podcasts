@@ -6,8 +6,7 @@ import {PlayerContext} from '../contexts/PlayerContext'
 
 export default function Layout ({children, title}) {
   
-  const {audio} = useContext(PlayerContext)
-  console.log(audio);
+  const {currentSong} = useContext(PlayerContext)
   return (
     <div>
       <Head>
@@ -20,7 +19,7 @@ export default function Layout ({children, title}) {
         {children}
       </div>
 
-      {audio && (
+      {currentSong && (
         <Player />
       )}
 
