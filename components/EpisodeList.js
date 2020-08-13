@@ -16,15 +16,15 @@ export default function EpisodeList ({audioClips}) {
     SetCurrent(podcast)
     const podcastId = podcast.id
 
-    router.push(
-      {
-        pathname: `/[channel]/[podcast]`,
-        query: { podcastId: podcastId },
-        as: `/${channelId}/${podcastId}`,
-      },
-      `/${channelId}/${podcastId}`
-    );
-    console.log(router.query);
+    // router.push(
+    //   {
+    //     pathname: `/[channel]/[podcast]`,
+    //     query: { podcastId: podcastId },
+    //     as: `/${channelId}/${podcastId}`,
+    //   },
+    //   `/${channelId}/${podcastId}`
+    // );
+    // console.log(router.query);
     
   }
 

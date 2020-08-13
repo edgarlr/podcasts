@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import Head from 'next/head'
 import Player from './Player';
 import {PlayerContext} from '../contexts/PlayerContext'
+import { AudioPlayerContainer } from './AudioPlayerContainer';
 
 
 export default function Layout ({children, title}) {
@@ -19,9 +20,11 @@ export default function Layout ({children, title}) {
         {children}
       </div>
 
-      {currentSong && (
+      {/* {currentSong && (
         <Player />
-      )}
+      )} */}
+
+      <AudioPlayerContainer isOpen={true}/>
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');

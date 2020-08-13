@@ -38,7 +38,7 @@ export default function AudioControls({clipSrc}) {
   //   }
   //   console.log(playlist[currentSongIndex + 1 ]);
     
-
+ 
   // }, [])
 
   return (
