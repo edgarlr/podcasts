@@ -1,5 +1,5 @@
 import React, { useState} from 'react'
-import {MdSort} from 'react-icons/md'
+import { MdSort } from 'react-icons/md'
 
 export default function FiltersIcon({handleFilterClick}) {
   const [showDropdown, setShowDropdown] = useState(false)

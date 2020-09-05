@@ -1,24 +1,24 @@
 import React, {useContext} from 'react'
 import Head from 'next/head'
-import Player from './Player';
-import {PlayerContext} from '../contexts/PlayerContext'
-import { AudioPlayerContainer } from './AudioPlayerContainer';
+import Player from 'components/Player';
+import {PlayerContext} from 'contexts/PlayerContext'
+import { AudioPlayerContainer } from 'components/AudioPlayerContainer';
+import { colors } from 'styles/theme';
 
-
-export default function Layout ({children, title}) {
-  
+export default function Layout ({children, header = null, title}) {
   const {currentSong} = useContext(PlayerContext)
+  
   return (
-    <div>
+    <>
       <Head>
-        <title>{title}</title>
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <div className='content'>
+      {header}
+
+      <main className='content'>
         {children}
-      </div>
+      </main>
 
       {/* {currentSong && (
         <Player />
@@ -27,16 +27,24 @@ export default function Layout ({children, title}) {
       <AudioPlayerContainer isOpen={true}/>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         body {
-          margin: 0;
-          background: #fff;
-          font-family: 'Roboto', sans-serif;
+          background:${colors.white};
+          color: ${colors.darkGray};
         }
-        .content {
-          padding-bottom: 130px;
+        a {
+          color: ${colors.darkGray};
         }
       `}</style>
-    </div>
+
+      <style jsx global>{`
+        body {
+          margin: 0;
+          font-family: 'Kumbh Sans', sans-serif;
+        }
+        main {
+          padding: 2rem 1.5rem 130px;
+        }
+      `}</style>
+    </>
   );
 }

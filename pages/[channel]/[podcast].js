@@ -1,8 +1,8 @@
 import 'isomorphic-fetch';
 import { useContext, useState, useEffect } from 'react';
-import { PlayerContext } from '../../contexts/PlayerContext';
+import { PlayerContext } from 'contexts/PlayerContext';
 import { useRouter } from 'next/router';
-import { AudioPlayer } from '../../components/AudioPlayer';
+import { AudioPlayer } from 'components/AudioPlayer';
 
 export async function getServerSideProps(context) {
   let idChannel = context.query.channel;

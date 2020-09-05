@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from 'react'
 import {useRouter} from 'next/router';
-import FiltersIcon from './FiltersIcon';
-import {PlayerContext} from '../contexts/PlayerContext'
+import FiltersIcon from 'components/FiltersIcon';
+import {PlayerContext} from 'contexts/PlayerContext'
 import {MdVolumeUp} from 'react-icons/md'
 
 export default function EpisodeList ({audioClips}) {
@@ -82,7 +82,6 @@ export default function EpisodeList ({audioClips}) {
           >
           <h2>{clip.title}</h2>
           <div className='meta'>{Math.ceil(clip.duration / 60)} minutes</div>
-          <p>{clip.title}</p>
           {/* <div>{clip.counts.plays} reproducciones</div> */}
           <p>{clip.counts.plays} reproducciones</p>
           {currentSongIndex === index && (

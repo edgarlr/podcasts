@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import TranslucentImage from './TranslucentImage';
-import AudioControls from './AudioControls';
+import TranslucentImage from 'components/TranslucentImage';
+import AudioControls from 'components/AudioControls';
 import { useEffect, useContext } from 'react';
-import { PlayerContext } from '../contexts/PlayerContext';
+import { PlayerContext } from 'contexts/PlayerContext';
 
 export const AudioPlayer = () => {
   const {

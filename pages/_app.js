@@ -1,5 +1,5 @@
-import {PlayerState} from '../contexts/PlayerState';
-import { FavsState } from '../contexts/FavsContext';
+import {PlayerState} from 'contexts/PlayerState';
+import { FavsState } from 'contexts/FavsContext';
 
 function MyApp({ Component, pageProps }) {
   return (

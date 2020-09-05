@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from 'react'
 import { MdPause, MdPlayArrow, MdSkipPrevious, MdSkipNext } from 'react-icons/md';
-import {PlayerContext} from '../contexts/PlayerContext'
+import {PlayerContext} from 'contexts/PlayerContext'
 
 export default function AudioControls({clipSrc}) {
   const {
@@ -127,7 +127,8 @@ export default function AudioControls({clipSrc}) {
 
         .slider::-webkit-slider-thumb {
           -webkit-appearance: none;
-          appearance: none;
+          -moz-appearance: none;
+          -ms-progress-appearance: none;
           width: 2.5em;
           height: 2.5em;
           border-radius: 50%;

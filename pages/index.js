@@ -1,11 +1,10 @@
-import 'isomorphic-fetch'
-import Layout from '../components/Layout';
-import PodcastGrid from '../components/PodcastGrid';
-import Error from 'next/error'
-import PodcastGridCarousel from '../components/PodcastGridCarousel';
-import Header from '../components/Header';
-import {FavsContext} from '../contexts/FavsContext'
 import { useContext } from 'react';
+import 'isomorphic-fetch'
+import Error from 'next/error'
+import Head from 'next/head';
+
+import {FavsContext} from 'contexts/FavsContext'
+import Hompage from 'containers/Hompage';
 
 export async function getServerSideProps(context) {
   try {
@@ -22,27 +21,18 @@ export async function getServerSideProps(context) {
 
 export default function Home ({channels, statusCode}) {
   const {myList} = useContext(FavsContext)
-  
+
   if (statusCode !== 200) {
     return <Error statusCode={statusCode} />;
   }
+
   return (
-    <Layout title='Podcast'>
-      <Header headerText='Podcast' />
+    <>
+      <Head>
+        <title>Podcasts</title>
+      </Head>
 
-      {myList.length !== 0 && (
-        <PodcastGridCarousel channels={myList} title={'tus seguidos'} />
-      )}
-
-      <div className='content'>
-        <PodcastGrid channels={channels} title={'programas'} />
-      </div>
-
-      <style jsx>{`
-        .content {
-          padding: 0 1.5em;
-        }
-      `}</style>
-    </Layout>
+      <Hompage channels={channels} myList={myList} />
+    </>
   );
 }

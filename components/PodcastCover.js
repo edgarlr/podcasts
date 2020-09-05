@@ -1,11 +1,11 @@
 import Link from 'next/link';
+import { fontWeight, colors } from 'styles/theme';
 
-export default function PodcastCover({channel, index}) {
+export default function PodcastCover({channel}) {
   return (
     <div>
       <Link
         href={`/[channel]?id=${channel.id}`}
-        key={index}
         as={`${channel.id}`}
       >
         <a className='channel'>
@@ -15,6 +15,15 @@ export default function PodcastCover({channel, index}) {
       </Link>
 
       <style jsx>{`
+        a {
+          color: ${colors.darkGray};
+        }
+        h2 {
+          font-weight: ${fontWeight.regular};
+        }  
+      `}</style>
+
+      <style jsx>{`
         .channel {
           display: block;
           border-radius: 3px;
@@ -22,19 +31,24 @@ export default function PodcastCover({channel, index}) {
         }
         img {
           width: 100%;
-          border: 1px solid #e2e2e2;
           border-radius: 20px;
+          box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
         }
         a {
-          color: black;
           text-decoration: none;
         }
         h2 {
           padding: 0;
-          margin: 12px 0 0;
-          font-size: 16px;
-          font-weight: 400;
+          margin: 8px 0 0;
+          font-size: .9rem;
           text-align: center;
+          overflow: hidden;
+          line-height: 1.4;
+          height: 2.8em;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
         }
       `}</style>
     </div>

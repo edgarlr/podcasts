@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import { colors } from 'styles/theme';
+import { colors, fontWeight } from 'styles/theme';
 
-const Navbar = ({ headerText = null, backBtn = false }) => {
+const Navbar = ({
+  handleFollowClick = null,
+  handleUnfollowClick = null,
+  followed = false,
+  headerText
+}) => {
   const [fixedNav, setFixedNav] = useState(false)
 
   const fixNavigation = () => { 
-    if (window.scrollY > 80) {
+    if (window.scrollY > 110) {
       setFixedNav(true);
     } else {
       setFixedNav(false);
@@ -22,41 +27,71 @@ const Navbar = ({ headerText = null, backBtn = false }) => {
     }
   }, [])
   return (
-    <header>
-      {backBtn && (
-        <Link href={'/'}>
-          <a>
-            <MdKeyboardArrowLeft size='2rem' />
-          </a>
-        </Link>
+    <nav >
+      <Link href={'/'}>
+        <a>
+          <MdKeyboardArrowLeft size='2rem' />
+        </a>
+      </Link>
+      
+      <h2 className={fixedNav ? 'show' : ''}>{headerText}</h2>
+
+      {handleFollowClick && (
+        <div >
+          {!followed ? (
+            <button onClick={handleFollowClick}>
+              Follow
+            </button>
+          ) : (
+            <button
+              onClick={handleUnfollowClick}
+              className='unfollow-btn'
+            >
+              Following
+            </button>
+          )}
+        </div>
       )}
-      
-      <h2 className={`${fixedNav ? 'show' : ''}`}>{headerText}</h2>
-      
+
       <style jsx>{`
-        header {
+        nav {
           background: ${colors.white};
+        }
+        .unfollow-btn {
+          background: ${colors.white};
+          color: ${colors.black};
+          border: 1px solid ${colors.black};
+        }
+        button {
+          color: ${colors.white};
+          background: ${colors.black};
+          font-weight: ${fontWeight.bold};
         }
       `}</style>
 
       <style jsx>{`
-        header {
+        nav {
           z-index: 1;
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           display: flex;
-          justify-content: center;
+          justify-content: space-between;
           align-items: center;
           height: 3rem;
           padding: 1rem 1.5rem 0;
         }
+        button {
+          border: none;
+          padding: 8px 16px;
+          border-radius: 10px;
+          cursor: pointer;
+          outline: none;
+        }
         a {
           display: flex;
           align-items: center;
-          position: absolute;
-          left: 1.5rem;
         }
         h2 {
           margin: 0;
@@ -74,7 +109,7 @@ const Navbar = ({ headerText = null, backBtn = false }) => {
           transform: translateY(0)
         }
       `}</style>
-    </header>
+    </nav>
   )
 }
 
