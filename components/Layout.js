@@ -4,8 +4,14 @@ import Player from 'components/Player';
 import {PlayerContext} from 'contexts/PlayerContext'
 import { AudioPlayerContainer } from 'components/AudioPlayerContainer';
 import { colors } from 'styles/theme';
+import AppHeader from './AppHeader';
 
-export default function Layout ({children, header = null, title}) {
+export default function Layout ({
+  children, 
+  headerText = null, 
+  button = null, 
+  navigation = null }) {
+
   const {currentSong} = useContext(PlayerContext)
   
   return (
@@ -14,7 +20,7 @@ export default function Layout ({children, header = null, title}) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      {header}
+      <AppHeader navigation={navigation} headerText={headerText} button={button} />
 
       <main className='content'>
         {children}

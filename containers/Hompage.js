@@ -2,14 +2,13 @@ import MainTitle from 'components/MainTitle'
 import { SectionTitle }from 'components/SectionTitle'
 import Grid from 'components/Grid'
 import GridCarousel from 'components/GridCarousel'
-import Header from 'components/Header'
 import PodcastCover from 'components/PodcastCover'
 import Layout from 'components/Layout'
 
-const Hompage = ({channels, myList}) => {
+const Hompage = ({channels, myList = []}) => {
   return (
-    <Layout 
-      header={<Header headerText='Podcast'/>}
+    <Layout
+      headerText='Podcasts' 
     >
 
       <MainTitle title='Podcasts' />

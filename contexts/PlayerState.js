@@ -42,7 +42,7 @@ export const PlayerState = props => {
   }
 
   const nextSong = () => {
-    console.log('hola');
+    // console.log('hola');
   };
   
   return (

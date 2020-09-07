@@ -3,7 +3,7 @@ import 'isomorphic-fetch'
 import Error from 'next/error'
 import Head from 'next/head';
 
-import {FavsContext} from 'contexts/FavsContext'
+import { FavsContext } from 'contexts/FavsContext'
 import Hompage from 'containers/Hompage';
 
 export async function getServerSideProps(context) {

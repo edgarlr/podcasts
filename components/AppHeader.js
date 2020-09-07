@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { colors } from 'styles/theme';
 
-const Navbar = ({ headerText = null, backBtn = false }) => {
+const AppHeader = ({ headerText, navigation = true, button = null}) => {
   const [fixedNav, setFixedNav] = useState(false)
 
   const fixNavigation = () => { 
-    if (window.scrollY > 80) {
+    if (window.scrollY > 110) {
       setFixedNav(true);
     } else {
       setFixedNav(false);
@@ -21,18 +21,24 @@ const Navbar = ({ headerText = null, backBtn = false }) => {
       window.removeEventListener('scroll', fixNavigation)
     }
   }, [])
+
   return (
-    <header>
-      {backBtn && (
+    <header className={button ? 'full-nav' : ''}>
+      { navigation ? (
         <Link href={'/'}>
           <a>
             <MdKeyboardArrowLeft size='2rem' />
           </a>
-        </Link>
-      )}
+        </Link> 
+        ) : null
+      }
       
-      <h2 className={`${fixedNav ? 'show' : ''}`}>{headerText}</h2>
-      
+      <h2 className={fixedNav ? 'show' : ''}>
+        {headerText}
+      </h2>
+
+      { button }
+
       <style jsx>{`
         header {
           background: ${colors.white};
@@ -47,16 +53,22 @@ const Navbar = ({ headerText = null, backBtn = false }) => {
           left: 0;
           right: 0;
           display: flex;
-          justify-content: center;
           align-items: center;
           height: 3rem;
           padding: 1rem 1.5rem 0;
+          justify-content: center;
         }
         a {
           display: flex;
           align-items: center;
           position: absolute;
           left: 1.5rem;
+        }
+        .full-nav {
+          justify-content: space-between;
+        }
+        .full-nav a {
+          position: static;
         }
         h2 {
           margin: 0;
@@ -71,11 +83,11 @@ const Navbar = ({ headerText = null, backBtn = false }) => {
         }
         h2.show {
           opacity: 1;
-          transform: translateY(0)
+          transform: translateY(0);
         }
       `}</style>
     </header>
   )
 }
 
-export default Navbar
+export default AppHeader

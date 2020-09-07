@@ -1,8 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import {FavsContext} from 'contexts/FavsContext'
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useState, useEffect } from 'react';
 import MainTitle from 'components/MainTitle';
-import Navbar from 'components/Navbar';
 import PodcastCover from 'components/PodcastCover';
 import Layout from 'components/Layout';
 import EpisodeList from 'components/EpisodeList';
@@ -10,12 +7,10 @@ import GridCarousel from 'components/GridCarousel';
 import { SectionTitle } from 'components/SectionTitle';
 import BannerImage from 'components/BannerImage';
 import { colors } from 'styles/theme';
+import FollowButtonContainer from 'components/FollowButtonContainer';
 
 const ChannelPage = ({channel, audioClips, series }) => {
-  const {myList, Follow, Unfollow } = useContext(FavsContext)
   const [bannerImage, setBannerImage] = useState({})
-  const [isFollowed, setIsFollowed] = useState(false)
-  const [, setLocalStorage] = useLocalStorage('favs', [])
 
   useEffect(() => {  
     if (channel.urls.banner_image.original === null) {
@@ -24,35 +19,15 @@ const ChannelPage = ({channel, audioClips, series }) => {
       setBannerImage(channel.urls.banner_image.original)
     }
 
-    for (let i = 0; i < myList.length; i++) {
-      if (myList[i].id == channel.id) {
-        setIsFollowed(true)
-        break;
-      }
-    }
-
-    setLocalStorage(myList)
-  }, [myList])
-
-  const handleFollowClick = () => {
-    Follow(channel)
-  }
-  const handleUnfollowClick = () => {    
-    Unfollow(channel)
-    setIsFollowed(false)
-  };
+  }, [])
 
   return (
     <Layout 
-      header={
-        <Navbar 
-          headerText={channel.title}
-          followed={isFollowed}
-          handleFollowClick={handleFollowClick}
-          handleUnfollowClick={handleUnfollowClick}
-        />
-      }
+      navigation={true}
+      headerText={channel.title}
+      button={<FollowButtonContainer channel={channel} />}
     >
+
       <MainTitle
         title={channel.title}
         serie={channel.parent_channel_id}
