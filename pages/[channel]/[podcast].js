@@ -1,55 +1,36 @@
 import 'isomorphic-fetch';
-import { useContext, useState, useEffect } from 'react';
-import { PlayerContext } from 'contexts/PlayerContext';
-import { useRouter } from 'next/router';
-import { AudioPlayer } from 'components/AudioPlayer';
+import Error from 'next/error';
+import Head from 'next/head';
+import PodcastPage from 'containers/PodcastPage';
 
 export async function getServerSideProps(context) {
-  let idChannel = context.query.channel;
+  let podcastId = context.query.podcast;
 
-  let req = await fetch(
-    `https://api.audioboom.com/channels/${idChannel}/audio_clips?version=2`
-    );
-    
-  let data = await req.json()
-  let audioClips = data.body.audio_clips;
-  
-  return {props: {audioClips}}
+  try {
+    let req = await fetch(
+      `https://api.audioboom.com/audio_clips/${podcastId}?api_version=2`
+      );
+      
+    let { body: { audio_clip } } = await req.json()
+
+    return {props: { audio_clip, statusCode: context.res.statusCode}}
+
+  } catch (error) {
+    return {props: {audio_clip: null, statusCode: context.res.statusCode}}
+  }
 }
 
-export default function podcast({ audioClips }) {
-  const router = useRouter();
-  const [loading, setLoading] = useState(true)
-
-  const {
-    SetCurrentIndex,
-    SetPlaylist,
-    SetCurrent,
-    SetLoading,
-    playlist,
-  } = useContext(PlayerContext);
-
-  useEffect(() => {
-    const setContextState = async () => {
-      if (playlist === null) {
-        SetPlaylist(audioClips)
-      }
-      for (let i = 0; i < audioClips.length; i++) {
-        if (router.query.podcast == audioClips[i].id) {
-          await SetCurrentIndex(i)
-          await SetCurrent(audioClips[i])
-          setLoading(false)
-        }
-      }
-    }
-    setContextState()
-  }, [])
-  
-  if (loading) {
-    return <div className="modal">...</div>
+export default function podcast({ audio_clip, statusCode }) {
+  if (statusCode !== 200) {
+    return <Error statusCode={statusCode} />;
   }
   
   return (
-    <AudioPlayer />
+    <>
+      <Head>
+        <title>{audio_clip.title} | Podcasts</title>
+      </Head>
+      <PodcastPage audio_clip={audio_clip} />
+    </>
   );
 }

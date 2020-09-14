@@ -1,12 +1,12 @@
 import React from 'react'
 import { colors, fontWeight } from 'styles/theme';
 
-export default function MainTitle({ children, title, serie = null }) {
+export default function MainTitle({ children, title, subtitle = null }) {
   return (
     <div>
       {children}
 
-      {serie && <p>{`serie de ${serie}`}</p>}
+      {subtitle && <p>{subtitle}</p>}
       
       <h1>{title}</h1>
 

@@ -1,5 +1,5 @@
-import { useContext } from 'react';
 import 'isomorphic-fetch'
+import { useContext } from 'react';
 import Error from 'next/error'
 import Head from 'next/head';
 
@@ -13,7 +13,7 @@ export async function getServerSideProps(context) {
     );
     let { body: channels } = await req.json();
 
-    return { props: {channels, statusCode: context.res.statusCode} };
+    return { props: { channels, statusCode: context.res.statusCode } };
   } catch (error) {
     return {props: { channels: null, statusCode: context.res.statusCode }}
   }
@@ -35,4 +35,4 @@ export default function Home ({channels, statusCode}) {
       <Hompage channels={channels} myList={myList} />
     </>
   );
-}
+} 

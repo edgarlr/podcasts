@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link';
+import { useState, useEffect } from 'react'
 
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { colors } from 'styles/theme';
+import { useRouter } from 'next/router';
 
 const AppHeader = ({ headerText, navigation = true, button = null}) => {
+  const router = useRouter()
+
   const [fixedNav, setFixedNav] = useState(false)
 
   const fixNavigation = () => { 
@@ -24,14 +26,11 @@ const AppHeader = ({ headerText, navigation = true, button = null}) => {
 
   return (
     <header className={button ? 'full-nav' : ''}>
-      { navigation ? (
-        <Link href={'/'}>
-          <a>
-            <MdKeyboardArrowLeft size='2rem' />
-          </a>
-        </Link> 
-        ) : null
-      }
+      { navigation && (
+        <button onClick={() => router.back()}>
+          <MdKeyboardArrowLeft size='2rem' />
+        </button>
+      )}
       
       <h2 className={fixedNav ? 'show' : ''}>
         {headerText}
@@ -58,16 +57,20 @@ const AppHeader = ({ headerText, navigation = true, button = null}) => {
           padding: 1rem 1.5rem 0;
           justify-content: center;
         }
-        a {
+        button {
+          outline: none;
+          border: none;
+          background: transparent;
           display: flex;
           align-items: center;
           position: absolute;
           left: 1.5rem;
+          padding: 0;
         }
         .full-nav {
           justify-content: space-between;
         }
-        .full-nav a {
+        .full-nav button {
           position: static;
         }
         h2 {

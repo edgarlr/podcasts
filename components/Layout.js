@@ -30,7 +30,7 @@ export default function Layout ({
         <Player />
       )} */}
 
-      <AudioPlayerContainer isOpen={true}/>
+      {/* <AudioPlayerContainer isOpen={true}/> */}
 
       <style jsx global>{`
         body {

@@ -27,21 +27,21 @@ export default function FiltersIcon({handleFilterClick}) {
           onClick={onBtnClick}
           className={isActive === 'popular' ? 'active' : ''}
         >
-          Más Popuares
+          Most popular
         </button>
         <button
           id='oldest'
           onClick={onBtnClick}
           className={isActive === 'oldest' ? 'active' : ''}
         >
-          Fecha de subida (más antiguos)
+          Date added (oldest)
         </button>
         <button
           id='latest'
           onClick={onBtnClick}
           className={isActive === 'latest' ? 'active' : ''}
         >
-          Fecha de subida (más recientes)
+          Date added (newest)
         </button>
       </div>
 

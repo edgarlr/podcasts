@@ -1,12 +1,16 @@
 import { colors, fontWeight } from "styles/theme"
 
-export const SectionTitle = ({title }) => {
+export const SectionTitle = ({title, button = null}) => {
   return (
     <div>
-      <h3>{title}</h3>
+      <h3>{ title }</h3>
+
+      { button }
 
       <style jsx>{`
         div {
+          display: flex;
+          justify-content: space-between;
           border-bottom: 1px solid ${colors.lightGray};
         }
         h3 {

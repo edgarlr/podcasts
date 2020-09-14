@@ -15,20 +15,36 @@ export const AudioPlayer = () => {
     playlist
   } = useContext(PlayerContext)
 
-  // useEffect(() => {
-  //   if (playlist !== null) {
-  //     const updateContextState = async () => {
-  //       SetLoading(true);
-  //       for (let i = 0; i < playlist.length; i++) {
-  //         if (currentSongIndex == i) {
-  //           await SetCurrent(playlist[i]);
-  //           SetLoading(false);
-  //         }
-  //       }
-  //     };
-  //     // updateContextState();
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (playlist !== null) {
+      const updateContextState = async () => {
+        SetLoading(true);
+        for (let i = 0; i < playlist.length; i++) {
+          if (currentSongIndex == i) {
+            await SetCurrent(playlist[i]);
+            SetLoading(false);
+          }
+        }
+      };
+      // updateContextState();
+    }
+  }, [])
+
+  useEffect(() => {
+    const setContextState = async () => {
+      if (playlist === null) {
+        SetPlaylist(audio_clips)
+      }
+      for (let i = 0; i < audio_clips.length; i++) {
+        if (router.query.podcast == audio_clips[i].id) {
+          await SetCurrentIndex(i)
+          await SetCurrent(audio_clips[i])
+          setLoading(false)
+        }
+      }
+    }
+    setContextState()
+  }, [])
 
   return (
     <div>
@@ -45,7 +61,7 @@ export const AudioPlayer = () => {
               </a>
             </Link>
           </nav>
-
+ 
           <div className='img-container'>
             <TranslucentImage
               clipUrls={currentSong.urls}
@@ -64,6 +80,7 @@ export const AudioPlayer = () => {
 
       <style jsx>{`
         .modal {
+          font-family: 'Kumbh Sans', sans-serif;
           position: fixed;
           top: 0;
           left: 0;
@@ -109,6 +126,8 @@ export const AudioPlayer = () => {
         h3 {
           margin: 8px 0;
           font-size: 16px;
+          display: flex;
+          justify-content: flex-start;
         }
         h6 {
           margin: 0;
@@ -116,15 +135,6 @@ export const AudioPlayer = () => {
           font-weight: 400;
           color: #a8a8a8;
           text-transform: uppercase;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-        body {
-          margin: 0;
-          background: #fff;
-          font-family: 'Roboto', sans-serif;
         }
       `}</style>
     </div>

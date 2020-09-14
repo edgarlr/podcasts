@@ -9,4 +9,5 @@ export const colors = {
   gray: '#73788c',
   darkGray: '#383838',
   lightGray: '#e2e2e2',
+  textLightGray: '#73788c',
 }

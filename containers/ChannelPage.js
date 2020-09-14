@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import MainTitle from 'components/MainTitle';
 import PodcastCover from 'components/PodcastCover';
 import Layout from 'components/Layout';
-import EpisodeList from 'components/EpisodeList';
+import EpisodeListContainer from 'components/EpisodeListContainer';
 import GridCarousel from 'components/GridCarousel';
 import { SectionTitle } from 'components/SectionTitle';
 import BannerImage from 'components/BannerImage';
@@ -30,7 +30,7 @@ const ChannelPage = ({channel, audioClips, series }) => {
 
       <MainTitle
         title={channel.title}
-        serie={channel.parent_channel_id}
+        subtitle={`serie de ${channel.parent_channel_id}`}
       />
 
       <BannerImage bannerImage={bannerImage} />
@@ -46,7 +46,7 @@ const ChannelPage = ({channel, audioClips, series }) => {
         </section>
       )}
 
-      <EpisodeList audioClips={audioClips} />
+      <EpisodeListContainer audioClips={audioClips} />
       
       <style jsx>{`
         a.channel {
