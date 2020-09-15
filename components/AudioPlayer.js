@@ -15,20 +15,20 @@ export const AudioPlayer = () => {
     playlist
   } = useContext(PlayerContext)
 
-  useEffect(() => {
-    if (playlist !== null) {
-      const updateContextState = async () => {
-        SetLoading(true);
-        for (let i = 0; i < playlist.length; i++) {
-          if (currentSongIndex == i) {
-            await SetCurrent(playlist[i]);
-            SetLoading(false);
-          }
-        }
-      };
-      // updateContextState();
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (playlist !== null) {
+  //     const updateContextState = async () => {
+  //       SetLoading(true);
+  //       for (let i = 0; i < playlist.length; i++) {
+  //         if (currentSongIndex == i) {
+  //           await SetCurrent(playlist[i]);
+  //           SetLoading(false);
+  //         }
+  //       }
+  //     };
+  //     // updateContextState();
+  //   }
+  // }, [])
 
   useEffect(() => {
     const setContextState = async () => {

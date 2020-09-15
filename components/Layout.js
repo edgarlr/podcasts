@@ -1,8 +1,7 @@
 import React, {useContext} from 'react'
 import Head from 'next/head'
-import Player from 'components/Player';
+import Player from 'containers/Player';
 import {PlayerContext} from 'contexts/PlayerContext'
-import { AudioPlayerContainer } from 'components/AudioPlayerContainer';
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
 
@@ -12,7 +11,7 @@ export default function Layout ({
   button = null, 
   navigation = null }) {
 
-  const {currentSong} = useContext(PlayerContext)
+  const { currentSong } = useContext(PlayerContext)
   
   return (
     <>
@@ -26,11 +25,9 @@ export default function Layout ({
         {children}
       </main>
 
-      {/* {currentSong && (
+      {currentSong && (
         <Player />
-      )} */}
-
-      {/* <AudioPlayerContainer isOpen={true}/> */}
+      )}
 
       <style jsx global>{`
         body {

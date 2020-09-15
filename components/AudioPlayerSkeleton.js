@@ -41,22 +41,13 @@ const AudioPlayerSkeleton = () => {
         .modal {
           background: ${colors.black};
         }
-        .progress-bar {
-          background: ${colors.darkGray};
-        }
         .play-button {
           border: 1px solid ${colors.white};
         }
         .progress-time {
           color: ${colors.textLightGray};
         }
-        .img-container {
-          background: ${colors.darkGray};
-        }
-        .title-text {
-          background: ${colors.darkGray};
-        }
-        .channel-text {
+        .progress-bar, .img-container, .title-text, .channel-text {
           background: ${colors.darkGray};
         }
       `}</style>

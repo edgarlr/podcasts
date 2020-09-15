@@ -4,7 +4,7 @@ import Error from 'next/error'
 import Head from 'next/head';
 
 import { FavsContext } from 'contexts/FavsContext'
-import Hompage from 'containers/Hompage';
+import Homepage from 'containers/Homepage';
 
 export async function getServerSideProps(context) {
   try {
@@ -32,7 +32,7 @@ export default function Home ({channels, statusCode}) {
         <title>Podcasts</title>
       </Head>
 
-      <Hompage channels={channels} myList={myList} />
+      <Homepage channels={channels} myList={myList} />
     </>
   );
 } 

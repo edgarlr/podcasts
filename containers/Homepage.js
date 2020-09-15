@@ -5,7 +5,7 @@ import GridCarousel from 'components/GridCarousel'
 import PodcastCover from 'components/PodcastCover'
 import Layout from 'components/Layout'
 
-const Hompage = ({channels, myList = []}) => {
+const Homepage = ({channels, myList = []}) => {
   return (
     <Layout
       headerText='Podcasts' 
@@ -39,4 +39,4 @@ const Hompage = ({channels, myList = []}) => {
   )
 }
 
-export default Hompage
+export default Homepage

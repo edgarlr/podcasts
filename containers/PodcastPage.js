@@ -26,7 +26,7 @@ const PodcastPage = ({audio_clip}) => {
 
       <SectionTitle 
         title={`${dateFormatter(audio_clip.uploaded_at)} · ${durationToMinutes(audio_clip.duration)}`} 
-        button={<PlayButton />}
+        button={<PlayButton episodeId={audio_clip.id} channelId={audio_clip.channel.id} />}
       />
       
       <DescriptionContainer data={audio_clip.description}/>
