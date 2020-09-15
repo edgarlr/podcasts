@@ -7,10 +7,8 @@ import Layout from 'components/Layout'
 
 const Homepage = ({channels, myList = []}) => {
   return (
-    <Layout
-      headerText='Podcasts' 
-    >
-
+    <Layout headerText='Podcasts' >
+      
       <MainTitle title='Podcasts' />
 
       {myList.length !== 0 && (

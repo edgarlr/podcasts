@@ -41,8 +41,8 @@ export default function Layout ({
 
       <style jsx global>{`
         body {
-          margin: 0;
           font-family: 'Kumbh Sans', sans-serif;
+          margin: 0;
         }
         main {
           padding: 2rem 1.5rem 7rem;

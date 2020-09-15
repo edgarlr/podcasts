@@ -1,8 +1,9 @@
 import PlayerPortal from "components/PlayerPortal"
 import { colors } from "styles/theme"
 import MiniPlayer from "components/MiniPlayer"
-import { useState } from "react"
 import { Player } from "components/Player"
+import { useContext, useRef, useState } from 'react'
+import {PlayerContext} from 'contexts/PlayerContext'
 
 const PlayerModal = () => {
   const [fullView, setFullView] = useState(false)
@@ -10,13 +11,59 @@ const PlayerModal = () => {
   const handleModalClick = () => {
     setFullView(!fullView)
   }
+  const { currentSong } = useContext(PlayerContext)
+
+  const audio = useRef('audio_tag')
+  
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  const toggleAudio = () =>
+    audio.current.paused ? audio.current.play() : audio.current.pause();
+
+  const handleProgress = e => {
+    let compute = (e.target.value * duration) / 100;
+    setCurrentTime(compute);
+    audio.current.currentTime = compute;   
+  }
 
   return (
     <>
       <PlayerPortal selector={'#player'} >
+        <audio
+          onCanPlay={(e) => setDuration(e.target.duration)}
+          onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
+          preload='true'
+          ref={audio}
+          autoPlay
+        >
+          <source
+            preload='true'
+            src={currentSong.urls.high_mp3 || clipSrc}
+            type='audio/mpeg'
+          />
+        </audio>
+
         <div className={fullView ? 'fullmodal' : ' '}>
-          {fullView && <Player handleModalClick={handleModalClick}/>}
-          {!fullView && <MiniPlayer handleModalClick={handleModalClick}/>}
+          {fullView && (
+            <Player 
+              handleModalClick={handleModalClick}
+              handleProgress={handleProgress}
+              toggleAudio={toggleAudio}
+              currentTime={currentTime}
+              audioRef={audio}
+              duration={duration}
+            />
+          )}
+          {!fullView && (
+            <MiniPlayer 
+              handleModalClick={handleModalClick}
+              toggleAudio={toggleAudio}
+              currentTime={currentTime}
+              audioRef={audio}
+              duration={duration}
+            />
+          )}
         </div>
       </PlayerPortal>
 
@@ -39,7 +86,7 @@ const PlayerModal = () => {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 0 .8em;
+          padding: 0 1em;
           transition: .2s;
         }
         .fullmodal {

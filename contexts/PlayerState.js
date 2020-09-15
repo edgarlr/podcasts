@@ -1,22 +1,20 @@
 import {useReducer} from 'react';
 import {PlayerContext} from './PlayerContext'
 import {PlayerReducer} from './PlayerReducer'
+
 import {
   SET_CURRENT_SONG,
-  SET_CURRENT_SONG_INDEX,
-  TOGGLE_PLAYING,
+  SET_CURRENT_INDEX,
   SET_PLAYLIST,
   SET_LOADING,
 } from './types';
 
-export const PlayerState = props => {
+export const PlayerState = (props) => {
   const initialState = {
+    currentIndex: null,
     currentSong: 0,
-    currentSongIndex: null,
-    playlist: null,
-    playing: false,
-    audio: null,
-    loading: true,
+    playlist: [],
+    loading: true, 
   }
 
   const [state, dispatch] = useReducer(PlayerReducer, initialState)
@@ -25,42 +23,47 @@ export const PlayerState = props => {
 
   const SetCurrent = currentSong => dispatch({type: SET_CURRENT_SONG, data: currentSong })
 
-  const SetCurrentIndex = index => dispatch({type: SET_CURRENT_SONG_INDEX, data: index })
+  const SetCurrentIndex = index => dispatch({type: SET_CURRENT_INDEX, data: index })
 
   const SetPlaylist = playlistArray => dispatch({type: SET_PLAYLIST, data: playlistArray})
 
-  const togglePlaying = () => dispatch({type: TOGGLE_PLAYING, data: state.playing ? false : true})
 
   const prevSong = () => {
-    if (state.currentSong === 0) {
-      SetCurrentIndex(0)
+    if (state.currentIndex === 0) {
+      return;
     } else {
-      SetCurrentIndex(state.currentSongIndex - 1)
+      SetLoading(true)
+      SetCurrentIndex(state.currentIndex - 1)
+      SetCurrent(state.playlist[state.currentIndex - 1])
+      SetLoading(false)
     }
-    // console.log('hola');
-    
   }
 
   const nextSong = () => {
-    // console.log('hola');
+    if (state.currentIndex === state.playlist.length) {
+      return;
+    } else {
+      SetLoading(true)
+      SetCurrentIndex(state.currentIndex + 1)
+      SetCurrent(state.playlist[state.currentIndex + 1])
+      return SetLoading(false)
+      
+    }
   };
   
   return (
     <PlayerContext.Provider
       value={{
+        currentIndex: state.currentIndex,
         currentSong: state.currentSong,
-        currentSongIndex: state.currentSongIndex,
         playlist: state.playlist,
-        playing: state.playing,
-        audio: state.audio,
         loading: state.loading,
-        SetLoading,
-        SetCurrent,
         SetCurrentIndex,
+        SetCurrent,
         SetPlaylist,
+        SetLoading,
         prevSong,
         nextSong,
-        togglePlaying,
       }}
     >
       {props.children}

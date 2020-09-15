@@ -1,7 +1,6 @@
 import {
   SET_CURRENT_SONG, 
-  SET_CURRENT_SONG_INDEX,
-  TOGGLE_PLAYING, 
+  SET_CURRENT_INDEX,
   SET_PLAYLIST,
   SET_LOADING,
 } from './types'
@@ -18,16 +17,10 @@ export const PlayerReducer = (state, action) => {
         ...state,
         currentSong: action.data,
       }
-    case SET_CURRENT_SONG_INDEX:
+    case SET_CURRENT_INDEX:
       return {
         ...state,
-        currentSongIndex: action.data,
-        playing: true
-      }
-    case TOGGLE_PLAYING:
-      return {
-        ...state,
-        playing: action.data
+        currentIndex: action.data,
       }
     case SET_PLAYLIST:
       return {

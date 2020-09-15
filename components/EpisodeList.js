@@ -8,7 +8,7 @@ export default function EpisodeList ({ audioClips, loading = false}) {
   const router = useRouter();
 
   const { 
-    currentSongIndex,
+    currentIndex,
     SetPlaylist
   } = useContext(PlayerContext)
   
@@ -32,7 +32,7 @@ export default function EpisodeList ({ audioClips, loading = false}) {
           handlePodcastClick={handlePodcastClick} 
           clip={clip} 
           key={clip.id} 
-          isActive={currentSongIndex === index}
+          isActive={currentIndex === index}
         />
       ))}
     </div>
