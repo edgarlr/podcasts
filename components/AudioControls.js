@@ -1,11 +1,10 @@
-import React, { useContext, useRef, useState, useEffect } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { MdPause, MdPlayArrow, MdSkipPrevious, MdSkipNext } from 'react-icons/md';
 import {PlayerContext} from 'contexts/PlayerContext'
+import { durationToMSS } from 'utils/durationToMSS';
 
 export default function AudioControls({clipSrc}) {
   const {
-    playing,
-    togglePlaying,
     currentSong,
     prevSong,
     nextSong,
@@ -14,13 +13,9 @@ export default function AudioControls({clipSrc}) {
   } = useContext(PlayerContext)
 
   const audio = useRef('audio_tag')
-  const [stateVolume, setStateVolume] = useState(0.5);
+  
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
-  const fmtMSS = (s) => {
-    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + ~~s;
-  };
 
   const toggleAudio = () =>
     audio.current.paused ? audio.current.play() : audio.current.pause();
@@ -31,24 +26,14 @@ export default function AudioControls({clipSrc}) {
     audio.current.currentTime = compute;   
   }
 
-  // useEffect(() => {
-  //   audio.current.volume = stateVolume
-  //   if (playing) {
-  //     toggleAudio();
-  //   }
-  //   console.log(playlist[currentSongIndex + 1 ]);
-    
- 
-  // }, [])
-
   return (
-    <div className='player'>
+    <>
       <audio
         onCanPlay={(e) => setDuration(e.target.duration)}
         onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
         preload='true'
         ref={audio}
-        autoPlay
+        // autoPlay
       >
         <source
           preload='true'
@@ -67,15 +52,12 @@ export default function AudioControls({clipSrc}) {
         </button>
         <button
           className='play-button'
-          onClick={() => {
-            toggleAudio();
-            togglePlaying();
-          }}
+          onClick={() => toggleAudio()}
         >
-          {playing ? (
-            <MdPause color='white' size='3em' />
-          ) : (
+          {audio.current.paused ? (
             <MdPlayArrow color='white' size='3em' />
+            ) : (
+            <MdPause color='white' size='3em' />
           )}
         </button>
         <button
@@ -95,22 +77,16 @@ export default function AudioControls({clipSrc}) {
         id='pgrbar'
         className='slider'
       />
-      {/* <div className='control-bar'>
-        <div className='progress-bar'>
-          <div className='payback-controller' />
-        </div>
-      </div> */}
 
       <div className='progress-time'>
-        <div>{fmtMSS(currentTime)}</div>
-        <div>{fmtMSS(duration)}</div>
+        <div>{durationToMSS(currentTime)}</div>
+        <div>{durationToMSS(duration)}</div>
       </div>
 
       <style jsx>{`
         button {
           outline: none;
         }
-
         button[disabled] {
           opacity: 0.3;
         }
@@ -123,6 +99,7 @@ export default function AudioControls({clipSrc}) {
           outline: none;
           -webkit-transition: 0.2s;
           transition: opacity 0.2s;
+          margin-bottom: 1rem;
         }
 
         .slider::-webkit-slider-thumb {
@@ -142,9 +119,6 @@ export default function AudioControls({clipSrc}) {
           -webkit-appearance: none;
         }
 
-        .player {
-          height: auto;
-        }
         .main-player {
           display: flex;
           justify-content: space-around;
@@ -165,31 +139,6 @@ export default function AudioControls({clipSrc}) {
         .play-button:focus {
           outline: none;
         }
-        .control-bar {
-          height: 4px;
-          background: #5e5f5f;
-          width: 100%;
-          position: relative;
-          margin: 16px 0;
-        }
-        .progress-bar {
-          position: absolute;
-          height: 4px;
-          background: #ffffff;
-          left: 0;
-          right: 20%;
-        }
-        .payback-controller {
-          position: absolute;
-          height: 20px;
-          width: 20px;
-          border-radius: 50%;
-          border: 4px solid #131414;
-          right: 0;
-          top: 0;
-          background: #fff;
-          margin: -12px -12px;
-        }
         .progress-time {
           display: flex;
           justify-content: space-between;
@@ -197,6 +146,6 @@ export default function AudioControls({clipSrc}) {
           font-size: 12px;
         }
       `}</style>
-    </div>
+    </>
   );
 }

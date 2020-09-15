@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import Head from 'next/head'
-import Player from 'containers/Player';
 import {PlayerContext} from 'contexts/PlayerContext'
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
+import PlayerModal from 'containers/PlayerModal';
 
 export default function Layout ({
   children, 
@@ -26,7 +26,7 @@ export default function Layout ({
       </main>
 
       {currentSong && (
-        <Player />
+        <PlayerModal />
       )}
 
       <style jsx global>{`
@@ -45,7 +45,7 @@ export default function Layout ({
           font-family: 'Kumbh Sans', sans-serif;
         }
         main {
-          padding: 2rem 1.5rem 130px;
+          padding: 2rem 1.5rem 7rem;
         }
       `}</style>
     </>

@@ -5,14 +5,15 @@ import {PlayerContext} from '../contexts/PlayerContext'
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
 
-export default function MiniPlayer() {
+export default function MiniPlayer({handleModalClick}) {
   const { currentSong, loading } = useContext(PlayerContext);
 
   if (loading) return <MiniPlayerSkeleton />
 
   return (
     <>
-      <div className='info-container'>
+      <div className='container' onClick={() => handleModalClick()}>
+        <button />
         <div className='img-container'>
           <TranslucentImage
             clipUrls={currentSong.urls}
@@ -29,6 +30,9 @@ export default function MiniPlayer() {
       </div>
       
       <style jsx>{`
+        button {
+          background: ${colors.black};
+        }
         h3 {
           color: ${colors.white};
         }
@@ -39,10 +43,21 @@ export default function MiniPlayer() {
       `}</style>
 
       <style jsx>{`
-        .info-container {
+        .container {
           display: flex;
           align-items: center;
           justify-content: space-between;
+        }
+        button {
+          outline: none;
+          border: none;
+          height: 6px;
+          width: 30px;
+          border-radius: 5px;
+          position: absolute;
+          top: -15px;
+          left: 50%;
+          transform: translateX(-50%);
         }
         .img-container {
           width: 3.5em;
@@ -50,6 +65,7 @@ export default function MiniPlayer() {
         .info {
           position: absolute;
           left: 5.5rem;
+          max-width: 55%;
         }
         .info h3,
         .info h4 {
