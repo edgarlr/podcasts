@@ -1,14 +1,13 @@
-import { useContext } from 'react';
+import { usePlayer } from 'contexts'
 import {MdPause, MdPlayArrow} from 'react-icons/md'
-import TranslucentImage from './TranslucentImage';
-import {PlayerContext} from '../contexts/PlayerContext'
+import TranslucentImage from '../TranslucentImage';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
-import CircleProgressBar from './CircleProgressBar';
+import CircleProgressBar from '../CircleProgressBar';
 
-export default function MiniPlayer({handleModalClick, toggleAudio, audioRef, duration, currentTime}) {
-  const { currentSong, loading } = useContext(PlayerContext);
-
+export default function MiniPlayer({currentPodcast, handleModalClick, toggleAudio, audioRef, duration, currentTime}) {
+  const { loading } = usePlayer()
+  
   if (loading) return <MiniPlayerSkeleton />
 
   return (
@@ -19,14 +18,14 @@ export default function MiniPlayer({handleModalClick, toggleAudio, audioRef, dur
         <div className="info-container" onClick={() => handleModalClick()} >
           <div className='img-container'>
             <TranslucentImage
-              clipUrls={currentSong.urls}
-              channelUrls={currentSong.channel.urls}
+              clipUrls={currentPodcast.urls}
+              channelUrls={currentPodcast.channel.urls}
             />
           </div>
 
           <div className='info'>
-            <h3>{currentSong.title}</h3>
-            <h4>{currentSong.channel.title}</h4>
+            <h3>{currentPodcast.title}</h3>
+            <h4>{currentPodcast.channel.title}</h4>
           </div>
         </div>
         
@@ -66,11 +65,11 @@ export default function MiniPlayer({handleModalClick, toggleAudio, audioRef, dur
         .nav-button {
           outline: none;
           border: none;
-          height: 6px;
+          height: 3px;
           width: 30px;
           border-radius: 5px;
           position: absolute;
-          top: -15px;
+          top: -12px;
           left: 50%;
           transform: translateX(-50%);
         }

@@ -1,15 +1,13 @@
-import { createContext, useReducer } from "react";
-import {ADD_TO_FOLLOW, REMOVE_FROM_FOLLOW} from './types'
-import {FavsReducer} from './FavsReducer'
-import {useLocalStorage} from '../hooks/useLocalStorage'
-
-export const FavsContext = createContext()
+import { useReducer } from "react";
+import { FavsContext } from 'contexts'
+import { ADD_TO_FOLLOW, REMOVE_FROM_FOLLOW } from './types'
+import { FavsReducer } from './FavsReducer'
+import { useLocalStorage } from 'hooks/useLocalStorage'
 
 export const FavsState = props => {
   const [favs] = useLocalStorage('favs', undefined)
   
   const empyArr = [];
-
   const initialValue = () => {
     if (favs !== undefined) {
       return favs
@@ -38,5 +36,4 @@ export const FavsState = props => {
       {props.children}
     </FavsContext.Provider>
   );
-  
-} 
+}

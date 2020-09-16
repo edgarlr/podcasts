@@ -1,5 +1,4 @@
 import {
-  SET_CURRENT_SONG, 
   SET_CURRENT_INDEX,
   SET_PLAYLIST,
   SET_LOADING,
@@ -11,11 +10,6 @@ export const PlayerReducer = (state, action) => {
       return {
         ...state,
         loading: action.data,
-      }
-    case SET_CURRENT_SONG:
-      return {
-        ...state,
-        currentSong: action.data,
       }
     case SET_CURRENT_INDEX:
       return {

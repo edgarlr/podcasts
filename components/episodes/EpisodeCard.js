@@ -1,4 +1,3 @@
-import React from 'react'
 import { MdVolumeUp } from 'react-icons/md'
 import { colors } from 'styles/theme'
 import { durationToMinutes } from 'utils/durationToMinutes'
@@ -47,8 +46,8 @@ const EpisodeCard = ({clip, isActive, handlePodcastClick}) => {
           cursor: pointer;
         }
         .active {
-          margin: 0;
-          padding: 16px 1em;
+          margin: 0 -.5rem;
+          padding: 16px 1.3em;
           border-bottom: none;
           border-radius: 20px;
           position: relative;
@@ -67,7 +66,7 @@ const EpisodeCard = ({clip, isActive, handlePodcastClick}) => {
         }
         .active span {
           position: absolute;
-          right: 20px;
+          right: 1.3rem;
           top: 50%;
           transform: translateY(-50%);
         }

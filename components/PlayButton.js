@@ -1,30 +1,25 @@
-import React, { useContext} from 'react'
+import { usePlayer } from 'contexts'
 import { MdPlayArrow } from 'react-icons/md'
 import { colors } from 'styles/theme'
-import { usePlaylist } from 'hooks/usePlaylist'
-import { PlayerContext } from 'contexts/PlayerContext'
+import { useFetchPlaylist } from 'hooks/useFetchPlaylist'
 
 const PlayButton = ({ episodeId, channelId }) => {
-  const { playlist, isLoading } = usePlaylist(channelId)
+  const { clientPlaylist, isLoading } = useFetchPlaylist(channelId)
 
   const {
     SetLoading,
-    SetCurrent,
     SetCurrentIndex,
     SetPlaylist,
-    currentSong,
-  } = useContext(PlayerContext)
+  } = usePlayer()
 
   const onPlayClick = () => {
-    if (playlist) {
+    if (clientPlaylist) {
       SetLoading(true)
-      SetPlaylist(playlist)
+      SetPlaylist(clientPlaylist)
 
-      for (let i = 0; i < playlist.length; i++) {
-        if (playlist[i].id === episodeId) {
-          SetCurrent(playlist[i]);
+      for (let i = 0; i < clientPlaylist.length; i++) {
+        if (clientPlaylist[i].id === episodeId) {
           SetCurrentIndex(i);
-          SetLoading(false)
           return;
         }
       }
@@ -32,7 +27,7 @@ const PlayButton = ({ episodeId, channelId }) => {
   }
 
   return (
-    <button disabled={isLoading || currentSong.id === episodeId} onClick={() => onPlayClick()}>  
+    <button disabled={isLoading} onClick={() => onPlayClick()}>  
       <MdPlayArrow color='white' size='2rem' />
 
       <style jsx>{`

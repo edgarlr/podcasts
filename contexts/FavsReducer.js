@@ -1,4 +1,4 @@
-import {ADD_TO_FOLLOW, REMOVE_FROM_FOLLOW} from './types';
+import { ADD_TO_FOLLOW, REMOVE_FROM_FOLLOW } from './types';
 
 export const FavsReducer = (state, action) => {
   switch (action.type) {

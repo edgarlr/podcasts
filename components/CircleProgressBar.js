@@ -2,6 +2,7 @@ import React from 'react'
 import { colors } from 'styles/theme'
 
 const CircleProgressBar = ({percentage}) => {
+  // console.log(percentage);
   return (
     <div>
       <svg>
@@ -10,8 +11,15 @@ const CircleProgressBar = ({percentage}) => {
       </svg>
 
       <style jsx>{`
+        svg circle:nth-child(2) {
+          stroke-dashoffset: ${`calc(440 - (440 * ${percentage}) / 100)`};
+        }
+      `}</style>
+
+      <style jsx>{`
         div {
           position: absolute;
+          transform: translateX(-1px)
         }
         svg {
           position: relative;
@@ -31,7 +39,6 @@ const CircleProgressBar = ({percentage}) => {
         svg circle:nth-child(2) {
           stroke-dasharray: 440;
           stroke-dashoffset: 440;
-          stroke-dashoffset: ${`calc(440 - (440 * ${percentage}) / 100)`};
           opacity: 1;
         }
       `}</style>

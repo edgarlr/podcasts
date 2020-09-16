@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
-import Button from './Button'
-import { FavsContext } from 'contexts/FavsContext'
+import { useState } from 'react'
+import { useFavs } from 'contexts'
 import { useLocalStorage } from 'hooks/useLocalStorage'
+import Button from './Button'
 
 const FollowButtonContainer = ({channel}) => {
-  const {myList, Follow, Unfollow } = useContext(FavsContext)
+  const {myList, Follow, Unfollow } = useFavs()
   const [isFollowed, setIsFollowed] = useState(myList.some(item => item.id === channel.id))
   const [, setLocalStorage] = useLocalStorage('favs', [])
 

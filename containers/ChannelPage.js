@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import MainTitle from 'components/MainTitle';
 import PodcastCover from 'components/PodcastCover';
 import Layout from 'components/Layout';
-import EpisodeListContainer from 'components/EpisodeListContainer';
+import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import GridCarousel from 'components/GridCarousel';
 import { SectionTitle } from 'components/SectionTitle';
 import BannerImage from 'components/BannerImage';

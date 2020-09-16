@@ -1,6 +1,5 @@
-import React, {useContext} from 'react'
 import Head from 'next/head'
-import {PlayerContext} from 'contexts/PlayerContext'
+import { usePlayer } from 'contexts'
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
 import PlayerModal from 'containers/PlayerModal';
@@ -11,7 +10,7 @@ export default function Layout ({
   button = null, 
   navigation = null }) {
 
-  const { currentSong } = useContext(PlayerContext)
+  const { currentIndex } = usePlayer()
   
   return (
     <>
@@ -25,9 +24,7 @@ export default function Layout ({
         {children}
       </main>
 
-      {currentSong && (
-        <PlayerModal />
-      )}
+      {currentIndex !== null && <PlayerModal />}
 
       <style jsx global>{`
         body {

@@ -1,9 +1,9 @@
-import PlayerPortal from "components/PlayerPortal"
+import { useRef, useState, useEffect } from 'react'
+import { usePlayer } from 'contexts'
+import PlayerPortal from "components/player/PlayerPortal"
+import MiniPlayer from "components/player/MiniPlayer"
+import { Player } from "components/player/Player"
 import { colors } from "styles/theme"
-import MiniPlayer from "components/MiniPlayer"
-import { Player } from "components/Player"
-import { useContext, useRef, useState } from 'react'
-import {PlayerContext} from 'contexts/PlayerContext'
 
 const PlayerModal = () => {
   const [fullView, setFullView] = useState(false)
@@ -11,7 +11,13 @@ const PlayerModal = () => {
   const handleModalClick = () => {
     setFullView(!fullView)
   }
-  const { currentSong } = useContext(PlayerContext)
+  const { 
+    currentIndex, 
+    nextSong, 
+    prevSong,
+    playlist,
+    SetLoading
+  } = usePlayer()
 
   const audio = useRef('audio_tag')
   
@@ -26,37 +32,56 @@ const PlayerModal = () => {
     setCurrentTime(compute);
     audio.current.currentTime = compute;   
   }
+  const handleChangeSong = (type) => {
+    audio.current.pause()
+    if(type === 'prev') {
+      prevSong()
+    } else {
+      nextSong()
+    }
+  }
+
+  useEffect(() => {
+    setDuration(0)
+    setCurrentTime(0)
+    SetLoading(false)
+  }, [currentIndex])
 
   return (
     <>
       <PlayerPortal selector={'#player'} >
         <audio
-          onCanPlay={(e) => setDuration(e.target.duration)}
+          onCanPlay={(e) => {setDuration(e.target.duration)}}
           onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
+          onEnded={() => nextSong()}
           preload='true'
           ref={audio}
           autoPlay
         >
           <source
             preload='true'
-            src={currentSong.urls.high_mp3 || clipSrc}
+            // src={currentIndex.urls.high_mp3 || clipSrc}
+            src={playlist[currentIndex].urls.high_mp3}
             type='audio/mpeg'
           />
         </audio>
 
         <div className={fullView ? 'fullmodal' : ' '}>
           {fullView && (
-            <Player 
+            <Player
+              currentPodcast={playlist[currentIndex]} 
               handleModalClick={handleModalClick}
               handleProgress={handleProgress}
               toggleAudio={toggleAudio}
               currentTime={currentTime}
+              handleChangeSong={handleChangeSong}
               audioRef={audio}
               duration={duration}
             />
           )}
           {!fullView && (
-            <MiniPlayer 
+            <MiniPlayer
+              currentPodcast={playlist[currentIndex]} 
               handleModalClick={handleModalClick}
               toggleAudio={toggleAudio}
               currentTime={currentTime}

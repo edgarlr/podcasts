@@ -1,20 +1,16 @@
-import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
+import { usePlayer } from 'contexts';
 import TranslucentImage from 'components/TranslucentImage';
-import { useContext } from 'react';
-import { PlayerContext } from 'contexts/PlayerContext';
 import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
 import { durationToMSS } from 'utils/durationToMSS';
+import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
 
-export const Player = ({handleModalClick, handleProgress, currentTime, toggleAudio, audioRef, duration}) => {
+export const Player = ({currentPodcast, handleModalClick, handleProgress, currentTime, toggleAudio, audioRef, duration, handleChangeSong}) => {
   const {
-    loading, 
-    currentSong,
+    loading,
     currentIndex,
     playlist,
-    prevSong,
-    nextSong
-  } = useContext(PlayerContext)
+  } = usePlayer()
 
   if (loading) return <PlayerSkeleton />
 
@@ -28,21 +24,21 @@ export const Player = ({handleModalClick, handleProgress, currentTime, toggleAud
 
         <div className='img-container'>
           <TranslucentImage
-            clipUrls={currentSong.urls}
-            channelUrls={currentSong.channel.urls}
+            clipUrls={currentPodcast.urls}
+            channelUrls={currentPodcast.channel.urls}
           />
         </div>
 
         <div className='info'>
-          <h3>{currentSong.title}</h3>
-          <h6>{currentSong.channel.title}</h6>
+          <h3>{currentPodcast.title}</h3>
+          <h6>{currentPodcast.channel.title}</h6>
         </div>
 
         <div className='main-player'>
           <button
             disabled={currentIndex === 0 ? true : false}
             className='controller-button'
-            onClick={() => prevSong()}
+            onClick={() => handleChangeSong('prev')}
           >
             <MdSkipPrevious color='white' size='3em' />
           </button>
@@ -59,7 +55,7 @@ export const Player = ({handleModalClick, handleProgress, currentTime, toggleAud
           <button
             disabled={currentIndex === playlist.length - 1 ? true : false}
             className='controller-button'
-            onClick={()=> nextSong()}
+            onClick={()=> handleChangeSong(next)}
           >
             <MdSkipNext color='white' size='3em' />
           </button>

@@ -4,13 +4,13 @@ import ImgTranslucent from "components/ImgTranslucent"
 import { SectionTitle } from "components/SectionTitle"
 import { durationToMinutes } from "utils/durationToMinutes"
 import { dateFormatter } from "utils/dateFormatter"
-import { usePlaylist } from "hooks/usePlaylist"
-import EpisodeList from "components/EpisodeList"
+import { useFetchPlaylist } from "hooks/useFetchPlaylist"
+import EpisodeList from "components/episodes/EpisodeList"
 import DescriptionContainer from "components/DescriptionContainer"
 import PlayButton from "components/PlayButton"
 
 const PodcastPage = ({audio_clip}) => {
-  const { playlist, isLoading } = usePlaylist(audio_clip.channel.id)
+  const { clientPlaylist, isLoading } = useFetchPlaylist(audio_clip.channel.id)
 
   return (
     <Layout
@@ -33,7 +33,7 @@ const PodcastPage = ({audio_clip}) => {
 
       <SectionTitle title='More Episodes' />
       
-      <EpisodeList audioClips={playlist} loading={isLoading}/>
+      <EpisodeList audioClips={clientPlaylist} loading={isLoading}/>
 
     </Layout>
   )

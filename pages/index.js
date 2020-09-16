@@ -1,9 +1,8 @@
 import 'isomorphic-fetch'
-import { useContext } from 'react';
 import Error from 'next/error'
 import Head from 'next/head';
 
-import { FavsContext } from 'contexts/FavsContext'
+import { useFavs } from 'contexts';
 import Homepage from 'containers/Homepage';
 
 export async function getServerSideProps(context) {
@@ -20,7 +19,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home ({channels, statusCode}) {
-  const {myList} = useContext(FavsContext)
+  const {myList} = useFavs()
 
   if (statusCode !== 200) {
     return <Error statusCode={statusCode} />;

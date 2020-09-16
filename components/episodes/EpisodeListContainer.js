@@ -1,7 +1,7 @@
 import { useSortEpisodes } from 'hooks/useSortEpisodes';
 import FiltersIcon from 'components/FiltersIcon';
-import EpisodeList from 'components/EpisodeList';
 import { SectionTitle } from 'components/SectionTitle';
+import EpisodeList from './EpisodeList';
 
 export default function EpisodeListContainer ({ audioClips }) {
   const [list, setList, sort_list] = useSortEpisodes(audioClips, 'uploaded_at')

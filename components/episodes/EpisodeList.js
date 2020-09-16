@@ -1,16 +1,12 @@
-import { useContext } from 'react'
-import {useRouter} from 'next/router';
-import {PlayerContext} from 'contexts/PlayerContext'
+import { useRouter } from 'next/router';
+import { usePlayer } from 'contexts'
 import EpisodeCard from './EpisodeCard';
 import EpisodeCardSkeleton from './EpisodeCardSkeleton';
 
 export default function EpisodeList ({ audioClips, loading = false}) {
   const router = useRouter();
-
-  const { 
-    currentIndex,
-    SetPlaylist
-  } = useContext(PlayerContext)
+  
+  const { currentIndex, SetPlaylist } = usePlayer()
   
   const handlePodcastClick = (podcast, channelId) => {
     SetPlaylist(audioClips)
