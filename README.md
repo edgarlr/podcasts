@@ -1,17 +1,17 @@
-# App de Podcast
+# [Podcasts App](https://podcast-app.vercel.app/)
 
-App de podcast integrada con NextJs
+Podcasts web app using Next.js and the AudioBoom API
 
-<!-- Captura de pantalla -->
+## Contribution
 
-## ¿Como funciona?
+To submit a feature, bug fix, or enhancement to the website proceed as follows:
 
-Requiere Nod.JS 10
+1. Clone this repository
+2. Run `npm install` to install the dependencies
+3. Once the dependencies are installed, run `npm run dev` to start the dev server on `localhost:3000`
 
-* `npm intall` para instalar las dependencias.
-* `npm run dev` para instalar las dependencias.
-* `npm run build && npm start` para el entorno de producción.
+I really appreciate any contribution.
 
-## Licencia
+## License
 
 MIT
