@@ -158,7 +158,7 @@ const PlayerModal = () => {
           transition: .2s;
         }
         .fullmodal {
-          height: 91%;
+          height: 95%;
         }
         div.fullmodal::after {
           content: ' ';

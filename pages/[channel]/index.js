@@ -17,13 +17,14 @@ export async function getServerSideProps(context) {
 
     context.res.statusCode = reqChannel.status;
 
-    let dataChannel = await reqChannel.json();
+    let [dataChannel, dataAudios, dataSeries] = await Promise.all([
+      await reqChannel.json(),
+      await reqAudios.json(),
+      await reqSeries.json(),
+    ])
+
     let channel = dataChannel.body.channel;
-
-    let dataAudios = await reqAudios.json();
     let audioClips = dataAudios.body.audio_clips;
-
-    let dataSeries = await reqSeries.json();
     let series = dataSeries.body.channels;
 
     return {

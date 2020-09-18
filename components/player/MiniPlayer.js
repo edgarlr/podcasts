@@ -3,7 +3,8 @@ import {MdPause, MdPlayArrow} from 'react-icons/md'
 import TranslucentImage from '../TranslucentImage';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
-import CircleProgressBar from '../CircleProgressBar';
+import CircleProgressBar from './CircleProgressBar';
+import { PodcastTitle } from './PodcastTitle';
 
 export default function MiniPlayer({
   currentPodcast, 
@@ -22,18 +23,16 @@ export default function MiniPlayer({
       <div className='container'>
         <button className='nav-button' onClick={() => handleModalClick()} />
 
-        <div className="info-container" onClick={() => handleModalClick()} >
-          <div className='img-container'>
-            <TranslucentImage
-              clipUrls={currentPodcast.urls}
-              channelUrls={currentPodcast.channel.urls}
-            />
-          </div>
-
-          <div className='info'>
-            <h3>{currentPodcast.title}</h3>
-            <h4>{currentPodcast.channel.title}</h4>
-          </div>
+        <div className='img-container' onClick={() => handleModalClick()}>
+          <TranslucentImage
+            clipUrls={currentPodcast.urls}
+            channelUrls={currentPodcast.channel.urls}
+          />
+        </div>
+        
+        <div className='info' onClick={() => handleModalClick()}>
+          <PodcastTitle title={currentPodcast.title} fontSize='.9rem' alwaysJustify='flex-start'/>
+          <h4>{currentPodcast.channel.title}</h4>
         </div>
         
         <button
@@ -41,11 +40,16 @@ export default function MiniPlayer({
           disabled={loading}
           onClick={() => toggleAudio()} 
         >
-          <CircleProgressBar percentage={duration ? (currentTime * 100) / duration : 0} />
+          <CircleProgressBar 
+            progress={duration ? (currentTime * 100) / duration : 0}
+            size={50}
+            strokeWidth={2}
+            circleStroke='#fff'
+          />
             
           {isPlaying
-            ? <MdPause color='white' size='3em' />
-            : <MdPlayArrow color='white' size='3em' /> 
+            ? <MdPause color='white' size='2.2em' />
+            : <MdPlayArrow color='white' size='2.2em' /> 
           }
 
         </button>
@@ -69,9 +73,11 @@ export default function MiniPlayer({
           opacity: 0.3;
         }    
         .container {
-          display: flex;
+          max-width: 100%;
+          display: grid;
+          grid-template-columns: 3rem 1fr 3rem; 
+          grid-gap: 1rem;
           align-items: center;
-          justify-content: space-between;
         }
         .nav-button {
           outline: none;
@@ -80,51 +86,38 @@ export default function MiniPlayer({
           width: 30px;
           border-radius: 5px;
           position: absolute;
-          top: -12px;
+          top: -10px;
           left: 50%;
           transform: translateX(-50%);
         }
-        .info-container {
-          display: flex;
-          align-items: center;
-        }
+
         .img-container {
-          width: 3.5em;
+          flex-grow: 1;
+          width: 100%;
         }
         .info {
-          position: relative;
-          left: 1rem;
-          max-width: 10em;
+          max-width: 100%;
+          overflow-x: hidden;
         }
-        .info h3,
-        .info h4 {
+        h4 {
+          flex-grow: 2;
           max-width: 100%;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-        }
-        h3 {
-          font-size: .9rem;
-          margin: 0 0 4px;
-        }
-        h4 {
           font-size: 0.7rem;
           margin: 0;
           text-transform: uppercase;
         }
         .play-button {
           outline: none;
-          display: flex;
           border: none;
+          display: flex;
           justify-content: center;
           align-items: center;
+          padding-right: .5rem; 
         }
       `}</style>
-          {/* width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          background: none; */}
     </>
   );
 }

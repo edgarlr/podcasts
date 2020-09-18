@@ -19,7 +19,7 @@ export default function ImgTranslucent({url, alt}) {
         }
         img {
           width: 100%;
-          border-radius: 20px;
+          border-radius: 25%;
         }
         .image-shadow {
           filter: blur(10px);

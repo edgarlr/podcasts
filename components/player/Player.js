@@ -4,6 +4,7 @@ import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
 import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
 import { ProgressBar } from './ProgressBar';
+import { PodcastTitle } from './PodcastTitle';
 
 export const Player = ({
   currentPodcast, 
@@ -41,7 +42,7 @@ export const Player = ({
         </div>
 
         <div className='info'>
-          <h3>{currentPodcast.title}</h3>
+          <PodcastTitle title={currentPodcast.title}/>
           <h6>{currentPodcast.channel.title}</h6>
         </div>
 
@@ -110,12 +111,6 @@ export const Player = ({
           text-overflow: ellipsis;
           text-align: center;
         }
-        h3 {
-          margin: 8px 0;
-          font-size: 16px;
-          display: flex;
-          justify-content: flex-start;
-        }
         h6 {
           margin: 0;
           font-size: 12px;
@@ -151,12 +146,6 @@ export const Player = ({
           outline: none;
         }
       `}</style>
-
-      {/* <style jsx>{`
-        .slider::after{
-          right: 53%;
-        }
-      `}</style> */}
     </>
   );
 }

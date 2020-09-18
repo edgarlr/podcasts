@@ -21,7 +21,7 @@ export default function TranslucentImage({clipUrls, channelUrls}) {
         }
         img {
           width: 100%;
-          border-radius: 20px;
+          border-radius: 25%;
         }
         .image-shadow {
           filter: blur(40px);
@@ -29,7 +29,7 @@ export default function TranslucentImage({clipUrls, channelUrls}) {
           top: 0;
           margin: 0;
           width: 100%;
-          height: 100%;
+          max-height: 100%;
           border-radius: 20px;
           opacity: .5;
           z-index: -1;
