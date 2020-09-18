@@ -2,6 +2,7 @@
 export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX';
 export const SET_PLAYLIST = 'SET_PLAYLIST';
 export const SET_LOADING = 'SET_LOADING';
+export const SET_IS_PLAYING = 'SET_IS_PLAYING';
 
 // FAVS REDUCER
 export const ADD_TO_FOLLOW = 'ADD_TO_FOLLOW';

@@ -5,10 +5,17 @@ import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
 import CircleProgressBar from '../CircleProgressBar';
 
-export default function MiniPlayer({currentPodcast, handleModalClick, toggleAudio, audioRef, duration, currentTime}) {
-  const { loading } = usePlayer()
+export default function MiniPlayer({
+  currentPodcast, 
+  handleModalClick, 
+  toggleAudio, 
+  duration, 
+  currentTime
+}) {
   
-  if (loading) return <MiniPlayerSkeleton />
+  const { loading, isPlaying } = usePlayer()
+  
+  if (!currentPodcast) return <MiniPlayerSkeleton />
 
   return (
     <>
@@ -30,17 +37,18 @@ export default function MiniPlayer({currentPodcast, handleModalClick, toggleAudi
         </div>
         
         <button
-            className='play-button'
-            onClick={() => toggleAudio()} 
-          >
-            <CircleProgressBar percentage={duration ? (currentTime * 100) / duration : 0} />
-            {audioRef.current.paused ? ( 
-              <MdPlayArrow color='white' size='2em' />
-              ) : (
-              <MdPause color='white' size='2em' />
-            )}
+          className='play-button'
+          disabled={loading}
+          onClick={() => toggleAudio()} 
+        >
+          <CircleProgressBar percentage={duration ? (currentTime * 100) / duration : 0} />
+            
+          {isPlaying
+            ? <MdPause color='white' size='3em' />
+            : <MdPlayArrow color='white' size='3em' /> 
+          }
 
-          </button>
+        </button>
       </div>
       
       <style jsx>{`
@@ -57,6 +65,9 @@ export default function MiniPlayer({currentPodcast, handleModalClick, toggleAudi
       `}</style>
 
       <style jsx>{`
+        button[disabled] {
+          opacity: 0.3;
+        }    
         .container {
           display: flex;
           align-items: center;
@@ -102,13 +113,18 @@ export default function MiniPlayer({currentPodcast, handleModalClick, toggleAudi
           text-transform: uppercase;
         }
         .play-button {
-          border: none;
           outline: none;
           display: flex;
+          border: none;
           justify-content: center;
           align-items: center;
         }
       `}</style>
+          {/* width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          background: none; */}
     </>
   );
 }

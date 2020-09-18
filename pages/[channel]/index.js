@@ -1,7 +1,6 @@
 import 'isomorphic-fetch';
 import Error from '../_error';
 import ChannelPage from 'containers/ChannelPage';
-import Head from 'next/head';
 
 export async function getServerSideProps(context) {
   let idChannel = context.query.channel;
@@ -48,17 +47,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function channel({ channel, audioClips, series, statusCode }) {
-  if (statusCode !== 200) {
-    return <Error statusCode={statusCode} />;
-  }
+  if (statusCode !== 200) return <Error statusCode={statusCode} />
   
-  return (
-    <>
-      <Head>
-        <title>{channel.title} | Podcasts</title>
-      </Head>
-
-      <ChannelPage channel={channel} audioClips={audioClips} series={series} />
-    </>
-  );
+  return <ChannelPage channel={channel} audioClips={audioClips} series={series} />
 }

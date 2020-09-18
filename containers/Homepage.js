@@ -7,7 +7,7 @@ import Layout from 'components/Layout'
 
 const Homepage = ({channels, myList = []}) => {
   return (
-    <Layout headerText='Podcasts' >
+    <Layout headerText='Podcasts' pageTitle='Podcast App'>
       
       <MainTitle title='Podcasts' />
 

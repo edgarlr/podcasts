@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { usePlayer } from 'contexts'
 import PlayerPortal from "components/player/PlayerPortal"
 import MiniPlayer from "components/player/MiniPlayer"
@@ -6,90 +6,133 @@ import { Player } from "components/player/Player"
 import { colors } from "styles/theme"
 
 const PlayerModal = () => {
-  const [fullView, setFullView] = useState(false)
-
-  const handleModalClick = () => {
-    setFullView(!fullView)
-  }
   const { 
     currentIndex, 
-    nextSong, 
-    prevSong,
     playlist,
-    SetLoading
+    SetIsPlaying,
+    SetLoading,
+    SetCurrentIndex
   } = usePlayer()
 
+  const [fullView, setFullView] = useState(false)
+  const handleModalClick = () => setFullView(!fullView)
+
   const audio = useRef('audio_tag')
+  const audioRef = audio.current
   
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const toggleAudio = () =>
-    audio.current.paused ? audio.current.play() : audio.current.pause();
+  const toggleAudio = () => {
+    audioRef.paused ? audioRef.play() : audioRef.pause();
+  }
+
+  const setupMediaSessions = () => {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: playlist[currentIndex].title,
+        artist: playlist[currentIndex].channel.title,
+        artwork: [
+          {
+            src: playlist[currentIndex].urls.image || playlist[currentIndex].channel.urls.logo_image.original,
+            sizes: "512x512",
+            type: "image/png"
+          },
+          {
+            src: playlist[currentIndex].urls.image || playlist[currentIndex].channel.urls.logo_image.original,
+            sizes: "256x256",
+            type: "image/png"
+          },
+        ]
+      });
+      navigator.mediaSession.setActionHandler("play", () => {
+        audioRef.play()
+      });
+      navigator.mediaSession.setActionHandler("pause", () => {
+        audioRef.pause();
+      });
+      navigator.mediaSession.setActionHandler("previoustrack", () => {
+        prevEpisode();
+      });
+      navigator.mediaSession.setActionHandler("nexttrack", () => {
+        nextEpisode();
+      });
+    }
+  };
 
   const handleProgress = e => {
     let compute = (e.target.value * duration) / 100;
     setCurrentTime(compute);
-    audio.current.currentTime = compute;   
-  }
-  const handleChangeSong = (type) => {
-    audio.current.pause()
-    if(type === 'prev') {
-      prevSong()
-    } else {
-      nextSong()
-    }
+    audioRef.currentTime = compute;
   }
 
-  useEffect(() => {
+  const changeSong = () => {
+    audioRef.pause()
     setDuration(0)
     setCurrentTime(0)
-    SetLoading(false)
-  }, [currentIndex])
+    audioRef.currentTime = 0;
+    audio.current.src = playlist[currentIndex].urls.high_mp3
+  }
+
+  const nextEpisode = () => {
+    if (currentIndex !== playlist.length) {
+      SetCurrentIndex(currentIndex + 1)
+      changeSong()
+    }
+    return;
+  }
+
+  const prevEpisode = () => {
+    audioRef.pause()
+    if (audioRef.currentTime > 5 || currentIndex === 0) {      
+      audioRef.currentTime = 0;
+      setDuration(0)
+      setCurrentTime(0)
+      audioRef.play()
+    } else {
+      SetCurrentIndex(currentIndex - 1)
+      changeSong()
+    }
+  }
 
   return (
     <>
       <PlayerPortal selector={'#player'} >
-        <audio
-          onCanPlay={(e) => {setDuration(e.target.duration)}}
-          onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
-          onEnded={() => nextSong()}
-          preload='true'
-          ref={audio}
-          autoPlay
-        >
-          <source
-            preload='true'
-            // src={currentIndex.urls.high_mp3 || clipSrc}
-            src={playlist[currentIndex].urls.high_mp3}
-            type='audio/mpeg'
-          />
-        </audio>
-
         <div className={fullView ? 'fullmodal' : ' '}>
-          {fullView && (
+          {fullView ? (
             <Player
               currentPodcast={playlist[currentIndex]} 
               handleModalClick={handleModalClick}
               handleProgress={handleProgress}
               toggleAudio={toggleAudio}
               currentTime={currentTime}
-              handleChangeSong={handleChangeSong}
-              audioRef={audio}
+              nextEpisode={nextEpisode}
+              prevEpisode={prevEpisode}
               duration={duration}
             />
-          )}
-          {!fullView && (
+           ) : (
             <MiniPlayer
               currentPodcast={playlist[currentIndex]} 
               handleModalClick={handleModalClick}
               toggleAudio={toggleAudio}
               currentTime={currentTime}
-              audioRef={audio}
               duration={duration}
             />
           )}
         </div>
+        <audio
+          onCanPlay={(e) => setDuration(e.target.duration)}
+          onLoadStart={() => SetLoading(true)}
+          onLoadedData={() => {SetLoading(false); audioRef.play()}}
+          onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
+          onPlay={() => {SetIsPlaying(true); setupMediaSessions()}}
+          onPlaying={() => SetIsPlaying(true)}
+          onPause={() => SetIsPlaying(false)}
+          onEnded={() => nextEpisode()}
+          preload='true'
+          ref={audio}
+          src={playlist[currentIndex].urls.high_mp3}
+        />
       </PlayerPortal>
 
       <style jsx>{`
@@ -115,7 +158,18 @@ const PlayerModal = () => {
           transition: .2s;
         }
         .fullmodal {
-          height: 94vh;
+          height: 91%;
+        }
+        div.fullmodal::after {
+          content: ' ';
+          position: absolute;
+          top: -10%;
+          left: 0;
+          right: 0;
+          bottom: 100%;
+          z-index: -1;
+          opacity: .9;
+          background: ${colors.white};
         }
       `}</style>
     </>

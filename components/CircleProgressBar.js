@@ -5,16 +5,10 @@ const CircleProgressBar = ({percentage}) => {
   // console.log(percentage);
   return (
     <div>
-      <svg>
+      <svg style={{strokeDashiset: `calc(440 - (440 * ${percentage}) / 100)` }}>
         <circle cx='20' cy='20' r='20'></circle>
         <circle cx='20' cy='20' r='20'></circle>
       </svg>
-
-      <style jsx>{`
-        svg circle:nth-child(2) {
-          stroke-dashoffset: ${`calc(440 - (440 * ${percentage}) / 100)`};
-        }
-      `}</style>
 
       <style jsx>{`
         div {

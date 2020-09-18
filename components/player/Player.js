@@ -2,17 +2,28 @@ import { usePlayer } from 'contexts';
 import TranslucentImage from 'components/TranslucentImage';
 import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
-import { durationToMSS } from 'utils/durationToMSS';
 import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
+import { ProgressBar } from './ProgressBar';
 
-export const Player = ({currentPodcast, handleModalClick, handleProgress, currentTime, toggleAudio, audioRef, duration, handleChangeSong}) => {
+export const Player = ({
+  currentPodcast, 
+  handleModalClick, 
+  handleProgress, 
+  toggleAudio, 
+  currentTime, 
+  duration, 
+  prevEpisode, 
+  nextEpisode
+}) => {
+  
   const {
     loading,
     currentIndex,
     playlist,
+    isPlaying
   } = usePlayer()
 
-  if (loading) return <PlayerSkeleton />
+  if (!currentPodcast) return <PlayerSkeleton />
 
   return (
     <>
@@ -36,44 +47,33 @@ export const Player = ({currentPodcast, handleModalClick, handleProgress, curren
 
         <div className='main-player'>
           <button
-            disabled={currentIndex === 0 ? true : false}
             className='controller-button'
-            onClick={() => handleChangeSong('prev')}
+            onClick={() => prevEpisode()}
           >
             <MdSkipPrevious color='white' size='3em' />
           </button>
+
           <button
             className='play-button'
+            disabled={loading}
             onClick={() => toggleAudio()} 
           >
-            {audioRef.current.paused ? ( 
-              <MdPlayArrow color='white' size='3em' />
-              ) : ( 
-              <MdPause color='white' size='3em' />
-            )}
+            {isPlaying
+              ? <MdPause color='white' size='3em' />
+              : <MdPlayArrow color='white' size='3em' /> 
+            }
           </button>
+
           <button
             disabled={currentIndex === playlist.length - 1 ? true : false}
             className='controller-button'
-            onClick={()=> handleChangeSong(next)}
+            onClick={()=> nextEpisode()}
           >
             <MdSkipNext color='white' size='3em' />
           </button>
         </div>
 
-        <input
-          onChange={handleProgress} 
-          value={duration ? (currentTime * 100) / duration : 0} 
-          type='range'
-          name='progressbar'
-          id='pgrbar'
-          className='slider'
-        />
-
-        <div className='progress-time'>
-          <div>{durationToMSS(currentTime)}</div>
-          <div>{durationToMSS(duration)}</div>
-        </div>
+        <ProgressBar currentTime={currentTime} duration={duration} handleProgress={handleProgress} />
 
       </div>
 
@@ -128,35 +128,7 @@ export const Player = ({currentPodcast, handleModalClick, handleProgress, curren
         }
         button[disabled] {
           opacity: 0.3;
-        }
-
-        .slider {
-          -webkit-appearance: none;
-          height: 4px;
-          background-color: #5e5f5f;
-          width: 100%;
-          outline: none;
-          -webkit-transition: 0.2s;
-          transition: opacity 0.2s;
-          margin-bottom: 1rem;
-        }
-
-        .slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          -ms-progress-appearance: none;
-          width: 2.5em;
-          height: 2.5em;
-          border-radius: 50%;
-          border: 4px solid #131414;
-          cursor: pointer;
-
-          background: #fff;
-        }
-
-        .slider::-webkit-slider-runnable-track {
-          -webkit-appearance: none;
-        }
+        }      
 
         .main-player {
           display: flex;
@@ -178,13 +150,13 @@ export const Player = ({currentPodcast, handleModalClick, handleProgress, curren
         .play-button:focus {
           outline: none;
         }
-        .progress-time {
-          display: flex;
-          justify-content: space-between;
-          color: #979797;
-          font-size: 12px;
-        }
       `}</style>
+
+      {/* <style jsx>{`
+        .slider::after{
+          right: 53%;
+        }
+      `}</style> */}
     </>
   );
 }

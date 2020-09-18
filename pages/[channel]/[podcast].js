@@ -1,6 +1,5 @@
 import 'isomorphic-fetch';
 import Error from 'next/error';
-import Head from 'next/head';
 import PodcastPage from 'containers/PodcastPage';
 
 export async function getServerSideProps(context) {
@@ -21,16 +20,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function podcast({ audio_clip, statusCode }) {
-  if (statusCode !== 200) {
-    return <Error statusCode={statusCode} />;
-  }
   
-  return (
-    <>
-      <Head>
-        <title>{audio_clip.title} | Podcasts</title>
-      </Head>
-      <PodcastPage audio_clip={audio_clip} />
-    </>
-  );
+  if (statusCode !== 200) return <Error statusCode={statusCode} />
+  
+  return <PodcastPage audio_clip={audio_clip} />
 }

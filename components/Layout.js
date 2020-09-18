@@ -8,14 +8,21 @@ export default function Layout ({
   children, 
   headerText = null, 
   button = null, 
-  navigation = null }) {
+  navigation = null,
+  pageTitle = 'Podcast' }) {
 
-  const { currentIndex } = usePlayer()
+  const { isPlaying, currentIndex, playlist } = usePlayer()
+
   
   return (
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>
+          {isPlaying 
+            ? `${playlist[currentIndex].title} | ${playlist[currentIndex].channel.title}` 
+            : pageTitle}
+          </title>
       </Head>
 
       <AppHeader navigation={navigation} headerText={headerText} button={button} />

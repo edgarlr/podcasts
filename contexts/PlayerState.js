@@ -1,13 +1,14 @@
 import { useReducer } from 'react';
 import { PlayerContext } from 'contexts'
 import { PlayerReducer } from './PlayerReducer'
-import { SET_CURRENT_INDEX, SET_PLAYLIST, SET_LOADING } from './types';
+import { SET_CURRENT_INDEX, SET_PLAYLIST, SET_LOADING, SET_IS_PLAYING } from './types';
 
 export const PlayerState = (props) => {
   const initialState = {
     currentIndex: null,
     playlist: [],
     loading: true, 
+    isPlaying: false,
   }
 
   const [state, dispatch] = useReducer(PlayerReducer, initialState)
@@ -15,26 +16,7 @@ export const PlayerState = (props) => {
   const SetLoading = loading => dispatch({type: SET_LOADING, data: loading })
   const SetCurrentIndex = index => dispatch({type: SET_CURRENT_INDEX, data: index })
   const SetPlaylist = playlistArray => dispatch({type: SET_PLAYLIST, data: playlistArray})
-
-  const prevSong = () => {
-    if (state.currentIndex === 0) {
-      return;
-    } else {
-      // SetLoading(true)
-      SetCurrentIndex(state.currentIndex - 1)
-      return;
-    }
-  }
-
-  const nextSong = () => {
-    if (state.currentIndex === state.playlist.length) {
-      return;
-    } else {
-      // SetLoading(true)
-      SetCurrentIndex(state.currentIndex + 1)
-      return;
-    }
-  };
+  const SetIsPlaying = isPlaying => dispatch({type: SET_IS_PLAYING, data: isPlaying})
 
   return (
     <PlayerContext.Provider
@@ -42,11 +24,11 @@ export const PlayerState = (props) => {
         currentIndex: state.currentIndex,
         playlist: state.playlist,
         loading: state.loading,
+        isPlaying: state.isPlaying,
         SetCurrentIndex,
         SetPlaylist,
         SetLoading,
-        prevSong,
-        nextSong,
+        SetIsPlaying
       }}
     >
       {props.children}

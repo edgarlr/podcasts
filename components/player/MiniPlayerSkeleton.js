@@ -13,7 +13,7 @@ export default function MiniPlayerSkeleton() {
 
       <style jsx>{`
         .img-container, .title, .channel-title {
-          background: ${colors.lightGray};
+          background: ${colors.darkGray};
         }
       `}</style>
       
@@ -35,13 +35,13 @@ export default function MiniPlayerSkeleton() {
         }
         .title {
           height: 0.85em;
-          width: 70%;
+          width: 80%;
           border-radius: 2px;
           margin: 0 0 4px;
         }
         .channel-title {
           height: 0.7em;
-          width: 30%;
+          width: 45%;
           border-radius: 2px;
           margin: 0;
         }

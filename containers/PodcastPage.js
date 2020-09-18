@@ -1,10 +1,10 @@
+import { useFetchPlaylist } from "hooks/useFetchPlaylist"
 import Layout from "components/Layout"
 import MainTitle from "components/MainTitle"
 import ImgTranslucent from "components/ImgTranslucent"
 import { SectionTitle } from "components/SectionTitle"
 import { durationToMinutes } from "utils/durationToMinutes"
 import { dateFormatter } from "utils/dateFormatter"
-import { useFetchPlaylist } from "hooks/useFetchPlaylist"
 import EpisodeList from "components/episodes/EpisodeList"
 import DescriptionContainer from "components/DescriptionContainer"
 import PlayButton from "components/PlayButton"
@@ -16,6 +16,7 @@ const PodcastPage = ({audio_clip}) => {
     <Layout
       navigation={true}
       headerText={audio_clip.title}
+      pageTitle={audio_clip.title + ' | Podcasts'}
       button={ 
         <div style={{width: '3rem'}}>
           <ImgTranslucent url={audio_clip.urls.image || audio_clip.channel.urls.logo_image.original} />

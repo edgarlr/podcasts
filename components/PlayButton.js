@@ -6,15 +6,10 @@ import { useFetchPlaylist } from 'hooks/useFetchPlaylist'
 const PlayButton = ({ episodeId, channelId }) => {
   const { clientPlaylist, isLoading } = useFetchPlaylist(channelId)
 
-  const {
-    SetLoading,
-    SetCurrentIndex,
-    SetPlaylist,
-  } = usePlayer()
+  const { SetCurrentIndex, SetPlaylist } = usePlayer()
 
   const onPlayClick = () => {
     if (clientPlaylist) {
-      SetLoading(true)
       SetPlaylist(clientPlaylist)
 
       for (let i = 0; i < clientPlaylist.length; i++) {

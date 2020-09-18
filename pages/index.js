@@ -1,6 +1,5 @@
 import 'isomorphic-fetch'
 import Error from 'next/error'
-import Head from 'next/head';
 
 import { useFavs } from 'contexts';
 import Homepage from 'containers/Homepage';
@@ -19,19 +18,9 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home ({channels, statusCode}) {
-  const {myList} = useFavs()
+  const { myList } = useFavs()
 
-  if (statusCode !== 200) {
-    return <Error statusCode={statusCode} />;
-  }
+  if (statusCode !== 200) return <Error statusCode={statusCode} />
 
-  return (
-    <>
-      <Head>
-        <title>Podcasts</title>
-      </Head>
-
-      <Homepage channels={channels} myList={myList} />
-    </>
-  );
+  return <Homepage channels={channels} myList={myList} />
 } 
