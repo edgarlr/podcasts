@@ -9,8 +9,9 @@ const EpisodeCard = ({clip, isActive, handlePodcastClick}) => {
       onClick={() => handlePodcastClick(clip, clip.channel.id)}
     >
       <h2>{clip.title}</h2>
-      <div className='meta'>{durationToMinutes(clip.duration)}</div>
-      <p>{clip.counts.plays} plays</p>
+      {/* <div className='meta'>{durationToMinutes(clip.duration)}</div> */}
+      {/* <p>{clip.counts.plays} plays</p> */}
+      <p>{clip.channel.title}</p>
       
       {isActive  && (
         <span>

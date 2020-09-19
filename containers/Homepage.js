@@ -4,10 +4,15 @@ import Grid from 'components/Grid'
 import GridCarousel from 'components/GridCarousel'
 import PodcastCover from 'components/PodcastCover'
 import Layout from 'components/Layout'
+import SearchContainer from 'components/SearchContainer'
 
 const Homepage = ({channels, myList = []}) => {
   return (
-    <Layout headerText='Podcasts' pageTitle='Podcast App'>
+    <Layout 
+      headerText='Podcasts' 
+      pageTitle='Podcast App'
+      button={<SearchContainer />}
+    >
       
       <MainTitle title='Podcasts' />
 

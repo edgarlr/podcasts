@@ -3,7 +3,7 @@ import {MdPause, MdPlayArrow} from 'react-icons/md'
 import TranslucentImage from '../TranslucentImage';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
-import CircleProgressBar from './CircleProgressBar';
+import CircleProgressBar from '../CircleProgressBar';
 import { PodcastTitle } from './PodcastTitle';
 
 export default function MiniPlayer({

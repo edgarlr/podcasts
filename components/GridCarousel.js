@@ -11,7 +11,7 @@ export default function GridCarousel({ children }) {
           grid-template-columns: 10px;
           grid-auto-flow: column;
           grid-auto-columns: calc(50% - 1rem * 2);
-          min-height: 100%;
+          height: 13rem;
           overflow-x: scroll;
           margin: 0 -1.5rem;
           padding: 1.5rem 0;
