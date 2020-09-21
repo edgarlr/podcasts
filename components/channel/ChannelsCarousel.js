@@ -1,9 +1,19 @@
-export default function GridCarousel({ children }) {
-  return (
-    <div className='channels-carousel'>
-      
-      {children}
+import { PodcastCover } from "./PodcastCover";
+import PodcastCoverSkeleton from "./PodcastCoverSkeleton";
 
+export const ChannelsCarousel = ({ channels, loading = true }) => {
+    return (
+      <div className='channels-carousel'>    
+        {loading ? (
+          [1,2,3].map((card) => (
+            <PodcastCoverSkeleton key={card}/>
+          ))
+        ) : (
+          channels.map((channel) => (
+            <PodcastCover channel={channel} key={channel.id} />
+          )) 
+        )}
+        
       <style jsx>{`
         .channels-carousel {
           display: grid;

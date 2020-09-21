@@ -96,6 +96,5 @@ $RECYCLE.BIN/
 *.lnk
 
 package-lock.json
-public/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,react,now

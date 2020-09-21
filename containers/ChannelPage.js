@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import MainTitle from 'components/MainTitle';
-import PodcastCover from 'components/PodcastCover';
 import Layout from 'components/Layout';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
-import GridCarousel from 'components/GridCarousel';
+import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import { SectionTitle } from 'components/SectionTitle';
 import BannerImage from 'components/BannerImage';
 import { colors } from 'styles/theme';
@@ -39,11 +38,7 @@ const ChannelPage = ({channel, audioClips, series }) => {
       {series.length > 0 && (
         <section>
           <SectionTitle title={`${channel.title}'S SERIES`} />
-          <GridCarousel >
-            {series.map((channel, index) => (
-              <PodcastCover channel={channel} index={index} key={index}/>
-            ))}
-          </GridCarousel>
+          <ChannelsCarousel channels={series} loading={false} />
         </section>
       )}
 

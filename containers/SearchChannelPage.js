@@ -1,29 +1,27 @@
-import PodcastCover from 'components/PodcastCover'
 import { SectionTitle } from 'components/SectionTitle'
-import { useFetchChannels } from 'hooks/useFetchChannels'
-import Grid from 'components/Grid'
+import { ChannelsGrid } from 'components/channel/ChannelsGrid'
 import Layout from 'components/Layout'
 import MainTitle from 'components/MainTitle'
+import { useRouter } from 'next/router'
+import { useSearch } from 'hooks/useSearch'
 
 export const SearchChannelPage = () => {
-  const { clientChannels, isLoading } = useFetchChannels()
+  const router = useRouter()
+  const { keyword } = router.query
+
+  const { data, isLoading } = useSearch('channels', keyword)
 
   return (
     <Layout
       navigation={true}
-      headerText='Quemes despues d in search'
+      headerText={`\"${keyword}\" in search`}
       pageTitle='Podcasts'
     >
+      <MainTitle title={`\"${keyword}\" in search`} />
+
       <section>
-        <MainTitle title='"Quemese despues d" in search' />
         <SectionTitle title='All channels' />
-        {!isLoading && (
-          <Grid >
-            {clientChannels.map((channel, index) => (
-              <PodcastCover channel={channel} index={index} key={index}/>
-            ))}
-          </Grid>
-        )}
+        <ChannelsGrid channels={data} loading={isLoading} />
       </section>
 
       <style jsx>{`

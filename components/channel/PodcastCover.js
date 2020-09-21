@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { fontWeight, colors } from 'styles/theme';
 
-export default function PodcastCover({channel}) {
+export const PodcastCover = ({channel}) => {
   return (
     <div>
       <Link

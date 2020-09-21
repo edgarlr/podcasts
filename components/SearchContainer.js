@@ -1,55 +1,90 @@
-import { useFetchPlaylist } from 'hooks/useFetchPlaylist'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdClose, MdSearch } from 'react-icons/md'
 import { colors, fontWeight } from 'styles/theme'
 import EpisodeList from './episodes/EpisodeList'
-import PodcastCover from './PodcastCover'
 import { SectionTitle } from './SectionTitle'
-import { useFetchChannels } from 'hooks/useFetchChannels'
-import GridCarousel from './GridCarousel'
+import { ChannelsCarousel } from './channel/ChannelsCarousel'
+import Link from 'next/link'
+import { useSearch } from 'hooks/useSearch'
+import { useRouter } from 'next/router'
 
 const SearchContainer = () => {
+  const router = useRouter()
+
   const [isOpen, setIsOpen] = useState(false)
+  const [searchKeyword, setSearchKeyword] = useState('')
+  const [channels, setChannels] = useState([])
+  const [episodes, setEpisodes] = useState([])
 
-  const { clientPlaylist, isLoading } = useFetchPlaylist('4579242')
-  const { clientChannels, isLoading: loadingChannels } = useFetchChannels()
+  useEffect(() => {
+    if (router.query.search !== undefined) {
+      setIsOpen(true);
+      setSearchKeyword(router.query.search)
+    }
+  }, [])
+  
+  const onSearchChange = e => {
+    const { value } = e.currentTarget
+    if (value.length > 2) {
+      router.push(`/?search=${value}`)
+      setSearchKeyword(value);
+    }
+  }
 
+  const closeModal = () => {
+    router.push('/')
+    setIsOpen(false)
+    setSearchKeyword('')
+  }
+
+  const { data: dataChannels, isLoading: loadingChannels } = useSearch('channels', searchKeyword)
+  const { data: dataEpisodes, isLoading: loadingEpisodes } = useSearch('audio_clips', searchKeyword, 4)
+
+  useEffect(() => {
+    if (dataChannels) setChannels(dataChannels.slice(0,4))
+  }, [dataChannels, dataEpisodes])
 
   return (
     <div className={`search-container ${isOpen ? 'full' : ' '}`}>
 
-      <button onClick={() => setIsOpen(!isOpen)}>
+      <button>
         {isOpen ? (
-          <MdClose size='2rem' color={colors.darkGray} />
+          <MdClose size='2rem' color={colors.darkGray} onClick={closeModal} />
           ) : (
-          <MdSearch size='2rem' color={colors.darkGray}/>
+          <MdSearch size='2rem' color={colors.darkGray} onClick={() => setIsOpen(true)}/>
         )}
       </button>
 
       {isOpen && (
         <>
-          <input type="search" name="main-search" id="searchInput" placeholder={'Search...'}/>
+          <input 
+            type="search" 
+            name="main-search" 
+            id="searchInput" 
+            placeholder={'Search...'}
+            onChange={onSearchChange}
+          />
 
-          <SectionTitle title='Channels' button={<span>See all channels</span>}/>
-          {!loadingChannels && (
-            <GridCarousel >
-              {clientChannels.slice(0, 4).map((channel, index) => (
-                <PodcastCover channel={channel} index={index} key={index}/>
-              ))}
-            </GridCarousel>
+          {searchKeyword.length > 2 && (
+            <>
+              <SectionTitle title='Channels' button={<Link href={`/search/channels/${searchKeyword}`}><a>See all channels</a></Link>}/>
+              <ChannelsCarousel channels={channels} loading={loadingChannels} />
+
+              <SectionTitle title='Episodes'  button={<Link href={`/search/episodes/${searchKeyword}`}><a>See all episodes</a></Link>}/>
+              <EpisodeList audioClips={episodes} loading={loadingEpisodes}/>
+            </>
           )}
 
-          <SectionTitle title='Episodes'  button={<span>See all episodes</span>}/>
-          <EpisodeList audioClips={clientPlaylist.slice(0,4)} loading={isLoading}/>
         </>
       )}
 
 
       <style jsx>{`
-        span {
+        a {
           font-size: .9rem;
           font-weight: ${fontWeight.bold};
           color: ${colors.darkGray};
+          text-decoration: none;
         }
         input {
           border: none;

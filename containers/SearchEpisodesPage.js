@@ -1,22 +1,27 @@
 import { SectionTitle } from 'components/SectionTitle'
 import Layout from 'components/Layout'
 import MainTitle from 'components/MainTitle'
-import { useFetchPlaylist } from 'hooks/useFetchPlaylist'
 import EpisodeList from 'components/episodes/EpisodeList'
+import { useRouter } from 'next/router'
+import { useSearch } from 'hooks/useSearch'
 
 export const SearchEpisodesPage = () => {
-  const { clientPlaylist, isLoading } = useFetchPlaylist('4579242')
+  const router = useRouter()
+  const { keyword } = router.query
+  
+  const { data, isLoading } = useSearch('audio_clips', keyword)
 
   return (
     <Layout
       navigation={true}
-      headerText='Quemes despues d in search'
+      headerText={`\"${keyword}\" in search`}
       pageTitle='Podcasts'
     >
+      <MainTitle title={`\"${keyword}\" in search`} />
+      
       <section>
-        <MainTitle title='"Quemese despues d" in search' />
         <SectionTitle title='All episodes'/>
-        <EpisodeList audioClips={clientPlaylist} loading={isLoading}/>
+        <EpisodeList audioClips={data} loading={isLoading}/>
       </section>
 
       <style jsx>{`
