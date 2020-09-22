@@ -1,5 +1,4 @@
 import { usePlayer } from 'contexts';
-import TranslucentImage from 'components/TranslucentImage';
 import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
 import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
@@ -38,6 +37,8 @@ export const Player = ({
         <div className='img-container'>
           <ImgTranslucent
             url={currentPodcast.urls.image || currentPodcast.channel.urls.logo_image.original}
+            fullBlur
+            borderRadius='10%'
           />
         </div>
 

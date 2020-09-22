@@ -143,7 +143,7 @@ const PlayerModal = () => {
 
       <style jsx>{`
         div {
-          z-index: 2;
+          z-index: 20;
           position: fixed;
           height: 6em;
           right: 0;
@@ -170,6 +170,7 @@ const PlayerModal = () => {
           z-index: -1;
           opacity: .9;
           background: ${colors.white};
+          
         }
       `}</style>
     </>

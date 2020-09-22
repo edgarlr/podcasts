@@ -31,15 +31,15 @@ const PlayButton = ({ episodeId, channelId }) => {
           background: ${colors.black};
           border-radius: 50%;
           border: none;
-          height: 3rem;
-          width: 3rem;
+          height: 2.8rem;
+          width: 2.8rem;
           display: flex;
           justify-content: center;
           align-items: center;
           
           position: absolute;
           right: 1.5rem;
-          transform: translateY(-60%);
+          transform: translateY(-55%);
           opacity: 1;
           transition: .2s;
         }

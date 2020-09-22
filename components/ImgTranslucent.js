@@ -1,37 +1,39 @@
-export default function ImgTranslucent({url, alt}) {
+export default function ImgTranslucent({url, alt, fullBlur = null, borderRadius = null}) {
   return (
     <div className='image-container'>
-      <img
-        src={url}
-        alt={alt}
-        srcSet=''
-      />
       <div
-        className='image-shadow'
-        style={{
-          backgroundImage: `url(${url})`,
-        }}
-      ></div>
+        className={`image-shadow ${fullBlur && 'ultra'}`}
+        style={{backgroundImage: `url(${url})`}}
+      />
+
+      <img src={url}  alt={alt}  srcSet='' />
 
       <style jsx>{`
         .image-container {
           position: relative;
         }
-        img {
+        img { 
           width: 100%;
-          border-radius: 25%;
+          border-radius: ${borderRadius || '25%'};
         }
         .image-shadow {
           filter: blur(10px);
-          position: absolute;
-          top: 30%;
-          left: 5%;
-          margin: 0;
           width: 70%;
           height: 70%;
-          border-radius: 20px;
+          position: absolute;
+          top: 22%;
+          left: 50%;
+          transform: translate(-50%);
+          margin: 0;
+          border-radius: 20%;
           opacity: .5;
           z-index: -1;
+        }
+        .image-shadow.ultra {
+          filter: blur(40px);
+          width: 100%;
+          height: 100%;
+          top: 0;
         }
       `}</style>
     </div>

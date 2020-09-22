@@ -33,6 +33,7 @@ export const PodcastCover = ({channel}) => {
           width: 100%;
           border-radius: 20px;
           box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
+          background: ${colors.lightGray};
         }
         a {
           text-decoration: none;

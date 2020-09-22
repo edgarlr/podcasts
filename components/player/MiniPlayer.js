@@ -1,10 +1,10 @@
 import { usePlayer } from 'contexts'
 import {MdPause, MdPlayArrow} from 'react-icons/md'
-import TranslucentImage from '../TranslucentImage';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
 import CircleProgressBar from '../CircleProgressBar';
 import { PodcastTitle } from './PodcastTitle';
+import ImgTranslucent from 'components/ImgTranslucent';
 
 export default function MiniPlayer({
   currentPodcast, 
@@ -24,9 +24,9 @@ export default function MiniPlayer({
         <button className='nav-button' onClick={() => handleModalClick()} />
 
         <div className='img-container' onClick={() => handleModalClick()}>
-          <TranslucentImage
-            clipUrls={currentPodcast.urls}
-            channelUrls={currentPodcast.channel.urls}
+          <ImgTranslucent 
+            url={currentPodcast.urls.image || currentPodcast.channel.urls.logo_image.original} 
+            fullBlur
           />
         </div>
         
@@ -116,6 +116,7 @@ export default function MiniPlayer({
           justify-content: center;
           align-items: center;
           padding-right: .5rem; 
+          background: transparent;
         }
       `}</style>
     </>
