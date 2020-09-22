@@ -4,8 +4,10 @@ import { SectionTitle }from 'components/SectionTitle'
 import SearchContainer from 'components/SearchContainer'
 import { ChannelsGrid } from 'components/channel/ChannelsGrid'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
+import { useFavs } from 'contexts'
 
-const Homepage = ({channels, myList = []}) => {
+const Homepage = ({channels}) => {
+  const { myList } = useFavs()
   return (
     <Layout 
       headerText='Podcasts' 

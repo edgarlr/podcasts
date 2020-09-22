@@ -5,6 +5,7 @@ import { colors } from 'styles/theme';
 import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
 import { ProgressBar } from './ProgressBar';
 import { PodcastTitle } from './PodcastTitle';
+import ImgTranslucent from 'components/ImgTranslucent';
 
 export const Player = ({
   currentPodcast, 
@@ -35,9 +36,8 @@ export const Player = ({
       <div className='container'>
 
         <div className='img-container'>
-          <TranslucentImage
-            clipUrls={currentPodcast.urls}
-            channelUrls={currentPodcast.channel.urls}
+          <ImgTranslucent
+            url={currentPodcast.urls.image || currentPodcast.channel.urls.logo_image.original}
           />
         </div>
 

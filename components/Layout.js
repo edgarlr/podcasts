@@ -51,6 +51,16 @@ export default function Layout ({
         main {
           padding: 2rem 1.5rem 7rem;
         }
+        button {
+          cursor: pointer;
+          border: none;
+          outline: none;
+          background: transparent;
+          padding: 0;
+        }
+        a {
+          text-decoration: none;
+        }
       `}</style>
     </>
   );

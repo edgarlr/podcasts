@@ -4,6 +4,7 @@ import Layout from 'components/Layout'
 import MainTitle from 'components/MainTitle'
 import { useRouter } from 'next/router'
 import { useSearch } from 'hooks/useSearch'
+import ClearSearchButton from 'components/ClearSearchButton'
 
 export const SearchChannelPage = () => {
   const router = useRouter()
@@ -16,6 +17,7 @@ export const SearchChannelPage = () => {
       navigation={true}
       headerText={`\"${keyword}\" in search`}
       pageTitle='Podcasts'
+      button={<ClearSearchButton />}
     >
       <MainTitle title={`\"${keyword}\" in search`} />
 

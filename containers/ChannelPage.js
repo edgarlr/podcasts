@@ -30,10 +30,11 @@ const ChannelPage = ({channel, audioClips, series }) => {
 
       <MainTitle
         title={channel.title}
-        subtitle={`serie de ${channel.parent_channel_id}`}
+        subtitle='Podcast'
       />
 
       <BannerImage bannerImage={bannerImage} />
+
 
       {series.length > 0 && (
         <section>

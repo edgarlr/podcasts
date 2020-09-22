@@ -8,19 +8,15 @@ export default function FiltersIcon({handleFilterClick}) {
   const onBtnClick = e => {
     handleFilterClick(e.target.id);
     setIsActive(e.target.id)
+    setShowDropdown(false)
   }
 
   return (
     <div className='sort'>
-      <div
-        className='icon'
-        onClick={() => {
-          showDropdown ? setShowDropdown(false) : setShowDropdown(true)
-          }
-        }
-      >
+      <button className='icon' onClick={() => setShowDropdown(!showDropdown)} >
         <MdSort size='1.5em' />
-      </div>
+      </button>
+
       <div className='sort-dropdown'>
         <button
           id='popular'
@@ -48,10 +44,11 @@ export default function FiltersIcon({handleFilterClick}) {
       <style jsx>{`
         .sort {
           position: relative;
+          z-index: 9;
         }
         .sort-dropdown {
           display: ${showDropdown ? 'block' : 'none'};
-          box-shadow: 0 2px 5px rgba(100, 100, 100, 0.2);
+          box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
           border-radius: 20px;
           background: #fff;
           padding: 15px 10px;
@@ -59,7 +56,6 @@ export default function FiltersIcon({handleFilterClick}) {
           right: 0;
           width: 15em;
           text-align: right;
-          z-index: 20000;
         }
         button {
           outline: none;
@@ -76,8 +72,11 @@ export default function FiltersIcon({handleFilterClick}) {
           background: #131414;
           border-radius: 10px;
         }
+        .icon {
+          padding: 0;
+        }
         .icon:hover {
-          color: ${showDropdown ? '#999' : 'inherit'};
+          opacity: 0.5;
         }
       `}</style>
     </div>

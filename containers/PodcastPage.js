@@ -10,8 +10,8 @@ import DescriptionContainer from "components/DescriptionContainer"
 import PlayButton from "components/PlayButton"
 
 const PodcastPage = ({audio_clip}) => {
-  
-  const { clientPlaylist, isLoading } = useFetchPlaylist(audio_clip.channel.id)
+  const { channel } = audio_clip
+  const { clientPlaylist, isLoading } = useFetchPlaylist(channel.id)
 
   return (
     <Layout
@@ -20,15 +20,15 @@ const PodcastPage = ({audio_clip}) => {
       pageTitle={audio_clip.title + ' | Podcasts'}
       button={ 
         <div style={{width: '3rem'}}>
-          <ImgTranslucent url={audio_clip.urls.image || audio_clip.channel.urls.logo_image.original} />
+          <ImgTranslucent url={audio_clip.urls.image || channel.urls.logo_image.original} />
         </div>
       }
     >
-      <MainTitle title={audio_clip.title} subtitle={audio_clip.channel.title} />
+      <MainTitle title={audio_clip.title} subtitle={channel.title} linkTo={`/${channel.id}`} />
 
       <SectionTitle 
         title={`${dateFormatter(audio_clip.uploaded_at)} · ${durationToMinutes(audio_clip.duration)}`} 
-        button={<PlayButton episodeId={audio_clip.id} channelId={audio_clip.channel.id} />}
+        button={<PlayButton episodeId={audio_clip.id} channelId={channel.id} />}
       />
       
       <DescriptionContainer data={audio_clip.description}/>

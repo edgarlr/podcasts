@@ -10,29 +10,29 @@ import { useRouter } from 'next/router'
 
 const SearchContainer = () => {
   const router = useRouter()
+  const { search } = router.query
 
   const [isOpen, setIsOpen] = useState(false)
   const [searchKeyword, setSearchKeyword] = useState('')
   const [channels, setChannels] = useState([])
-  const [episodes, setEpisodes] = useState([])
 
   useEffect(() => {
-    if (router.query.search !== undefined) {
+    if (search !== undefined) {
       setIsOpen(true);
-      setSearchKeyword(router.query.search)
+      setSearchKeyword(search)
     }
   }, [])
   
   const onSearchChange = e => {
     const { value } = e.currentTarget
-    if (value.length > 2) {
-      router.push(`/?search=${value}`)
+    if (value.length > 1) {
       setSearchKeyword(value);
+      router.push(`/?search=${value}`, undefined, { shallow: true })
     }
   }
 
   const closeModal = () => {
-    router.push('/')
+    router.push('/',  undefined, { shallow: true })
     setIsOpen(false)
     setSearchKeyword('')
   }
@@ -46,13 +46,12 @@ const SearchContainer = () => {
 
   return (
     <div className={`search-container ${isOpen ? 'full' : ' '}`}>
-
       <button>
         {isOpen ? (
-          <MdClose size='2rem' color={colors.darkGray} onClick={closeModal} />
+            <MdClose size='2rem' color={colors.darkGray} onClick={closeModal} />
           ) : (
-          <MdSearch size='2rem' color={colors.darkGray} onClick={() => setIsOpen(true)}/>
-        )}
+            <MdSearch size='2rem' color={colors.darkGray} onClick={() => setIsOpen(true)}/>
+          )}
       </button>
 
       {isOpen && (
@@ -62,16 +61,17 @@ const SearchContainer = () => {
             name="main-search" 
             id="searchInput" 
             placeholder={'Search...'}
+            defaultValue={search !== undefined ? search : ''}
             onChange={onSearchChange}
           />
 
-          {searchKeyword.length > 2 && (
+          {searchKeyword.length > 1 && (
             <>
               <SectionTitle title='Channels' button={<Link href={`/search/channels/${searchKeyword}`}><a>See all channels</a></Link>}/>
               <ChannelsCarousel channels={channels} loading={loadingChannels} />
 
               <SectionTitle title='Episodes'  button={<Link href={`/search/episodes/${searchKeyword}`}><a>See all episodes</a></Link>}/>
-              <EpisodeList audioClips={episodes} loading={loadingEpisodes}/>
+              <EpisodeList audioClips={dataEpisodes} loading={loadingEpisodes}/>
             </>
           )}
 

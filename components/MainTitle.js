@@ -1,12 +1,19 @@
+import Link from 'next/link';
 import React from 'react'
 import { colors, fontWeight } from 'styles/theme';
 
-export default function MainTitle({ children, title, subtitle = null }) {
+export default function MainTitle({ children, title, subtitle = null, linkTo = null }) {
   return (
     <div>
       {children}
 
-      {subtitle && <p>{subtitle}</p>}
+      {linkTo && (
+        <Link href={linkTo}>
+          <a>{subtitle}</a>
+        </Link>
+      )}
+
+      {subtitle && !linkTo && <p>{subtitle}</p>}
       
       <h1>{title}</h1>
 
@@ -27,7 +34,7 @@ export default function MainTitle({ children, title, subtitle = null }) {
         h1 {
           margin: 8px 0;
         }
-        p {
+        p, a {
           margin: 0;
           font-size: .7rem;
           text-transform: uppercase;

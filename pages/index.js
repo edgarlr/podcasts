@@ -1,6 +1,4 @@
 import Error from 'next/error'
-
-import { useFavs } from 'contexts';
 import Homepage from 'containers/Homepage';
 
 export async function getServerSideProps(context) {
@@ -17,9 +15,8 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home ({channels, statusCode}) {
-  const { myList } = useFavs()
 
   if (statusCode !== 200) return <Error statusCode={statusCode} />
 
-  return <Homepage channels={channels} myList={myList} />
+  return <Homepage channels={channels} />
 } 
