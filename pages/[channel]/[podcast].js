@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import Error from 'next/error';
 import PodcastPage from 'containers/PodcastPage';
 

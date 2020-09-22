@@ -96,6 +96,7 @@ const SearchContainer = () => {
           color: ${colors.black};
           width: 100%;
           border-bottom: 0;
+          border-radius: 0;
         }
         input::-webkit-search-cancel-button{
           position:relative;

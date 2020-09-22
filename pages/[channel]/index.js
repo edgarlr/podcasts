@@ -1,4 +1,3 @@
-import 'isomorphic-fetch';
 import Error from '../_error';
 import ChannelPage from 'containers/ChannelPage';
 
