@@ -14,4 +14,4 @@ I really appreciate any contribution.
 
 ## License
 
-MIT
+[MIT License](https://github.com/edgarlr/podcast-app/blob/master/LICENSE).
