@@ -11,7 +11,8 @@ const PlayerModal = () => {
     playlist,
     SetIsPlaying,
     SetLoading,
-    SetCurrentIndex
+    SetCurrentIndex,
+    current
   } = usePlayer()
 
   const [fullView, setFullView] = useState(false)
@@ -30,16 +31,16 @@ const PlayerModal = () => {
   const setupMediaSessions = () => {
     if ("mediaSession" in navigator) {
       navigator.mediaSession.metadata = new window.MediaMetadata({
-        title: playlist[currentIndex].title,
-        artist: playlist[currentIndex].channel.title,
+        title: current.title,
+        artist: current.channel.title,
         artwork: [
           {
-            src: playlist[currentIndex].urls.image || playlist[currentIndex].channel.urls.logo_image.original,
+            src: current.urls.image || current.channel.urls.logo_image.original,
             sizes: "512x512",
             type: "image/png"
           },
           {
-            src: playlist[currentIndex].urls.image || playlist[currentIndex].channel.urls.logo_image.original,
+            src: current.urls.image || current.channel.urls.logo_image.original,
             sizes: "256x256",
             type: "image/png"
           },
@@ -71,7 +72,7 @@ const PlayerModal = () => {
     setDuration(0)
     setCurrentTime(0)
     audioRef.currentTime = 0;
-    audio.current.src = playlist[currentIndex].urls.high_mp3
+    audio.current.src = current.urls.high_mp3
   }
 
   const nextEpisode = () => {
@@ -101,7 +102,6 @@ const PlayerModal = () => {
         <div className={fullView ? 'fullmodal' : ' '}>
           {fullView ? (
             <Player
-              currentPodcast={playlist[currentIndex]} 
               handleModalClick={handleModalClick}
               handleProgress={handleProgress}
               toggleAudio={toggleAudio}
@@ -112,7 +112,6 @@ const PlayerModal = () => {
             />
            ) : (
             <MiniPlayer
-              currentPodcast={playlist[currentIndex]} 
               handleModalClick={handleModalClick}
               toggleAudio={toggleAudio}
               currentTime={currentTime}
@@ -131,7 +130,7 @@ const PlayerModal = () => {
           onEnded={() => nextEpisode()}
           preload='true'
           ref={audio}
-          src={playlist[currentIndex].urls.high_mp3}
+          src={current.urls.high_mp3}
         />
       </PlayerPortal>
 

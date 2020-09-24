@@ -7,7 +7,6 @@ import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 
 export const Player = ({
-  currentPodcast, 
   handleModalClick, 
   handleProgress, 
   toggleAudio, 
@@ -21,10 +20,11 @@ export const Player = ({
     loading,
     currentIndex,
     playlist,
-    isPlaying
+    isPlaying,
+    current
   } = usePlayer()
 
-  if (!currentPodcast) return <PlayerSkeleton />
+  if (!current) return <PlayerSkeleton />
 
   return (
     <>
@@ -36,15 +36,15 @@ export const Player = ({
 
         <div className='img-container'>
           <ImgTranslucent
-            url={currentPodcast.urls.image || currentPodcast.channel.urls.logo_image.original}
+            url={current.urls.image || current.channel.urls.logo_image.original}
             fullBlur
             borderRadius='10%'
           />
         </div>
 
         <div className='info'>
-          <PodcastTitle title={currentPodcast.title}/>
-          <h6>{currentPodcast.channel.title}</h6>
+          <PodcastTitle title={current.title}/>
+          <h6>{current.channel.title}</h6>
         </div>
 
         <div className='main-player'>

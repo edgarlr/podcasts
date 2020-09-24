@@ -11,8 +11,7 @@ export default function Layout ({
   navigation = null,
   pageTitle = 'Podcast' }) {
 
-  const { isPlaying, currentIndex, playlist } = usePlayer()
-
+  const { isPlaying, current } = usePlayer()
   
   return (
     <>
@@ -20,8 +19,9 @@ export default function Layout ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <title>
           {isPlaying 
-            ? `${playlist[currentIndex].title} | ${playlist[currentIndex].channel.title}` 
-            : pageTitle}
+            ? `${current.title} | ${current.channel.title}` 
+            : pageTitle
+          }
           </title>
       </Head>
 
@@ -31,7 +31,7 @@ export default function Layout ({
         {children}
       </main>
 
-      {currentIndex !== null && <PlayerModal />}
+      {current && <PlayerModal />}
 
       <style jsx global>{`
         body {

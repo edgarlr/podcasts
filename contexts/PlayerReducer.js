@@ -2,7 +2,7 @@ import {
   SET_CURRENT_INDEX,
   SET_PLAYLIST,
   SET_LOADING,
-  SET_IS_PLAYING
+  SET_IS_PLAYING, 
 } from './types'
 
 export const PlayerReducer = (state, action) => {
@@ -16,6 +16,7 @@ export const PlayerReducer = (state, action) => {
       return {
         ...state,
         currentIndex: action.data,
+        current: state.playlist[action.data]
       }
     case SET_PLAYLIST:
       return {

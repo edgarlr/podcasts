@@ -7,16 +7,15 @@ import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 
 export default function MiniPlayer({
-  currentPodcast, 
   handleModalClick, 
   toggleAudio, 
   duration, 
   currentTime
 }) {
+
+  const { current, loading, isPlaying } = usePlayer()
   
-  const { loading, isPlaying } = usePlayer()
-  
-  if (!currentPodcast) return <MiniPlayerSkeleton />
+  if (!current) return <MiniPlayerSkeleton />
 
   return (
     <>
@@ -25,14 +24,14 @@ export default function MiniPlayer({
 
         <div className='img-container' onClick={() => handleModalClick()}>
           <ImgTranslucent 
-            url={currentPodcast.urls.image || currentPodcast.channel.urls.logo_image.original} 
+            url={current.urls.image || current.channel.urls.logo_image.original} 
             fullBlur
           />
         </div>
         
         <div className='info' onClick={() => handleModalClick()}>
-          <PodcastTitle title={currentPodcast.title} fontSize='.9rem' alwaysJustify='flex-start'/>
-          <h4>{currentPodcast.channel.title}</h4>
+          <PodcastTitle title={current.title} fontSize='.9rem' alwaysJustify='flex-start'/>
+          <h4>{current.channel.title}</h4>
         </div>
         
         <button

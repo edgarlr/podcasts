@@ -20,7 +20,6 @@ export const SearchEpisodesPage = () => {
         title='All Episodes'
         episodes={data} 
         loading={isLoading}
-        searchCards
       />
     </>
   )

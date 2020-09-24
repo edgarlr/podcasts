@@ -13,7 +13,7 @@ export default function EpisodeListContainer (props) {
     searchCards = null
   } = props
 
-  const { currentIndex } = usePlayer()
+  const { current } = usePlayer()
 
   if (!loading && episodes.length === 0) return null
 
@@ -23,11 +23,11 @@ export default function EpisodeListContainer (props) {
 
       {loading
         ? [1,2,3,4,5,6,7,8].map((card) => <EpisodeCardSkeleton key={card}/>)
-        : episodes.map((clip, index) => (
+        : episodes.map((clip) => (
           <EpisodeCard 
             clip={clip} 
             key={clip.id}
-            isActive={currentIndex === index}
+            isActive={current && current.id === clip.id}
             info={!searchCards ? null : clip.channel.title}
           />
         ))

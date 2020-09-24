@@ -1,11 +1,12 @@
 import { useReducer } from 'react';
 import { PlayerContext } from 'contexts'
 import { PlayerReducer } from './PlayerReducer'
-import { SET_CURRENT_INDEX, SET_PLAYLIST, SET_LOADING, SET_IS_PLAYING } from './types';
+import { SET_CURRENT_INDEX,  SET_PLAYLIST, SET_LOADING,  SET_IS_PLAYING } from './types';
 
 export const PlayerState = (props) => {
   const initialState = {
     currentIndex: null,
+    current: null,
     playlist: [],
     loading: true, 
     isPlaying: false,
@@ -22,6 +23,7 @@ export const PlayerState = (props) => {
     <PlayerContext.Provider
       value={{
         currentIndex: state.currentIndex,
+        current: state.current,
         playlist: state.playlist,
         loading: state.loading,
         isPlaying: state.isPlaying,

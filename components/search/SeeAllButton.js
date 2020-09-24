@@ -3,7 +3,7 @@ import { colors, fontWeight } from 'styles/theme'
 
 const SeeAllButton = ({section, keyword}) => (
   <>
-    <Link href={`/search/${section}/${keyword}`}>
+    <Link href={`/search/[${section}]/[keyword]`} as={`/search/${section}/${keyword}`} >
       <a>{`See all ${section}`}</a>
     </Link>
 
