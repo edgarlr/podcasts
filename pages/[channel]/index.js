@@ -23,13 +23,13 @@ export async function getServerSideProps(context) {
     ])
 
     let channel = dataChannel.body.channel;
-    let audioClips = dataAudios.body.audio_clips;
+    let episodes = dataAudios.body.audio_clips;
     let series = dataSeries.body.channels;
 
     return {
       props: {
         channel,
-        audioClips,
+        episodes,
         series,
         statusCode: context.res.statusCode,
       },
@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         channel: null,
-        audioClip: null,
+        episodes: null,
         series: null,
         statusCode: context.res.statusCode,
       },
@@ -46,8 +46,8 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function channel({ channel, audioClips, series, statusCode }) {
+export default function channel({ channel, episodes, series, statusCode }) {
   if (statusCode !== 200) return <Error statusCode={statusCode} />
   
-  return <ChannelPage channel={channel} audioClips={audioClips} series={series} />
+  return <ChannelPage channel={channel} episodes={episodes} series={series} />
 }

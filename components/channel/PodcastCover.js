@@ -4,10 +4,7 @@ import { fontWeight, colors } from 'styles/theme';
 export const PodcastCover = ({channel}) => {
   return (
     <div>
-      <Link
-        href={`/[channel]?id=${channel.id}`}
-        as={`${channel.id}`}
-      >
+      <Link href={`/[channel]?id=${channel.id}`} as={`${channel.id}`} >
         <a className='channel'>
           <img src={channel.urls.logo_image.original} alt='' />
           <h2>{channel.title}</h2>

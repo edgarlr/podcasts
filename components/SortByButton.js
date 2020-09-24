@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import { MdSort } from 'react-icons/md'
 
-export default function FiltersIcon({handleFilterClick}) {
+export default function SortByButton({handleFilterClick}) {
   const [showDropdown, setShowDropdown] = useState(false)
   const [isActive, setIsActive] = useState('latest');
 

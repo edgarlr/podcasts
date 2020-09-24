@@ -2,29 +2,29 @@ import { colors, fontWeight } from "styles/theme"
 
 export const SectionTitle = ({title, button = null}) => {
   return (
-    <div>
-      <h3>{ title }</h3>
+    <div className='section-title'>
+      <h3 className='main-title'>{title}</h3>
 
       { button }
 
       <style jsx>{`
-        div {
+        .section-title {
           border-bottom: 1px solid ${colors.lightGray};
         }
-        h3 {
+        .main-title {
           font-weight: ${fontWeight.bold};
           color: ${colors.gray};
         } 
       `}</style>
       
       <style jsx>{`
-        div {
+        .section-title {
           display: flex;
           justify-content: space-between;
           align-content: center;
           padding: 1rem 0;
         }
-        h3 {
+        .main-title {
           font-size: .7rem;
           text-transform: uppercase;
           margin: auto 0;

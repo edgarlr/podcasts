@@ -1,4 +1,4 @@
-export default function ImgTranslucent({url, alt, fullBlur = null, borderRadius = null}) {
+export default function ImgTranslucent({url, alt, fullBlur = null, borderRadius = null, width}) {
   return (
     <div className='image-container'>
       <div
@@ -11,6 +11,7 @@ export default function ImgTranslucent({url, alt, fullBlur = null, borderRadius 
       <style jsx>{`
         .image-container {
           position: relative;
+          width: ${width || '100%'};
         }
         img { 
           width: 100%;

@@ -1,16 +1,28 @@
-import { SectionTitle } from 'components/SectionTitle'
-import { ChannelsGrid } from 'components/channel/ChannelsGrid'
-import Layout from 'components/Layout'
-import MainTitle from 'components/MainTitle'
 import { useRouter } from 'next/router'
 import { useSearch } from 'hooks/useSearch'
-import ClearSearchButton from 'components/ClearSearchButton'
+import Layout from 'components/Layout'
+import MainTitle from 'components/MainTitle'
+import ClearSearchButton from 'components/search/ClearSearchButton'
+import SearchErrorMessage from 'components/search/SearchErrorMessage'
+import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 
 export const SearchChannelPage = () => {
   const router = useRouter()
   const { keyword } = router.query
 
-  const { data, isLoading } = useSearch('channels', keyword)
+  const channelsUrl = `https://api.audioboom.com/channels?find[title]=${keyword}&api_version=1`
+  const { data, isLoading } = useSearch(channelsUrl, 'channels')
+
+  const Content = () => (
+    <>
+      <MainTitle title={`\"${keyword}\" in search`} />
+      <ChannelsCarousel 
+        title='All channels' 
+        channels={data} 
+        loading={isLoading} 
+      />
+    </>
+  )
 
   return (
     <Layout
@@ -19,18 +31,12 @@ export const SearchChannelPage = () => {
       pageTitle='Podcasts'
       button={<ClearSearchButton />}
     >
-      <MainTitle title={`\"${keyword}\" in search`} />
+      
+      {!isLoading && data.length === 0
+        ? <SearchErrorMessage keyword={keyword} />
+        : <Content />
+      }
 
-      <section>
-        <SectionTitle title='All channels' />
-        <ChannelsGrid channels={data} loading={isLoading} />
-      </section>
-
-      <style jsx>{`
-        section {
-          padding: 0;
-        }
-      `}</style>
     </Layout>
   )
 }

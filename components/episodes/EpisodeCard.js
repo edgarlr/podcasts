@@ -1,86 +1,93 @@
+import Link from 'next/link'
 import { MdVolumeUp } from 'react-icons/md'
-import { colors } from 'styles/theme'
+import { colors, fontWeight } from 'styles/theme'
 import { durationToMinutes } from 'utils/durationToMinutes'
 
-const EpisodeCard = ({clip, isActive, handlePodcastClick}) => {
+const EpisodeCard = ({clip, isActive, info = null}) => {
+
+  if(!info) info = `${clip.counts.plays} plays`
+
   return (
-    <div
-      className={'episode ' + (isActive ? 'active' : '')}
-      onClick={() => handlePodcastClick(clip, clip.channel.id)}
-    >
-      <h2>{clip.title}</h2>
-      {/* <div className='meta'>{durationToMinutes(clip.duration)}</div> */}
-      {/* <p>{clip.counts.plays} plays</p> */}
-      <p>{clip.channel.title}</p>
-      
-      {isActive  && (
-        <span>
-          <MdVolumeUp size='2em' color='white' />
-        </span>
-      )}
+    <Link href={`/${clip.channel.id}/${clip.id}`} >
+      <a className={'episode ' + (isActive ? 'active' : '')} >
+        <h2>{clip.title}</h2>
 
-      <style jsx>{`
-        .episode {
-          border-bottom: 1px solid ${colors.lightGray};
-        }
-        .active {
-          background: ${colors.black};
-          color: ${colors.white};
-        }
-        .episode:hover {
-          color: ${colors.black};
-        }
-        .episode .meta {
-          color: ${colors.textLightGray};
-        }
-        p {
-          color: ${colors.textLightGray};
-        }
-      `}</style>
+        <div className='meta'>
+          {info}
+        </div>
 
-      <style jsx>{`
-        .episode {
-          display: block;
-          text-decoration: none;
-          margin: 0 0.6em;
-          padding: 16px 0;
-          cursor: pointer;
-        }
-        .active {
-          margin: 0 -.5rem;
-          padding: 16px 1.3em;
-          border-bottom: none;
-          border-radius: 20px;
-          position: relative;
-          text-align: left;
-        }
-        h2 {
-          margin: 16px 0;
-          font-size: 16px;
-        }
-        .active h2,
-        .active p {
-          width: 70%;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .active span {
-          position: absolute;
-          right: 1.3rem;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-        .episode .meta {
-          font-size: 12px;
-          margin-bottom: 8px;
-        }
-        p {
-          font-size: 12px;
-          margin: 0;
-        }
-      `}</style>
-    </div>
+        <p>{durationToMinutes(clip.duration)}</p>
+        
+        {isActive  && (
+          <span>
+            <MdVolumeUp size='2em' color='white' />
+          </span>
+        )}
+
+        <style jsx>{`
+          .episode {
+            border-bottom: 1px solid ${colors.lightGray};
+          }
+          .active {
+            background: ${colors.black};
+            color: ${colors.white};
+          }
+          .episode:hover {
+            color: ${colors.black};
+          }
+          .episode .meta {
+            color: ${colors.gray};
+          }
+          p {
+            color: ${colors.textLightGray};
+          }
+        `}</style>
+
+        <style jsx>{`
+          .episode {
+            display: block;
+            text-decoration: none;
+            margin: 0 0.6em;
+            padding: 16px 0;
+            cursor: pointer;
+          }
+          .active {
+            margin: 0 -.5rem;
+            padding: 16px 1.3em;
+            border-bottom: none;
+            border-radius: 20px;
+            position: relative;
+            text-align: left;
+          }
+          h2 {
+            margin: 16px 0 14px;
+            font-size: 16px;
+          }
+          .active h2,
+          .active p {
+            width: 70%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .active span {
+            position: absolute;
+            right: 1.3rem;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .episode .meta {
+            font-size: .8rem;
+            margin-bottom: 8px;
+            font-weight: ${fontWeight.bold};
+          }
+          p {
+            font-size: 12px;
+            margin: 0;
+          }
+        `}</style>
+      </a>
+    </Link>
   )
 }
 

@@ -1,16 +1,29 @@
-import { SectionTitle } from 'components/SectionTitle'
 import Layout from 'components/Layout'
 import MainTitle from 'components/MainTitle'
-import EpisodeList from 'components/episodes/EpisodeList'
 import { useRouter } from 'next/router'
 import { useSearch } from 'hooks/useSearch'
-import ClearSearchButton from 'components/ClearSearchButton'
+import ClearSearchButton from 'components/search/ClearSearchButton'
+import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
+import SearchErrorMessage from 'components/search/SearchErrorMessage'
 
 export const SearchEpisodesPage = () => {
   const router = useRouter()
   const { keyword } = router.query
-  
-  const { data, isLoading } = useSearch('audio_clips', keyword)
+
+  const episodesUrl = `https://api.audioboom.com/audio_clips?find[query]=${keyword}&api_version=1`
+  const { data, isLoading } = useSearch(episodesUrl, 'audio_clips')
+
+  const Content = () => (
+    <>
+      <MainTitle title={`\"${keyword}\" in search`} />
+      <EpisodeListContainer
+        title='All Episodes'
+        episodes={data} 
+        loading={isLoading}
+        searchCards
+      />
+    </>
+  )
 
   return (
     <Layout
@@ -18,19 +31,11 @@ export const SearchEpisodesPage = () => {
       headerText={`\"${keyword}\" in search`}
       pageTitle='Podcasts'
       button={<ClearSearchButton />}
-    >
-      <MainTitle title={`\"${keyword}\" in search`} />
-      
-      <section>
-        <SectionTitle title='All episodes'/>
-        <EpisodeList audioClips={data} loading={isLoading}/>
-      </section>
-
-      <style jsx>{`
-        section {
-          padding: 0;
-        }
-      `}</style>
+    > 
+      {!isLoading && data.length === 0
+        ? <SearchErrorMessage keyword={keyword} />
+        : <Content />
+      }
     </Layout>
   )
 }

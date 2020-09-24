@@ -22,11 +22,11 @@ const PlayButton = ({ episodeId, channelId }) => {
   }
 
   return (
-    <button disabled={isLoading} onClick={() => onPlayClick()}>  
+    <button className='play-button' disabled={isLoading} onClick={() => onPlayClick()}>  
       <MdPlayArrow color='white' size='2rem' />
 
       <style jsx>{`
-        button {
+        .play-button {
           outline: none;
           background: ${colors.black};
           border-radius: 50%;
@@ -43,7 +43,7 @@ const PlayButton = ({ episodeId, channelId }) => {
           opacity: 1;
           transition: .2s;
         }
-        button:disabled {
+        .play-button:disabled {
           opacity: .2;
         }  
       `}</style>

@@ -5,9 +5,9 @@ import ImgTranslucent from "components/ImgTranslucent"
 import { SectionTitle } from "components/SectionTitle"
 import { durationToMinutes } from "utils/durationToMinutes"
 import { dateFormatter } from "utils/dateFormatter"
-import EpisodeList from "components/episodes/EpisodeList"
 import DescriptionContainer from "components/DescriptionContainer"
 import PlayButton from "components/PlayButton"
+import EpisodeListContainer from "components/episodes/EpisodeListContainer"
 
 const PodcastPage = ({audio_clip}) => {
   const { channel } = audio_clip
@@ -19,9 +19,10 @@ const PodcastPage = ({audio_clip}) => {
       headerText={audio_clip.title}
       pageTitle={audio_clip.title + ' | Podcasts'}
       button={ 
-        <div style={{width: '3rem'}}>
-          <ImgTranslucent url={audio_clip.urls.image || channel.urls.logo_image.original} />
-        </div>
+        <ImgTranslucent 
+          url={audio_clip.urls.image || channel.urls.logo_image.original} 
+          width='3rem'
+        />
       }
     >
       <MainTitle title={audio_clip.title} subtitle={channel.title} linkTo={`/${channel.id}`} />
@@ -31,11 +32,13 @@ const PodcastPage = ({audio_clip}) => {
         button={<PlayButton episodeId={audio_clip.id} channelId={channel.id} />}
       />
       
-      <DescriptionContainer data={audio_clip.description}/>
-
-      <SectionTitle title='More Episodes' />
+      <DescriptionContainer data={audio_clip.description} />
       
-      <EpisodeList audioClips={clientPlaylist} loading={isLoading}/>
+      <EpisodeListContainer 
+        title='More Episodes' 
+        loading={isLoading}  
+        episodes={clientPlaylist}
+      />
 
     </Layout>
   )

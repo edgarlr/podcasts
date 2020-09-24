@@ -1,31 +1,37 @@
-import { useSortEpisodes } from 'hooks/useSortEpisodes';
-import FiltersIcon from 'components/FiltersIcon';
+
 import { SectionTitle } from 'components/SectionTitle';
-import EpisodeList from './EpisodeList';
+import { usePlayer } from 'contexts';
+import EpisodeCard from './EpisodeCard';
+import EpisodeCardSkeleton from './EpisodeCardSkeleton';
 
-export default function EpisodeListContainer ({ audioClips }) {
-  const [list, setList, sort_list] = useSortEpisodes(audioClips, 'uploaded_at')
+export default function EpisodeListContainer (props) {
+  const { 
+    title,
+    episodes = [], 
+    loading = false, 
+    button = null,
+    searchCards = null
+  } = props
 
-  const handleFilterClick = (type) => {
-    if (type === 'latest') {
-      setList(sort_list('uploaded_at'))
-    }
-    else if (type === 'popular') {
-      setList(sort_list('counts'))
-    }
-    else {
-      setList(sort_list('uploaded_at', true))
-    }
-  }
+  const { currentIndex } = usePlayer()
+
+  if (!loading && episodes.length === 0) return null
 
   return (
     <div>
-      <SectionTitle 
-        title={`${audioClips.length} EPISODES`}
-        button={<FiltersIcon handleFilterClick={handleFilterClick} />}
-      />
+      <SectionTitle  title={title} button={button} />
 
-      <EpisodeList audioClips={list} />
+      {loading
+        ? [1,2,3,4,5,6,7,8].map((card) => <EpisodeCardSkeleton key={card}/>)
+        : episodes.map((clip, index) => (
+          <EpisodeCard 
+            clip={clip} 
+            key={clip.id}
+            isActive={currentIndex === index}
+            info={!searchCards ? null : clip.channel.title}
+          />
+        ))
+      }
     </div>
   );
 }
