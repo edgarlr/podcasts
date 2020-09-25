@@ -1,25 +1,24 @@
 import { durationToMSS } from 'utils/durationToMSS';
 
-export const ProgressBar = ({currentTime, duration, handleProgress}) => {
+export const ProgressBar = ({ currentTime, duration, handleProgress }) => {
   return (
     <div>
       <input
-        onChange={handleProgress} 
-        value={duration ? (currentTime * 100) / duration : 0} 
-        type='range'
-        name='progressbar'
-        id='pgrbar'
-        className='slider'
+        onChange={handleProgress}
+        value={duration ? (currentTime * 100) / duration : 0}
+        type="range"
+        name="progressbar"
+        id="pgrbar"
+        className="slider"
       />
 
       {/* <div  className='progressbar-fill' style={{width: `calc(${(currentTime * 100) / duration}% )` }}></div > */}
 
-      <div className='progress-time'>
+      <div className="progress-time">
         <div>{durationToMSS(currentTime)}</div>
         <div>{durationToMSS(duration)}</div>
       </div>
-      
-      
+
       <style jsx>{`
         .slider {
           -webkit-appearance: none;
@@ -64,5 +63,5 @@ export const ProgressBar = ({currentTime, duration, handleProgress}) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-const ErrorMessage = ({title, subtitle}) => {
+const ErrorMessage = ({ title, subtitle }) => {
   return (
-    <div className='error-message'>
+    <div className="error-message">
       <h6>{title}</h6>
       <p>{subtitle}</p>
 
@@ -13,15 +13,15 @@ const ErrorMessage = ({title, subtitle}) => {
         }
         h6 {
           font-size: 1.2rem;
-          margin: .5rem 0;
+          margin: 0.5rem 0;
         }
         p {
-          font-size: .9rem;
+          font-size: 0.9rem;
           margin: 0;
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorMessage
+export default ErrorMessage;

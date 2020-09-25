@@ -1,41 +1,42 @@
-import Head from 'next/head'
-import { usePlayer } from 'contexts'
+import Head from 'next/head';
+import { usePlayer } from 'contexts';
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
 import PlayerModal from 'containers/PlayerModal';
 
-export default function Layout ({
-  children, 
-  headerText = null, 
-  button = null, 
+export default function Layout({
+  children,
+  headerText = null,
+  button = null,
   navigation = null,
-  pageTitle = 'Podcast' }) {
+  pageTitle = 'Podcast',
+}) {
+  const { isPlaying, current } = usePlayer();
 
-  const { isPlaying, current } = usePlayer()
-  
   return (
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <title>
-          {isPlaying 
-            ? `${current.title} | ${current.channel.title}` 
-            : pageTitle
-          }
-          </title>
+          {isPlaying
+            ? `${current.title} | ${current.channel.title}`
+            : pageTitle}
+        </title>
       </Head>
 
-      <AppHeader navigation={navigation} headerText={headerText} button={button} />
+      <AppHeader
+        navigation={navigation}
+        headerText={headerText}
+        button={button}
+      />
 
-      <main className='content'>
-        {children}
-      </main>
+      <main className="content">{children}</main>
 
       {current && <PlayerModal />}
 
       <style jsx global>{`
         body {
-          background:${colors.white};
+          background: ${colors.white};
           color: ${colors.darkGray};
         }
         a {

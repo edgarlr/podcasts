@@ -1,10 +1,12 @@
-import React from 'react'
-import { colors, fontWeight } from 'styles/theme'
+import React from 'react';
+import { colors, fontWeight } from 'styles/theme';
 
-const Button = ({isActive, handleClick, children}) => {
+const Button = ({ isActive, handleClick, children }) => {
   return (
-    <button onClick={() => handleClick(isActive)} className={isActive ? 'active' : ' ' }>
-      
+    <button
+      onClick={() => handleClick(isActive)}
+      className={isActive ? 'active' : ' '}
+    >
       {children}
 
       <style jsx>{`
@@ -30,7 +32,7 @@ const Button = ({isActive, handleClick, children}) => {
         }
       `}</style>
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

@@ -1,14 +1,14 @@
-import React from 'react'
-import { colors } from 'styles/theme'
+import React from 'react';
+import { colors } from 'styles/theme';
 
-const BannerImage = ({bannerImage}) => {
+const BannerImage = ({ bannerImage }) => {
   return (
     <section
-      className='banner'
+      className="banner"
       style={{ backgroundImage: `url(${bannerImage})` }}
     >
       <div
-        className='banner-shadow'
+        className="banner-shadow"
         style={{ backgroundImage: `url(${bannerImage})` }}
       />
 
@@ -23,7 +23,7 @@ const BannerImage = ({bannerImage}) => {
 
       <style jsx>{`
         .banner {
-          margin: 1.5rem 0 .75rem;
+          margin: 1.5rem 0 0.75rem;
           width: 100%;
           background-position: 50% 50%;
           height: 120px;
@@ -43,10 +43,10 @@ const BannerImage = ({bannerImage}) => {
           left: 50%;
           transform: translate(-50%);
           z-index: -1;
-        }  
+        }
       `}</style>
     </section>
-  )
-}
+  );
+};
 
-export default BannerImage
+export default BannerImage;

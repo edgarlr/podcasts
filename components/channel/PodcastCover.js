@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { fontWeight, colors } from 'styles/theme';
 
-export const PodcastCover = ({channel}) => {
+export const PodcastCover = ({ channel }) => {
   return (
     <div>
-      <Link href='/[channel]' as={`/${channel.id}`} >
-        <a className='channel'>
-          <img src={channel.urls.logo_image.original} alt='' />
+      <Link href="/[channel]" as={`/${channel.id}`}>
+        <a className="channel">
+          <img src={channel.urls.logo_image.original} alt="" />
           <h2>{channel.title}</h2>
         </a>
       </Link>
@@ -17,7 +17,7 @@ export const PodcastCover = ({channel}) => {
         }
         h2 {
           font-weight: ${fontWeight.regular};
-        }  
+        }
       `}</style>
 
       <style jsx>{`
@@ -38,7 +38,7 @@ export const PodcastCover = ({channel}) => {
         h2 {
           padding: 0;
           margin: 8px 0 0;
-          font-size: .9rem;
+          font-size: 0.9rem;
           text-align: center;
           overflow: hidden;
           line-height: 1.4;
@@ -51,4 +51,4 @@ export const PodcastCover = ({channel}) => {
       `}</style>
     </div>
   );
-}
+};

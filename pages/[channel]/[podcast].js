@@ -2,25 +2,25 @@ import Error from 'next/error';
 import PodcastPage from 'containers/PodcastPage';
 
 export async function getServerSideProps(context) {
-  let podcastId = context.query.podcast;
+  const podcastId = context.query.podcast;
 
   try {
-    let req = await fetch(
+    const req = await fetch(
       `https://api.audioboom.com/audio_clips/${podcastId}?api_version=2`
-      );
-      
-    let { body: { audio_clip } } = await req.json()
+    );
 
-    return {props: { audio_clip, statusCode: context.res.statusCode}}
+    const {
+      body: { audio_clip: audioClip },
+    } = await req.json();
 
+    return { props: { audioClip, statusCode: context.res.statusCode } };
   } catch (error) {
-    return {props: {audio_clip: null, statusCode: context.res.statusCode}}
+    return { props: { audioClip: null, statusCode: context.res.statusCode } };
   }
 }
 
-export default function podcast({ audio_clip, statusCode }) {
-  
-  if (statusCode !== 200) return <Error statusCode={statusCode} />
-  
-  return <PodcastPage audio_clip={audio_clip} />
+export default function podcast({ audioClip, statusCode }) {
+  if (statusCode !== 200) return <Error statusCode={statusCode} />;
+
+  return <PodcastPage episodes={audioClip} />;
 }

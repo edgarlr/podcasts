@@ -1,82 +1,81 @@
 import { usePlayer } from 'contexts';
 import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
-import { MdKeyboardArrowDown, MdSkipPrevious, MdPlayArrow, MdPause, MdSkipNext } from 'react-icons/md';
+import {
+  MdKeyboardArrowDown,
+  MdSkipPrevious,
+  MdPlayArrow,
+  MdPause,
+  MdSkipNext,
+} from 'react-icons/md';
 import { ProgressBar } from './ProgressBar';
 import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 
 export const Player = ({
-  handleModalClick, 
-  handleProgress, 
-  toggleAudio, 
-  currentTime, 
-  duration, 
-  prevEpisode, 
-  nextEpisode
+  handleModalClick,
+  handleProgress,
+  toggleAudio,
+  currentTime,
+  duration,
+  prevEpisode,
+  nextEpisode,
 }) => {
-  
-  const {
-    loading,
-    currentIndex,
-    playlist,
-    isPlaying,
-    current
-  } = usePlayer()
+  const { loading, currentIndex, playlist, isPlaying, current } = usePlayer();
 
-  if (!current) return <PlayerSkeleton />
+  if (!current) return <PlayerSkeleton />;
 
   return (
     <>
-      <button className='nav-button' onClick={() => handleModalClick()}>
-        <MdKeyboardArrowDown size='2.5em' color={colors.white} />
+      <button className="nav-button" onClick={() => handleModalClick()}>
+        <MdKeyboardArrowDown size="2.5em" color={colors.white} />
       </button>
 
-      <div className='container'>
-
-        <div className='img-container'>
+      <div className="container">
+        <div className="img-container">
           <ImgTranslucent
             url={current.urls.image || current.channel.urls.logo_image.original}
             fullBlur
-            borderRadius='10%'
+            borderRadius="10%"
           />
         </div>
 
-        <div className='info'>
-          <PodcastTitle title={current.title}/>
+        <div className="info">
+          <PodcastTitle title={current.title} />
           <h6>{current.channel.title}</h6>
         </div>
 
-        <div className='main-player'>
-          <button
-            className='controller-button'
-            onClick={() => prevEpisode()}
-          >
-            <MdSkipPrevious color='white' size='3em' />
+        <div className="main-player">
+          <button className="controller-button" onClick={() => prevEpisode()}>
+            <MdSkipPrevious color="white" size="3em" />
           </button>
 
           <button
-            className='play-button'
+            className="play-button"
             disabled={loading}
-            onClick={() => toggleAudio()} 
+            onClick={() => toggleAudio()}
           >
-            {isPlaying
-              ? <MdPause color='white' size='3em' />
-              : <MdPlayArrow color='white' size='3em' /> 
-            }
+            {isPlaying ? (
+              <MdPause color="white" size="3em" />
+            ) : (
+              <MdPlayArrow color="white" size="3em" />
+            )}
           </button>
 
           <button
-            disabled={currentIndex === playlist.length - 1 ? true : false}
-            className='controller-button'
-            onClick={()=> nextEpisode()}
+            disabled={currentIndex === playlist.length - 1}
+            className="controller-button"
+            onClick={() => nextEpisode()}
           >
-            <MdSkipNext color='white' size='3em' />
+            <MdSkipNext color="white" size="3em" />
           </button>
         </div>
 
-        <ProgressBar currentTime={currentTime} duration={duration} handleProgress={handleProgress} />
-
+        <ProgressBar
+          currentTime={currentTime}
+          duration={duration}
+          handleProgress={handleProgress}
+        />
       </div>
 
       <style jsx>{`
@@ -124,7 +123,7 @@ export const Player = ({
         }
         button[disabled] {
           opacity: 0.3;
-        }      
+        }
 
         .main-player {
           display: flex;
@@ -149,4 +148,4 @@ export const Player = ({
       `}</style>
     </>
   );
-}
+};

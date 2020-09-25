@@ -1,8 +1,8 @@
-import { colors } from 'styles/theme'
+import { colors } from 'styles/theme';
 
 const EpisodeCardSkeleton = () => {
   return (
-    <div className='episode'>
+    <div className="episode">
       <div className="title"></div>
       <div className="duration"></div>
       <div className="plays"></div>
@@ -11,7 +11,9 @@ const EpisodeCardSkeleton = () => {
         .episode {
           border-bottom: 1px solid ${colors.lightGray};
         }
-        .title, .duration, .plays{
+        .title,
+        .duration,
+        .plays {
           background: ${colors.lightGray};
         }
       `}</style>
@@ -39,7 +41,7 @@ const EpisodeCardSkeleton = () => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default EpisodeCardSkeleton
+export default EpisodeCardSkeleton;

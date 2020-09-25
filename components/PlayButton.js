@@ -1,16 +1,16 @@
-import { usePlayer } from 'contexts'
-import { MdPlayArrow } from 'react-icons/md'
-import { colors } from 'styles/theme'
-import { useFetchPlaylist } from 'hooks/useFetchPlaylist'
+import { usePlayer } from 'contexts';
+import { MdPlayArrow } from 'react-icons/md';
+import { colors } from 'styles/theme';
+import { useFetchPlaylist } from 'hooks/useFetchPlaylist';
 
 const PlayButton = ({ episodeId, channelId }) => {
-  const { clientPlaylist, isLoading } = useFetchPlaylist(channelId)
+  const { clientPlaylist, isLoading } = useFetchPlaylist(channelId);
 
-  const { SetCurrentIndex, SetPlaylist } = usePlayer()
+  const { SetCurrentIndex, SetPlaylist } = usePlayer();
 
   const onPlayClick = () => {
     if (clientPlaylist) {
-      SetPlaylist(clientPlaylist)
+      SetPlaylist(clientPlaylist);
 
       for (let i = 0; i < clientPlaylist.length; i++) {
         if (clientPlaylist[i].id === episodeId) {
@@ -19,11 +19,15 @@ const PlayButton = ({ episodeId, channelId }) => {
         }
       }
     }
-  }
+  };
 
   return (
-    <button className='play-button' disabled={isLoading} onClick={() => onPlayClick()}>  
-      <MdPlayArrow color='white' size='2rem' />
+    <button
+      className="play-button"
+      disabled={isLoading}
+      onClick={() => onPlayClick()}
+    >
+      <MdPlayArrow color="white" size="2rem" />
 
       <style jsx>{`
         .play-button {
@@ -36,19 +40,19 @@ const PlayButton = ({ episodeId, channelId }) => {
           display: flex;
           justify-content: center;
           align-items: center;
-          
+
           position: absolute;
           right: 1.5rem;
           transform: translateY(-55%);
           opacity: 1;
-          transition: .2s;
+          transition: 0.2s;
         }
         .play-button:disabled {
-          opacity: .2;
-        }  
+          opacity: 0.2;
+        }
       `}</style>
     </button>
-  )
-}
+  );
+};
 
-export default PlayButton
+export default PlayButton;

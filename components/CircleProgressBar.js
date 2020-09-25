@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 
-const CircleProgressBar = ({size, progress, strokeWidth, circleStroke}) => {
-  const [offset, setOffset] = useState(0)
-  const circleRef = useRef(null)
+const CircleProgressBar = ({ size, progress, strokeWidth, circleStroke }) => {
+  const [offset, setOffset] = useState(0);
+  const circleRef = useRef(null);
 
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
@@ -10,21 +10,21 @@ const CircleProgressBar = ({size, progress, strokeWidth, circleStroke}) => {
 
   useEffect(() => {
     const progressOfsett = ((100 - progress) / 100) * circumference;
-    setOffset(progressOfsett)
+    setOffset(progressOfsett);
     // circleRef.current.style = 'transition: stroke-dashoffset 850ms ease-in-out;';
-  }, [setOffset, circumference, progress, offset])
+  }, [setOffset, circumference, progress, offset]);
 
   return (
     <div>
-      <svg width={size} height={size} >
-        <circle 
+      <svg width={size} height={size}>
+        <circle
           stroke={circleStroke}
           cx={center}
           cy={center}
           r={radius}
           strokeWidth={strokeWidth}
         />
-        <circle 
+        <circle
           stroke={circleStroke}
           cx={center}
           cy={center}
@@ -33,7 +33,7 @@ const CircleProgressBar = ({size, progress, strokeWidth, circleStroke}) => {
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           ref={circleRef}
-        /> 
+        />
         {/* <text x={center} y={center}>{progress}%</text> */}
       </svg>
 
@@ -51,11 +51,11 @@ const CircleProgressBar = ({size, progress, strokeWidth, circleStroke}) => {
           fill: none;
         }
         svg circle:first-child {
-          opacity: .2;
+          opacity: 0.2;
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default CircleProgressBar
+export default CircleProgressBar;

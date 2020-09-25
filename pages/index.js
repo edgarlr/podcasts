@@ -1,22 +1,21 @@
-import Error from 'next/error'
+import Error from 'next/error';
 import Homepage from 'containers/Homepage';
 
 export async function getServerSideProps(context) {
   try {
-    let req = await fetch(
+    const req = await fetch(
       'https://api.audioboom.com/channels/recommended?api_version=2'
     );
-    let { body: channels } = await req.json();
+    const { body: channels } = await req.json();
 
     return { props: { channels, statusCode: context.res.statusCode } };
   } catch (error) {
-    return {props: { channels: null, statusCode: context.res.statusCode }}
+    return { props: { channels: null, statusCode: context.res.statusCode } };
   }
 }
 
-export default function Home ({channels, statusCode}) {
+export default function Home({ channels, statusCode }) {
+  if (statusCode !== 200) return <Error statusCode={statusCode} />;
 
-  if (statusCode !== 200) return <Error statusCode={statusCode} />
-
-  return <Homepage channels={channels} />
-} 
+  return <Homepage channels={channels} />;
+}

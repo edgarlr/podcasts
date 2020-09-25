@@ -1,42 +1,40 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { colors } from 'styles/theme';
 import { useRouter } from 'next/router';
 
-const AppHeader = ({ headerText, navigation = true, button = null}) => {
-  const router = useRouter()
+const AppHeader = ({ headerText, navigation = true, button = null }) => {
+  const router = useRouter();
 
-  const [fixedNav, setFixedNav] = useState(false)
+  const [fixedNav, setFixedNav] = useState(false);
 
-  const fixNavigation = () => { 
+  const fixNavigation = () => {
     if (window.scrollY > 110) {
       setFixedNav(true);
     } else {
       setFixedNav(false);
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', fixNavigation);
     return () => {
-      window.removeEventListener('scroll', fixNavigation)
-    }
-  }, [])
+      window.removeEventListener('scroll', fixNavigation);
+    };
+  }, []);
 
   return (
     <header className={button ? 'full-nav' : ''}>
-      { navigation && (
+      {navigation && (
         <button onClick={() => router.back()}>
-          <MdKeyboardArrowLeft size='2rem' />
+          <MdKeyboardArrowLeft size="2rem" />
         </button>
       )}
-      
-      <h2 className={fixedNav ? 'show' : ''}>
-        {headerText}
-      </h2>
 
-      { button }
+      <h2 className={fixedNav ? 'show' : ''}>{headerText}</h2>
+
+      {button}
 
       <style jsx>{`
         header {
@@ -82,7 +80,7 @@ const AppHeader = ({ headerText, navigation = true, button = null}) => {
           max-width: 55%;
           opacity: 0;
           transform: translateY(5px);
-          transition: .2s;
+          transition: 0.2s;
         }
         h2.show {
           opacity: 1;
@@ -90,7 +88,7 @@ const AppHeader = ({ headerText, navigation = true, button = null}) => {
         }
       `}</style>
     </header>
-  )
-}
+  );
+};
 
-export default AppHeader
+export default AppHeader;

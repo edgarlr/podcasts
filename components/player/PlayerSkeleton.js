@@ -1,34 +1,30 @@
-import { colors } from 'styles/theme'
-import { MdSkipNext, MdPlayArrow, MdSkipPrevious } from 'react-icons/md'
+import { colors } from 'styles/theme';
+import { MdSkipNext, MdPlayArrow, MdSkipPrevious } from 'react-icons/md';
 
 const PlayerSkeleton = () => {
   return (
     <>
-      <div className='container'>
+      <div className="container">
+        <div className="img-container" />
 
-        <div className='img-container' />
-
-        <div className='info'>
-          <div className='title-text' />
-          <div className='channel-text' />
+        <div className="info">
+          <div className="title-text" />
+          <div className="channel-text" />
         </div>
 
-        <div className='main-player'>
-          <button disabled className='controller-button'>
-            <MdSkipPrevious color='white' size='3em' />
+        <div className="main-player">
+          <button disabled className="controller-button">
+            <MdSkipPrevious color="white" size="3em" />
           </button>
-          <button disabled className='play-button' >
-            <MdPlayArrow color='white' size='3em' />
-            </button>
-          <button
-            disabled
-            className='controller-button'
-          >
-            <MdSkipNext color='white' size='3em' />
+          <button disabled className="play-button">
+            <MdPlayArrow color="white" size="3em" />
+          </button>
+          <button disabled className="controller-button">
+            <MdSkipNext color="white" size="3em" />
           </button>
         </div>
-        <div className='progress-bar' />
-        <div className='progress-time'>
+        <div className="progress-bar" />
+        <div className="progress-time">
           <div>00:00</div>
           <div>00:00</div>
         </div>
@@ -41,7 +37,10 @@ const PlayerSkeleton = () => {
         .progress-time {
           color: ${colors.textLightGray};
         }
-        .progress-bar, .img-container, .title-text, .channel-text {
+        .progress-bar,
+        .img-container,
+        .title-text,
+        .channel-text {
           background: ${colors.darkGray};
         }
       `}</style>
@@ -109,7 +108,7 @@ const PlayerSkeleton = () => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default PlayerSkeleton
+export default PlayerSkeleton;

@@ -1,9 +1,7 @@
-const FullModal = ({children, isOpen, button}) => (
+const FullModal = ({ children, isOpen, button }) => (
   <div className={`container ${isOpen ? 'full' : ' '}`}>
-    <button className='action-button'>
-      {button}
-    </button>
-    
+    <button className="action-button">{button}</button>
+
     {children}
 
     <style jsx>{`
@@ -16,7 +14,7 @@ const FullModal = ({children, isOpen, button}) => (
         top: 0;
         padding: 1.5rem;
         text-align: right;
-        transition: bottom .3s;
+        transition: bottom 0.3s;
         overflow-y: scroll;
       }
       .full {
@@ -36,6 +34,6 @@ const FullModal = ({children, isOpen, button}) => (
       }
     `}</style>
   </div>
-)
+);
 
-export default FullModal
+export default FullModal;

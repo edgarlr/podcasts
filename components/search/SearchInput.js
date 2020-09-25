@@ -1,21 +1,21 @@
-import { useRouter } from 'next/router'
-import { colors, fontWeight } from 'styles/theme'
+import { useRouter } from 'next/router';
+import { colors, fontWeight } from 'styles/theme';
 
-const SearchInput = ({searchKeyword, setSearchKeyword}) => {
-  const router = useRouter()
+const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
+  const router = useRouter();
 
   const onSearchChange = (e) => {
-    const { value } = e.currentTarget
+    const { value } = e.currentTarget;
     setSearchKeyword(value);
-    router.push(`/?search=${value}`, undefined, { shallow: true })
-  }
+    router.push(`/?search=${value}`, undefined, { shallow: true });
+  };
 
   return (
     <>
-      <input 
-        type="search" 
-        name="main-search" 
-        id="searchInput" 
+      <input
+        type="search"
+        name="main-search"
+        id="searchInput"
         placeholder={'Search...'}
         value={searchKeyword}
         onChange={onSearchChange}
@@ -34,14 +34,14 @@ const SearchInput = ({searchKeyword, setSearchKeyword}) => {
           border-bottom: 0;
           border-radius: 0;
         }
-        input::-webkit-search-cancel-button{
-          position:relative;
-          right:.5rem;  
+        input::-webkit-search-cancel-button {
+          position: relative;
+          right: 0.5rem;
 
           -webkit-appearance: none;
           height: 15px;
           width: 15px;
-          border-radius:10px;
+          border-radius: 10px;
           background: ${colors.gray};
           color: aliceblue;
         }
@@ -50,7 +50,7 @@ const SearchInput = ({searchKeyword, setSearchKeyword}) => {
         }
       `}</style>
     </>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;

@@ -1,13 +1,12 @@
-const CarouselGrid = ({children}) => {
+const CarouselGrid = ({ children }) => {
   return (
-    <div className='channels-carousel'>
-      
+    <div className="channels-carousel">
       {children}
 
       <style jsx>{`
         .channels-carousel {
           display: grid;
-          grid-gap: 1rem .8rem;
+          grid-gap: 1rem 0.8rem;
           grid-template-columns: 10px;
           grid-auto-flow: column;
           grid-auto-columns: calc(50% - 1rem * 2);
@@ -28,7 +27,7 @@ const CarouselGrid = ({children}) => {
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default CarouselGrid
+export default CarouselGrid;

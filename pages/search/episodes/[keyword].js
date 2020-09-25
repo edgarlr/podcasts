@@ -1,5 +1,5 @@
-import { SearchEpisodesPage } from 'containers/SearchEpisodesPage'
+import { SearchEpisodesPage } from 'containers/SearchEpisodesPage';
 
 export default function SeachChannel() {
-  return <SearchEpisodesPage />
+  return <SearchEpisodesPage />;
 }

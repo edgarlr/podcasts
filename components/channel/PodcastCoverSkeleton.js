@@ -25,7 +25,7 @@ export default function PodcastCoverSkeleton() {
           padding: 0;
           max-width: 70%;
           margin: 8px auto 0;
-          height: .9rem;
+          height: 0.9rem;
         }
       `}</style>
     </div>

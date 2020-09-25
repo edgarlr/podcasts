@@ -5,16 +5,16 @@ export const FavsReducer = (state, action) => {
     case ADD_TO_FOLLOW:
       return {
         ...state,
-        myList: [...state.myList, action.data]
+        myList: [...state.myList, action.data],
       };
-    case REMOVE_FROM_FOLLOW: 
+    case REMOVE_FROM_FOLLOW:
       return {
         ...state,
-        myList: state.myList.filter(items => items.id !== action.data.id)
-      }
+        myList: state.myList.filter((items) => items.id !== action.data.id),
+      };
     default:
       return {
-        state
-    }
+        state,
+      };
   }
-}
+};

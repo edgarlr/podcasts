@@ -1,39 +1,39 @@
-import React, { useState} from 'react'
-import { MdSort } from 'react-icons/md'
+import React, { useState } from 'react';
+import { MdSort } from 'react-icons/md';
 
-export default function SortByButton({handleFilterClick}) {
-  const [showDropdown, setShowDropdown] = useState(false)
+export default function SortByButton({ handleFilterClick }) {
+  const [showDropdown, setShowDropdown] = useState(false);
   const [isActive, setIsActive] = useState('latest');
 
-  const onBtnClick = e => {
+  const onBtnClick = (e) => {
     handleFilterClick(e.target.id);
-    setIsActive(e.target.id)
-    setShowDropdown(false)
-  }
+    setIsActive(e.target.id);
+    setShowDropdown(false);
+  };
 
   return (
-    <div className='sort'>
-      <button className='icon' onClick={() => setShowDropdown(!showDropdown)} >
-        <MdSort size='1.5em' />
+    <div className="sort">
+      <button className="icon" onClick={() => setShowDropdown(!showDropdown)}>
+        <MdSort size="1.5em" />
       </button>
 
-      <div className='sort-dropdown'>
+      <div className="sort-dropdown">
         <button
-          id='popular'
+          id="popular"
           onClick={onBtnClick}
           className={isActive === 'popular' ? 'active' : ''}
         >
           Most popular
         </button>
         <button
-          id='oldest'
+          id="oldest"
           onClick={onBtnClick}
           className={isActive === 'oldest' ? 'active' : ''}
         >
           Date added (oldest)
         </button>
         <button
-          id='latest'
+          id="latest"
           onClick={onBtnClick}
           className={isActive === 'latest' ? 'active' : ''}
         >

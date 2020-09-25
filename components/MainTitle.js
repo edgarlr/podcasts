@@ -1,8 +1,13 @@
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
 import { colors, fontWeight } from 'styles/theme';
 
-export default function MainTitle({ children, title, subtitle = null, linkTo = null }) {
+export default function MainTitle({
+  children,
+  title,
+  subtitle = null,
+  linkTo = null,
+}) {
   return (
     <div>
       {children}
@@ -14,7 +19,7 @@ export default function MainTitle({ children, title, subtitle = null, linkTo = n
       )}
 
       {subtitle && !linkTo && <p>{subtitle}</p>}
-      
+
       <h1>{title}</h1>
 
       <style jsx>{`
@@ -22,7 +27,7 @@ export default function MainTitle({ children, title, subtitle = null, linkTo = n
           color: ${colors.black};
           background: ${colors.white};
           font-weight: ${fontWeight.bold};
-        }  
+        }
       `}</style>
 
       <style jsx>{`
@@ -34,9 +39,10 @@ export default function MainTitle({ children, title, subtitle = null, linkTo = n
         h1 {
           margin: 8px 0;
         }
-        p, a {
+        p,
+        a {
           margin: 0;
-          font-size: .7rem;
+          font-size: 0.7rem;
           text-transform: uppercase;
         }
       `}</style>

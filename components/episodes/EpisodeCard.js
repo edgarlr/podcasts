@@ -1,29 +1,23 @@
-import Link from 'next/link'
-import { MdVolumeUp } from 'react-icons/md'
-import { colors, fontWeight } from 'styles/theme'
-import { durationToMinutes } from 'utils/durationToMinutes'
+import Link from 'next/link';
+import { MdVolumeUp } from 'react-icons/md';
+import { colors, fontWeight } from 'styles/theme';
+import { durationToMinutes } from 'utils/durationToMinutes';
 
-const EpisodeCard = ({clip, isActive, info = null}) => {
-
-  if(!info) info = `${clip.counts.plays} plays`
+const EpisodeCard = ({ clip, isActive, info = null }) => {
+  if (!info) info = `${clip.counts.plays} plays`;
 
   return (
-    <Link 
-      href='/[channel]/[podcast]'
-      as={`/${clip.channel.id}/${clip.id}`}
-    > 
-      <a className={'episode ' + (isActive ? 'active' : '')} >
+    <Link href="/[channel]/[podcast]" as={`/${clip.channel.id}/${clip.id}`}>
+      <a className={'episode ' + (isActive ? 'active' : '')}>
         <h2>{clip.title}</h2>
 
-        <div className='meta'>
-          {info}
-        </div>
+        <div className="meta">{info}</div>
 
         <p>{durationToMinutes(clip.duration)}</p>
-        
-        {isActive  && (
+
+        {isActive && (
           <span>
-            <MdVolumeUp size='2em' color='white' />
+            <MdVolumeUp size="2em" color="white" />
           </span>
         )}
 
@@ -55,7 +49,7 @@ const EpisodeCard = ({clip, isActive, info = null}) => {
             cursor: pointer;
           }
           .active {
-            margin: 0 -.5rem;
+            margin: 0 -0.5rem;
             padding: 16px 1.3em;
             border-bottom: none;
             border-radius: 20px;
@@ -80,7 +74,7 @@ const EpisodeCard = ({clip, isActive, info = null}) => {
             transform: translateY(-50%);
           }
           .episode .meta {
-            font-size: .8rem;
+            font-size: 0.8rem;
             margin-bottom: 8px;
             font-weight: ${fontWeight.bold};
           }
@@ -91,7 +85,7 @@ const EpisodeCard = ({clip, isActive, info = null}) => {
         `}</style>
       </a>
     </Link>
-  )
-}
+  );
+};
 
-export default EpisodeCard
+export default EpisodeCard;

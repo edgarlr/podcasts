@@ -2,9 +2,9 @@ import Error from '../_error';
 import ChannelPage from 'containers/ChannelPage';
 
 export async function getServerSideProps(context) {
-  let idChannel = context.query.channel;
+  const idChannel = context.query.channel;
   try {
-    let [reqChannel, reqAudios, reqSeries] = await Promise.all([
+    const [reqChannel, reqAudios, reqSeries] = await Promise.all([
       fetch(`https://api.audioboom.com/channels/${idChannel}?api_version=1`),
       fetch(
         `https://api.audioboom.com/channels/${idChannel}/audio_clips?api_version=1`
@@ -16,15 +16,15 @@ export async function getServerSideProps(context) {
 
     context.res.statusCode = reqChannel.status;
 
-    let [dataChannel, dataAudios, dataSeries] = await Promise.all([
+    const [dataChannel, dataAudios, dataSeries] = await Promise.all([
       await reqChannel.json(),
       await reqAudios.json(),
       await reqSeries.json(),
-    ])
+    ]);
 
-    let channel = dataChannel.body.channel;
-    let episodes = dataAudios.body.audio_clips;
-    let series = dataSeries.body.channels;
+    const channel = dataChannel.body.channel;
+    const episodes = dataAudios.body.audio_clips;
+    const series = dataSeries.body.channels;
 
     return {
       props: {
@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function channel({ channel, episodes, series, statusCode }) {
-  if (statusCode !== 200) return <Error statusCode={statusCode} />
-  
-  return <ChannelPage channel={channel} episodes={episodes} series={series} />
+  if (statusCode !== 200) return <Error statusCode={statusCode} />;
+
+  return <ChannelPage channel={channel} episodes={episodes} series={series} />;
 }
