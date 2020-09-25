@@ -1,5 +1,5 @@
 import Error from 'next/error';
-import PodcastPage from 'containers/PodcastPage';
+import PodcastPage from 'components/screens/PodcastPage';
 
 export async function getServerSideProps(context) {
   const podcastId = context.query.podcast;

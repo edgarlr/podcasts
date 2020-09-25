@@ -1,10 +1,9 @@
-import { useFetchPlaylist } from 'hooks/useFetchPlaylist';
+import { useFetchPlaylist } from 'lib/hooks';
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 import { SectionTitle } from 'components/SectionTitle';
-import { durationToMinutes } from 'utils/durationToMinutes';
-import { dateFormatter } from 'utils/dateFormatter';
+import { durationToMinutes, dateFormatter } from 'lib/utils';
 import DescriptionContainer from 'components/DescriptionContainer';
 import PlayButton from 'components/PlayButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';

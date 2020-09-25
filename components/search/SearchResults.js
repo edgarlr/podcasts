@@ -1,4 +1,4 @@
-import { useSearch } from 'hooks/useSearch';
+import { useSearch } from 'lib/hooks';
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import SeeAllButton from 'components/search/SeeAllButton';

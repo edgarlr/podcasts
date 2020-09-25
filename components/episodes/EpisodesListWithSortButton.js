@@ -1,4 +1,4 @@
-import { useSortEpisodes } from 'hooks/useSortEpisodes';
+import { useSortEpisodes } from 'lib/hooks';
 import SortByButton from 'components/SortByButton';
 import EpisodeListContainer from './EpisodeListContainer';
 

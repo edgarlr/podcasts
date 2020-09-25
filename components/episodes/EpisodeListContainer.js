@@ -1,5 +1,5 @@
 import { SectionTitle } from 'components/SectionTitle';
-import { usePlayer } from 'contexts';
+import { usePlayer } from 'lib/contexts';
 import EpisodeCard from './EpisodeCard';
 import EpisodeCardSkeleton from './EpisodeCardSkeleton';
 

@@ -1,4 +1,4 @@
-import { durationToMSS } from 'utils/durationToMSS';
+import { durationToMSS } from 'lib/utils';
 
 export const ProgressBar = ({ currentTime, duration, handleProgress }) => {
   return (

@@ -1,4 +1,4 @@
-import { usePlayer } from 'contexts';
+import { usePlayer } from 'lib/contexts';
 import { MdPause, MdPlayArrow } from 'react-icons/md';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';

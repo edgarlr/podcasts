@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useSearch } from 'hooks/useSearch';
+import { useSearch } from 'lib/hooks';
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import ClearSearchButton from 'components/search/ClearSearchButton';

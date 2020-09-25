@@ -1,7 +1,7 @@
-import { usePlayer } from 'contexts';
+import { usePlayer } from 'lib/contexts';
 import { MdPlayArrow } from 'react-icons/md';
 import { colors } from 'styles/theme';
-import { useFetchPlaylist } from 'hooks/useFetchPlaylist';
+import { useFetchPlaylist } from 'lib/hooks';
 
 const PlayButton = ({ episodeId, channelId }) => {
   const { clientPlaylist, isLoading } = useFetchPlaylist(channelId);

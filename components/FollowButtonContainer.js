@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useFavs } from 'contexts';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useFavs } from 'lib/contexts';
+import { useLocalStorage } from 'lib/hooks';
 import Button from './Button';
 
 const FollowButtonContainer = ({ channel }) => {

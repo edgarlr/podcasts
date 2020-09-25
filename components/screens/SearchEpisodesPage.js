@@ -1,7 +1,7 @@
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import { useRouter } from 'next/router';
-import { useSearch } from 'hooks/useSearch';
+import { useSearch } from 'lib/hooks';
 import ClearSearchButton from 'components/search/ClearSearchButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';

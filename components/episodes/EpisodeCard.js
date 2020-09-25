@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { MdVolumeUp } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
-import { durationToMinutes } from 'utils/durationToMinutes';
+import { durationToMinutes } from 'lib/utils';
 
 const EpisodeCard = ({ clip, isActive, info = null }) => {
   if (!info) info = `${clip.counts.plays} plays`;

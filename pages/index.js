@@ -1,5 +1,5 @@
 import Error from 'next/error';
-import Homepage from 'containers/Homepage';
+import Homepage from 'components/screens/Homepage';
 
 export async function getServerSideProps(context) {
   try {

@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import { usePlayer } from 'contexts';
+import { usePlayer } from 'lib/contexts';
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
-import PlayerModal from 'containers/PlayerModal';
+import PlayerModal from 'components/screens/PlayerModal';
 
 export default function Layout({
   children,

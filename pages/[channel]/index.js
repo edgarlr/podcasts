@@ -1,5 +1,5 @@
 import Error from '../_error';
-import ChannelPage from 'containers/ChannelPage';
+import ChannelPage from 'components/screens/ChannelPage';
 
 export async function getServerSideProps(context) {
   const idChannel = context.query.channel;

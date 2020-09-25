@@ -1,7 +1,7 @@
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
-import { useFavs } from 'contexts';
-import SearchModal from 'containers/SearchModal';
+import { useFavs } from 'lib/contexts';
+import SearchModal from 'components/screens/SearchModal';
 import { ChannelsGrid } from 'components/channel/ChannelsGrid';
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 

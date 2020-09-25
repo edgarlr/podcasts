@@ -1,4 +1,4 @@
-import { usePlayer } from 'contexts';
+import { usePlayer } from 'lib/contexts';
 import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
 import {

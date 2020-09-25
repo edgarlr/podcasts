@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { usePlayer } from 'contexts';
+import { usePlayer } from 'lib/contexts';
 import PlayerPortal from 'components/player/PlayerPortal';
 import MiniPlayer from 'components/player/MiniPlayer';
 import { Player } from 'components/player/Player';
