@@ -1,22 +1,23 @@
 import Layout from 'components/Layout';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 function Error({ statusCode }) {
   return (
-    <Layout title="Oh no... :C">
+    <Layout headerText="Oh no... :C">
       {statusCode === 404 ? (
         <div className="message">
-          <h1>Esta página no existe! :c</h1>
+          <h1>We couldn&apos;t find this page</h1>
           <p>
             <Link href="/">
-              <a>Volver al Home</a>
+              <a>Go back to home</a>
             </Link>
           </p>
         </div>
       ) : (
         <div className="message">
-          <h1>Hubo un problema</h1>
-          <p>Intenta nuevamente en algunos segundos</p>
+          <h1>We got a problem</h1>
+          <p>Try again in a few moments</p>
         </div>
       )}
 
@@ -42,3 +43,7 @@ Error.getInitialProps = ({ res, err }) => {
 };
 
 export default Error;
+
+Error.propTypes = {
+  statusCode: PropTypes.number.isRequired,
+};

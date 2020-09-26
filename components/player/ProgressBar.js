@@ -1,4 +1,5 @@
 import { durationToMSS } from 'lib/utils';
+import PropTypes from 'prop-types';
 
 export const ProgressBar = ({ currentTime, duration, handleProgress }) => {
   return (
@@ -64,4 +65,10 @@ export const ProgressBar = ({ currentTime, duration, handleProgress }) => {
       `}</style>
     </div>
   );
+};
+
+ProgressBar.propTypes = {
+  currentTime: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  handleProgress: PropTypes.func.isRequired,
 };

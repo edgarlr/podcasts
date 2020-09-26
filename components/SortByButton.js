@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MdSort } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
 export default function SortByButton({ handleFilterClick }) {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -82,3 +83,7 @@ export default function SortByButton({ handleFilterClick }) {
     </div>
   );
 }
+
+SortByButton.propTypes = {
+  handleFilterClick: PropTypes.func.isRequired,
+};

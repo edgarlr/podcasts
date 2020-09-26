@@ -1,17 +1,10 @@
 import Link from 'next/link';
-import React from 'react';
 import { colors, fontWeight } from 'styles/theme';
+import PropTypes from 'prop-types';
 
-export default function MainTitle({
-  children,
-  title,
-  subtitle = null,
-  linkTo = null,
-}) {
+export default function MainTitle({ title, subtitle, linkTo }) {
   return (
     <div>
-      {children}
-
       {linkTo && (
         <Link href={linkTo}>
           <a>{subtitle}</a>
@@ -49,3 +42,14 @@ export default function MainTitle({
     </div>
   );
 }
+
+MainTitle.defaultProps = {
+  subtitle: null,
+  linkTo: null,
+};
+
+MainTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  linkTo: PropTypes.string,
+};

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const FullModal = ({ children, isOpen, button }) => (
   <div className={`container ${isOpen ? 'full' : ' '}`}>
     <button className="action-button">{button}</button>
@@ -37,3 +39,9 @@ const FullModal = ({ children, isOpen, button }) => (
 );
 
 export default FullModal;
+
+FullModal.propTypes = {
+  children: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  button: PropTypes.element.isRequired,
+};

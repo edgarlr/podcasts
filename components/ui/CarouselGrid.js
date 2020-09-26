@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const CarouselGrid = ({ children }) => {
   return (
     <div className="channels-carousel">
@@ -31,3 +33,7 @@ const CarouselGrid = ({ children }) => {
 };
 
 export default CarouselGrid;
+
+CarouselGrid.propTypes = {
+  children: PropTypes.node.isRequired,
+};

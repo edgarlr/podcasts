@@ -1,6 +1,7 @@
 import { colors, fontWeight } from 'styles/theme';
+import PropTypes from 'prop-types';
 
-export const SectionTitle = ({ title, button = null }) => {
+export const SectionTitle = ({ title, button }) => {
   return (
     <div className="section-title">
       <h3 className="main-title">{title}</h3>
@@ -34,4 +35,11 @@ export const SectionTitle = ({ title, button = null }) => {
   );
 };
 
-// export default SectionTitle
+SectionTitle.defaultProps = {
+  button: null,
+};
+
+SectionTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  button: PropTypes.element,
+};

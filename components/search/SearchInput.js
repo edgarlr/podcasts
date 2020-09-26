@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { colors, fontWeight } from 'styles/theme';
+import PropTypes from 'prop-types';
 
 const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
   const router = useRouter();
@@ -54,3 +55,8 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
 };
 
 export default SearchInput;
+
+SearchInput.propTypes = {
+  searchKeyword: PropTypes.string.isRequired,
+  setSearchKeyword: PropTypes.func.isRequired,
+};

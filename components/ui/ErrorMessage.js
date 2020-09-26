@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const ErrorMessage = ({ title, subtitle }) => {
   return (
@@ -25,3 +25,8 @@ const ErrorMessage = ({ title, subtitle }) => {
 };
 
 export default ErrorMessage;
+
+ErrorMessage.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+};

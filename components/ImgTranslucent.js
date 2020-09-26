@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
+
 export default function ImgTranslucent({
   url,
   alt,
-  fullBlur = null,
-  borderRadius = null,
+  fullBlur,
+  borderRadius,
   width,
 }) {
   return (
@@ -46,3 +48,16 @@ export default function ImgTranslucent({
     </div>
   );
 }
+
+ImgTranslucent.defaultProps = {
+  fullBlur: false,
+  borderRadius: null,
+};
+
+ImgTranslucent.propTypes = {
+  url: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  fullBlur: PropTypes.bool,
+  borderRadius: PropTypes.string,
+  width: PropTypes.string,
+};

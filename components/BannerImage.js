@@ -1,15 +1,12 @@
-import React from 'react';
 import { colors } from 'styles/theme';
+import PropTypes from 'prop-types';
 
-const BannerImage = ({ bannerImage }) => {
+const BannerImage = ({ url }) => {
   return (
-    <section
-      className="banner"
-      style={{ backgroundImage: `url(${bannerImage})` }}
-    >
+    <section className="banner" style={{ backgroundImage: `url(${url})` }}>
       <div
         className="banner-shadow"
-        style={{ backgroundImage: `url(${bannerImage})` }}
+        style={{ backgroundImage: `url(${url})` }}
       />
 
       <style jsx>{`
@@ -50,3 +47,7 @@ const BannerImage = ({ bannerImage }) => {
 };
 
 export default BannerImage;
+
+BannerImage.propTypes = {
+  url: PropTypes.string.isRequired,
+};

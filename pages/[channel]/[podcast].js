@@ -22,5 +22,5 @@ export async function getServerSideProps(context) {
 export default function podcast({ audioClip, statusCode }) {
   if (statusCode !== 200) return <Error statusCode={statusCode} />;
 
-  return <PodcastPage episodes={audioClip} />;
+  return <PodcastPage episode={audioClip} />;
 }

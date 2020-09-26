@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 
 const PlayerPortal = ({ children, selector }) => {
   const ref = useRef();
@@ -13,3 +14,8 @@ const PlayerPortal = ({ children, selector }) => {
 };
 
 export default PlayerPortal;
+
+PlayerPortal.propTypes = {
+  children: PropTypes.node.isRequired,
+  selector: PropTypes.string.isRequired,
+};
