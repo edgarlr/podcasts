@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { fontWeight, colors } from 'styles/theme';
 import PropTypes from 'prop-types';
 

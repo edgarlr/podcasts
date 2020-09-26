@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { MdSort } from 'react-icons/md';
 import PropTypes from 'prop-types';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { colors, fontWeight } from 'styles/theme';
 import PropTypes from 'prop-types';
 
