@@ -3,6 +3,7 @@ import { MdVolumeUp } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
 import { durationToMinutes } from 'lib/utils';
 import PropTypes from 'prop-types';
+import { episodePropType } from 'lib/customPropTypes';
 
 const EpisodeCard = ({ clip, isActive, info }) => {
   if (!info) info = `${clip.counts.plays} plays`;
@@ -97,7 +98,7 @@ EpisodeCard.defaultProps = {
 };
 
 EpisodeCard.propTypes = {
-  clip: PropTypes.object.isRequired,
+  clip: episodePropType,
   isActive: PropTypes.bool,
   info: PropTypes.string,
 };

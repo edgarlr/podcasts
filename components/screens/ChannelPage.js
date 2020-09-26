@@ -5,6 +5,7 @@ import BannerImage from 'components/BannerImage';
 import FollowButtonContainer from 'components/FollowButtonContainer';
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton';
 import PropTypes from 'prop-types';
+import { channelPropType, episodePropType } from 'lib/customPropTypes';
 
 const ChannelPage = ({ channel, episodes, series }) => (
   <Layout
@@ -36,7 +37,7 @@ const ChannelPage = ({ channel, episodes, series }) => (
 export default ChannelPage;
 
 ChannelPage.propTypes = {
-  channel: PropTypes.object.isRequired,
-  episodes: PropTypes.array.isRequired,
-  series: PropTypes.array.isRequired,
+  channel: channelPropType,
+  episodes: PropTypes.arrayOf(episodePropType).isRequired,
+  series: PropTypes.arrayOf(channelPropType).isRequired,
 };

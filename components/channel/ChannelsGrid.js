@@ -2,7 +2,8 @@ import { SectionTitle } from 'components/SectionTitle';
 import Grid from 'components/ui/Grid';
 import { PodcastCover } from './PodcastCover';
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
-import PropTypes from 'prop-types';
+import PropTypes, { oneOfType } from 'prop-types';
+import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 
 export const ChannelsGrid = ({ title, channels, sectionButton, loading }) => {
   if (!loading && channels.length === 0) return null;
@@ -31,7 +32,9 @@ ChannelsGrid.defaultProps = {
 
 ChannelsGrid.propTypes = {
   title: PropTypes.string.isRequired,
-  channels: PropTypes.array.isRequired,
+  channels: PropTypes.arrayOf(
+    oneOfType([channelPropType, channelShortPropType])
+  ).isRequired,
   sectionButton: PropTypes.element,
   loading: PropTypes.bool,
 };

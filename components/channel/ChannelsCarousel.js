@@ -2,7 +2,8 @@ import CarouselGrid from 'components/ui/CarouselGrid';
 import { SectionTitle } from 'components/SectionTitle';
 import { PodcastCover } from './PodcastCover';
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
-import PropTypes from 'prop-types';
+import PropTypes, { oneOfType } from 'prop-types';
+import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 
 export const ChannelsCarousel = (props) => {
   const { title, channels, sectionButton, loading } = props;
@@ -31,7 +32,9 @@ ChannelsCarousel.defaultProps = {
 
 ChannelsCarousel.propTypes = {
   title: PropTypes.string.isRequired,
-  channels: PropTypes.array.isRequired,
+  channels: PropTypes.arrayOf(
+    oneOfType([channelPropType, channelShortPropType])
+  ).isRequired,
   sectionButton: PropTypes.element,
   loading: PropTypes.bool,
 };

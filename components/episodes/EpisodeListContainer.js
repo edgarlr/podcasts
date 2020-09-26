@@ -3,6 +3,7 @@ import { usePlayer } from 'lib/contexts';
 import EpisodeCard from './EpisodeCard';
 import EpisodeCardSkeleton from './EpisodeCardSkeleton';
 import PropTypes from 'prop-types';
+import { episodePropType } from 'lib/customPropTypes';
 
 export default function EpisodeListContainer(props) {
   const { title, episodes, loading, button, searchCards } = props;
@@ -40,7 +41,7 @@ EpisodeListContainer.defaultProps = {
 
 EpisodeListContainer.propTypes = {
   title: PropTypes.string.isRequired,
-  episodes: PropTypes.array.isRequired,
+  episodes: PropTypes.arrayOf(episodePropType).isRequired,
   loading: PropTypes.bool,
   searchCards: PropTypes.bool,
   button: PropTypes.element,

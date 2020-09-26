@@ -7,7 +7,7 @@ import { durationToMinutes, dateFormatter } from 'lib/utils';
 import DescriptionContainer from 'components/DescriptionContainer';
 import PlayButton from 'components/PlayButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
-import PropTypes from 'prop-types';
+import { episodePropType } from 'lib/customPropTypes';
 
 const PodcastPage = ({ episode }) => {
   const { channel } = episode;
@@ -53,5 +53,5 @@ const PodcastPage = ({ episode }) => {
 export default PodcastPage;
 
 PodcastPage.propTypes = {
-  episode: PropTypes.object.isRequired,
+  episode: episodePropType,
 };
