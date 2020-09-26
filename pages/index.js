@@ -1,5 +1,6 @@
 import Error from 'next/error';
 import Homepage from 'components/screens/Homepage';
+import PropTypes from 'prop-types';
 
 export async function getServerSideProps(context) {
   try {
@@ -19,3 +20,8 @@ export default function Home({ channels, statusCode }) {
 
   return <Homepage channels={channels} />;
 }
+
+Home.propTypes = {
+  channels: PropTypes.array.isRequired,
+  statusCode: PropTypes.number.isRequired,
+};

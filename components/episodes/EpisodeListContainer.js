@@ -2,15 +2,10 @@ import { SectionTitle } from 'components/SectionTitle';
 import { usePlayer } from 'lib/contexts';
 import EpisodeCard from './EpisodeCard';
 import EpisodeCardSkeleton from './EpisodeCardSkeleton';
+import PropTypes from 'prop-types';
 
 export default function EpisodeListContainer(props) {
-  const {
-    title,
-    episodes = [],
-    loading = false,
-    button = null,
-    searchCards = null,
-  } = props;
+  const { title, episodes, loading, button, searchCards } = props;
 
   const { current } = usePlayer();
 
@@ -35,3 +30,18 @@ export default function EpisodeListContainer(props) {
     </div>
   );
 }
+
+EpisodeListContainer.defaultProps = {
+  episodes: [],
+  loading: false,
+  searchCards: false,
+  button: null,
+};
+
+EpisodeListContainer.propTypes = {
+  title: PropTypes.string.isRequired,
+  episodes: PropTypes.array.isRequired,
+  loading: PropTypes.bool,
+  searchCards: PropTypes.bool,
+  button: PropTypes.element,
+};

@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { MdVolumeUp } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
 import { durationToMinutes } from 'lib/utils';
+import PropTypes from 'prop-types';
 
-const EpisodeCard = ({ clip, isActive, info = null }) => {
+const EpisodeCard = ({ clip, isActive, info }) => {
   if (!info) info = `${clip.counts.plays} plays`;
 
   return (
@@ -89,3 +90,14 @@ const EpisodeCard = ({ clip, isActive, info = null }) => {
 };
 
 export default EpisodeCard;
+
+EpisodeCard.defaultProps = {
+  info: null,
+  isActive: false,
+};
+
+EpisodeCard.propTypes = {
+  clip: PropTypes.object.isRequired,
+  isActive: PropTypes.bool,
+  info: PropTypes.string,
+};

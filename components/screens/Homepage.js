@@ -4,6 +4,7 @@ import { useFavs } from 'lib/contexts';
 import SearchModal from 'components/screens/SearchModal';
 import { ChannelsGrid } from 'components/channel/ChannelsGrid';
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
+import PropTypes from 'prop-types';
 
 const Homepage = ({ channels }) => {
   const { myList } = useFavs();
@@ -28,3 +29,7 @@ const Homepage = ({ channels }) => {
 };
 
 export default Homepage;
+
+Homepage.propTypes = {
+  channels: PropTypes.array.isRequired,
+};

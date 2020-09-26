@@ -3,13 +3,14 @@ import { usePlayer } from 'lib/contexts';
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
 import PlayerModal from 'components/screens/PlayerModal';
+import PropTypes from 'prop-types';
 
 export default function Layout({
   children,
-  headerText = null,
-  button = null,
-  navigation = null,
-  pageTitle = 'Podcast',
+  headerText,
+  button,
+  navigation,
+  pageTitle,
 }) {
   const { isPlaying, current } = usePlayer();
 
@@ -66,3 +67,18 @@ export default function Layout({
     </>
   );
 }
+
+Layout.defaultProps = {
+  headerText: null,
+  button: null,
+  navigation: false,
+  pageTitle: 'Podcast',
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+  headerText: PropTypes.string.isRequired,
+  button: PropTypes.element,
+  navigation: PropTypes.bool,
+  pageTitle: PropTypes.string,
+};

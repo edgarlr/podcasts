@@ -4,18 +4,22 @@ import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import BannerImage from 'components/BannerImage';
 import FollowButtonContainer from 'components/FollowButtonContainer';
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton';
+import PropTypes from 'prop-types';
 
 const ChannelPage = ({ channel, episodes, series }) => (
   <Layout
-    navigation={true}
+    navigation
     headerText={channel.title}
     pageTitle={channel.title + ' | Podcasts'}
     button={<FollowButtonContainer channel={channel} />}
   >
-    <MainTitle title={channel.title} subtitle="Podcast" />
+    <MainTitle
+      title={channel.title}
+      subtitle={channel.parent_channel_id && 'Serie'}
+    />
 
     <BannerImage
-      bannerImage={
+      url={
         channel.urls.banner_image.original || channel.urls.logo_image.original
       }
     />
@@ -30,3 +34,9 @@ const ChannelPage = ({ channel, episodes, series }) => (
 );
 
 export default ChannelPage;
+
+ChannelPage.propTypes = {
+  channel: PropTypes.object.isRequired,
+  episodes: PropTypes.array.isRequired,
+  series: PropTypes.array.isRequired,
+};

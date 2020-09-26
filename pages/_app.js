@@ -1,5 +1,6 @@
 import { PlayerState } from 'lib/contexts/PlayerState';
 import { FavsState } from 'lib/contexts/FavsState';
+import PropTypes from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -24,3 +25,8 @@ function MyApp({ Component, pageProps }) {
 // }
 
 export default MyApp;
+
+MyApp.propTypes = {
+  Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  pageProps: PropTypes.object.isRequired,
+};

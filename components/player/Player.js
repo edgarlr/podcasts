@@ -1,6 +1,10 @@
 import { usePlayer } from 'lib/contexts';
 import PlayerSkeleton from './PlayerSkeleton';
 import { colors } from 'styles/theme';
+import { ProgressBar } from './ProgressBar';
+import { PodcastTitle } from './PodcastTitle';
+import ImgTranslucent from 'components/ImgTranslucent';
+import PropTypes from 'prop-types';
 import {
   MdKeyboardArrowDown,
   MdSkipPrevious,
@@ -8,19 +12,18 @@ import {
   MdPause,
   MdSkipNext,
 } from 'react-icons/md';
-import { ProgressBar } from './ProgressBar';
-import { PodcastTitle } from './PodcastTitle';
-import ImgTranslucent from 'components/ImgTranslucent';
 
-export const Player = ({
-  handleModalClick,
-  handleProgress,
-  toggleAudio,
-  currentTime,
-  duration,
-  prevEpisode,
-  nextEpisode,
-}) => {
+export const Player = (props) => {
+  const {
+    handleModalClick,
+    handleProgress,
+    toggleAudio,
+    currentTime,
+    duration,
+    prevEpisode,
+    nextEpisode,
+  } = props;
+
   const { loading, currentIndex, playlist, isPlaying, current } = usePlayer();
 
   if (!current) return <PlayerSkeleton />;
@@ -35,6 +38,7 @@ export const Player = ({
         <div className="img-container">
           <ImgTranslucent
             url={current.urls.image || current.channel.urls.logo_image.original}
+            alt={current.title}
             fullBlur
             borderRadius="10%"
           />
@@ -148,4 +152,14 @@ export const Player = ({
       `}</style>
     </>
   );
+};
+
+Player.propTypes = {
+  handleModalClick: PropTypes.func.isRequired,
+  handleProgress: PropTypes.func.isRequired,
+  toggleAudio: PropTypes.func.isRequired,
+  currentTime: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  prevEpisode: PropTypes.func.isRequired,
+  nextEpisode: PropTypes.func.isRequired,
 };

@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { colors } from 'styles/theme';
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 
-const AppHeader = ({ headerText, navigation = true, button = null }) => {
+const AppHeader = ({ headerText, navigation, button }) => {
   const router = useRouter();
 
   const [fixedNav, setFixedNav] = useState(false);
@@ -92,3 +93,14 @@ const AppHeader = ({ headerText, navigation = true, button = null }) => {
 };
 
 export default AppHeader;
+
+AppHeader.defaultProps = {
+  navigation: false,
+  button: null,
+};
+
+AppHeader.propTypes = {
+  headerText: PropTypes.string.isRequired,
+  navigation: PropTypes.bool,
+  button: PropTypes.element,
+};

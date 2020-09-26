@@ -7,37 +7,39 @@ import { durationToMinutes, dateFormatter } from 'lib/utils';
 import DescriptionContainer from 'components/DescriptionContainer';
 import PlayButton from 'components/PlayButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
+import PropTypes from 'prop-types';
 
-const PodcastPage = ({ episodes }) => {
-  const { channel } = episodes;
+const PodcastPage = ({ episode }) => {
+  const { channel } = episode;
   const { clientPlaylist, isLoading } = useFetchPlaylist(channel.id);
 
   return (
     <Layout
-      navigation={true}
-      headerText={episodes.title}
-      pageTitle={episodes.title + ' | Podcasts'}
+      navigation
+      headerText={episode.title}
+      pageTitle={episode.title + ' | Podcasts'}
       button={
         <ImgTranslucent
-          url={episodes.urls.image || channel.urls.logo_image.original}
+          url={episode.urls.image || channel.urls.logo_image.original}
+          alt={episode.title}
           width="3rem"
         />
       }
     >
       <MainTitle
-        title={episodes.title}
+        title={episode.title}
         subtitle={channel.title}
         linkTo={`/${channel.id}`}
       />
 
       <SectionTitle
-        title={`${dateFormatter(episodes.uploaded_at)} · ${durationToMinutes(
-          episodes.duration
+        title={`${dateFormatter(episode.uploaded_at)} · ${durationToMinutes(
+          episode.duration
         )}`}
-        button={<PlayButton episodeId={episodes.id} channelId={channel.id} />}
+        button={<PlayButton episodeId={episode.id} channelId={channel.id} />}
       />
 
-      <DescriptionContainer data={episodes.description} />
+      <DescriptionContainer data={episode.description} />
 
       <EpisodeListContainer
         title="More Episodes"
@@ -49,3 +51,7 @@ const PodcastPage = ({ episodes }) => {
 };
 
 export default PodcastPage;
+
+PodcastPage.propTypes = {
+  episode: PropTypes.object.isRequired,
+};

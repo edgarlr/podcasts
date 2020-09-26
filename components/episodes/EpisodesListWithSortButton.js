@@ -1,6 +1,7 @@
 import { useSortEpisodes } from 'lib/hooks';
 import SortByButton from 'components/SortByButton';
 import EpisodeListContainer from './EpisodeListContainer';
+import PropTypes from 'prop-types';
 
 const EpisodesListWithSortButton = ({ title, episodes }) => {
   const [list, setList, sortList] = useSortEpisodes(episodes, 'uploaded_at');
@@ -25,3 +26,8 @@ const EpisodesListWithSortButton = ({ title, episodes }) => {
 };
 
 export default EpisodesListWithSortButton;
+
+EpisodesListWithSortButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  episodes: PropTypes.array.isRequired,
+};

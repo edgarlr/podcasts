@@ -1,5 +1,6 @@
 import React from 'react';
 import { colors, fontWeight } from 'styles/theme';
+import PropTypes from 'prop-types';
 
 const Button = ({ isActive, handleClick, children }) => {
   return (
@@ -36,3 +37,13 @@ const Button = ({ isActive, handleClick, children }) => {
 };
 
 export default Button;
+
+Button.defaultProps = {
+  isActive: false,
+};
+
+Button.propTypes = {
+  isActive: PropTypes.bool,
+  handleClick: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired,
+};

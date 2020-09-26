@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const CircleProgressBar = ({ size, progress, strokeWidth, circleStroke }) => {
   const [offset, setOffset] = useState(0);
@@ -59,3 +60,10 @@ const CircleProgressBar = ({ size, progress, strokeWidth, circleStroke }) => {
 };
 
 export default CircleProgressBar;
+
+CircleProgressBar.propTypes = {
+  size: PropTypes.number.isRequired,
+  progress: PropTypes.number.isRequired,
+  strokeWidth: PropTypes.number.isRequired,
+  circleStroke: PropTypes.string.isRequired,
+};

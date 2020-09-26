@@ -26,7 +26,7 @@ export const SearchEpisodesPage = () => {
 
   return (
     <Layout
-      navigation={true}
+      navigation
       headerText={`"${keyword}" in search`}
       pageTitle="Podcasts"
       button={<ClearSearchButton />}

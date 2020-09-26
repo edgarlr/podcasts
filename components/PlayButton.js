@@ -2,6 +2,7 @@ import { usePlayer } from 'lib/contexts';
 import { MdPlayArrow } from 'react-icons/md';
 import { colors } from 'styles/theme';
 import { useFetchPlaylist } from 'lib/hooks';
+import PropTypes from 'prop-types';
 
 const PlayButton = ({ episodeId, channelId }) => {
   const { clientPlaylist, isLoading } = useFetchPlaylist(channelId);
@@ -56,3 +57,8 @@ const PlayButton = ({ episodeId, channelId }) => {
 };
 
 export default PlayButton;
+
+PlayButton.propTypes = {
+  episodeId: PropTypes.number.isRequired,
+  channelId: PropTypes.number.isRequired,
+};

@@ -1,4 +1,5 @@
 import ErrorMessage from 'components/ui/ErrorMessage';
+import PropTypes from 'prop-types';
 
 const SearchErrorMessage = ({ keyword }) => {
   return (
@@ -10,3 +11,7 @@ const SearchErrorMessage = ({ keyword }) => {
 };
 
 export default SearchErrorMessage;
+
+SearchErrorMessage.propTypes = {
+  keyword: PropTypes.string.isRequired,
+};

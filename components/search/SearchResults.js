@@ -3,6 +3,7 @@ import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import SeeAllButton from 'components/search/SeeAllButton';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';
+import PropTypes from 'prop-types';
 
 const SearchResults = ({ keyword }) => {
   const channelsUrl = `https://api.audioboom.com/channels?find[title]=${keyword}&api_version=1`;
@@ -49,3 +50,7 @@ const SearchResults = ({ keyword }) => {
 };
 
 export default SearchResults;
+
+SearchResults.propTypes = {
+  keyword: PropTypes.string.isRequired,
+};

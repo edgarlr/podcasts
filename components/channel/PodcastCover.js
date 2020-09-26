@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { fontWeight, colors } from 'styles/theme';
+import PropTypes from 'prop-types';
 
 export const PodcastCover = ({ channel }) => {
   return (
@@ -51,4 +52,8 @@ export const PodcastCover = ({ channel }) => {
       `}</style>
     </div>
   );
+};
+
+PodcastCover.propTypes = {
+  channel: PropTypes.object.isRequired,
 };

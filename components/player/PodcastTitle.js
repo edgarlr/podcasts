@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const PodcastTitle = ({
   title,
@@ -76,4 +77,17 @@ export const PodcastTitle = ({
       `}</style>
     </div>
   );
+};
+
+PodcastTitle.defaultProps = {
+  wrapAt: 35,
+  fontSize: '1em',
+  alwaysJustify: null,
+};
+
+PodcastTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  wrapAt: PropTypes.number,
+  fontSize: PropTypes.string,
+  alwaysJustify: PropTypes.string,
 };

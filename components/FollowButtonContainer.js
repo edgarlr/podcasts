@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useFavs } from 'lib/contexts';
 import { useLocalStorage } from 'lib/hooks';
-import Button from './Button';
+import Button from './ui/Button';
+import PropTypes from 'prop-types';
 
 const FollowButtonContainer = ({ channel }) => {
   const { myList, Follow, Unfollow } = useFavs();
@@ -30,3 +31,7 @@ const FollowButtonContainer = ({ channel }) => {
 };
 
 export default FollowButtonContainer;
+
+FollowButtonContainer.propTypes = {
+  channel: PropTypes.object.isRequired,
+};

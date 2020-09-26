@@ -2,16 +2,13 @@ import { usePlayer } from 'lib/contexts';
 import { MdPause, MdPlayArrow } from 'react-icons/md';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
-import CircleProgressBar from '../CircleProgressBar';
+import CircleProgressBar from './CircleProgressBar';
 import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
+import PropTypes from 'prop-types';
 
-export default function MiniPlayer({
-  handleModalClick,
-  toggleAudio,
-  duration,
-  currentTime,
-}) {
+export default function MiniPlayer(props) {
+  const { handleModalClick, toggleAudio, duration, currentTime } = props;
   const { current, loading, isPlaying } = usePlayer();
 
   if (!current) return <MiniPlayerSkeleton />;
@@ -24,6 +21,7 @@ export default function MiniPlayer({
         <div className="img-container" onClick={() => handleModalClick()}>
           <ImgTranslucent
             url={current.urls.image || current.channel.urls.logo_image.original}
+            alt={current.title}
             fullBlur
           />
         </div>
@@ -124,3 +122,10 @@ export default function MiniPlayer({
     </>
   );
 }
+
+MiniPlayer.propTypes = {
+  handleModalClick: PropTypes.func.isRequired,
+  toggleAudio: PropTypes.func.isRequired,
+  duration: PropTypes.number.isRequired,
+  currentTime: PropTypes.number.isRequired,
+};
