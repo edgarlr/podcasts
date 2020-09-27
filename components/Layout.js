@@ -65,6 +65,7 @@ export default function Layout({
         }
         input {
           border-radius: 0;
+          -webkit-appearance: none !important;
         }
       `}</style>
     </>
