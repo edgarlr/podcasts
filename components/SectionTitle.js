@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const SectionTitle = ({ title, button }) => {
   return (
     <div className="section-title">
-      <h3 className="main-title">{title}</h3>
+      <h2 className="main-title">{title}</h2>
 
       {button}
 
@@ -14,7 +14,7 @@ export const SectionTitle = ({ title, button }) => {
         }
         .main-title {
           font-weight: ${fontWeight.bold};
-          color: ${colors.gray};
+          color: ${colors.midGray};
         }
       `}</style>
 

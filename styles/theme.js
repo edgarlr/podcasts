@@ -6,8 +6,8 @@ export const fontWeight = {
 export const colors = {
   black: '#131414',
   white: 'white',
-  darkGray: '#383838',
-  gray: '#73788c',
-  textLightGray: '#73788c',
   lightGray: '#e2e2e2',
+  midGray: '#636d77',
+  gray: '#73788c',
+  darkGray: '#383838',
 };

@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 
 const FullModal = ({ children, isOpen, button }) => (
   <div className={`container ${isOpen ? 'full' : ' '}`}>
-    <button className="action-button">{button}</button>
+    <button className="action-button" aria-label="Open Modal">
+      {button}
+    </button>
 
     {children}
 

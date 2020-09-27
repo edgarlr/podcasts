@@ -35,10 +35,10 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             color: ${colors.black};
           }
           .episode .meta {
-            color: ${colors.gray};
+            color: ${colors.midGray};
           }
           p {
-            color: ${colors.textLightGray};
+            color: ${colors.midGray};
           }
         `}</style>
 
@@ -76,7 +76,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             transform: translateY(-50%);
           }
           .episode .meta {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             margin-bottom: 8px;
             font-weight: ${fontWeight.bold};
           }

@@ -30,8 +30,16 @@ export const Player = (props) => {
 
   return (
     <>
-      <button className="nav-button" onClick={() => handleModalClick()}>
-        <MdKeyboardArrowDown size="2.5em" color={colors.white} />
+      <button
+        className="nav-button"
+        onClick={() => handleModalClick()}
+        aria-label="Minimize Player"
+      >
+        <MdKeyboardArrowDown
+          size="2.5em"
+          color={colors.white}
+          aria-hidden="true"
+        />
       </button>
 
       <div className="container">
@@ -50,19 +58,28 @@ export const Player = (props) => {
         </div>
 
         <div className="main-player">
-          <button className="controller-button" onClick={() => prevEpisode()}>
-            <MdSkipPrevious color="white" size="3em" />
+          <button
+            className="controller-button"
+            onClick={() => prevEpisode()}
+            aria-label="Previous Song"
+          >
+            <MdSkipPrevious color="white" size="3em" aria-hidden="true" />
           </button>
 
           <button
             className="play-button"
             disabled={loading}
             onClick={() => toggleAudio()}
+            aria-label="Play or Pause Song"
           >
             {isPlaying ? (
-              <MdPause color="white" size="3em" />
+              <MdPause color="white" size="3em" aria-label="Previous Song" />
             ) : (
-              <MdPlayArrow color="white" size="3em" />
+              <MdPlayArrow
+                color="white"
+                size="3em"
+                aria-label="Previous Song"
+              />
             )}
           </button>
 
@@ -70,8 +87,9 @@ export const Player = (props) => {
             disabled={currentIndex === playlist.length - 1}
             className="controller-button"
             onClick={() => nextEpisode()}
+            aria-label="Next Song"
           >
-            <MdSkipNext color="white" size="3em" />
+            <MdSkipNext color="white" size="3em" aria-hidden="true" />
           </button>
         </div>
 

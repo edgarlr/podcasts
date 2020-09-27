@@ -35,7 +35,7 @@ const PlayerSkeleton = () => {
           border: 1px solid ${colors.white};
         }
         .progress-time {
-          color: ${colors.textLightGray};
+          color: ${colors.midGray};
         }
         .progress-bar,
         .img-container,

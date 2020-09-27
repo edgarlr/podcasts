@@ -8,11 +8,16 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link
             href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
             rel="stylesheet"
+          />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+          <meta
+            name="description"
+            content="Podcast app using Next.js, SWR and AudioBoom API"
           />
           <link
             rel="apple-touch-icon"

@@ -14,8 +14,12 @@ export default function SortByButton({ handleFilterClick }) {
 
   return (
     <div className="sort">
-      <button className="icon" onClick={() => setShowDropdown(!showDropdown)}>
-        <MdSort size="1.5em" />
+      <button
+        className="icon"
+        onClick={() => setShowDropdown(!showDropdown)}
+        aria-label="Sort Episodes"
+      >
+        <MdSort size="1.5em" aria-hidden="true" />
       </button>
 
       <div className="sort-dropdown">

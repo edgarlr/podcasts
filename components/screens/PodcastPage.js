@@ -23,6 +23,7 @@ const PodcastPage = ({ episode }) => {
           url={episode.urls.image || channel.urls.logo_image.original}
           alt={episode.title}
           width="3rem"
+          alt={episodes.title}
         />
       }
     >

@@ -14,7 +14,7 @@ const DescriptionContainer = ({ data }) => {
       <style jsx>{`
         div span {
           font-weight: ${fontWeight.bold};
-          color: ${colors.textLightGray};
+          color: ${colors.midGray};
         }
         .hide::after {
           font-weight: ${fontWeight.bold};

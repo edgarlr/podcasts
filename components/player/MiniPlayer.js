@@ -16,7 +16,11 @@ export default function MiniPlayer(props) {
   return (
     <>
       <div className="container">
-        <button className="nav-button" onClick={() => handleModalClick()} />
+        <button
+          className="nav-button"
+          onClick={() => handleModalClick()}
+          aria-label="Expand Player"
+        />
 
         <div className="img-container" onClick={() => handleModalClick()}>
           <ImgTranslucent
