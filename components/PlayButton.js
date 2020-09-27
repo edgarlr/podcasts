@@ -26,8 +26,9 @@ const PlayButton = ({ episodeId, channelId }) => {
       className="play-button"
       disabled={isLoading}
       onClick={() => onPlayClick()}
+      aria-label="Play podcast"
     >
-      <MdPlayArrow color="white" size="2rem" />
+      <MdPlayArrow color="white" size="2rem" aria-hidden="true" />
 
       <style jsx>{`
         .play-button {

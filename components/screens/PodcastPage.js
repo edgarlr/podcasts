@@ -21,6 +21,7 @@ const PodcastPage = ({ episodes }) => {
         <ImgTranslucent
           url={episodes.urls.image || channel.urls.logo_image.original}
           width="3rem"
+          alt={episodes.title}
         />
       }
     >
