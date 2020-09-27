@@ -10,8 +10,8 @@ const ClearSearchButton = () => {
   };
 
   return (
-    <button onClick={onCloseClick}>
-      <MdClose size="2rem" color={colors.black} />
+    <button onClick={onCloseClick} aria-label="Search">
+      <MdClose size="2rem" color={colors.black} aria-hidden="true" />
     </button>
   );
 };

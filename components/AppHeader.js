@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import { colors } from 'styles/theme';
+import { colors, fontWeight } from 'styles/theme';
 import { useRouter } from 'next/router';
 
 const AppHeader = ({ headerText, navigation = true, button = null }) => {
@@ -27,12 +27,12 @@ const AppHeader = ({ headerText, navigation = true, button = null }) => {
   return (
     <header className={button ? 'full-nav' : ''}>
       {navigation && (
-        <button onClick={() => router.back()}>
-          <MdKeyboardArrowLeft size="2rem" />
+        <button onClick={() => router.back()} aria-label="Go back">
+          <MdKeyboardArrowLeft size="2rem" aria-hidden="true" />
         </button>
       )}
 
-      <h2 className={fixedNav ? 'show' : ''}>{headerText}</h2>
+      <p className={fixedNav ? 'show' : ''}>{headerText}</p>
 
       {button}
 
@@ -71,9 +71,10 @@ const AppHeader = ({ headerText, navigation = true, button = null }) => {
         .full-nav button {
           position: static;
         }
-        h2 {
+        p {
           margin: 0;
           font-size: 1.2rem;
+          font-weight: ${fontWeight.bold};
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
@@ -82,7 +83,7 @@ const AppHeader = ({ headerText, navigation = true, button = null }) => {
           transform: translateY(5px);
           transition: 0.2s;
         }
-        h2.show {
+        p.show {
           opacity: 1;
           transform: translateY(0);
         }

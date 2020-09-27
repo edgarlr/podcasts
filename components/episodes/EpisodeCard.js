@@ -36,7 +36,7 @@ const EpisodeCard = ({ clip, isActive, info = null }) => {
             color: ${colors.gray};
           }
           p {
-            color: ${colors.textLightGray};
+            color: ${colors.midGray};
           }
         `}</style>
 

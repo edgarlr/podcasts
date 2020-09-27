@@ -3,7 +3,7 @@ import { colors, fontWeight } from 'styles/theme';
 export const SectionTitle = ({ title, button = null }) => {
   return (
     <div className="section-title">
-      <h3 className="main-title">{title}</h3>
+      <h2 className="main-title">{title}</h2>
 
       {button}
 
@@ -13,7 +13,7 @@ export const SectionTitle = ({ title, button = null }) => {
         }
         .main-title {
           font-weight: ${fontWeight.bold};
-          color: ${colors.gray};
+          color: ${colors.midGray};
         }
       `}</style>
 
