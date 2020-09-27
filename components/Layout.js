@@ -63,6 +63,9 @@ export default function Layout({
         a {
           text-decoration: none;
         }
+        input {
+          border-radius: 0;
+        }
       `}</style>
     </>
   );

@@ -16,7 +16,7 @@ const FullModal = ({ children, isOpen, button }) => (
         right: 0;
         left: 0;
         top: 0;
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
         text-align: right;
         transition: bottom 0.3s;
         overflow-y: scroll;
