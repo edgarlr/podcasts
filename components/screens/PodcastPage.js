@@ -5,7 +5,7 @@ import ImgTranslucent from 'components/ImgTranslucent';
 import { SectionTitle } from 'components/SectionTitle';
 import { durationToMinutes, dateFormatter } from 'lib/utils';
 import DescriptionContainer from 'components/DescriptionContainer';
-import PlayButton from 'components/PlayButton';
+import PlayButton from 'components/player/PlayButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import { episodePropType } from 'lib/customPropTypes';
 

@@ -7,16 +7,17 @@ import PropTypes from 'prop-types';
 const PlayButton = ({ episodeId, channelId }) => {
   const { clientPlaylist, isLoading } = useFetchPlaylist(channelId);
 
-  const { SetCurrentIndex, SetPlaylist } = usePlayer();
+  const { SetCurrentIndex, SetPlaylist, audioRef, current } = usePlayer();
 
   const onPlayClick = () => {
     if (clientPlaylist) {
       SetPlaylist(clientPlaylist);
-
       for (let i = 0; i < clientPlaylist.length; i++) {
         if (clientPlaylist[i].id === episodeId) {
+          audioRef.current.src = clientPlaylist[i].urls.high_mp3;
+          audioRef.current.play();
           SetCurrentIndex(i);
-          return;
+          break;
         }
       }
     }
@@ -25,7 +26,7 @@ const PlayButton = ({ episodeId, channelId }) => {
   return (
     <button
       className="play-button"
-      disabled={isLoading}
+      disabled={isLoading || (current && current.id === episodeId)}
       onClick={() => onPlayClick()}
       aria-label="Play podcast"
     >

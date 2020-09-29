@@ -1,12 +1,22 @@
+import { usePlayer } from 'lib/contexts';
+import { useSharedState } from 'lib/hooks/useSharedState';
 import { durationToMSS } from 'lib/utils';
-import PropTypes from 'prop-types';
 
-export const ProgressBar = ({ currentTime, duration, handleProgress }) => {
+export const ProgressBar = () => {
+  const { duration, audioRef } = usePlayer();
+  const [currentTime, setCurrentTime] = useSharedState('currentTime', 0);
+
+  const handleProgress = (e) => {
+    const compute = (e.target.value * duration) / 100;
+    setCurrentTime(compute);
+    audioRef.current.currentTime = compute;
+  };
+
   return (
     <div>
       <input
         onChange={handleProgress}
-        value={duration ? (currentTime * 100) / duration : 0}
+        value={currentTime ? (currentTime * 100) / duration : 0}
         type="range"
         name="progressbar"
         id="pgrbar"
@@ -65,10 +75,4 @@ export const ProgressBar = ({ currentTime, duration, handleProgress }) => {
       `}</style>
     </div>
   );
-};
-
-ProgressBar.propTypes = {
-  currentTime: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-  handleProgress: PropTypes.func.isRequired,
 };

@@ -4,6 +4,7 @@ import { colors } from 'styles/theme';
 import { ProgressBar } from './ProgressBar';
 import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
+import { useMediaControls } from 'lib/hooks';
 import PropTypes from 'prop-types';
 import {
   MdKeyboardArrowDown,
@@ -13,18 +14,9 @@ import {
   MdSkipNext,
 } from 'react-icons/md';
 
-export const Player = (props) => {
-  const {
-    handleModalClick,
-    handleProgress,
-    toggleAudio,
-    currentTime,
-    duration,
-    prevEpisode,
-    nextEpisode,
-  } = props;
-
+export const Player = ({ handleModalClick }) => {
   const { loading, currentIndex, playlist, isPlaying, current } = usePlayer();
+  const { toggleAudio, prevEpisode, nextEpisode } = useMediaControls();
 
   if (!current) return <PlayerSkeleton />;
 
@@ -93,11 +85,7 @@ export const Player = (props) => {
           </button>
         </div>
 
-        <ProgressBar
-          currentTime={currentTime}
-          duration={duration}
-          handleProgress={handleProgress}
-        />
+        <ProgressBar />
       </div>
 
       <style jsx>{`
@@ -172,12 +160,4 @@ export const Player = (props) => {
   );
 };
 
-Player.propTypes = {
-  handleModalClick: PropTypes.func.isRequired,
-  handleProgress: PropTypes.func.isRequired,
-  toggleAudio: PropTypes.func.isRequired,
-  currentTime: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-  prevEpisode: PropTypes.func.isRequired,
-  nextEpisode: PropTypes.func.isRequired,
-};
+Player.propTypes = { handleModalClick: PropTypes.func.isRequired };

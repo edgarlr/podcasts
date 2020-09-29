@@ -5,13 +5,9 @@ import AppHeader from './AppHeader';
 import PlayerModal from 'components/screens/PlayerModal';
 import PropTypes from 'prop-types';
 
-export default function Layout({
-  children,
-  headerText,
-  button,
-  navigation,
-  pageTitle,
-}) {
+export default function Layout(props) {
+  const { children, headerText, button, navigation, pageTitle } = props;
+
   const { isPlaying, current } = usePlayer();
 
   return (
@@ -33,7 +29,7 @@ export default function Layout({
 
       <main className="content">{children}</main>
 
-      {current && <PlayerModal />}
+      <PlayerModal />
 
       <style jsx global>{`
         body {

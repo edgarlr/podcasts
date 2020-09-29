@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSharedState } from 'lib/hooks/useSharedState';
 
-const CircleProgressBar = ({ size, progress, strokeWidth, circleStroke }) => {
+const CircleProgressBar = ({ size, strokeWidth, circleStroke }) => {
+  const [progress] = useSharedState('progress', 0);
+
   const [offset, setOffset] = useState(0);
   const circleRef = useRef(null);
 
@@ -12,7 +15,6 @@ const CircleProgressBar = ({ size, progress, strokeWidth, circleStroke }) => {
   useEffect(() => {
     const progressOfsett = ((100 - progress) / 100) * circumference;
     setOffset(progressOfsett);
-    // circleRef.current.style = 'transition: stroke-dashoffset 850ms ease-in-out;';
   }, [setOffset, circumference, progress, offset]);
 
   return (
@@ -35,7 +37,6 @@ const CircleProgressBar = ({ size, progress, strokeWidth, circleStroke }) => {
           strokeDashoffset={offset}
           ref={circleRef}
         />
-        {/* <text x={center} y={center}>{progress}%</text> */}
       </svg>
 
       <style jsx>{`
@@ -63,7 +64,6 @@ export default CircleProgressBar;
 
 CircleProgressBar.propTypes = {
   size: PropTypes.number.isRequired,
-  progress: PropTypes.number.isRequired,
   strokeWidth: PropTypes.number.isRequired,
   circleStroke: PropTypes.string.isRequired,
 };

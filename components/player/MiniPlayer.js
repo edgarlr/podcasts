@@ -6,10 +6,11 @@ import CircleProgressBar from './CircleProgressBar';
 import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 import PropTypes from 'prop-types';
+import { useMediaControls } from 'lib/hooks';
 
-export default function MiniPlayer(props) {
-  const { handleModalClick, toggleAudio, duration, currentTime } = props;
+export default function MiniPlayer({ handleModalClick }) {
   const { current, loading, isPlaying } = usePlayer();
+  const { toggleAudio } = useMediaControls();
 
   if (!current) return <MiniPlayerSkeleton />;
 
@@ -44,12 +45,7 @@ export default function MiniPlayer(props) {
           disabled={loading}
           onClick={() => toggleAudio()}
         >
-          <CircleProgressBar
-            progress={duration ? (currentTime * 100) / duration : 0}
-            size={50}
-            strokeWidth={2}
-            circleStroke="#fff"
-          />
+          <CircleProgressBar size={50} strokeWidth={2} circleStroke="#fff" />
 
           {isPlaying ? (
             <MdPause color="white" size="2.2em" />
@@ -129,7 +125,4 @@ export default function MiniPlayer(props) {
 
 MiniPlayer.propTypes = {
   handleModalClick: PropTypes.func.isRequired,
-  toggleAudio: PropTypes.func.isRequired,
-  duration: PropTypes.number.isRequired,
-  currentTime: PropTypes.number.isRequired,
 };
