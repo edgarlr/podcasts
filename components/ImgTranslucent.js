@@ -1,48 +1,50 @@
 import PropTypes from 'prop-types';
 
-export default function ImgTranslucent({
-  url,
-  alt,
-  fullBlur,
-  borderRadius,
-  width,
-}) {
+export default function ImgTranslucent(props) {
+  const { url, fullBlur, borderRadius, width, height, margin } = props;
+
   return (
     <div className="image-container">
       <div
-        className={`image-shadow ${fullBlur && 'ultra'}`}
+        className={`image-main ${fullBlur && 'ultra'}`}
         style={{ backgroundImage: `url(${url})` }}
       />
-
-      <img src={url} alt={alt} srcSet="" />
 
       <style jsx>{`
         .image-container {
           position: relative;
           width: ${width || '100%'};
+          margin: ${margin || 0};
         }
-        img {
+        .image-main {
           width: 100%;
           border-radius: ${borderRadius || '25%'};
+          background-position: 50% 50%;
+          padding-bottom: ${height || '100%'};
+          background-size: cover;
+          position: relative;
         }
-        .image-shadow {
-          filter: blur(10px);
-          width: 70%;
-          height: 70%;
+        .image-main::after {
+          content: '';
+          width: 80%;
+          height: 80%;
+          filter: blur(15px);
+          transform: translate(-50%, 30%);
+          background: inherit;
+          border-radius: inherit;
+          background-position: inherit;
+          background-size: inherit;
+          margin: inherit;
           position: absolute;
-          top: 22%;
           left: 50%;
-          transform: translate(-50%);
-          margin: 0;
-          border-radius: 20%;
-          opacity: 0.5;
           z-index: -1;
+          opacity: 0.8;
         }
-        .image-shadow.ultra {
+        .image-main.ultra::after {
           filter: blur(40px);
           width: 100%;
           height: 100%;
-          top: 0;
+          transform: translate(-50%, 0);
         }
       `}</style>
     </div>
@@ -56,8 +58,9 @@ ImgTranslucent.defaultProps = {
 
 ImgTranslucent.propTypes = {
   url: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
   fullBlur: PropTypes.bool,
   borderRadius: PropTypes.string,
+  height: PropTypes.string,
   width: PropTypes.string,
+  margin: PropTypes.string,
 };

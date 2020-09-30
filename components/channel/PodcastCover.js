@@ -8,7 +8,7 @@ export const PodcastCover = ({ channel }) => {
     <div>
       <Link href="/[channel]" as={`/${channel.id}`}>
         <a className="channel">
-          <img src={channel.urls.logo_image.original} alt="" />
+          <img src={channel.urls.logo_image.original} alt={channel.title} />
           <h2>{channel.title}</h2>
         </a>
       </Link>
