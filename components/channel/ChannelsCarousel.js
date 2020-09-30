@@ -1,5 +1,5 @@
 import CarouselGrid from 'components/ui/CarouselGrid';
-import { SectionTitle } from 'components/SectionTitle';
+import SectionTitle from 'components/SectionTitle';
 import { PodcastCover } from './PodcastCover';
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
 import PropTypes, { oneOfType } from 'prop-types';

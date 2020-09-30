@@ -40,30 +40,6 @@ export default function Layout(props) {
           color: ${colors.darkGray};
         }
       `}</style>
-
-      <style jsx global>{`
-        body {
-          font-family: 'Kumbh Sans', sans-serif;
-          margin: 0;
-        }
-        main {
-          padding: 2rem 1.5rem 7rem;
-        }
-        button {
-          cursor: pointer;
-          border: none;
-          outline: none;
-          background: transparent;
-          padding: 0;
-        }
-        a {
-          text-decoration: none;
-        }
-        input {
-          border-radius: 0;
-          -webkit-appearance: none !important;
-        }
-      `}</style>
     </>
   );
 }

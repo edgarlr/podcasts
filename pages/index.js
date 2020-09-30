@@ -1,28 +1,19 @@
-import Error from 'next/error';
 import Homepage from 'components/screens/Homepage';
 import PropTypes from 'prop-types';
 import { channelShortPropType } from 'lib/customPropTypes';
+import { GET_CHANNELS_URL } from 'lib/constants';
 
-export async function getServerSideProps(context) {
-  try {
-    const req = await fetch(
-      'https://api.audioboom.com/channels/recommended?api_version=2'
-    );
-    const { body: channels } = await req.json();
+export async function getStaticProps() {
+  const req = await fetch(GET_CHANNELS_URL);
+  const { body: channels } = await req.json();
 
-    return { props: { channels, statusCode: context.res.statusCode } };
-  } catch (error) {
-    return { props: { channels: null, statusCode: context.res.statusCode } };
-  }
+  return { props: { channels } };
 }
 
-export default function Home({ channels, statusCode }) {
-  if (statusCode !== 200) return <Error statusCode={statusCode} />;
-
+export default function Home({ channels }) {
   return <Homepage channels={channels} />;
 }
 
 Home.propTypes = {
   channels: PropTypes.arrayOf(channelShortPropType).isRequired,
-  statusCode: PropTypes.number.isRequired,
 };

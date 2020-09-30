@@ -6,7 +6,7 @@ import { oneOfType } from 'prop-types';
 export const PodcastCover = ({ channel }) => {
   return (
     <div>
-      <Link href="/[channel]" as={`/${channel.id}`}>
+      <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
         <a className="channel">
           <img src={channel.urls.logo_image.original} alt={channel.title} />
           <h2>{channel.title}</h2>

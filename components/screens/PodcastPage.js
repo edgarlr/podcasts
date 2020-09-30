@@ -2,7 +2,7 @@ import { useFetchPlaylist } from 'lib/hooks';
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
-import { SectionTitle } from 'components/SectionTitle';
+import SectionTitle from 'components/SectionTitle';
 import { durationToMinutes, dateFormatter } from 'lib/utils';
 import DescriptionContainer from 'components/DescriptionContainer';
 import PlayButton from 'components/player/PlayButton';
@@ -29,7 +29,7 @@ const PodcastPage = ({ episode }) => {
       <MainTitle
         title={episode.title}
         subtitle={channel.title}
-        linkTo={`/${channel.id}`}
+        linkTo={`/channels/${channel.id}`}
       />
 
       <SectionTitle

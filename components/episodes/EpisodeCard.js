@@ -9,7 +9,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
   if (!info) info = `${clip.counts.plays} plays`;
 
   return (
-    <Link href="/[channel]/[podcast]" as={`/${clip.channel.id}/${clip.id}`}>
+    <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
       <a className={'episode ' + (isActive ? 'active' : '')}>
         <h2>{clip.title}</h2>
 

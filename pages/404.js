@@ -1,7 +1,10 @@
+import ErrorMessage from 'components/ui/ErrorMessage';
+
 export default function Custom404() {
   return (
-    <div>
-      <h1>404. Page Not Found</h1>
-    </div>
+    <ErrorMessage
+      title={`404. Page Not Found`}
+      subtitle="Try searching again using a different keyword"
+    />
   );
 }

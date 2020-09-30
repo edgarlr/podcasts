@@ -2,6 +2,7 @@ import { PlayerState } from 'lib/contexts/PlayerState';
 import { FavsState } from 'lib/contexts/FavsState';
 import PropTypes from 'prop-types';
 import '../styles/normalize.css';
+import '../styles/main.css';
 
 function MyApp({ Component, pageProps }) {
   return (

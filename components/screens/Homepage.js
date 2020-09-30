@@ -1,11 +1,15 @@
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import { useFavs } from 'lib/contexts';
-import SearchModal from 'components/screens/SearchModal';
 import { ChannelsGrid } from 'components/channel/ChannelsGrid';
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import PropTypes from 'prop-types';
 import { channelShortPropType } from 'lib/customPropTypes';
+import dynamic from 'next/dynamic';
+
+const DynamicSearch = dynamic(() => import('components/screens/SearchModal'), {
+  ssr: false,
+});
 
 const Homepage = ({ channels }) => {
   const { myList } = useFavs();
@@ -14,17 +18,12 @@ const Homepage = ({ channels }) => {
     <Layout
       headerText="Podcasts"
       pageTitle="Podcast App"
-      button={<SearchModal />}
+      button={<DynamicSearch />}
     >
       <MainTitle title="Podcasts" />
 
-      <section>
-        <ChannelsCarousel title="Followed" channels={myList} />
-      </section>
-
-      <section>
-        <ChannelsGrid title="featured shows" channels={channels} />
-      </section>
+      <ChannelsCarousel title="Followed" channels={myList} />
+      <ChannelsGrid title="featured shows" channels={channels} />
     </Layout>
   );
 };

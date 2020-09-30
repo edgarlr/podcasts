@@ -1,4 +1,4 @@
-import { SectionTitle } from 'components/SectionTitle';
+import SectionTitle from 'components/SectionTitle';
 import Grid from 'components/ui/Grid';
 import { PodcastCover } from './PodcastCover';
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
