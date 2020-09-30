@@ -1,10 +1,11 @@
 import ChannelPage from 'components/screens/ChannelPage';
+import SkeletonChannelPage from 'components/screens/skeleton/SkeletonChannelPage';
 import { useRouter } from 'next/router';
 
 export default function channel({ channel, episodes, series }) {
   const router = useRouter();
 
-  if (router.isFallback) return <h1>Loading...</h1>;
+  if (router.isFallback) return <SkeletonChannelPage />;
 
   return <ChannelPage channel={channel} episodes={episodes} series={series} />;
 }
