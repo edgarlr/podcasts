@@ -11,6 +11,7 @@ const ChannelPage = ({ channel, episodes, series }) => (
   <Layout
     navigation
     headerText={channel.title}
+    metaDescription={channel.description}
     pageTitle={channel.title + ' | Podcasts'}
     button={<FollowButtonContainer channel={channel} />}
   >

@@ -18,6 +18,7 @@ const PodcastPage = ({ episode }) => {
       navigation
       headerText={episode.title}
       pageTitle={episode.title + ' | Podcasts'}
+      metaDescription={episode.description}
       button={
         <ImgTranslucent
           url={episode.urls.image || channel.urls.logo_image.original}

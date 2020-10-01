@@ -5,7 +5,14 @@ import AppHeader from './AppHeader';
 import PropTypes from 'prop-types';
 
 export default function Layout(props) {
-  const { children, headerText, button, navigation, pageTitle } = props;
+  const {
+    children,
+    headerText,
+    button,
+    navigation,
+    pageTitle,
+    metaDescription,
+  } = props;
 
   const { isPlaying, current } = usePlayer();
 
@@ -18,6 +25,7 @@ export default function Layout(props) {
             ? `${current.title} | ${current.channel.title}`
             : pageTitle}
         </title>
+        <meta name="description" content={metaDescription} />
       </Head>
 
       <AppHeader
@@ -46,6 +54,7 @@ Layout.defaultProps = {
   button: null,
   navigation: false,
   pageTitle: 'Podcast',
+  metaDescription: 'Podcast app using Next.js, SWR and AudioBoom API',
 };
 
 Layout.propTypes = {
@@ -54,4 +63,5 @@ Layout.propTypes = {
   button: PropTypes.element,
   navigation: PropTypes.bool,
   pageTitle: PropTypes.string,
+  metaDescription: PropTypes.string,
 };
