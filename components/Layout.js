@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { usePlayer } from 'lib/contexts';
 import { colors } from 'styles/theme';
 import AppHeader from './AppHeader';
-import PlayerModal from 'components/screens/PlayerModal';
 import PropTypes from 'prop-types';
 
 export default function Layout(props) {
@@ -28,8 +27,6 @@ export default function Layout(props) {
       />
 
       <main className="content">{children}</main>
-
-      <PlayerModal />
 
       <style jsx global>{`
         body {

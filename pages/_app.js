@@ -3,12 +3,15 @@ import { FavsState } from 'lib/contexts/FavsState';
 import PropTypes from 'prop-types';
 import '../styles/normalize.css';
 import '../styles/main.css';
+import AudioLayout from 'components/AudioLayout';
 
 function MyApp({ Component, pageProps }) {
   return (
     <PlayerState>
       <FavsState>
-        <Component {...pageProps} />
+        <AudioLayout>
+          <Component {...pageProps} />
+        </AudioLayout>
       </FavsState>
     </PlayerState>
   );
