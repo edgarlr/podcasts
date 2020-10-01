@@ -6,6 +6,7 @@ import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSort
 import PropTypes from 'prop-types';
 import { channelPropType, episodePropType } from 'lib/customPropTypes';
 import ImgTranslucent from 'components/ImgTranslucent';
+import DescriptionContainer from 'components/DescriptionContainer';
 
 const ChannelPage = ({ channel, episodes, series }) => (
   <Layout
@@ -26,8 +27,12 @@ const ChannelPage = ({ channel, episodes, series }) => (
       }
       borderRadius="20px"
       height="35%"
-      margin="1.5rem 0 0.75rem"
+      margin=".75rem 0 0.75rem"
     />
+
+    {series.length === 0 && channel.description.length > 100 && (
+      <DescriptionContainer data={channel.description} />
+    )}
 
     <ChannelsCarousel title={`${channel.title}'S SERIES`} channels={series} />
 

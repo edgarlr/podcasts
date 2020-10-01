@@ -13,7 +13,7 @@ export default function MainTitle({ title, subtitle, linkTo }) {
 
       {subtitle && !linkTo && <p>{subtitle}</p>}
 
-      <h1>{title}</h1>
+      <h1 className={`title ${title.length > 10 && 'long'}`}>{title}</h1>
 
       <style jsx>{`
         div {
@@ -29,8 +29,12 @@ export default function MainTitle({ title, subtitle, linkTo }) {
           height: auto;
           display: block;
         }
-        h1 {
+        .title {
+          font-size: 2rem;
           margin: 8px 0;
+        }
+        .title.long {
+          font-size: 1.6rem;
         }
         p,
         a {

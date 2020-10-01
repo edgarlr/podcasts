@@ -24,7 +24,8 @@ const DescriptionContainer = ({ data }) => {
 
       <style jsx>{`
         div {
-          padding: 1rem 0;
+          margin-top: 1.5rem;
+          padding: 0;
         }
         div span {
           font-size: 0.7rem;
@@ -33,12 +34,12 @@ const DescriptionContainer = ({ data }) => {
         }
         p {
           line-height: 1.25;
-          font-size: 1rem;
+          font-size: 0.9rem;
           position: relative;
           transition: 0.3s;
         }
         .hide {
-          height: 5rem;
+          height: 4.5rem;
           overflow-y: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;

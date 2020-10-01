@@ -1,21 +1,25 @@
 import Link from 'next/link';
 import { MdVolumeUp } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
-import { durationToMinutes } from 'lib/utils';
+import { dateFormatter, durationToMinutes } from 'lib/utils';
 import PropTypes from 'prop-types';
 import { episodePropType } from 'lib/customPropTypes';
 
 const EpisodeCard = ({ clip, isActive, info }) => {
-  if (!info) info = `${clip.counts.plays} plays`;
-
   return (
     <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
       <a className={'episode ' + (isActive ? 'active' : '')}>
         <h2>{clip.title}</h2>
 
-        <div className="meta">{info}</div>
+        {info ? (
+          <div className="meta">{info}</div>
+        ) : (
+          <p className="description">{clip.description}</p>
+        )}
 
-        <p>{durationToMinutes(clip.duration)}</p>
+        <p className="duration">
+          {dateFormatter(clip.uploaded_at)} · {durationToMinutes(clip.duration)}
+        </p>
 
         {isActive && (
           <span>
@@ -29,15 +33,20 @@ const EpisodeCard = ({ clip, isActive, info }) => {
           }
           .active {
             background: ${colors.black};
+            box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
+          }
+          .active h2 {
             color: ${colors.white};
           }
+          .active p {
+            color: ${colors.lightGray};
+          }
           .episode:hover {
-            color: ${colors.black};
+            background: rgba(0, 0, 0, 0.007);
           }
-          .episode .meta {
-            color: ${colors.midGray};
-          }
-          p {
+          .meta,
+          .duration,
+          .description {
             color: ${colors.midGray};
           }
         `}</style>
@@ -51,20 +60,22 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             cursor: pointer;
           }
           .active {
-            margin: 0 -0.5rem;
-            padding: 16px 1.3em;
+            margin: -0.5rem;
+            padding: 16px 1.25em;
             border-bottom: none;
             border-radius: 20px;
             position: relative;
             text-align: left;
           }
           h2 {
-            margin: 16px 0 14px;
+            margin: 0.8rem 0;
             font-size: 16px;
           }
-          .active h2,
-          .active p {
-            width: 70%;
+          .active p,
+          .active h2 {
+            width: 80%;
+          }
+          .active h2 {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -75,14 +86,40 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             top: 50%;
             transform: translateY(-50%);
           }
-          .episode .meta {
-            font-size: 0.75rem;
-            margin-bottom: 8px;
-            font-weight: ${fontWeight.bold};
+          .active .description::after {
+            background: ${colors.black};
           }
-          p {
-            font-size: 12px;
+          .meta {
+            font-weight: ${fontWeight.bold};
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+          }
+          .duration {
+            font-size: 0.7rem;
             margin: 0;
+          }
+          .description {
+            margin-top: 0.7rem;
+            font-size: 0.85rem;
+            padding: 0;
+            overflow: hidden;
+            line-height: 1.3;
+            height: 3.8em;
+            position: relative;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          }
+          .description::after {
+            content: '...';
+            padding-left: 0.2rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 4rem;
+            height: 1.2em;
+            background: white;
           }
         `}</style>
       </a>
