@@ -99,12 +99,11 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             margin: 0;
           }
           .description {
-            margin-top: 0.7rem;
             font-size: 0.85rem;
             padding: 0;
             overflow: hidden;
-            line-height: 1.3;
-            height: 3.8em;
+            line-height: 1.25;
+            height: 2.25em;
             position: relative;
             text-overflow: ellipsis;
             display: -webkit-box;
