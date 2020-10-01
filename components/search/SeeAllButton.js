@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 
 const SeeAllButton = ({ section, keyword }) => (
   <>
-    <Link
-      href={`/search/[${section}]/[keyword]`}
-      as={`/search/${section}/${keyword}`}
-    >
-      <a>{`See all ${section}`}</a>
+    <Link href={`/search/${section}/${encodeURIComponent(keyword)}`}>
+      <a>See all {section}</a>
     </Link>
 
     <style jsx>{`
