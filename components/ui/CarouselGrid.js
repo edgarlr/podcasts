@@ -35,7 +35,6 @@ const CarouselGrid = ({ children }) => {
           -webkit-overflow-scrolling: touch;
           -ms-overflow-style: -ms-autohiding-scrollbar;
 
-          height: 13rem;
           overflow-x: scroll;
           margin: 0 -1.5rem;
           padding: 1.5rem 0;
@@ -45,16 +44,20 @@ const CarouselGrid = ({ children }) => {
         .channels-carousel::before,
         .channels-carousel::after {
           content: '';
-          padding-left: 1rem;
+          padding-left: 0.8rem;
         }
         .channels-carousel::-webkit-scrollbar {
           display: none;
         }
-        .channels-carousel > :global(div),
-        .channels-carousel > :global(a) {
+        .channels-carousel > :global(div) {
           flex: 0 0 auto;
           max-width: 160px;
-          padding: 0 0.5rem;
+          padding: 0.8rem 0.4rem 1.5rem;
+        }
+        @media screen and (min-width: 760px) {
+          .channels-carousel > :global(div) {
+            padding: 0.8rem 0.8rem 1.5rem;
+          }
         }
       `}</style>
     </div>

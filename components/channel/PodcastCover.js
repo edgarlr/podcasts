@@ -5,11 +5,11 @@ import { oneOfType } from 'prop-types';
 
 export const PodcastCover = ({ channel }) => {
   return (
-    <>
+    <div className="container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
         <a className="channel">
           <img src={channel.urls.logo_image.original} alt={channel.title} />
-          <h2>{channel.title}</h2>
+          <h3>{channel.title}</h3>
         </a>
       </Link>
 
@@ -17,16 +17,21 @@ export const PodcastCover = ({ channel }) => {
         a {
           color: ${colors.darkGray};
         }
-        h2 {
+        h3 {
           font-weight: ${fontWeight.regular};
         }
       `}</style>
 
       <style jsx>{`
+        .container {
+          border-radius: 20px;
+          transition: 0.15s;
+        }
         .channel {
-          display: block;
-          border-radius: 3px;
           margin: 0;
+        }
+        .container:hover {
+          background: #f4f4f6;
         }
         img {
           width: 100%;
@@ -37,7 +42,7 @@ export const PodcastCover = ({ channel }) => {
         a {
           text-decoration: none;
         }
-        h2 {
+        h3 {
           padding: 0;
           margin: 8px 0 0;
           font-size: 0.9rem;
@@ -50,8 +55,16 @@ export const PodcastCover = ({ channel }) => {
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
         }
+        @media screen and (min-width: 668px) {
+          h3 {
+            font-size: 1rem;
+            text-align: left;
+            padding-left: 0.5rem;
+            font-weight: bold;
+          }
+        }
       `}</style>
-    </>
+    </div>
   );
 };
 

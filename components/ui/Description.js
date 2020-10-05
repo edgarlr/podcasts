@@ -27,7 +27,7 @@ const Description = ({ children }) => {
           bottom: 0;
           right: 0;
           width: 4rem;
-          background: white;
+          background: inherit;
         }
       `}</style>
     </p>

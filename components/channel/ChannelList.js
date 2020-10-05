@@ -1,4 +1,3 @@
-import SectionTitle from 'components/SectionTitle';
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
 import PropTypes, { oneOfType } from 'prop-types';
 import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
@@ -8,8 +7,8 @@ const ChannelsList = ({ title, channels, loading }) => {
   if (!loading && channels.length === 0) return null;
 
   return (
-    <div style={{ marginRight: '10%' }}>
-      <SectionTitle title={title} />
+    <div>
+      <h3>{title}</h3>
       <div>
         {loading
           ? [1, 2, 3, 4, 5, 6].map((card) => (
@@ -19,6 +18,11 @@ const ChannelsList = ({ title, channels, loading }) => {
               <ChannelCard channel={channel} key={channel.id} />
             ))}
       </div>
+      <style jsx>{`
+        h3 {
+          font-size: 1rem;
+        }
+      `}</style>
     </div>
   );
 };

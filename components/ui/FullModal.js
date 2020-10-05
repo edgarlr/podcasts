@@ -36,6 +36,21 @@ const FullModal = ({ children, isOpen, button }) => (
         right: 1.5rem;
         top: 1.5rem;
       }
+      @media screen and (min-width: 768px) {
+        .container {
+          padding: 2rem 5rem 7rem;
+        }
+      }
+      @media screen and (min-width: 1024px) {
+        .container {
+          padding: 2rem 12rem 7rem;
+        }
+      }
+      @media screen and (min-width: 1440px) {
+        .container {
+          padding: 2rem 18rem 7rem;
+        }
+      }
     `}</style>
   </div>
 );

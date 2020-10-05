@@ -28,7 +28,13 @@ const ChannelCard = ({ channel }) => {
 
       <style jsx>{`
         .card-container {
-          width: 80%;
+          padding: 0rem 1rem;
+          border-radius: 20px;
+          transition: 0.15s;
+          margin: 0 -1rem;
+        }
+        .card-container:hover {
+          background: #f4f4f6;
         }
         .info {
           display: flex;

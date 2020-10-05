@@ -47,7 +47,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             color: ${colors.lightGray};
           }
           .episode:hover {
-            background: rgba(0, 0, 0, 0.007);
+            background: #f4f4f6;
           }
           .meta {
             color: ${colors.midGray};
@@ -58,9 +58,10 @@ const EpisodeCard = ({ clip, isActive, info }) => {
           .episode {
             display: block;
             text-decoration: none;
-            margin: 0 0.6em;
-            padding: 16px 0;
+            margin: 0;
+            padding: 16px 0.3rem;
             cursor: pointer;
+            transition: 0.2s;
           }
           .active {
             margin: -0.5rem;
@@ -96,6 +97,11 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             font-weight: ${fontWeight.bold};
             margin-top: 0.7rem;
             font-size: 0.8rem;
+          }
+          @media screen and (min-width: 720px) {
+            .episode {
+              padding: 16px 1rem;
+            }
           }
         `}</style>
       </a>
