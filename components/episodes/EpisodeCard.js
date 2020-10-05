@@ -4,6 +4,8 @@ import { colors, fontWeight } from 'styles/theme';
 import { dateFormatter, durationToMinutes } from 'lib/utils';
 import PropTypes from 'prop-types';
 import { episodePropType } from 'lib/customPropTypes';
+import Description from 'components/ui/Description';
+import CardInfo from 'components/ui/CardInfo';
 
 const EpisodeCard = ({ clip, isActive, info }) => {
   return (
@@ -14,12 +16,15 @@ const EpisodeCard = ({ clip, isActive, info }) => {
         {info ? (
           <div className="meta">{info}</div>
         ) : (
-          <p className="description">{clip.description}</p>
+          <Description>{clip.description}</Description>
         )}
 
-        <p className="duration">
-          {dateFormatter(clip.uploaded_at)} · {durationToMinutes(clip.duration)}
-        </p>
+        <CardInfo
+          data={[
+            dateFormatter(clip.uploaded_at),
+            durationToMinutes(clip.duration),
+          ]}
+        />
 
         {isActive && (
           <span>
@@ -44,9 +49,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
           .episode:hover {
             background: rgba(0, 0, 0, 0.007);
           }
-          .meta,
-          .duration,
-          .description {
+          .meta {
             color: ${colors.midGray};
           }
         `}</style>
@@ -93,32 +96,6 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             font-weight: ${fontWeight.bold};
             margin-top: 0.7rem;
             font-size: 0.8rem;
-          }
-          .duration {
-            font-size: 0.7rem;
-            margin: 0;
-          }
-          .description {
-            font-size: 0.85rem;
-            padding: 0;
-            overflow: hidden;
-            line-height: 1.25;
-            height: 2.25em;
-            position: relative;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-          }
-          .description::after {
-            content: '...';
-            padding-left: 0.2rem;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 4rem;
-            height: 1.2em;
-            background: white;
           }
         `}</style>
       </a>

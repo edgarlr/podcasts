@@ -45,8 +45,9 @@ const PlayButton = ({ episodeId, channelId }) => {
           align-items: center;
 
           position: absolute;
-          right: 1.5rem;
-          transform: translateY(-55%);
+          right: 0;
+          bottom: 0;
+          transform: translateY(130%);
           opacity: 1;
           transition: 0.2s;
         }

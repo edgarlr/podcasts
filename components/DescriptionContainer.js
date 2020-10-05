@@ -7,9 +7,11 @@ const DescriptionContainer = ({ data }) => {
 
   return (
     <div onClick={() => setIsShowed(!isShowed)}>
-      {data.length < 200 && <p>{data}</p>}
-
-      {data.length > 200 && <p className={!isShowed ? 'hide' : ' '}>{data}</p>}
+      {data.length < 250 ? (
+        <p>{data}</p>
+      ) : (
+        <p className={!isShowed ? 'hide' : ' '}>{data}</p>
+      )}
 
       <style jsx>{`
         div span {

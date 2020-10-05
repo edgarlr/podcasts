@@ -7,41 +7,45 @@ import PropTypes from 'prop-types';
 import { channelPropType, episodePropType } from 'lib/customPropTypes';
 import ImgTranslucent from 'components/ImgTranslucent';
 import DescriptionContainer from 'components/DescriptionContainer';
+import { useIsMobile } from 'lib/hooks';
 
-const ChannelPage = ({ channel, episodes, series }) => (
-  <Layout
-    navigation
-    headerText={channel.title}
-    metaDescription={channel.description}
-    pageTitle={channel.title + ' | Podcasts'}
-    button={<FollowButtonContainer channel={channel} />}
-  >
-    <MainTitle
-      title={channel.title}
-      subtitle={channel.parent_channel_id && 'Serie'}
-    />
+const ChannelPage = ({ channel, episodes, series }) => {
+  const isMobile = useIsMobile();
+  return (
+    <Layout
+      navigation
+      headerText={channel.title}
+      metaDescription={channel.description}
+      pageTitle={channel.title + ' | Podcasts'}
+      button={<FollowButtonContainer channel={channel} />}
+    >
+      <MainTitle
+        title={channel.title}
+        subtitle={channel.parent_channel_id && 'Serie'}
+      />
 
-    <ImgTranslucent
-      url={
-        channel.urls.banner_image.original || channel.urls.logo_image.original
-      }
-      borderRadius="20px"
-      height="35%"
-      margin=".75rem 0 0.75rem"
-    />
+      <ImgTranslucent
+        url={
+          channel.urls.banner_image.original || channel.urls.logo_image.original
+        }
+        borderRadius="20px"
+        height={isMobile ? '35%' : '25%'}
+        margin=".75rem 0 0.75rem"
+      />
 
-    {series.length === 0 && channel.description.length > 100 && (
-      <DescriptionContainer data={channel.description} />
-    )}
+      {series.length === 0 && channel.description.length > 100 && (
+        <DescriptionContainer data={channel.description} />
+      )}
 
-    <ChannelsCarousel title={`${channel.title}'S SERIES`} channels={series} />
+      <ChannelsCarousel title={`${channel.title}'S SERIES`} channels={series} />
 
-    <EpisodesListWithSortButton
-      episodes={episodes}
-      title={`${episodes.length} episodes`}
-    />
-  </Layout>
-);
+      <EpisodesListWithSortButton
+        episodes={episodes}
+        title={`${episodes.length} episodes`}
+      />
+    </Layout>
+  );
+};
 
 export default ChannelPage;
 

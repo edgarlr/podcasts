@@ -11,3 +11,9 @@ export const colors = {
   gray: '#73788c',
   darkGray: '#383838',
 };
+
+export const mediaQueries = {
+  tablet: '768px',
+  laptop: '1024px',
+  laptopLarge: '1440px',
+};

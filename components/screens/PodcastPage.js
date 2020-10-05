@@ -19,34 +19,66 @@ const PodcastPage = ({ episode }) => {
       headerText={episode.title}
       pageTitle={episode.title + ' | Podcasts'}
       metaDescription={episode.description}
-      button={
+    >
+      <div className="title-container">
         <ImgTranslucent
           url={episode.urls.image || channel.urls.logo_image.original}
           alt={episode.title}
-          width="3rem"
+          borderRadius={'10%'}
         />
-      }
-    >
-      <MainTitle
-        title={episode.title}
-        subtitle={channel.title}
-        linkTo={`/channels/${channel.id}`}
-      />
+        <MainTitle
+          title={episode.title}
+          subtitle={channel.title}
+          linkTo={`/channels/${channel.id}`}
+        />
+        <PlayButton episodeId={episode.id} channelId={channel.id} />
+      </div>
 
       <SectionTitle
         title={`${dateFormatter(episode.uploaded_at)} · ${durationToMinutes(
           episode.duration
         )}`}
-        button={<PlayButton episodeId={episode.id} channelId={channel.id} />}
       />
 
       <DescriptionContainer data={episode.description} />
 
       <EpisodeListContainer
-        title="More Episodes"
+        title={`More episodes`}
         loading={isLoading}
         episodes={clientPlaylist}
       />
+
+      <style jsx>{`
+        .title-container {
+          margin-top: 2.5rem;
+          margin-bottom: 1.5rem;
+          display: grid;
+          grid-template-columns: 1fr 1.5fr;
+          grid-gap: 1rem;
+          position: relative;
+        }
+        .title-container > :global(div:nth-child(2)) {
+          margin-top: 0rem;
+        }
+        @media screen and (min-width: 768px) {
+          .title-container {
+            grid-template-columns: 1fr 2.5fr;
+          }
+          .title-container > :global(button) {
+            bottom: 4rem;
+            left: 30%;
+          }
+        }
+        @media screen and (min-width: 1024px) {
+          .title-container {
+            grid-template-columns: 1fr 4fr;
+            grid-gap: 2rem;
+          }
+          .title-container > :global(button) {
+            left: 23%;
+          }
+        }
+      `}</style>
     </Layout>
   );
 };
