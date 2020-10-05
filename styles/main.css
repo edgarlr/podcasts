@@ -4,6 +4,7 @@ body {
 }
 main {
   padding: 2rem 1.5rem 7rem;
+  transition: 0.15s;
 }
 @media screen and (min-width: 768px) {
   main {
@@ -14,10 +15,16 @@ main {
   main {
     padding: 2rem 12rem 7rem;
   }
+  main.playing {
+    padding: 2rem 23rem 7rem 4rem;
+  }
 }
 @media screen and (min-width: 1440px) {
   main {
     padding: 2rem 18rem 7rem;
+  }
+  main.playing {
+    padding: 2rem 30rem 7rem 8rem;
   }
 }
 

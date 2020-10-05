@@ -22,17 +22,19 @@ export const Player = ({ handleModalClick }) => {
 
   return (
     <>
-      <button
-        className="nav-button"
-        onClick={() => handleModalClick()}
-        aria-label="Minimize Player"
-      >
-        <MdKeyboardArrowDown
-          size="2.5em"
-          color={colors.white}
-          aria-hidden="true"
-        />
-      </button>
+      {handleModalClick && (
+        <button
+          className="nav-button"
+          onClick={() => handleModalClick()}
+          aria-label="Minimize Player"
+        >
+          <MdKeyboardArrowDown
+            size="2.5em"
+            color={colors.white}
+            aria-hidden="true"
+          />
+        </button>
+      )}
 
       <div className="container">
         <div className="img-container">
@@ -160,4 +162,4 @@ export const Player = ({ handleModalClick }) => {
   );
 };
 
-Player.propTypes = { handleModalClick: PropTypes.func.isRequired };
+Player.propTypes = { handleModalClick: PropTypes.func };

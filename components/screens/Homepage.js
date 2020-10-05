@@ -19,7 +19,7 @@ const Homepage = ({ channels }) => {
 
   return (
     <Layout
-      headerText="Podcasts"
+      headerText="Podcasts App"
       pageTitle="Podcast App"
       button={<DynamicSearch />}
     >

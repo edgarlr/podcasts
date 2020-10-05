@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMediaSessions } from 'lib/hooks';
+import { useMediaQuery, useMediaSessions } from 'lib/hooks';
 import { usePlayer } from 'lib/contexts';
 import { Player } from 'components/player/Player';
 import PlayerPortal from 'components/player/PlayerPortal';
@@ -14,15 +14,21 @@ const PlayerModal = () => {
 
   useMediaSessions();
 
+  const isLaptop = useMediaQuery(1024);
   return (
     <PlayerPortal selector="#player">
-      {current && (
-        <div className={fullView && 'fullmodal'}>
+      {current && !isLaptop && (
+        <div className={`mobile-container ${fullView && 'fullmodal'}`}>
           {!fullView ? (
             <MiniPlayer handleModalClick={handleModalClick} />
           ) : (
             <Player handleModalClick={handleModalClick} />
           )}
+        </div>
+      )}
+      {current && isLaptop && (
+        <div className="desktop-container">
+          <Player />
         </div>
       )}
 
@@ -35,7 +41,25 @@ const PlayerModal = () => {
       `}</style>
 
       <style jsx>{`
-        div {
+        .desktop-container {
+          z-index: 20;
+          position: fixed;
+          width: 18rem;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          border-radius: 20px 0 0 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 0 1em;
+        }
+        @media screen and (min-width: 1440px) {
+          .desktop-container {
+            width: 20rem;
+          }
+        }
+        .mobile-container {
           z-index: 20;
           position: fixed;
           height: 6em;
@@ -53,7 +77,7 @@ const PlayerModal = () => {
         .fullmodal {
           height: 95%;
         }
-        div.fullmodal::after {
+        .mobile-container.fullmodal::after {
           content: ' ';
           position: absolute;
           top: -10%;
