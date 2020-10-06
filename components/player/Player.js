@@ -8,15 +8,24 @@ import { useMediaControls } from 'lib/hooks';
 import PropTypes from 'prop-types';
 import {
   MdKeyboardArrowDown,
-  MdSkipPrevious,
   MdPlayArrow,
   MdPause,
-  MdSkipNext,
+  MdForward30,
+  MdReplay10,
 } from 'react-icons/md';
 
 export const Player = ({ handleModalClick }) => {
-  const { loading, currentIndex, playlist, isPlaying, current } = usePlayer();
-  const { toggleAudio, prevEpisode, nextEpisode } = useMediaControls();
+  const {
+    loading,
+    currentIndex,
+    playlist,
+    isPlaying,
+    current,
+    audioRef,
+  } = usePlayer();
+  const audio = audioRef.current;
+
+  const { toggleAudio } = useMediaControls();
 
   if (!current) return <PlayerSkeleton />;
 
@@ -54,10 +63,12 @@ export const Player = ({ handleModalClick }) => {
         <div className="main-player">
           <button
             className="controller-button"
-            onClick={() => prevEpisode()}
-            aria-label="Previous Song"
+            onClick={() => {
+              audio.currentTime = audio.currentTime - 10;
+            }}
+            aria-label="Seek backward 10 seconds"
           >
-            <MdSkipPrevious color="white" size="3em" aria-hidden="true" />
+            <MdReplay10 color="white" size="2.5em" aria-hidden="true" />
           </button>
 
           <button
@@ -72,7 +83,7 @@ export const Player = ({ handleModalClick }) => {
               <MdPlayArrow
                 color="white"
                 size="3em"
-                aria-label="Previous Song"
+                aria-label="Toogle audio play"
               />
             )}
           </button>
@@ -80,10 +91,12 @@ export const Player = ({ handleModalClick }) => {
           <button
             disabled={currentIndex === playlist.length - 1}
             className="controller-button"
-            onClick={() => nextEpisode()}
-            aria-label="Next Song"
+            onClick={() => {
+              audio.currentTime = audio.currentTime + 30;
+            }}
+            aria-label="Seek forward 30 seconds"
           >
-            <MdSkipNext color="white" size="3em" aria-hidden="true" />
+            <MdForward30 color="white" size="2.5em" aria-hidden="true" />
           </button>
         </div>
 
@@ -146,6 +159,9 @@ export const Player = ({ handleModalClick }) => {
         .controller-button {
           background: none;
           border: none;
+          display: flex;
+          align-content: center;
+          justify-content: center;
         }
         .play-button {
           width: 72px;
