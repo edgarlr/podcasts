@@ -4,16 +4,17 @@ import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import SeeAllButton from 'components/search/SeeAllButton';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';
 import PropTypes from 'prop-types';
+import { getChannelsSearchUrl, getEpisodesSearchUrl } from 'lib/constants';
 
 const SearchResults = ({ keyword }) => {
-  const channelsUrl = `https://api.audioboom.com/channels?find[title]=${keyword}&api_version=1`;
+  const channelsUrl = getChannelsSearchUrl(keyword);
   const { data: channelsData, isLoading: channelsLoading } = useSearch(
     channelsUrl,
     'channels',
     4
   );
 
-  const episodesUrl = `https://api.audioboom.com/audio_clips?find[query]=${keyword}&api_version=1`;
+  const episodesUrl = getEpisodesSearchUrl(keyword);
   const { data: episodesData, isLoading: episodesLoading } = useSearch(
     episodesUrl,
     'audio_clips',

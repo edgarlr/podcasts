@@ -1,5 +1,6 @@
 import PodcastPage from 'components/screens/PodcastPage';
 import { useRouter } from 'next/router';
+import { getEpisodeUrl } from 'lib/constants';
 import SkeletonEpisodePage from 'components/screens/skeleton/SkeletonEpisodePage';
 
 export default function podcast({ episode }) {
@@ -16,9 +17,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const req = await fetch(
-    `https://api.audioboom.com/audio_clips/${params.episodeId}api_version=2`
-  );
+  const episodeUrl = getEpisodeUrl(params.episodeId);
+  const req = await fetch(episodeUrl);
 
   const {
     body: { audio_clip: episode },

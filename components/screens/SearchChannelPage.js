@@ -5,12 +5,13 @@ import MainTitle from 'components/MainTitle';
 import ClearSearchButton from 'components/search/ClearSearchButton';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
+import { getChannelsSearchUrl } from 'lib/constants';
 
 export const SearchChannelPage = () => {
   const router = useRouter();
   const { keyword } = router.query;
 
-  const channelsUrl = `https://api.audioboom.com/channels?find[title]=${keyword}&api_version=1`;
+  const channelsUrl = getChannelsSearchUrl(keyword);
   const { data, isLoading } = useSearch(channelsUrl, 'channels');
 
   const Content = () => (

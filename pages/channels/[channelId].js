@@ -1,12 +1,16 @@
+import { useRouter } from 'next/router';
 import ChannelPage from 'components/screens/ChannelPage';
 import SkeletonChannelPage from 'components/screens/skeleton/SkeletonChannelPage';
-import { useRouter } from 'next/router';
+import {
+  getChannelEpisodesUrl,
+  getChannelSeriesUrl,
+  getChannelUrl,
+} from 'lib/constants';
 
 export default function channel({ channel, episodes, series }) {
   const router = useRouter();
 
   if (router.isFallback) return <SkeletonChannelPage />;
-
   return <ChannelPage channel={channel} episodes={episodes} series={series} />;
 }
 
@@ -18,16 +22,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const channelUrl = getChannelUrl(params.channelId);
+  const episodesUrl = getChannelEpisodesUrl(params.channelId);
+  const seriesUrl = getChannelSeriesUrl(params.channelId);
+
   const [reqChannel, reqAudios, reqSeries] = await Promise.all([
-    fetch(
-      `https://api.audioboom.com/channels/${params.channelId}?api_version=1`
-    ),
-    fetch(
-      `https://api.audioboom.com/channels/${params.channelId}/audio_clips?api_version=1`
-    ),
-    fetch(
-      `https://api.audioboom.com/channels/${params.channelId}/child_channels?api_version=1`
-    ),
+    fetch(channelUrl),
+    fetch(episodesUrl),
+    fetch(seriesUrl),
   ]);
 
   const [dataChannel, dataAudios, dataSeries] = await Promise.all([

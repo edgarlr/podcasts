@@ -5,12 +5,14 @@ import { useSearch } from 'lib/hooks';
 import ClearSearchButton from 'components/search/ClearSearchButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';
+import { getEpisodesSearchUrl } from 'lib/constants';
 
 export const SearchEpisodesPage = () => {
   const router = useRouter();
   const { keyword } = router.query;
 
-  const episodesUrl = `https://api.audioboom.com/audio_clips?find[query]=${keyword}&api_version=1`;
+  const episodesUrl = getEpisodesSearchUrl(keyword);
+
   const { data, isLoading } = useSearch(episodesUrl, 'audio_clips');
 
   const Content = () => (

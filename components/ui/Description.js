@@ -37,5 +37,5 @@ const Description = ({ children }) => {
 export default Description;
 
 Description.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.string.isRequired,
 };
