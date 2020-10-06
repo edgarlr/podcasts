@@ -3,7 +3,6 @@ import { colors, fontWeight } from 'styles/theme';
 import PropTypes from 'prop-types';
 
 export default function MainTitle({ title, subtitle, linkTo }) {
-  console.log(title.length);
   return (
     <div>
       {linkTo && (

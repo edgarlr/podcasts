@@ -14,10 +14,10 @@ const PlayerModal = () => {
 
   useMediaSessions();
 
-  const isLaptop = useMediaQuery(1024);
+  const isTablet = useMediaQuery(1024);
   return (
     <PlayerPortal selector="#player">
-      {current && isLaptop && (
+      {current && isTablet && (
         <div className={`mobile-container ${fullView && 'fullmodal'}`}>
           {!fullView ? (
             <MiniPlayer handleModalClick={handleModalClick} />
@@ -26,7 +26,7 @@ const PlayerModal = () => {
           )}
         </div>
       )}
-      {current && !isLaptop && (
+      {current && !isTablet && (
         <div className="desktop-container">
           <Player />
         </div>
@@ -48,11 +48,12 @@ const PlayerModal = () => {
           right: 0;
           top: 0;
           bottom: 0;
-          border-radius: 20px 0 0 0;
+          border-radius: 20px 0 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
           padding: 0 1em;
+          box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
         }
         @media screen and (min-width: 1440px) {
           .desktop-container {

@@ -4,9 +4,12 @@ import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { usePlayer } from 'lib/contexts';
 
 const AppHeader = ({ headerText, navigation, button }) => {
   const router = useRouter();
+
+  const { current } = usePlayer();
 
   const [fixedNav, setFixedNav] = useState(false);
 
@@ -26,7 +29,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
   }, []);
 
   return (
-    <header className={button ? 'full-nav' : ''}>
+    <header className={`${button && 'full-nav'} ${current && 'playing'}`}>
       {navigation && (
         <button onClick={() => router.back()} aria-label="Go back">
           <MdKeyboardArrowLeft size="2rem" aria-hidden="true" />
@@ -87,6 +90,16 @@ const AppHeader = ({ headerText, navigation, button }) => {
         p.show {
           opacity: 1;
           transform: translateY(0);
+        }
+        @media screen and (min-width: 1024px) {
+          header.playing {
+            padding: 1rem 21.5rem 0 1.5rem;
+          }
+        }
+        @media screen and (min-width: 1440px) {
+          header.playing {
+            padding: 1rem 24rem 0 1.5rem;
+          }
         }
       `}</style>
     </header>
