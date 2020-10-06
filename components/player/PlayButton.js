@@ -1,20 +1,25 @@
 import { usePlayer } from 'lib/contexts';
 import { MdPlayArrow } from 'react-icons/md';
 import { colors } from 'styles/theme';
-import { useFetchPlaylist } from 'lib/hooks';
 import PropTypes from 'prop-types';
+import { getChannelEpisodesUrl } from 'lib/constants';
+import { useFetch } from 'lib/hooks';
 
 const PlayButton = ({ episodeId, channelId }) => {
-  const { clientPlaylist, isLoading } = useFetchPlaylist(channelId);
+  const channelEpisodesUrl = getChannelEpisodesUrl(channelId);
+  const { data: episodesData, isLoading } = useFetch(
+    channelEpisodesUrl,
+    'audio_clips'
+  );
 
   const { SetCurrentIndex, SetPlaylist, audioRef, current } = usePlayer();
 
   const onPlayClick = () => {
-    if (clientPlaylist) {
-      SetPlaylist(clientPlaylist);
-      for (let i = 0; i < clientPlaylist.length; i++) {
-        if (clientPlaylist[i].id === episodeId) {
-          audioRef.current.src = clientPlaylist[i].urls.high_mp3;
+    if (episodesData) {
+      SetPlaylist(episodesData);
+      for (let i = 0; i < episodesData.length; i++) {
+        if (episodesData[i].id === episodeId) {
+          audioRef.current.src = episodesData[i].urls.high_mp3;
           audioRef.current.play();
           SetCurrentIndex(i);
           break;

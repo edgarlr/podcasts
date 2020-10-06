@@ -1,7 +1,7 @@
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import { useRouter } from 'next/router';
-import { useSearch } from 'lib/hooks';
+import { useFetch } from 'lib/hooks';
 import ClearSearchButton from 'components/search/ClearSearchButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';
@@ -13,7 +13,7 @@ export const SearchEpisodesPage = () => {
 
   const episodesUrl = getEpisodesSearchUrl(keyword);
 
-  const { data, isLoading } = useSearch(episodesUrl, 'audio_clips');
+  const { data, isLoading } = useFetch(episodesUrl, 'audio_clips');
 
   const Content = () => (
     <>

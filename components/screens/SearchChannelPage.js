@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useSearch } from 'lib/hooks';
+import { useFetch } from 'lib/hooks';
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import ClearSearchButton from 'components/search/ClearSearchButton';
@@ -12,7 +12,7 @@ export const SearchChannelPage = () => {
   const { keyword } = router.query;
 
   const channelsUrl = getChannelsSearchUrl(keyword);
-  const { data, isLoading } = useSearch(channelsUrl, 'channels');
+  const { data, isLoading } = useFetch(channelsUrl, 'channels');
 
   const Content = () => (
     <>

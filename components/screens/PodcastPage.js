@@ -1,4 +1,3 @@
-import { useFetchPlaylist } from 'lib/hooks';
 import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
@@ -8,10 +7,18 @@ import DescriptionContainer from 'components/DescriptionContainer';
 import PlayButton from 'components/player/PlayButton';
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
 import { episodePropType } from 'lib/customPropTypes';
+import { useFetch } from 'lib/hooks';
+import { getChannelEpisodesUrl } from 'lib/constants';
 
 const PodcastPage = ({ episode }) => {
   const { channel } = episode;
-  const { clientPlaylist, isLoading } = useFetchPlaylist(channel.id);
+
+  const channelEpisodesUrl = getChannelEpisodesUrl(channel.id);
+
+  const { data: episodesData, isLoading } = useFetch(
+    channelEpisodesUrl,
+    'audio_clips'
+  );
 
   return (
     <Layout
@@ -45,7 +52,7 @@ const PodcastPage = ({ episode }) => {
       <EpisodeListContainer
         title={`More episodes`}
         loading={isLoading}
-        episodes={clientPlaylist}
+        episodes={episodesData}
       />
 
       <style jsx>{`
