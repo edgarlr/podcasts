@@ -162,6 +162,9 @@ export const Player = ({ handleModalClick }) => {
           display: flex;
           align-content: center;
           justify-content: center;
+          transition: 0.2s;
+          border-radius: 50%;
+          padding: 0.2rem;
         }
         .play-button {
           width: 72px;
@@ -169,9 +172,14 @@ export const Player = ({ handleModalClick }) => {
           border-radius: 50%;
           border: 1px solid white;
           background: none;
+          transition: 0.2s;
         }
         .play-button:focus {
           outline: none;
+        }
+        .play-button:hover,
+        .controller-button:hover {
+          background: rgba(255, 255, 255, 0.05);
         }
       `}</style>
     </>

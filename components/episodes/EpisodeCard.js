@@ -28,7 +28,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
 
         {isActive && (
           <span>
-            <MdVolumeUp size="2em" color="white" />
+            <MdVolumeUp size="2em" color={colors.black} />
           </span>
         )}
 
@@ -37,20 +37,10 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             border-bottom: 1px solid ${colors.lightGray};
           }
           .active {
-            background: ${colors.black};
-            box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
-          }
-          .active h2 {
-            color: ${colors.white};
-          }
-          .active p {
-            color: ${colors.lightGray};
+            background: #f4f4f6;
           }
           .episode:hover {
             background: #f4f4f6;
-          }
-          .meta {
-            color: ${colors.midGray};
           }
         `}</style>
 
@@ -65,11 +55,10 @@ const EpisodeCard = ({ clip, isActive, info }) => {
           }
           .active {
             margin: -0.5rem;
-            padding: 16px 1.25em;
-            border-bottom: none;
+            border-bottom: 0;
             border-radius: 20px;
+            padding: 16px 1rem;
             position: relative;
-            text-align: left;
           }
           h2 {
             margin: 0.8rem 0;
@@ -90,9 +79,6 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             top: 50%;
             transform: translateY(-50%);
           }
-          .active .description::after {
-            background: ${colors.black};
-          }
           .meta {
             font-weight: ${fontWeight.bold};
             margin-top: 0.7rem;
@@ -101,6 +87,9 @@ const EpisodeCard = ({ clip, isActive, info }) => {
           @media screen and (min-width: 720px) {
             .episode {
               padding: 16px 1rem;
+            }
+            .episode.active {
+              padding: 16px 5rem 16px 1.5rem;
             }
           }
         `}</style>
