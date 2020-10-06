@@ -17,7 +17,7 @@ const PlayerModal = () => {
   const isLaptop = useMediaQuery(1024);
   return (
     <PlayerPortal selector="#player">
-      {current && !isLaptop && (
+      {current && isLaptop && (
         <div className={`mobile-container ${fullView && 'fullmodal'}`}>
           {!fullView ? (
             <MiniPlayer handleModalClick={handleModalClick} />
@@ -26,7 +26,7 @@ const PlayerModal = () => {
           )}
         </div>
       )}
-      {current && isLaptop && (
+      {current && !isLaptop && (
         <div className="desktop-container">
           <Player />
         </div>
