@@ -41,7 +41,6 @@ const DescriptionContainer = ({ data }) => {
           transition: 0.3s;
         }
         .hide {
-          height: 4.5rem;
           overflow-y: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;

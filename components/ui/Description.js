@@ -13,21 +13,11 @@ const Description = ({ children }) => {
           padding: 0;
           overflow: hidden;
           line-height: 1.25;
-          max-height: 2em;
           position: relative;
           text-overflow: ellipsis;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
-        }
-        .description::after {
-          content: '...';
-          padding-left: 0.2rem;
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          width: 4rem;
-          background: inherit;
         }
       `}</style>
     </p>
