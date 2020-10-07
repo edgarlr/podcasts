@@ -14,8 +14,9 @@ const ChannelsList = ({ title, channels, loading }) => {
           ? [1, 2, 3, 4, 5, 6].map((card) => (
               <PodcastCoverSkeleton key={card} />
             ))
-          : channels.map((channel) => (
-              <ChannelCard channel={channel} key={channel.id} />
+          : channels.map((channel, index) => (
+              // Cases when API responses with the same element twice.
+              <ChannelCard channel={channel} key={`${channel.id}${index}`} />
             ))}
       </div>
       <style jsx>{`

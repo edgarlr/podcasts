@@ -16,8 +16,9 @@ export const ChannelsCarousel = (props) => {
       <CarouselGrid>
         {loading
           ? [1, 2, 3].map((card) => <PodcastCoverSkeleton key={card} />)
-          : channels.map((channel) => (
-              <PodcastCover channel={channel} key={channel.id} />
+          : channels.map((channel, index) => (
+              // For the cases where the api response width the same element twice
+              <PodcastCover channel={channel} key={`${channel.id}${index}`} />
             ))}
       </CarouselGrid>
     </>
