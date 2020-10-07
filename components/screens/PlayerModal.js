@@ -14,11 +14,11 @@ const PlayerModal = () => {
 
   useMediaSessions();
 
-  const isTablet = useMediaQuery(1024);
+  const isTablet = useMediaQuery(1023);
   return (
     <PlayerPortal selector="#player">
       {current && isTablet && (
-        <div className={`mobile-container ${fullView && 'fullmodal'}`}>
+        <div className={`mobile-container ${fullView ? 'fullmodal' : ''}`}>
           {!fullView ? (
             <MiniPlayer handleModalClick={handleModalClick} />
           ) : (
@@ -55,15 +55,10 @@ const PlayerModal = () => {
           padding: 0 1em;
           box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
         }
-        @media screen and (min-width: 1440px) {
-          .desktop-container {
-            width: 20rem;
-          }
-        }
         .mobile-container {
           z-index: 20;
           position: fixed;
-          height: 6em;
+          height: 5em;
           right: 0;
           left: 0;
           bottom: 0;
@@ -72,7 +67,7 @@ const PlayerModal = () => {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 0 1em;
+          padding: 0 1rem;
           transition: 0.2s;
         }
         .fullmodal {
@@ -88,6 +83,11 @@ const PlayerModal = () => {
           z-index: -1;
           opacity: 0.9;
           background: ${colors.white};
+        }
+        @media screen and (min-width: 1440px) {
+          .desktop-container {
+            width: 20rem;
+          }
         }
       `}</style>
     </PlayerPortal>

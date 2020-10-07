@@ -3,7 +3,7 @@ import { colors } from 'styles/theme';
 
 const SkeletonChannelPage = () => {
   return (
-    <div className="layout">
+    <div className="main-container">
       <div className="main-title" />
       <div className="banner" />
       <div className="episode-list">
@@ -13,15 +13,11 @@ const SkeletonChannelPage = () => {
       </div>
 
       <style jsx>{`
-        .layout {
-          padding: 2rem 1.5rem 7rem;
-        }
         .main-title,
         .banner {
           background: ${colors.lightGray};
         }
         .main-title {
-          width: 100%;
           margin: 3rem 0 1rem;
           padding-bottom: 1.6rem;
           width: 50%;

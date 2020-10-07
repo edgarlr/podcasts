@@ -24,7 +24,7 @@ const PodcastPage = ({ episode }) => {
     <Layout
       navigation
       headerText={episode.title}
-      pageTitle={episode.title + ' | Podcasts'}
+      pageTitle={`${episode.title} | Podcasts`}
       metaDescription={episode.description}
     >
       <div className="title-container">

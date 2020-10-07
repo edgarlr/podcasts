@@ -10,6 +10,7 @@ const PlayerPortal = ({ children, selector }) => {
     ref.current = document.querySelector(selector);
     setMonted(true);
   }, [selector]);
+
   return monted ? createPortal(children, ref.current) : null;
 };
 

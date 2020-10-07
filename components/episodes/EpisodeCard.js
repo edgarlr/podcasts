@@ -10,7 +10,7 @@ import CardInfo from 'components/ui/CardInfo';
 const EpisodeCard = ({ clip, isActive, info }) => {
   return (
     <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
-      <a className={'episode ' + (isActive ? 'active' : '')}>
+      <a className={`episode ${isActive ? 'active' : ''}`}>
         <h2>{clip.title}</h2>
 
         {info ? (
@@ -57,7 +57,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             margin: -0.5rem;
             border-bottom: 0;
             border-radius: 20px;
-            padding: 16px 1rem;
+            padding: 16px 3.5rem 16px 1rem;
             position: relative;
           }
           h2 {

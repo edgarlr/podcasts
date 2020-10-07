@@ -2,28 +2,28 @@ body {
   font-family: 'Kumbh Sans', sans-serif;
   margin: 0;
 }
-main {
+.main-container {
   padding: 2rem 1.5rem 7rem;
   transition: 0.25s;
 }
 @media screen and (min-width: 768px) {
-  main {
+  .main-container {
     padding: 2rem 5rem 7rem;
   }
 }
 @media screen and (min-width: 1024px) {
-  main {
+  .main-container {
     padding: 2rem 12rem 7rem;
   }
-  main.playing {
+  .main-container.playing {
     padding: 2rem 23rem 7rem 4rem;
   }
 }
 @media screen and (min-width: 1440px) {
-  main {
+  .main-container {
     padding: 2rem 18rem 7rem;
   }
-  main.playing {
+  .main-container.playing {
     padding: 2rem 30rem 7rem 8rem;
   }
 }

@@ -19,7 +19,7 @@ export default function MiniPlayer({ handleModalClick }) {
       <div className="container">
         <button
           className="nav-button"
-          onClick={() => handleModalClick()}
+          onClick={handleModalClick}
           aria-label="Expand Player"
         />
 

@@ -29,14 +29,16 @@ const AppHeader = ({ headerText, navigation, button }) => {
   }, []);
 
   return (
-    <header className={`${button && 'full-nav'} ${current && 'playing'}`}>
+    <header
+      className={`${button ? 'full-nav' : ''} ${current ? 'playing' : ''}`}
+    >
       {navigation && (
         <button onClick={() => router.back()} aria-label="Go back">
           <MdKeyboardArrowLeft size="2rem" aria-hidden="true" />
         </button>
       )}
 
-      <p className={fixedNav ? 'show' : ''}>{headerText}</p>
+      <p className={fixedNav && 'show'}>{headerText}</p>
 
       {button}
 
@@ -56,7 +58,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
           display: flex;
           align-items: center;
           height: 3rem;
-          padding: 1rem 1.5rem 0;
+          padding: 0.1rem 0.8rem;
           justify-content: center;
         }
         button {
@@ -66,7 +68,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
           display: flex;
           align-items: center;
           position: absolute;
-          left: 1.5rem;
+          left: 0.5rem;
           padding: 0;
         }
         .full-nav {
@@ -77,19 +79,30 @@ const AppHeader = ({ headerText, navigation, button }) => {
         }
         p {
           margin: 0;
-          font-size: 1.2rem;
+          font-size: 0.9rem;
           font-weight: ${fontWeight.bold};
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
           max-width: 55%;
           opacity: 0;
-          transform: translateY(5px);
+          transform: translateY(6px);
           transition: 0.2s;
         }
         p.show {
           opacity: 1;
-          transform: translateY(0);
+          transform: translateY(2px);
+        }
+        @media screen and (min-width: 766px) {
+          header {
+            padding: 0.5rem 1.5rem 0;
+          }
+          p {
+            font-size: 1.2rem;
+          }
+          button {
+            left: 1.5rem;
+          }
         }
         @media screen and (min-width: 1024px) {
           header.playing {

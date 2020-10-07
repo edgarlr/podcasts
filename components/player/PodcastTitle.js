@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const PodcastTitle = ({
-  title,
-  wrapAt = 35,
-  fontSize = '1em',
-  alwaysJustify = null,
-}) => {
+export const PodcastTitle = ({ title, wrapAt, fontSize, alwaysJustify }) => {
   const [shortTitle, setShortTitle] = useState(title.lenght > 100);
 
   useEffect(() => {
@@ -15,7 +10,7 @@ export const PodcastTitle = ({
 
   if (!shortTitle) {
     return (
-      <div className={`main-container`}>
+      <div className="main-container">
         <h3 style={{ fontSize: fontSize }}>{title}</h3>
 
         <style jsx>{`

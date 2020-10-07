@@ -16,7 +16,7 @@ const ChannelPage = ({ channel, episodes, series }) => {
       navigation
       headerText={channel.title}
       metaDescription={channel.description}
-      pageTitle={channel.title + ' | Podcasts'}
+      pageTitle={`${channel.title} | Podcasts`}
       button={<FollowButtonContainer channel={channel} />}
     >
       <MainTitle
@@ -30,7 +30,7 @@ const ChannelPage = ({ channel, episodes, series }) => {
         }
         borderRadius="20px"
         height={isMobile ? '35%' : '25%'}
-        margin=".75rem 0 0.75rem"
+        margin=".75rem 0"
       />
 
       {series.length === 0 && channel.description.length > 100 && (
@@ -41,7 +41,7 @@ const ChannelPage = ({ channel, episodes, series }) => {
 
       <EpisodesListWithSortButton
         episodes={episodes}
-        title={`${episodes.length} episodes`}
+        title={`${episodes.length} available episodes`}
       />
     </Layout>
   );

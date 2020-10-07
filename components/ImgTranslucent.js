@@ -6,7 +6,7 @@ export default function ImgTranslucent(props) {
   return (
     <div className="image-container">
       <div
-        className={`image-main ${fullBlur && 'ultra'}`}
+        className={`image-main ${fullBlur ? 'ultra' : ''}`}
         style={{ backgroundImage: `url(${url})` }}
       />
 

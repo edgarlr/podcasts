@@ -34,7 +34,9 @@ export default function Layout(props) {
         button={button}
       />
 
-      <main className={current && 'playing'}>{children}</main>
+      <main className={`main-container ${current ? 'playing' : ''}`}>
+        {children}
+      </main>
 
       <style jsx global>{`
         body {

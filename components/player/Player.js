@@ -34,7 +34,7 @@ export const Player = ({ handleModalClick }) => {
       {handleModalClick && (
         <button
           className="nav-button"
-          onClick={() => handleModalClick()}
+          onClick={handleModalClick}
           aria-label="Minimize Player"
         >
           <MdKeyboardArrowDown
@@ -109,9 +109,14 @@ export const Player = ({ handleModalClick }) => {
           flex-direction: column;
           justify-content: space-between;
           padding: 2em 2em 0;
-          height: 70%;
+          height: 80%;
           color: white;
           position: relative;
+        }
+        @media screen and (min-width: 375px) {
+          .container {
+            height: 75%;
+          }
         }
         .nav-button {
           background: transparent;

@@ -3,11 +3,13 @@ import { colors } from 'styles/theme';
 
 const SkeletonEpisodePage = () => {
   return (
-    <div className="layout">
-      <div className="title-container">
-        <div className="title-line" />
-        <div className="title-line" />
-        <div className="title-line" />
+    <div className="main-container">
+      <div className="header">
+        <div className="cover" />
+        <div className="title-container">
+          <div className="title-line" />
+          <div className="title-line" />
+        </div>
       </div>
       <div className="description-container">
         <div className="description-line" />
@@ -22,15 +24,27 @@ const SkeletonEpisodePage = () => {
       </div>
 
       <style jsx>{`
-        .layout {
-          padding: 2rem 1.5rem 7rem;
+        .header {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 2rem;
+          margin: 3rem 0 1rem;
+        }
+        @media screen and (min-width: 766px) {
+          .header {
+            grid-template-columns: 1fr 3fr;
+          }
         }
         .title-line,
-        .description-line {
+        .description-line,
+        .cover {
           background: ${colors.lightGray};
         }
+        .cover {
+          width: 100%;
+          padding-bottom: 100%;
+        }
         .title-container {
-          margin: 3rem 0 1rem;
           width: 100%;
         }
         .title-line {

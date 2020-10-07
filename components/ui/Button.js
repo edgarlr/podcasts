@@ -25,10 +25,17 @@ const Button = ({ isActive, handleClick, children }) => {
       <style jsx>{`
         button {
           border: none;
-          padding: 8px 16px;
+          padding: 8px 12px 6px;
+          font-size: 0.7rem;
           border-radius: 10px;
           cursor: pointer;
           outline: none;
+        }
+        @media screen and (min-width: 768px) {
+          button {
+            padding: 8px 16px 6px;
+            font-size: 0.8rem;
+          }
         }
       `}</style>
     </button>
