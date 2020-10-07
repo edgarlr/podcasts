@@ -10,6 +10,7 @@ import { colors } from 'styles/theme';
 const PlayerModal = () => {
   const { current } = usePlayer();
   const [fullView, setFullView] = useState(false);
+
   const handleModalClick = () => setFullView(!fullView);
 
   useMediaSessions();

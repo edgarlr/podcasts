@@ -126,6 +126,13 @@ export const Player = ({ handleModalClick }) => {
           position: absolute;
           left: 1rem;
           top: 1.5rem;
+          z-index: 11;
+          border-radius: 50%;
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        .nav-button:hover {
+          background: rgba(255, 255, 255, 0.1);
         }
         .img-container {
           width: 80%;
