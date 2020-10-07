@@ -25,7 +25,6 @@ const Homepage = ({ channels }) => {
     >
       <MainTitle title="Podcast App" />
 
-      {/* <h2>Followed</h2> */}
       <ChannelsCarousel title="Followed" channels={myList} />
 
       {isMobile ? (
