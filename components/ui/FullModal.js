@@ -9,7 +9,10 @@ const FullModal = ({ children, isOpen, button }) => {
         current ? 'playing' : ''
       }`}
     >
-      <button className="action-button" aria-label="Open Modal">
+      <button
+        className={`action-button ${current ? 'playing' : ''}`}
+        aria-label="Open Modal"
+      >
         {button}
       </button>
 
@@ -43,6 +46,11 @@ const FullModal = ({ children, isOpen, button }) => {
           .action-button {
             right: 1.5rem;
             top: 0.75rem;
+          }
+        }
+        @media screen and (min-width: 1024px) {
+          .action-button.playing {
+            right: 23.5rem;
           }
         }
       `}</style>
