@@ -25,6 +25,7 @@ const FullModal = ({ children, isOpen, button }) => {
           right: 0;
           left: 0;
           top: 0;
+          bottom: 100%;
           transition: bottom 0.3s;
         }
         .full {

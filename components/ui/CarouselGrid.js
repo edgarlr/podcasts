@@ -31,6 +31,11 @@ const CarouselGrid = ({ children }) => {
           max-width: 160px;
           padding: 0.8rem 0.4rem 1.5rem;
         }
+        @media screen and (max-width: 320px) {
+          .channels-carousel > :global(div) {
+            max-width: 130px;
+          }
+        }
         @media screen and (min-width: 760px) {
           .channels-carousel > :global(div) {
             padding: 0.8rem 0.8rem 1.5rem;

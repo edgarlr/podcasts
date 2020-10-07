@@ -31,7 +31,7 @@ export const PodcastCover = ({ channel }) => {
           margin: 0;
         }
         .container:hover {
-          background: #f4f4f6;
+          background: ${colors.whiteHover};
         }
         img {
           width: 100%;

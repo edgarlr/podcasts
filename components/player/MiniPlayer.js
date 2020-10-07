@@ -97,6 +97,7 @@ export default function MiniPlayer({ handleModalClick }) {
         }
         .info {
           max-width: 100%;
+          max-width: 20rem;
           overflow-x: hidden;
         }
         h4 {

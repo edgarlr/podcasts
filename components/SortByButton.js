@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MdSort } from 'react-icons/md';
 import PropTypes from 'prop-types';
+import { colors } from 'styles/theme';
 
 export default function SortByButton({ handleFilterClick }) {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -76,6 +77,9 @@ export default function SortByButton({ handleFilterClick }) {
           color: white;
           background: #131414;
           border-radius: 10px;
+        }
+        button:not(.active):hover {
+          background: ${colors.whiteHover};
         }
         .icon {
           padding: 0;

@@ -23,7 +23,7 @@ const Homepage = ({ channels }) => {
       pageTitle="Podcast App"
       button={<DynamicSearch />}
     >
-      <MainTitle title="Podcasts" />
+      <MainTitle title="Podcast App" />
 
       {/* <h2>Followed</h2> */}
       <ChannelsCarousel title="Followed" channels={myList} />
@@ -36,7 +36,6 @@ const Homepage = ({ channels }) => {
         </>
       ) : (
         <>
-          <h2>Featured</h2>
           <ChannelsCarousel title="Featured" channels={channels.slice(0, 6)} />
           <h2>Explore</h2>
           <div className="list-container">

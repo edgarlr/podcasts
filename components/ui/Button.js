@@ -26,7 +26,7 @@ const Button = ({ isActive, handleClick, children }) => {
         button {
           border: none;
           padding: 8px 12px 6px;
-          font-size: 0.7rem;
+          font-size: 0.8rem;
           border-radius: 10px;
           cursor: pointer;
           outline: none;

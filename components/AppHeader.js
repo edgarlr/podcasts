@@ -79,7 +79,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
         }
         p {
           margin: 0;
-          font-size: 0.9rem;
+          font-size: 1rem;
           font-weight: ${fontWeight.bold};
           text-overflow: ellipsis;
           overflow: hidden;

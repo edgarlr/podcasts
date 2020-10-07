@@ -142,6 +142,7 @@ export const Player = ({ handleModalClick }) => {
         }
         .info {
           width: 90%;
+          max-width: 20rem;
           margin: 1em auto;
           white-space: nowrap;
           overflow: hidden;

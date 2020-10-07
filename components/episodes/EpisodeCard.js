@@ -37,10 +37,10 @@ const EpisodeCard = ({ clip, isActive, info }) => {
             border-bottom: 1px solid ${colors.lightGray};
           }
           .active {
-            background: #f4f4f6;
+            background: ${colors.whiteHover};
           }
           .episode:hover {
-            background: #f4f4f6;
+            background: ${colors.whiteHover};
           }
         `}</style>
 

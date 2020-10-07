@@ -30,11 +30,10 @@ const ChannelCard = ({ channel }) => {
         .card-container {
           padding: 0rem 1rem;
           border-radius: 20px;
-          transition: 0.15s;
           margin: 0 -1rem;
         }
         .card-container:hover {
-          background: #f4f4f6;
+          background: ${colors.whiteHover};
         }
         .info {
           display: flex;
