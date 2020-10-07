@@ -1,13 +1,15 @@
 import Link from 'next/link';
-import { MdVolumeUp } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
 import { dateFormatter, durationToMinutes } from 'lib/utils';
 import PropTypes from 'prop-types';
 import { episodePropType } from 'lib/customPropTypes';
 import Description from 'components/ui/Description';
 import CardInfo from 'components/ui/CardInfo';
+import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying';
+import { usePlayer } from 'lib/contexts';
 
 const EpisodeCard = ({ clip, isActive, info }) => {
+  const { isPlaying } = usePlayer();
   return (
     <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
       <a className={`episode ${isActive ? 'active' : ''}`}>
@@ -27,9 +29,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
         />
 
         {isActive && (
-          <span>
-            <MdVolumeUp size="2em" color={colors.black} />
-          </span>
+          <span>{isPlaying && <IconAudioPlaying color={colors.black} />}</span>
         )}
 
         <style jsx>{`
