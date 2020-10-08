@@ -13,6 +13,7 @@ import {
   MdForward30,
   MdReplay10,
 } from 'react-icons/md';
+// import Playlist from './Playlist';
 
 export const Player = ({ handleModalClick }) => {
   const {
@@ -101,6 +102,8 @@ export const Player = ({ handleModalClick }) => {
         </div>
 
         <ProgressBar />
+
+        {/* <Playlist /> */}
       </div>
 
       <style jsx>{`
@@ -112,6 +115,7 @@ export const Player = ({ handleModalClick }) => {
           height: 80%;
           color: white;
           position: relative;
+          overflow-y: scroll;
         }
         @media screen and (min-width: 375px) {
           .container {
