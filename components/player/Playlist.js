@@ -1,12 +1,9 @@
-import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying';
 import { usePlayer } from 'lib/contexts';
+import { dateFormatter, durationToMinutes } from 'lib/utils';
 import { useRouter } from 'next/router';
 import React from 'react';
-import {
-  MdKeyboardArrowDown,
-  // MdKeyboardArrowUp,
-  MdPlayArrow,
-} from 'react-icons/md';
+import { MdKeyboardArrowDown, MdPlayCircleOutline } from 'react-icons/md';
+import MiniPlayer from './MiniPlayer';
 
 const Playlist = () => {
   const {
@@ -40,30 +37,28 @@ const Playlist = () => {
         Playlist
         <span>{<MdKeyboardArrowUp size="1.5rem" color="white" />}</span>
       </div> */}
+      <div className="title" style={{ marginBottom: '1rem' }}>
+        Now Playing
+        <span>
+          <MdKeyboardArrowDown size="1.5rem" color="white" />
+        </span>
+      </div>
+      <div style={{ margin: '1rem 0 2.5rem' }}>
+        <MiniPlayer handleModalClick={() => onNowPlayingClick(current.id)} />
+      </div>
+
       <ul>
-        <div className="title">
-          Now Playing
-          <span>
-            <MdKeyboardArrowDown size="1.5rem" color="white" />
-          </span>
-        </div>
-        <li
-          onClick={() => onNowPlayingClick(current.id)}
-          key={playlist[currentIndex].id}
-        >
-          <div style={{ color: '#a0f6ff' }}>{playlist[currentIndex].title}</div>
-          <span>{playlist[currentIndex].channel.title}</span>
-          <div className="playing-icon">
-            <IconAudioPlaying color="#a0f6ff" size={15} strokeWidth={4} />
-          </div>
-        </li>
         <div className="title">Next from: {current.channel.title}</div>
         {playlist.slice(currentIndex + 1).map((episode) => (
           <li onClick={() => onPodcastClick(episode.id)} key={episode.id}>
             <p>{episode.title}</p>
-            <span>{episode.channel.title}</span>
+            <span>
+              {dateFormatter(episode.uploaded_at)}
+              <b> · </b>
+              {durationToMinutes(episode.duration)}
+            </span>
             <div className="play-icon">
-              <MdPlayArrow color={'white'} size={'1.5rem'} />
+              <MdPlayCircleOutline color={'white'} size={'1.5rem'} />
             </div>
           </li>
         ))}
@@ -108,7 +103,7 @@ const Playlist = () => {
           font-size: 0.7rem;
         }
         li > p {
-          margin: 0;
+          margin: 0.1rem 0;
           text-overflow: ellipsis;
           white-space: nowrap;
           width: 85%;

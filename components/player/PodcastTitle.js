@@ -16,7 +16,7 @@ export const PodcastTitle = ({ title, wrapAt, fontSize, alwaysJustify }) => {
         <style jsx>{`
           .main-container {
             display: flex;
-            padding: 8px 0;
+            padding: 0;
             justify-content: ${alwaysJustify || 'center'};
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -47,7 +47,7 @@ export const PodcastTitle = ({ title, wrapAt, fontSize, alwaysJustify }) => {
         }
         .main-container {
           display: flex;
-          padding: 8px 0;
+          padding: 0;
           justify-content: flex-start;
         }
         h3 {

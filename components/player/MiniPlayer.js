@@ -78,6 +78,7 @@ export default function MiniPlayer({ handleModalClick }) {
           grid-template-columns: 3rem 1fr 3rem;
           grid-gap: 1rem;
           align-items: center;
+          cursor: pointer;
         }
         .nav-button {
           outline: none;
@@ -107,7 +108,7 @@ export default function MiniPlayer({ handleModalClick }) {
           overflow: hidden;
           text-overflow: ellipsis;
           font-size: 0.7rem;
-          margin: 0;
+          margin: 6px 0 0;
           text-transform: uppercase;
         }
         .play-button {

@@ -111,16 +111,12 @@ export const Player = ({ handleModalClick }) => {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 2em 2em 0;
-          height: 80%;
+          padding: 3rem 2rem 2rem;
+          height: 100%;
           color: white;
           position: relative;
           overflow-y: scroll;
-        }
-        @media screen and (min-width: 375px) {
-          .container {
-            height: 75%;
-          }
+          max-height: 32rem;
         }
         .nav-button {
           background: transparent;
@@ -139,7 +135,7 @@ export const Player = ({ handleModalClick }) => {
           background: rgba(255, 255, 255, 0.1);
         }
         .img-container {
-          width: 80%;
+          width: 75%;
           max-width: 250px;
           margin: 0 auto;
           position: relative;
@@ -171,7 +167,7 @@ export const Player = ({ handleModalClick }) => {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          margin-bottom: 10%;
+          margin: 3% 0 8%;
         }
         .controller-button {
           background: none;
@@ -197,6 +193,12 @@ export const Player = ({ handleModalClick }) => {
         .play-button:hover,
         .controller-button:hover {
           background: rgba(255, 255, 255, 0.05);
+        }
+        @media screen and (min-width: 766px) and (max-width: 1023px) and (orientation: portrait) {
+          .container {
+            padding: 3rem 8rem 2rem;
+            max-height: 40rem;
+          }
         }
       `}</style>
     </>

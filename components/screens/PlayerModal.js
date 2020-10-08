@@ -59,29 +59,31 @@ const PlayerModal = () => {
         .mobile-container {
           z-index: 20;
           position: fixed;
-          height: 5em;
           right: 0;
           left: 0;
           bottom: 0;
+          top: calc(100% - 5rem);
           margin: 0 -1px -1px -1px;
           border-radius: 20px 20px 0 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 0 1rem;
+          padding: 0 0.8rem;
           transition: 0.2s;
         }
         .fullmodal {
-          height: 95%;
+          top: 0;
+          margin-top: 1.5rem;
+          padding: 0;
         }
         .mobile-container.fullmodal::after {
           content: ' ';
           position: absolute;
-          top: -10%;
           left: 0;
           right: 0;
-          bottom: 100%;
           z-index: -1;
+          top: -2rem;
+          bottom: 100%;
           opacity: 0.9;
           background: ${colors.white};
         }
