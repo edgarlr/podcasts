@@ -17,7 +17,7 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
         type="search"
         name="main-search"
         id="searchInput"
-        placeholder={'Search...'}
+        placeholder="Search..."
         value={searchKeyword}
         onChange={onSearchChange}
       />

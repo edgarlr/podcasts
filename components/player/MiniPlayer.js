@@ -2,7 +2,7 @@ import { usePlayer } from 'lib/contexts';
 import { MdPause, MdPlayArrow } from 'react-icons/md';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
-import CircleProgressBar from './CircleProgressBar';
+import ProgressCircle from './ProgressCircle';
 import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 import PropTypes from 'prop-types';
@@ -45,7 +45,7 @@ export default function MiniPlayer({ handleModalClick }) {
           disabled={loading}
           onClick={() => toggleAudio()}
         >
-          <CircleProgressBar size={50} strokeWidth={2} circleStroke="#fff" />
+          <ProgressCircle size={50} strokeWidth={2} circleStroke="#fff" />
 
           {isPlaying ? (
             <MdPause color="white" size="2.2em" />
@@ -117,7 +117,6 @@ export default function MiniPlayer({ handleModalClick }) {
           display: flex;
           justify-content: center;
           align-items: center;
-          padding-right: 0.5rem;
           background: transparent;
         }
       `}</style>

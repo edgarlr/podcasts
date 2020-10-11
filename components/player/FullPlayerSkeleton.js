@@ -1,7 +1,7 @@
 import { colors } from 'styles/theme';
 import { MdSkipNext, MdPlayArrow, MdSkipPrevious } from 'react-icons/md';
 
-const PlayerSkeleton = () => {
+const FullPlayerSkeleton = () => {
   return (
     <>
       <div className="container">
@@ -111,4 +111,4 @@ const PlayerSkeleton = () => {
   );
 };
 
-export default PlayerSkeleton;
+export default FullPlayerSkeleton;

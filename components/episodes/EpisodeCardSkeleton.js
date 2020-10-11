@@ -3,9 +3,9 @@ import { colors } from 'styles/theme';
 const EpisodeCardSkeleton = () => {
   return (
     <div className="episode">
-      <div className="title"></div>
-      <div className="duration"></div>
-      <div className="plays"></div>
+      <div className="title" />
+      <div className="duration" />
+      <div className="plays" />
 
       <style jsx>{`
         .episode {

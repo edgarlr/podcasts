@@ -23,8 +23,6 @@ export const ProgressBar = () => {
         className="slider"
       />
 
-      {/* <div  className='progressbar-fill' style={{width: `calc(${(currentTime * 100) / duration}% )` }}></div > */}
-
       <div className="progress-time">
         <div>{durationToMSS(currentTime)}</div>
         <div>{durationToMSS(duration)}</div>

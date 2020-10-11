@@ -3,15 +3,15 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 const PlayerPortal = ({ children, selector }) => {
-  const ref = useRef();
+  const playerPortalRef = useRef();
   const [monted, setMonted] = useState(false);
 
   useEffect(() => {
-    ref.current = document.querySelector(selector);
+    playerPortalRef.current = document.querySelector(selector);
     setMonted(true);
   }, [selector]);
 
-  return monted ? createPortal(children, ref.current) : null;
+  return monted ? createPortal(children, playerPortalRef.current) : null;
 };
 
 export default PlayerPortal;

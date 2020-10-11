@@ -2,10 +2,10 @@ import { usePlayer } from 'lib/contexts';
 import { dateFormatter, durationToMinutes } from 'lib/utils';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { MdKeyboardArrowDown, MdPlayCircleOutline } from 'react-icons/md';
+import { MdPlayCircleOutline } from 'react-icons/md';
 import MiniPlayer from './MiniPlayer';
 
-const Playlist = () => {
+const Queue = () => {
   const {
     playlist,
     currentIndex,
@@ -33,16 +33,7 @@ const Playlist = () => {
 
   return (
     <div className="container">
-      {/* <div className="title">
-        Playlist
-        <span>{<MdKeyboardArrowUp size="1.5rem" color="white" />}</span>
-      </div> */}
-      <div className="title" style={{ marginBottom: '1rem' }}>
-        Now Playing
-        <span>
-          <MdKeyboardArrowDown size="1.5rem" color="white" />
-        </span>
-      </div>
+      <div className="title">Now Playing</div>
       <div style={{ margin: '1rem 0 2.5rem' }}>
         <MiniPlayer handleModalClick={() => onNowPlayingClick(current.id)} />
       </div>
@@ -65,6 +56,13 @@ const Playlist = () => {
       </ul>
 
       <style jsx>{`
+        .container {
+          padding: 5rem 2rem;
+          height: 100%;
+          color: white;
+          position: relative;
+          overflow-y: scroll;
+        }
         .title {
           color: white;
           width: 100%;
@@ -131,4 +129,4 @@ const Playlist = () => {
   );
 };
 
-export default Playlist;
+export default Queue;

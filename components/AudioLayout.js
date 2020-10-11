@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayerModal from './screens/PlayerModal';
+import PlayerModal from './player/Player';
 import PropTypes from 'prop-types';
 
 const AudioLayout = ({ children }) => {
