@@ -7,11 +7,7 @@ const DescriptionContainer = ({ data }) => {
 
   return (
     <div onClick={() => setIsShowed(!isShowed)}>
-      {data.length < 250 ? (
-        <p>{data}</p>
-      ) : (
-        <p className={!isShowed ? 'hide' : ' '}>{data}</p>
-      )}
+      <p className={data.length > 280 && (!isShowed ? 'hide' : ' ')}>{data}</p>
 
       <style jsx>{`
         div span {
@@ -54,8 +50,12 @@ const DescriptionContainer = ({ data }) => {
           position: absolute;
           bottom: 0;
           right: 0;
-          width: 14.1rem;
+          left: 30%;
           height: 1.2em;
+        }
+        @media screen and (min-width: 768px) {
+          .hide::after {
+          }
         }
       `}</style>
     </div>
