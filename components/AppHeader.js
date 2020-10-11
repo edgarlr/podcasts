@@ -106,12 +106,12 @@ const AppHeader = ({ headerText, navigation, button }) => {
         }
         @media screen and (min-width: 1024px) {
           header.playing {
-            padding: 1rem 21.5rem 0 1.5rem;
+            padding: 1rem 24rem 0 1.5rem;
           }
         }
         @media screen and (min-width: 1440px) {
           header.playing {
-            padding: 1rem 24rem 0 1.5rem;
+            padding: 1rem 26rem 0 1.5rem;
           }
         }
       `}</style>

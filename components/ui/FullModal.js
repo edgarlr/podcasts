@@ -51,7 +51,12 @@ const FullModal = ({ children, isOpen, button }) => {
         }
         @media screen and (min-width: 1024px) {
           .action-button.playing {
-            right: 23.5rem;
+            right: 24rem;
+          }
+        }
+        @media screen and (min-width: 1440px) {
+          .action-button.playing {
+            right: 26rem;
           }
         }
       `}</style>
