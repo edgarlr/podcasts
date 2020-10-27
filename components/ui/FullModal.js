@@ -9,12 +9,12 @@ const FullModal = ({ children, isOpen, button }) => {
         current ? 'playing' : ''
       }`}
     >
-      <button
+      <div
         className={`action-button ${current ? 'playing' : ''}`}
         aria-label="Open Modal"
       >
         {button}
-      </button>
+      </div>
 
       {children}
 

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { MdSort } from 'react-icons/md';
+import { MdClose, MdSort } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { colors } from 'styles/theme';
+import IconButton from './ui/IconButton';
 
 export default function SortByButton({ handleFilterClick }) {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -15,14 +16,16 @@ export default function SortByButton({ handleFilterClick }) {
 
   return (
     <div className="sort">
-      <button
-        className="icon"
-        onClick={() => setShowDropdown(!showDropdown)}
-        aria-label="Sort Episodes"
+      <IconButton
+        handleOnClick={() => setShowDropdown(!showDropdown)}
+        ariaLabel="Sort Episodes"
       >
-        <MdSort size="1.5em" aria-hidden="true" />
-      </button>
-
+        {showDropdown ? (
+          <MdClose size="1.5em" aria-hidden="true" />
+        ) : (
+          <MdSort size="1.5em" aria-hidden="true" />
+        )}
+      </IconButton>
       <div className="sort-dropdown">
         <button
           id="popular"
@@ -80,12 +83,6 @@ export default function SortByButton({ handleFilterClick }) {
         }
         button:not(.active):hover {
           background: ${colors.whiteHover};
-        }
-        .icon {
-          padding: 0;
-        }
-        .icon:hover {
-          opacity: 0.5;
         }
       `}</style>
     </div>

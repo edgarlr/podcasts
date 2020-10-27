@@ -1,8 +1,18 @@
 import PropTypes from 'prop-types';
 import { colors } from 'styles/theme';
 
-const IconButton = ({ children, handleOnClick, size, secondary }) => (
-  <button className={secondary && 'secondary'} onClick={handleOnClick}>
+const IconButton = ({
+  children,
+  handleOnClick,
+  size,
+  secondary,
+  ariaLabel,
+}) => (
+  <button
+    className={secondary && 'secondary'}
+    onClick={handleOnClick}
+    aria-label={ariaLabel}
+  >
     {children}
     <style jsx>{`
       button {
@@ -32,6 +42,7 @@ export default IconButton;
 IconButton.defaultProps = {
   size: null,
   secondary: false,
+  ariaLabel: 'button',
 };
 
 IconButton.propTypes = {
@@ -39,4 +50,5 @@ IconButton.propTypes = {
   handleOnClick: PropTypes.func.isRequired,
   size: PropTypes.string,
   secondary: PropTypes.bool,
+  ariaLabel: PropTypes.string,
 };

@@ -1,3 +1,4 @@
+import IconButton from 'components/ui/IconButton';
 import { useRouter } from 'next/router';
 import { MdClose } from 'react-icons/md';
 import { colors } from 'styles/theme';
@@ -10,9 +11,9 @@ const ClearSearchButton = () => {
   };
 
   return (
-    <button onClick={onCloseClick} aria-label="Search">
+    <IconButton handleOnClick={onCloseClick} ariaLabel="Search">
       <MdClose size="2rem" color={colors.black} aria-hidden="true" />
-    </button>
+    </IconButton>
   );
 };
 

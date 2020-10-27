@@ -19,7 +19,11 @@ const PlayerContainer = ({ handleModalClick }) => {
     <>
       {handleModalClick && (
         <div className="close-button" aria-label="Minimize Player">
-          <IconButton handleOnClick={handleModalClick} secondary>
+          <IconButton
+            handleOnClick={handleModalClick}
+            ariaLabel="Minimize player"
+            secondary
+          >
             <MdKeyboardArrowDown
               size="2.5em"
               color={colors.white}

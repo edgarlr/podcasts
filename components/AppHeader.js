@@ -5,6 +5,7 @@ import { colors, fontWeight } from 'styles/theme';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { usePlayer } from 'lib/contexts';
+import IconButton from './ui/IconButton';
 
 const AppHeader = ({ headerText, navigation, button }) => {
   const router = useRouter();
@@ -33,9 +34,11 @@ const AppHeader = ({ headerText, navigation, button }) => {
       className={`${button ? 'full-nav' : ''} ${current ? 'playing' : ''}`}
     >
       {navigation && (
-        <button onClick={() => router.back()} aria-label="Go back">
-          <MdKeyboardArrowLeft size="2rem" aria-hidden="true" />
-        </button>
+        <div className="nav-btn-container">
+          <IconButton handleOnClick={() => router.back()} ariaLabel="go back">
+            <MdKeyboardArrowLeft size="2rem" aria-hidden="true" />
+          </IconButton>
+        </div>
       )}
 
       <p className={fixedNav && 'show'}>{headerText}</p>
@@ -61,12 +64,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
           padding: 0.1rem 0.8rem;
           justify-content: center;
         }
-        button {
-          outline: none;
-          border: none;
-          background: transparent;
-          display: flex;
-          align-items: center;
+        .nav-btn-container {
           position: absolute;
           left: 0.5rem;
           padding: 0;
@@ -74,7 +72,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
         .full-nav {
           justify-content: space-between;
         }
-        .full-nav button {
+        .full-nav .nav-btn-container {
           position: static;
         }
         p {
@@ -100,7 +98,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
           p {
             font-size: 1.2rem;
           }
-          button {
+          .nav-btn-container {
             left: 1.5rem;
           }
         }

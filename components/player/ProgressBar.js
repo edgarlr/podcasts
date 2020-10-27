@@ -39,6 +39,11 @@ export const ProgressBar = () => {
           transition: opacity 0.2s;
           margin-bottom: 1rem;
           position: relative;
+          cursor: pointer;
+          transition: height 0.2s;
+        }
+        .slider:hover {
+          height: 6px;
         }
 
         .slider::-webkit-slider-thumb {

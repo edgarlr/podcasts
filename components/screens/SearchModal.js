@@ -5,6 +5,7 @@ import SearchInput from 'components/search/SearchInput';
 import SearchResults from 'components/search/SearchResults';
 import { MdClose, MdSearch } from 'react-icons/md';
 import { colors } from 'styles/theme';
+import IconButton from 'components/ui/IconButton';
 
 const SearchModal = () => {
   const router = useRouter();
@@ -27,16 +28,16 @@ const SearchModal = () => {
   };
 
   let buttonIcon = (
-    <MdSearch
-      size="2rem"
-      color={colors.darkGray}
-      onClick={() => setIsOpen(true)}
-    />
+    <IconButton handleOnClick={() => setIsOpen(true)}>
+      <MdSearch size="2rem" color={colors.darkGray} />
+    </IconButton>
   );
 
   if (isOpen) {
     buttonIcon = (
-      <MdClose size="2rem" color={colors.darkGray} onClick={closeModal} />
+      <IconButton handleOnClick={closeModal}>
+        <MdClose size="2rem" color={colors.darkGray} />
+      </IconButton>
     );
   }
 

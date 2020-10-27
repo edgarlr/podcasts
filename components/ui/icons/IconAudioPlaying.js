@@ -4,7 +4,7 @@ const IconAudioPlaying = ({ size, strokeWidth, color }) => {
   return (
     <div>
       <svg width={size * 1.5} height={size} fill={color}>
-        <rect x={0} y={0} height={size} width={strokeWidth} />
+        <rect id="firstLine" x={0} y={0} height={size} width={strokeWidth} />
         <rect x={size / 2} y={0} height={size} width={strokeWidth} />
         <rect x={size} y={0} height={size} width={strokeWidth} />
       </svg>
