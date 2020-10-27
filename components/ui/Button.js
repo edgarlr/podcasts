@@ -20,6 +20,9 @@ const Button = ({ isActive, handleClick, children }) => {
           background: ${colors.black};
           font-weight: ${fontWeight.bold};
         }
+        button:hover {
+          transform: scale(1.025);
+        }
       `}</style>
 
       <style jsx>{`
@@ -30,6 +33,7 @@ const Button = ({ isActive, handleClick, children }) => {
           border-radius: 10px;
           cursor: pointer;
           outline: none;
+          transition: transform 0.2s;
         }
         @media screen and (min-width: 768px) {
           button {
