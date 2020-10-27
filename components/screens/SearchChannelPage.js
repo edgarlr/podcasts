@@ -4,8 +4,8 @@ import Layout from 'components/Layout';
 import MainTitle from 'components/MainTitle';
 import ClearSearchButton from 'components/search/ClearSearchButton';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';
-import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import { getChannelsSearchUrl } from 'lib/constants';
+import { ChannelsGrid } from 'components/channel/ChannelsGrid';
 
 export const SearchChannelPage = () => {
   const router = useRouter();
@@ -17,11 +17,7 @@ export const SearchChannelPage = () => {
   const Content = () => (
     <>
       <MainTitle title={`"${keyword}" in search`} />
-      <ChannelsCarousel
-        title="All channels"
-        channels={data}
-        loading={isLoading}
-      />
+      <ChannelsGrid title="All channels" channels={data} loading={isLoading} />
     </>
   );
 
