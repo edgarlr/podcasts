@@ -118,6 +118,13 @@ export default function MiniPlayer({ handleModalClick }) {
           justify-content: center;
           align-items: center;
           background: transparent;
+          border-radius: 50%;
+          height: 3rem;
+          width: 3rem;
+          transition: background 0.2s;
+        }
+        .play-button:hover {
+          background: rgba(255, 255, 255, 0.05);
         }
       `}</style>
     </>

@@ -31,7 +31,7 @@ export const ProgressBar = () => {
       <style jsx>{`
         .slider {
           -webkit-appearance: none;
-          height: 4px;
+          height: 3px;
           background-color: #5e5f5f;
           width: 100%;
           outline: none;
@@ -40,10 +40,10 @@ export const ProgressBar = () => {
           margin-bottom: 1rem;
           position: relative;
           cursor: pointer;
-          transition: height 0.2s;
+          transition: height 0.15s;
         }
         .slider:hover {
-          height: 6px;
+          height: 5px;
         }
 
         .slider::-webkit-slider-thumb {

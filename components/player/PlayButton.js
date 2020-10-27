@@ -56,6 +56,12 @@ const PlayButton = ({ episodeId, channelId }) => {
           opacity: 1;
           transition: 0.2s;
         }
+        .play-button:hover {
+          background: ${colors.whiteHover};
+        }
+        .play-button:hover :global(svg) {
+          fill: ${colors.black};
+        }
         .play-button:disabled {
           opacity: 0.2;
         }

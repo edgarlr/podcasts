@@ -78,6 +78,10 @@ const PlayerContainer = ({ handleModalClick }) => {
           padding: 0.5rem 0 0 0;
           margin: 0;
           border-top: 1px solid rgba(255, 255, 255, 0.2);
+          transition: 0.1s;
+        }
+        .queue-button:hover {
+          transform: scale(1.025);
         }
         .now-playing {
           border: none;
