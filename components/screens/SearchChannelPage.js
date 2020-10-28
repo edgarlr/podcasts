@@ -25,7 +25,7 @@ export const SearchChannelPage = () => {
     <Layout
       navigation
       headerText={`"${keyword}" in search`}
-      pageTitle="Podcasts"
+      pageTitle="Search | Podcasts App"
       button={<ClearSearchButton />}
     >
       {!isLoading && data.length === 0 ? (

@@ -56,7 +56,7 @@ Layout.defaultProps = {
   button: null,
   navigation: false,
   pageTitle: 'Podcast',
-  metaDescription: 'Podcast app using Next.js, SWR and AudioBoom API',
+  metaDescription: 'Podcasts app using Next.js, SWR and AudioBoom API',
 };
 
 Layout.propTypes = {

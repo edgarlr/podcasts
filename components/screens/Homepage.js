@@ -20,10 +20,10 @@ const Homepage = ({ channels }) => {
   return (
     <Layout
       headerText="Podcasts App"
-      pageTitle="Podcast App"
+      pageTitle="Podcasts App"
       button={<DynamicSearch />}
     >
-      <MainTitle title="Podcast App" />
+      <MainTitle title="Podcasts App" />
 
       <ChannelsCarousel title="Followed" channels={myList} />
 
