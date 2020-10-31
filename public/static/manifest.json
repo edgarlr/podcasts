@@ -1,5 +1,6 @@
 {
- "name": "Podcasts",
+ "name": "Podcasts App | Free for everyone",
+ "short_name": "Podcasts",
  "icons": [
   {
    "src": "/static/images/android-icon-36x36.png",
@@ -36,6 +37,23 @@
    "sizes": "192x192",
    "type": "image\/png",
    "density": "4.0"
+  },
+  {
+    "src": "/static/images/icon-512x512.png",
+    "sizes": "512x512",
+    "type": "image\/png"
+  },
+  {
+    "src": "/static/images/maskable_icon.png",
+    "sizes": "196x196",
+    "type": "image/png",
+    "purpose": "any maskable"
   }
- ]
+ ],
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#131414"
 }
