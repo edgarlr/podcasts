@@ -11,8 +11,15 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+            media="print"
+            onLoad="this.onload=null;this.removeAttribute('media');"
           />
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <link
@@ -84,7 +91,7 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/static/images/favicon-16x16.png"
           />
-          {/* <link rel="manifest" href="/static/manifest.json" /> */}
+          <link rel="manifest" href="/static/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta
             name="msapplication-TileImage"
