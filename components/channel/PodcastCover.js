@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { fontWeight, colors } from 'styles/theme';
 import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 import { oneOfType } from 'prop-types';
@@ -7,41 +8,42 @@ export const PodcastCover = ({ channel }) => {
   return (
     <div className="container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
-        <a className="channel">
-          <img src={channel.urls.logo_image.original} alt={channel.title} />
-          <h3>{channel.title}</h3>
-        </a>
+        <div>
+          <Image
+            src={channel.urls.logo_image.original}
+            alt={channel.title}
+            width={150}
+            height={150}
+            className="channel-image"
+          />
+        </div>
       </Link>
+      <h3>{channel.title}</h3>
 
       <style jsx>{`
-        a {
-          color: ${colors.darkGray};
-        }
         h3 {
+          color: ${colors.darkGray};
           font-weight: ${fontWeight.regular};
+        }
+        .container:hover {
+          background: ${colors.whiteHover};
+        }
+      `}</style>
+
+      <style jsx global>{`
+        .channel-image {
+          border-radius: 15px;
+          box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
         }
       `}</style>
 
       <style jsx>{`
         .container {
-          border-radius: 20px;
+          border-radius: 15px;
           transition: 0.15s;
+          cursor: pointer;
         }
-        .channel {
-          margin: 0;
-        }
-        .container:hover {
-          background: ${colors.whiteHover};
-        }
-        img {
-          width: 100%;
-          border-radius: 20px;
-          box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
-          background: ${colors.lightGray};
-        }
-        a {
-          text-decoration: none;
-        }
+
         h3 {
           padding: 0;
           margin: 8px 0 0;
