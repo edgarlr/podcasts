@@ -10,6 +10,7 @@ import DescriptionContainer from 'components/DescriptionContainer';
 import { useIsMobile } from 'lib/hooks';
 
 const ChannelPage = ({ channel, episodes, series }) => {
+  console.log(channel.urls);
   const isMobile = useIsMobile();
   return (
     <Layout

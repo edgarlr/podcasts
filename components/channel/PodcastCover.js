@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { fontWeight, colors } from 'styles/theme';
 import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 import { oneOfType } from 'prop-types';
@@ -7,10 +8,15 @@ export const PodcastCover = ({ channel }) => {
   return (
     <div className="container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
-        <a className="channel">
-          <img src={channel.urls.logo_image.original} alt={channel.title} />
-          <h3>{channel.title}</h3>
-        </a>
+        <div className="channel">
+          <Image
+            src={channel.urls.logo_image.original}
+            alt={channel.title}
+            layout="fill"
+            objectFit="cover"
+          />
+          {/* <h3>{channel.title}</h3> */}
+        </div>
       </Link>
 
       <style jsx>{`
@@ -29,6 +35,9 @@ export const PodcastCover = ({ channel }) => {
         }
         .channel {
           margin: 0;
+          width: 100px;
+          position: relative;
+          height: 100px;
         }
         .container:hover {
           background: ${colors.whiteHover};
@@ -41,6 +50,7 @@ export const PodcastCover = ({ channel }) => {
         }
         a {
           text-decoration: none;
+          width: 100%;
         }
         h3 {
           padding: 0;
