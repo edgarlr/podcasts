@@ -80,6 +80,11 @@ const PlayerContainer = ({ handleModalClick }) => {
           border-top: 1px solid rgba(255, 255, 255, 0.2);
           transition: 0.1s;
         }
+        @media screen and (display-mode: standalone) {
+          .queue-button {
+            bottom: 2rem;
+          }
+        }
         .queue-button:hover {
           transform: scale(1.025);
         }

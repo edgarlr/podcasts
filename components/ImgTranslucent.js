@@ -20,7 +20,7 @@ export default function ImgTranslucent(props) {
 
       <style jsx global>{`
         .image-main {
-          border-radius: ${borderRadius || '25%'};
+          border-radius: ${borderRadius || '20px'};
         }
       `}</style>
 

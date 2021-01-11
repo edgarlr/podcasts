@@ -75,6 +75,11 @@ const PlayerModal = () => {
             width: 22rem;
           }
         }
+        @media screen and (display-mode: standalone) {
+          .container {
+            padding: 0 1rem 1.5rem;
+          }
+        }
       `}</style>
     </PlayerPortal>
   );

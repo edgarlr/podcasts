@@ -26,6 +26,9 @@ export default function Layout(props) {
             : pageTitle}
         </title>
         <meta name="description" content={metaDescription} />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </Head>
 
       <AppHeader
