@@ -10,16 +10,14 @@ const ChannelCard = ({ channel }) => {
     <div className="card-container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
         <div className="channel">
-          <div className="image-container">
-            <Image
-              src={channel.urls.logo_image.original}
-              alt={channel.title}
-              layout="fill"
-              objectFit="cover"
-              // Class available on PodcastCover.js
-              className="channel-image"
-            />
-          </div>
+          <Image
+            src={channel.urls.logo_image.original}
+            alt={channel.title}
+            width={100}
+            height={100}
+            // Class available on PodcastCover.js
+            className="channel-image"
+          />
 
           <div className="info">
             <h2>{channel.title}</h2>
@@ -58,11 +56,7 @@ const ChannelCard = ({ channel }) => {
           text-decoration: none;
           padding: 1rem 0;
         }
-        .image-container {
-          position: relative;
-          width: 100px;
-          height: 100px;
-        }
+
         h2 {
           padding: 0;
           margin: 8px 0 0;

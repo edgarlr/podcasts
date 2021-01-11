@@ -8,12 +8,12 @@ export const PodcastCover = ({ channel }) => {
   return (
     <div className="container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
-        <div className="channel">
+        <div>
           <Image
             src={channel.urls.logo_image.original}
             alt={channel.title}
-            layout="fill"
-            objectFit="cover"
+            width={150}
+            height={150}
             className="channel-image"
           />
         </div>
@@ -42,12 +42,6 @@ export const PodcastCover = ({ channel }) => {
           border-radius: 15px;
           transition: 0.15s;
           cursor: pointer;
-        }
-
-        .channel {
-          width: 150px;
-          height: 150px;
-          position: relative;
         }
 
         h3 {
