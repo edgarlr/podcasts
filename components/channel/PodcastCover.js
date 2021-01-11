@@ -14,44 +14,42 @@ export const PodcastCover = ({ channel }) => {
             alt={channel.title}
             layout="fill"
             objectFit="cover"
+            className="channel-image"
           />
-          {/* <h3>{channel.title}</h3> */}
         </div>
       </Link>
+      <h3>{channel.title}</h3>
 
       <style jsx>{`
-        a {
-          color: ${colors.darkGray};
-        }
         h3 {
+          color: ${colors.darkGray};
           font-weight: ${fontWeight.regular};
+        }
+        .container:hover {
+          background: ${colors.whiteHover};
+        }
+      `}</style>
+
+      <style jsx global>{`
+        .channel-image {
+          border-radius: 15px;
+          box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
         }
       `}</style>
 
       <style jsx>{`
         .container {
-          border-radius: 20px;
+          border-radius: 15px;
           transition: 0.15s;
+          cursor: pointer;
         }
+
         .channel {
-          margin: 0;
-          width: 100px;
+          width: 150px;
+          height: 150px;
           position: relative;
-          height: 100px;
         }
-        .container:hover {
-          background: ${colors.whiteHover};
-        }
-        img {
-          width: 100%;
-          border-radius: 20px;
-          box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
-          background: ${colors.lightGray};
-        }
-        a {
-          text-decoration: none;
-          width: 100%;
-        }
+
         h3 {
           padding: 0;
           margin: 8px 0 0;

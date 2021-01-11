@@ -3,18 +3,29 @@ import { fontWeight, colors } from 'styles/theme';
 import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 import { oneOfType } from 'prop-types';
 import Description from 'components/ui/Description';
+import Image from 'next/image';
 
 const ChannelCard = ({ channel }) => {
   return (
     <div className="card-container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
-        <a className="channel">
-          <img src={channel.urls.logo_image.original} alt={channel.title} />
+        <div className="channel">
+          <div className="image-container">
+            <Image
+              src={channel.urls.logo_image.original}
+              alt={channel.title}
+              layout="fill"
+              objectFit="cover"
+              // Class available on PodcastCover.js
+              className="channel-image"
+            />
+          </div>
+
           <div className="info">
             <h2>{channel.title}</h2>
             <Description>{channel.description}</Description>
           </div>
-        </a>
+        </div>
       </Link>
 
       <style jsx>{`
@@ -24,6 +35,9 @@ const ChannelCard = ({ channel }) => {
         h2 {
           font-weight: ${fontWeight.bold};
         }
+        .card-container:hover {
+          background: ${colors.whiteHover};
+        }
       `}</style>
 
       <style jsx>{`
@@ -31,9 +45,6 @@ const ChannelCard = ({ channel }) => {
           padding: 0rem 1rem;
           border-radius: 20px;
           margin: 0 -1rem;
-        }
-        .card-container:hover {
-          background: ${colors.whiteHover};
         }
         .info {
           display: flex;
@@ -47,11 +58,10 @@ const ChannelCard = ({ channel }) => {
           text-decoration: none;
           padding: 1rem 0;
         }
-        img {
-          width: 100%;
-          border-radius: 20px;
-          box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.05);
-          background: ${colors.lightGray};
+        .image-container {
+          position: relative;
+          width: 100px;
+          height: 100px;
         }
         h2 {
           padding: 0;
