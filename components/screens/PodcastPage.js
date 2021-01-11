@@ -31,7 +31,7 @@ const PodcastPage = ({ episode }) => {
         <ImgTranslucent
           url={episode.urls.image || channel.urls.logo_image.original}
           alt={episode.title}
-          borderRadius={'10%'}
+          borderRadius="15px"
         />
         <MainTitle
           title={episode.title}

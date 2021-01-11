@@ -25,7 +25,7 @@ const FullPlayer = () => {
           url={current.urls.image || current.channel.urls.logo_image.original}
           alt={current.title}
           fullBlur
-          borderRadius="10%"
+          borderRadius="15px"
         />
       </div>
 
