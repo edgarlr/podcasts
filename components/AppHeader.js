@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { colors, fontWeight } from 'styles/theme';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { usePlayer } from 'lib/contexts';
 import IconButton from './ui/IconButton';
+import ArrowLeft from './icons/ArrowLeft';
 
 const AppHeader = ({ headerText, navigation, button }) => {
   const router = useRouter();
@@ -36,7 +36,7 @@ const AppHeader = ({ headerText, navigation, button }) => {
       {navigation && (
         <div className="nav-btn-container">
           <IconButton handleOnClick={() => router.back()} ariaLabel="go back">
-            <MdKeyboardArrowLeft size="2rem" aria-hidden="true" />
+            <ArrowLeft />
           </IconButton>
         </div>
       )}
