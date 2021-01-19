@@ -4,11 +4,17 @@ import IconButton from './ui/IconButton'
 import Close from 'components/icons/Close'
 import Sort from 'components/icons/Sort'
 
-export default function SortByButton({ handleFilterClick }) {
-  const [showDropdown, setShowDropdown] = useState(false)
-  const [isActive, setIsActive] = useState('latest')
+type TButtonType = 'latest' | 'popular' | 'oldest'
 
-  const onBtnClick = (e) => {
+export default function SortByButton({
+  handleFilterClick,
+}: {
+  handleFilterClick: (type: TButtonType) => void
+}) {
+  const [showDropdown, setShowDropdown] = useState<boolean>(false)
+  const [isActive, setIsActive] = useState<TButtonType>('latest')
+
+  const onBtnClick = (e: any) => {
     handleFilterClick(e.target.id)
     setIsActive(e.target.id)
     setShowDropdown(false)

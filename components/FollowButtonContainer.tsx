@@ -2,12 +2,11 @@ import { useState } from 'react'
 import { useFavs } from 'lib/contexts'
 import { useLocalStorage } from 'lib/hooks'
 import Button from './ui/Button'
-import { channelPropType } from 'lib/customPropTypes'
 
-const FollowButtonContainer = ({ channel }) => {
+const FollowButtonContainer = ({ channel }: { channel: TChannel }) => {
   const { myList, Follow, Unfollow } = useFavs()
   const [isFollowed, setIsFollowed] = useState(
-    myList.some((item) => item.id === channel.id)
+    myList.some((c: TChannel) => c.id === channel.id)
   )
   const [, setLocalStorage] = useLocalStorage('favs', [])
 
@@ -35,7 +34,3 @@ const FollowButtonContainer = ({ channel }) => {
 }
 
 export default FollowButtonContainer
-
-FollowButtonContainer.propTypes = {
-  channel: channelPropType,
-}

@@ -34,7 +34,7 @@ const ChannelPage = ({ channel, episodes, series }) => {
       />
 
       {series.length === 0 && channel.description.length > 100 && (
-        <DescriptionContainer data={channel.description} />
+        <DescriptionContainer content={channel.description} />
       )}
 
       <ChannelsCarousel title={`${channel.title}'S SERIES`} channels={series} />

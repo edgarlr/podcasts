@@ -1,7 +1,17 @@
 import Link from 'next/link'
 import { colors, fontWeight } from 'styles/theme'
 
-export default function MainTitle({ title, subtitle = null, linkTo = null }) {
+type Props = {
+  title: string
+  subtitle: string
+  linkTo: string
+}
+
+export default function MainTitle({
+  title,
+  subtitle = null,
+  linkTo = null,
+}: Props) {
   return (
     <div>
       {linkTo && (

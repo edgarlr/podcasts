@@ -48,7 +48,7 @@ const PodcastPage = ({ episode }) => {
         )}`}
       />
 
-      <DescriptionContainer data={episode.description} />
+      <DescriptionContainer content={episode.description} />
 
       <EpisodeListContainer
         title={`More episodes`}

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { fontWeight, colors } from 'styles/theme'
 
-const DescriptionContainer = ({ data }) => {
-  const [isShowed, setIsShowed] = useState(false)
+const DescriptionContainer = ({ content }: { content: string }) => {
+  const [isShowed, setIsShowed] = useState<boolean>(false)
 
   return (
     <div onClick={() => setIsShowed(!isShowed)}>
-      <p className={data.length > 280 && (!isShowed ? 'hide' : ' ')}>{data}</p>
+      <p className={content.length > 280 && (!isShowed ? 'hide' : ' ')}>
+        {content}
+      </p>
 
       <style jsx>{`
         div span {

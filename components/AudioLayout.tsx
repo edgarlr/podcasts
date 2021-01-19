@@ -1,7 +1,6 @@
-import React from 'react'
 import PlayerModal from './player/Player'
 
-const AudioLayout = ({ children }) => {
+const AudioLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {children}
