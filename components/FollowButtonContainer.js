@@ -11,8 +11,8 @@ const FollowButtonContainer = ({ channel }) => {
   )
   const [, setLocalStorage] = useLocalStorage('favs', [])
 
-  const handleFollowClick = (follow) => {
-    if (!follow) {
+  const handleFollowClick = () => {
+    if (!isFollowed) {
       Follow(channel)
       setIsFollowed(true)
       setLocalStorage(myList)
@@ -24,7 +24,11 @@ const FollowButtonContainer = ({ channel }) => {
   }
 
   return (
-    <Button handleClick={handleFollowClick} isActive={isFollowed}>
+    <Button
+      onClick={handleFollowClick}
+      variant={isFollowed ? 'secondary' : 'primary'}
+      ariaLabel="Follow this channel"
+    >
       {isFollowed ? 'Following' : 'Follow'}
     </Button>
   )

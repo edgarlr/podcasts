@@ -1,16 +1,35 @@
 import { colors, fontWeight } from 'styles/theme'
-import PropTypes from 'prop-types'
+import { CSSProperties, MouseEvent } from 'react'
+import cn from 'classnames'
 
-const Button = ({ isActive, handleClick, children }) => {
+type Props = {
+  children: React.ReactNode
+  ariaLabel: string
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void
+  variant?: 'primary' | 'secondary'
+  style?: CSSProperties
+  className?: string
+}
+
+const Button = ({
+  onClick,
+  variant = 'primary',
+  children,
+  style = {},
+  className,
+  ariaLabel,
+}: Props) => {
   return (
     <button
-      onClick={() => handleClick(isActive)}
-      className={isActive ? 'active' : ' '}
+      onClick={onClick}
+      className={cn({ ['secondary']: variant === 'secondary' }, className)}
+      style={style}
+      aria-label={ariaLabel}
     >
       {children}
 
       <style jsx>{`
-        .active {
+        .secondary {
           background: ${colors.white};
           color: ${colors.black};
           border: 1px solid ${colors.black};
@@ -47,13 +66,3 @@ const Button = ({ isActive, handleClick, children }) => {
 }
 
 export default Button
-
-Button.defaultProps = {
-  isActive: false,
-}
-
-Button.propTypes = {
-  isActive: PropTypes.bool,
-  handleClick: PropTypes.func.isRequired,
-  children: PropTypes.string.isRequired,
-}
