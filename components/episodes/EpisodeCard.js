@@ -29,7 +29,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
         />
 
         {isActive && (
-          <span>{isPlaying && <IconAudioPlaying color={colors.black} />}</span>
+          <span>{isPlaying && <IconAudioPlaying fill={colors.black} />}</span>
         )}
 
         <style jsx>{`
@@ -75,7 +75,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
           }
           .active span {
             position: absolute;
-            right: 1.3rem;
+            right: 2rem;
             top: 50%;
             transform: translateY(-50%);
           }
