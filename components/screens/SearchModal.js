@@ -28,14 +28,14 @@ const SearchModal = () => {
   }
 
   let buttonIcon = (
-    <IconButton handleOnClick={() => setIsOpen(true)}>
+    <IconButton onClick={() => setIsOpen(true)} ariaLabel="Search">
       <Search />
     </IconButton>
   )
 
   if (isOpen) {
     buttonIcon = (
-      <IconButton handleOnClick={closeModal}>
+      <IconButton onClick={closeModal} ariaLabel="Close Search">
         <Close />
       </IconButton>
     )

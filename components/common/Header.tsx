@@ -40,7 +40,7 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
     >
       {navigation && (
         <div className="nav-btn-container">
-          <IconButton handleOnClick={() => router.back()} ariaLabel="go back">
+          <IconButton onClick={() => router.back()} ariaLabel="go back">
             <ArrowLeft />
           </IconButton>
         </div>

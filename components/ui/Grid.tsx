@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types'
-
-const Grid = ({ children }) => {
+const Grid = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="grid">
       {children}
@@ -18,7 +16,3 @@ const Grid = ({ children }) => {
 }
 
 export default Grid
-
-Grid.propTypes = {
-  children: PropTypes.node.isRequired,
-}

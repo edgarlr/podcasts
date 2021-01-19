@@ -10,7 +10,7 @@ const ClearSearchButton = () => {
   }
 
   return (
-    <IconButton handleOnClick={onCloseClick} ariaLabel="Search">
+    <IconButton onClick={onCloseClick} ariaLabel="Search">
       <Close />
     </IconButton>
   )

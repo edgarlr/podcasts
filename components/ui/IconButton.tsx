@@ -1,17 +1,29 @@
-import PropTypes from 'prop-types'
+import cn from 'classnames'
+import { CSSProperties, MouseEvent } from 'react'
 import { colors } from 'styles/theme'
+
+type Props = {
+  children: React.ReactNode
+  ariaLabel: string
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void
+  style?: CSSProperties
+  className?: string
+  variant?: 'primary' | 'secondary'
+}
 
 const IconButton = ({
   children,
-  handleOnClick,
-  size,
-  secondary,
+  onClick,
+  variant = 'primary',
+  style = {},
+  className,
   ariaLabel,
-}) => (
+}: Props) => (
   <button
-    className={secondary && 'secondary'}
-    onClick={handleOnClick}
+    className={cn({ ['secondary']: variant === 'secondary' }, className)}
+    onClick={onClick}
     aria-label={ariaLabel}
+    style={style}
   >
     {children}
     <style jsx>{`
@@ -24,8 +36,8 @@ const IconButton = ({
         align-items: center;
         cursor: pointer;
         border-radius: 50%;
-        width: ${size || '2.5rem'};
-        height: ${size || '2.5rem'};
+        width: 2.5rem;
+        height: 2.5rem;
       }
       button:hover {
         background: ${colors.whiteHover};
@@ -38,17 +50,3 @@ const IconButton = ({
 )
 
 export default IconButton
-
-IconButton.defaultProps = {
-  size: null,
-  secondary: false,
-  ariaLabel: 'button',
-}
-
-IconButton.propTypes = {
-  children: PropTypes.element.isRequired,
-  handleOnClick: PropTypes.func.isRequired,
-  size: PropTypes.string,
-  secondary: PropTypes.bool,
-  ariaLabel: PropTypes.string,
-}

@@ -20,9 +20,9 @@ const PlayerContainer = ({ handleModalClick }) => {
       {handleModalClick && (
         <div className="close-button" aria-label="Minimize Player">
           <IconButton
-            handleOnClick={handleModalClick}
+            onClick={handleModalClick}
             ariaLabel="Minimize player"
-            secondary
+            variant="secondary"
           >
             <ChevronDown />
           </IconButton>

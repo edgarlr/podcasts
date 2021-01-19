@@ -17,7 +17,7 @@ export default function SortByButton({ handleFilterClick }) {
   return (
     <div className="sort">
       <IconButton
-        handleOnClick={() => setShowDropdown(!showDropdown)}
+        onClick={() => setShowDropdown(!showDropdown)}
         ariaLabel="Sort Episodes"
       >
         {showDropdown ? <Close /> : <Sort />}
