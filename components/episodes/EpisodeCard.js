@@ -18,7 +18,7 @@ const EpisodeCard = ({ clip, isActive, info }) => {
         {info ? (
           <div className="meta">{info}</div>
         ) : (
-          <Description>{clip.description}</Description>
+          <Description content={clip.description} />
         )}
 
         <CardInfo

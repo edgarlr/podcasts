@@ -39,9 +39,6 @@ const Button = ({
           background: ${colors.black};
           font-weight: ${fontWeight.bold};
         }
-        button:hover {
-          transform: scale(1.025);
-        }
       `}</style>
 
       <style jsx>{`
@@ -53,6 +50,9 @@ const Button = ({
           cursor: pointer;
           outline: none;
           transition: transform 0.2s;
+        }
+        button:hover {
+          transform: scale(1.025);
         }
         @media screen and (min-width: 768px) {
           button {

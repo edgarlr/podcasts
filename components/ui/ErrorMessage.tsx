@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types'
-
-const ErrorMessage = ({ title, subtitle }) => {
+const ErrorMessage = ({
+  title,
+  subtitle,
+}: {
+  title: string
+  subtitle: string
+}) => {
   return (
     <div className="error-message">
       <h6>{title}</h6>
@@ -25,8 +29,3 @@ const ErrorMessage = ({ title, subtitle }) => {
 }
 
 export default ErrorMessage
-
-ErrorMessage.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-}

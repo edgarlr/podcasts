@@ -19,7 +19,7 @@ const ChannelCard = ({ channel }) => {
 
           <div className="info">
             <h2>{channel.title}</h2>
-            <Description>{channel.description}</Description>
+            <Description content={channel.description} />
           </div>
         </div>
       </Link>

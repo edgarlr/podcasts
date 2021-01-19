@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types'
 import { colors } from 'styles/theme'
 
-const Description = ({ children }) => {
+const Description = ({ content }: { content: string }) => {
   return (
     <p className="description">
-      {children}
+      {content}
 
       <style jsx>{`
         .description {
@@ -25,7 +24,3 @@ const Description = ({ children }) => {
 }
 
 export default Description
-
-Description.propTypes = {
-  children: PropTypes.string.isRequired,
-}
