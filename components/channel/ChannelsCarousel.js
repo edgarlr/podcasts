@@ -1,7 +1,7 @@
-import CarouselGrid from 'components/ui/CarouselGrid';
-import SectionTitle from 'components/SectionTitle';
-import { PodcastCover } from './PodcastCover';
-import PodcastCoverSkeleton from './PodcastCoverSkeleton';
+import CarouselGrid from 'components/ui/CarouselGrid'
+import SectionTitle from 'components/SectionTitle'
+import { PodcastCover } from './PodcastCover'
+import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 
 export const ChannelsCarousel = ({
   title,
@@ -9,7 +9,7 @@ export const ChannelsCarousel = ({
   sectionButton = null,
   loading = false,
 }) => {
-  if (!loading && channels.length === 0) return null;
+  if (!loading && channels.length === 0) return null
 
   return (
     <>
@@ -23,5 +23,5 @@ export const ChannelsCarousel = ({
             ))}
       </CarouselGrid>
     </>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import EpisodeCardSkeleton from 'components/episodes/EpisodeCardSkeleton';
-import { colors } from 'styles/theme';
+import EpisodeCardSkeleton from 'components/episodes/EpisodeCardSkeleton'
+import { colors } from 'styles/theme'
 
 const SkeletonEpisodePage = () => {
   return (
@@ -70,7 +70,7 @@ const SkeletonEpisodePage = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default SkeletonEpisodePage;
+export default SkeletonEpisodePage

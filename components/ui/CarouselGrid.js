@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const CarouselGrid = ({ children }) => {
   return (
@@ -43,11 +43,11 @@ const CarouselGrid = ({ children }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default CarouselGrid;
+export default CarouselGrid
 
 CarouselGrid.propTypes = {
   children: PropTypes.node.isRequired,
-};
+}

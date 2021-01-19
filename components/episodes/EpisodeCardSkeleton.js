@@ -1,4 +1,4 @@
-import { colors } from 'styles/theme';
+import { colors } from 'styles/theme'
 
 const EpisodeCardSkeleton = () => {
   return (
@@ -41,7 +41,7 @@ const EpisodeCardSkeleton = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default EpisodeCardSkeleton;
+export default EpisodeCardSkeleton

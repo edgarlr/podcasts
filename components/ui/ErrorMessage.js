@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const ErrorMessage = ({ title, subtitle }) => {
   return (
@@ -21,12 +21,12 @@ const ErrorMessage = ({ title, subtitle }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default ErrorMessage;
+export default ErrorMessage
 
 ErrorMessage.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-};
+}

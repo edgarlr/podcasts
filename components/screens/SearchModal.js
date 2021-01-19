@@ -1,44 +1,44 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import FullModal from 'components/ui/FullModal';
-import SearchInput from 'components/search/SearchInput';
-import SearchResults from 'components/search/SearchResults';
-import IconButton from 'components/ui/IconButton';
-import Close from 'components/icons/Close';
-import Search from 'components/icons/Search';
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import FullModal from 'components/ui/FullModal'
+import SearchInput from 'components/search/SearchInput'
+import SearchResults from 'components/search/SearchResults'
+import IconButton from 'components/ui/IconButton'
+import Close from 'components/icons/Close'
+import Search from 'components/icons/Search'
 
 const SearchModal = () => {
-  const router = useRouter();
-  const { search } = router.query;
+  const router = useRouter()
+  const { search } = router.query
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [isOpen, setIsOpen] = useState(false)
+  const [searchKeyword, setSearchKeyword] = useState('')
 
   useEffect(() => {
     if (search !== undefined) {
-      setIsOpen(true);
-      setSearchKeyword(search);
+      setIsOpen(true)
+      setSearchKeyword(search)
     }
-  }, []);
+  }, [])
 
   const closeModal = () => {
-    router.push('/', undefined, { shallow: true });
-    setIsOpen(false);
-    setSearchKeyword('');
-  };
+    router.push('/', undefined, { shallow: true })
+    setIsOpen(false)
+    setSearchKeyword('')
+  }
 
   let buttonIcon = (
     <IconButton handleOnClick={() => setIsOpen(true)}>
       <Search />
     </IconButton>
-  );
+  )
 
   if (isOpen) {
     buttonIcon = (
       <IconButton handleOnClick={closeModal}>
         <Close />
       </IconButton>
-    );
+    )
   }
 
   return (
@@ -56,7 +56,7 @@ const SearchModal = () => {
         </>
       )}
     </FullModal>
-  );
-};
+  )
+}
 
-export default SearchModal;
+export default SearchModal

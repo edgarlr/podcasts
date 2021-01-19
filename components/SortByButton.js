@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { colors } from 'styles/theme';
-import IconButton from './ui/IconButton';
-import Close from 'components/icons/Close';
-import Sort from 'components/icons/Sort';
+import { useState } from 'react'
+import { colors } from 'styles/theme'
+import IconButton from './ui/IconButton'
+import Close from 'components/icons/Close'
+import Sort from 'components/icons/Sort'
 
 export default function SortByButton({ handleFilterClick }) {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [isActive, setIsActive] = useState('latest');
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [isActive, setIsActive] = useState('latest')
 
   const onBtnClick = (e) => {
-    handleFilterClick(e.target.id);
-    setIsActive(e.target.id);
-    setShowDropdown(false);
-  };
+    handleFilterClick(e.target.id)
+    setIsActive(e.target.id)
+    setShowDropdown(false)
+  }
 
   return (
     <div className="sort">
@@ -82,5 +82,5 @@ export default function SortByButton({ handleFilterClick }) {
         }
       `}</style>
     </div>
-  );
+  )
 }

@@ -1,33 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-import { colors, fontWeight } from 'styles/theme';
-import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
-import { usePlayer } from 'lib/contexts';
-import IconButton from '../ui/IconButton';
-import ArrowLeft from 'components/icons/ArrowLeft';
+import { colors, fontWeight } from 'styles/theme'
+import { useRouter } from 'next/router'
+import PropTypes from 'prop-types'
+import { usePlayer } from 'lib/contexts'
+import IconButton from '../ui/IconButton'
+import ArrowLeft from 'components/icons/ArrowLeft'
 
 const Header = ({ headerText, navigation, button }) => {
-  const router = useRouter();
+  const router = useRouter()
 
-  const { current } = usePlayer();
+  const { current } = usePlayer()
 
-  const [fixedNav, setFixedNav] = useState(false);
+  const [fixedNav, setFixedNav] = useState(false)
 
   const fixNavigation = () => {
     if (window.scrollY > 110) {
-      setFixedNav(true);
+      setFixedNav(true)
     } else {
-      setFixedNav(false);
+      setFixedNav(false)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('scroll', fixNavigation);
+    window.addEventListener('scroll', fixNavigation)
     return () => {
-      window.removeEventListener('scroll', fixNavigation);
-    };
-  }, []);
+      window.removeEventListener('scroll', fixNavigation)
+    }
+  }, [])
 
   return (
     <header
@@ -114,18 +114,18 @@ const Header = ({ headerText, navigation, button }) => {
         }
       `}</style>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
 
 Header.defaultProps = {
   navigation: false,
   button: null,
-};
+}
 
 Header.propTypes = {
   headerText: PropTypes.string.isRequired,
   navigation: PropTypes.bool,
   button: PropTypes.element,
-};
+}

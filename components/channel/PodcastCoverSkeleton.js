@@ -1,4 +1,4 @@
-import { colors } from 'styles/theme';
+import { colors } from 'styles/theme'
 
 export default function PodcastCoverSkeleton() {
   return (
@@ -29,5 +29,5 @@ export default function PodcastCoverSkeleton() {
         }
       `}</style>
     </div>
-  );
+  )
 }

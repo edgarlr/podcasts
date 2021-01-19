@@ -1,16 +1,16 @@
-import SectionTitle from 'components/SectionTitle';
-import { usePlayer } from 'lib/contexts';
-import EpisodeCard from './EpisodeCard';
-import EpisodeCardSkeleton from './EpisodeCardSkeleton';
-import PropTypes from 'prop-types';
-import { episodePropType } from 'lib/customPropTypes';
+import SectionTitle from 'components/SectionTitle'
+import { usePlayer } from 'lib/contexts'
+import EpisodeCard from './EpisodeCard'
+import EpisodeCardSkeleton from './EpisodeCardSkeleton'
+import PropTypes from 'prop-types'
+import { episodePropType } from 'lib/customPropTypes'
 
 export default function EpisodeListContainer(props) {
-  const { title, episodes, loading, button, searchCards } = props;
+  const { title, episodes, loading, button, searchCards } = props
 
-  const { current } = usePlayer();
+  const { current } = usePlayer()
 
-  if (!loading && episodes.length === 0) return null;
+  if (!loading && episodes.length === 0) return null
 
   return (
     <div>
@@ -29,7 +29,7 @@ export default function EpisodeListContainer(props) {
             />
           ))}
     </div>
-  );
+  )
 }
 
 EpisodeListContainer.defaultProps = {
@@ -37,7 +37,7 @@ EpisodeListContainer.defaultProps = {
   loading: false,
   searchCards: false,
   button: null,
-};
+}
 
 EpisodeListContainer.propTypes = {
   title: PropTypes.string.isRequired,
@@ -45,4 +45,4 @@ EpisodeListContainer.propTypes = {
   loading: PropTypes.bool,
   searchCards: PropTypes.bool,
   button: PropTypes.element,
-};
+}

@@ -1,4 +1,4 @@
-import { colors } from 'styles/theme';
+import { colors } from 'styles/theme'
 
 export default function MiniPlayerSkeleton() {
   return (
@@ -49,5 +49,5 @@ export default function MiniPlayerSkeleton() {
         }
       `}</style>
     </>
-  );
+  )
 }

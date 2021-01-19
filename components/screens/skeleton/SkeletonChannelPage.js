@@ -1,5 +1,5 @@
-import EpisodeCardSkeleton from 'components/episodes/EpisodeCardSkeleton';
-import { colors } from 'styles/theme';
+import EpisodeCardSkeleton from 'components/episodes/EpisodeCardSkeleton'
+import { colors } from 'styles/theme'
 
 const SkeletonChannelPage = () => {
   return (
@@ -34,7 +34,7 @@ const SkeletonChannelPage = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default SkeletonChannelPage;
+export default SkeletonChannelPage

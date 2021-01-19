@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { colors, fontWeight } from 'styles/theme';
+import Link from 'next/link'
+import { colors, fontWeight } from 'styles/theme'
 
 export default function MainTitle({ title, subtitle = null, linkTo = null }) {
   return (
@@ -68,5 +68,5 @@ export default function MainTitle({ title, subtitle = null, linkTo = null }) {
         }
       `}</style>
     </div>
-  );
+  )
 }

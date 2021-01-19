@@ -1,8 +1,8 @@
-import PodcastCoverSkeleton from './PodcastCoverSkeleton';
-import ChannelCard from './ChannelCard';
+import PodcastCoverSkeleton from './PodcastCoverSkeleton'
+import ChannelCard from './ChannelCard'
 
 const ChannelsList = ({ title, channels = [], loading = false }) => {
-  if (!loading && channels.length === 0) return null;
+  if (!loading && channels.length === 0) return null
 
   return (
     <div>
@@ -23,7 +23,7 @@ const ChannelsList = ({ title, channels = [], loading = false }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default ChannelsList;
+export default ChannelsList

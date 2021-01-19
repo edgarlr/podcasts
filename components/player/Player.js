@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import { useMediaQuery, useMediaSessions } from 'lib/hooks';
-import { usePlayer } from 'lib/contexts';
-import PlayerPortal from 'components/player/PlayerPortal';
-import MiniPlayer from 'components/player/MiniPlayer';
-import AudioElement from 'components/player/AudioElement';
-import PlayerContainer from 'components/player/PlayerContainer';
-import { colors } from 'styles/theme';
+import { useState } from 'react'
+import { useMediaQuery, useMediaSessions } from 'lib/hooks'
+import { usePlayer } from 'lib/contexts'
+import PlayerPortal from 'components/player/PlayerPortal'
+import MiniPlayer from 'components/player/MiniPlayer'
+import AudioElement from 'components/player/AudioElement'
+import PlayerContainer from 'components/player/PlayerContainer'
+import { colors } from 'styles/theme'
 
 const PlayerModal = () => {
-  const { current } = usePlayer();
-  const [fullView, setFullView] = useState(false);
+  const { current } = usePlayer()
+  const [fullView, setFullView] = useState(false)
 
-  const handleModalClick = () => setFullView(!fullView);
+  const handleModalClick = () => setFullView(!fullView)
 
-  useMediaSessions();
+  useMediaSessions()
 
-  const isTablet = useMediaQuery(1023);
+  const isTablet = useMediaQuery(1023)
   return (
     <PlayerPortal selector="#player">
       {current && isTablet && (
@@ -82,7 +82,7 @@ const PlayerModal = () => {
         }
       `}</style>
     </PlayerPortal>
-  );
-};
+  )
+}
 
-export default PlayerModal;
+export default PlayerModal

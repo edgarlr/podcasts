@@ -1,6 +1,6 @@
-import Layout from 'components/common/Layout';
-import Link from 'next/link';
-import PropTypes from 'prop-types';
+import Layout from 'components/common/Layout'
+import Link from 'next/link'
+import PropTypes from 'prop-types'
 
 function Error({ statusCode }) {
   return (
@@ -34,16 +34,16 @@ function Error({ statusCode }) {
         }
       `}</style>
     </Layout>
-  );
+  )
 }
 
 Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
-};
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  return { statusCode }
+}
 
-export default Error;
+export default Error
 
 Error.propTypes = {
   statusCode: PropTypes.number.isRequired,
-};
+}

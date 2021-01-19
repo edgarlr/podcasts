@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const IconAudioPlaying = ({ size, strokeWidth, color }) => {
   return (
@@ -27,18 +27,18 @@ const IconAudioPlaying = ({ size, strokeWidth, color }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default IconAudioPlaying;
+export default IconAudioPlaying
 
 IconAudioPlaying.defaultProps = {
   size: 20,
   strokeWidth: 7,
-};
+}
 
 IconAudioPlaying.propTypes = {
   size: PropTypes.number,
   strokeWidth: PropTypes.number,
   color: PropTypes.string,
-};
+}

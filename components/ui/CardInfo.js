@@ -1,6 +1,6 @@
-import React from 'react';
-import { colors } from 'styles/theme';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { colors } from 'styles/theme'
+import PropTypes from 'prop-types'
 
 const CardInfo = ({ data }) => {
   return (
@@ -26,11 +26,11 @@ const CardInfo = ({ data }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default CardInfo;
+export default CardInfo
 
 CardInfo.propTypes = {
   data: PropTypes.array,
-};
+}

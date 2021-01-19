@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 export const PodcastTitle = ({ title, wrapAt, fontSize, alwaysJustify }) => {
-  const [shortTitle, setShortTitle] = useState(title.lenght > 100);
+  const [shortTitle, setShortTitle] = useState(title.lenght > 100)
 
   useEffect(() => {
-    setShortTitle(title.length > wrapAt);
-  }, [title]);
+    setShortTitle(title.length > wrapAt)
+  }, [title])
 
   if (!shortTitle) {
     return (
@@ -29,7 +29,7 @@ export const PodcastTitle = ({ title, wrapAt, fontSize, alwaysJustify }) => {
           }
         `}</style>
       </div>
-    );
+    )
   }
 
   return (
@@ -71,18 +71,18 @@ export const PodcastTitle = ({ title, wrapAt, fontSize, alwaysJustify }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
 PodcastTitle.defaultProps = {
   wrapAt: 35,
   fontSize: '1em',
   alwaysJustify: null,
-};
+}
 
 PodcastTitle.propTypes = {
   title: PropTypes.string.isRequired,
   wrapAt: PropTypes.number,
   fontSize: PropTypes.string,
   alwaysJustify: PropTypes.string,
-};
+}

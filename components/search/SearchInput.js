@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router';
-import { colors, fontWeight } from 'styles/theme';
-import PropTypes from 'prop-types';
+import { useRouter } from 'next/router'
+import { colors, fontWeight } from 'styles/theme'
+import PropTypes from 'prop-types'
 
 const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const onSearchChange = (e) => {
-    const { value } = e.currentTarget;
-    setSearchKeyword(value);
-    router.push(`/?search=${value}`, undefined, { shallow: true });
-  };
+    const { value } = e.currentTarget
+    setSearchKeyword(value)
+    router.push(`/?search=${value}`, undefined, { shallow: true })
+  }
 
   return (
     <>
@@ -51,12 +51,12 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default SearchInput;
+export default SearchInput
 
 SearchInput.propTypes = {
   searchKeyword: PropTypes.string.isRequired,
   setSearchKeyword: PropTypes.func.isRequired,
-};
+}

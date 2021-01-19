@@ -1,4 +1,4 @@
-import { colors, fontWeight } from 'styles/theme';
+import { colors, fontWeight } from 'styles/theme'
 
 const SectionTitle = ({ title, button = null }) => (
   <div className="section-title">
@@ -30,6 +30,6 @@ const SectionTitle = ({ title, button = null }) => (
       }
     `}</style>
   </div>
-);
+)
 
-export default SectionTitle;
+export default SectionTitle

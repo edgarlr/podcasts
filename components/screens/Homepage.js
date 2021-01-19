@@ -1,21 +1,21 @@
-import Layout from 'components/common/Layout';
-import MainTitle from 'components/MainTitle';
-import { useFavs } from 'lib/contexts';
-import { ChannelsGrid } from 'components/channel/ChannelsGrid';
-import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
-import PropTypes from 'prop-types';
-import { channelShortPropType } from 'lib/customPropTypes';
-import dynamic from 'next/dynamic';
-import { useIsMobile } from 'lib/hooks';
-import ChannelsList from 'components/channel/ChannelList';
+import Layout from 'components/common/Layout'
+import MainTitle from 'components/MainTitle'
+import { useFavs } from 'lib/contexts'
+import { ChannelsGrid } from 'components/channel/ChannelsGrid'
+import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
+import PropTypes from 'prop-types'
+import { channelShortPropType } from 'lib/customPropTypes'
+import dynamic from 'next/dynamic'
+import { useIsMobile } from 'lib/hooks'
+import ChannelsList from 'components/channel/ChannelList'
 
 const DynamicSearch = dynamic(() => import('components/screens/SearchModal'), {
   ssr: false,
-});
+})
 
 const Homepage = ({ channels }) => {
-  const { myList } = useFavs();
-  const isMobile = useIsMobile();
+  const { myList } = useFavs()
+  const isMobile = useIsMobile()
 
   return (
     <Layout
@@ -58,11 +58,11 @@ const Homepage = ({ channels }) => {
         }
       `}</style>
     </Layout>
-  );
-};
+  )
+}
 
-export default Homepage;
+export default Homepage
 
 Homepage.propTypes = {
   channels: PropTypes.arrayOf(channelShortPropType).isRequired,
-};
+}

@@ -1,9 +1,9 @@
-import PlayCircle from 'components/icons/PlayCircle';
-import { usePlayer } from 'lib/contexts';
-import { dateFormatter, durationToMinutes } from 'lib/utils';
-import { useRouter } from 'next/router';
-import React from 'react';
-import MiniPlayer from './MiniPlayer';
+import PlayCircle from 'components/icons/PlayCircle'
+import { usePlayer } from 'lib/contexts'
+import { dateFormatter, durationToMinutes } from 'lib/utils'
+import { useRouter } from 'next/router'
+import React from 'react'
+import MiniPlayer from './MiniPlayer'
 
 const Queue = () => {
   const {
@@ -12,24 +12,24 @@ const Queue = () => {
     current,
     SetCurrentIndex,
     audioRef,
-  } = usePlayer();
+  } = usePlayer()
 
-  const router = useRouter();
+  const router = useRouter()
 
   const onPodcastClick = (id) => {
     for (let i = 0; i < playlist.length; i++) {
       if (playlist[i].id === id) {
-        audioRef.current.src = playlist[i].urls.high_mp3;
-        audioRef.current.play();
-        SetCurrentIndex(i);
-        break;
+        audioRef.current.src = playlist[i].urls.high_mp3
+        audioRef.current.play()
+        SetCurrentIndex(i)
+        break
       }
     }
-  };
+  }
 
   const onNowPlayingClick = (id) => {
-    router.push(`/episodes/${id}`);
-  };
+    router.push(`/episodes/${id}`)
+  }
 
   return (
     <div className="container">
@@ -126,7 +126,7 @@ const Queue = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default Queue;
+export default Queue

@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { fontWeight, colors } from 'styles/theme';
-import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
-import { oneOfType } from 'prop-types';
+import Link from 'next/link'
+import Image from 'next/image'
+import { fontWeight, colors } from 'styles/theme'
+import { channelPropType, channelShortPropType } from 'lib/customPropTypes'
+import { oneOfType } from 'prop-types'
 
 export const PodcastCover = ({ channel }) => {
   return (
@@ -67,9 +67,9 @@ export const PodcastCover = ({ channel }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
 PodcastCover.propTypes = {
   channel: oneOfType([channelShortPropType, channelPropType]),
-};
+}

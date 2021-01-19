@@ -1,5 +1,5 @@
-import ErrorMessage from 'components/ui/ErrorMessage';
-import PropTypes from 'prop-types';
+import ErrorMessage from 'components/ui/ErrorMessage'
+import PropTypes from 'prop-types'
 
 const SearchErrorMessage = ({ keyword }) => {
   return (
@@ -7,11 +7,11 @@ const SearchErrorMessage = ({ keyword }) => {
       title={`Couldn't find "${keyword}"`}
       subtitle="Try searching again using a different keyword"
     />
-  );
-};
+  )
+}
 
-export default SearchErrorMessage;
+export default SearchErrorMessage
 
 SearchErrorMessage.propTypes = {
   keyword: PropTypes.string.isRequired,
-};
+}

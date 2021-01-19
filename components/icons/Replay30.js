@@ -22,7 +22,7 @@ const Replay30 = ({ ...props }) => {
         </g>
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default Replay30;
+export default Replay30

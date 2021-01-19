@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { colors } from 'styles/theme';
+import PropTypes from 'prop-types'
+import { colors } from 'styles/theme'
 
 const IconButton = ({
   children,
@@ -35,15 +35,15 @@ const IconButton = ({
       }
     `}</style>
   </button>
-);
+)
 
-export default IconButton;
+export default IconButton
 
 IconButton.defaultProps = {
   size: null,
   secondary: false,
   ariaLabel: 'button',
-};
+}
 
 IconButton.propTypes = {
   children: PropTypes.element.isRequired,
@@ -51,4 +51,4 @@ IconButton.propTypes = {
   size: PropTypes.string,
   secondary: PropTypes.bool,
   ariaLabel: PropTypes.string,
-};
+}

@@ -1,12 +1,12 @@
-import { ProgressBar } from './ProgressBar';
-import { PodcastTitle } from './PodcastTitle';
-import ImgTranslucent from 'components/ImgTranslucent';
-import { useMediaControls } from 'lib/hooks';
-import { usePlayer } from 'lib/contexts';
-import Replay30 from 'components/icons/Replay30';
-import Pause from 'components/icons/Pause';
-import PlayArrow from 'components/icons/PlayArrow';
-import Forward30 from 'components/icons/Forward30';
+import { ProgressBar } from './ProgressBar'
+import { PodcastTitle } from './PodcastTitle'
+import ImgTranslucent from 'components/ImgTranslucent'
+import { useMediaControls } from 'lib/hooks'
+import { usePlayer } from 'lib/contexts'
+import Replay30 from 'components/icons/Replay30'
+import Pause from 'components/icons/Pause'
+import PlayArrow from 'components/icons/PlayArrow'
+import Forward30 from 'components/icons/Forward30'
 
 const FullPlayer = () => {
   const {
@@ -16,10 +16,10 @@ const FullPlayer = () => {
     isPlaying,
     current,
     audioRef,
-  } = usePlayer();
-  const audio = audioRef.current;
+  } = usePlayer()
+  const audio = audioRef.current
 
-  const { toggleAudio } = useMediaControls();
+  const { toggleAudio } = useMediaControls()
 
   return (
     <div className="container">
@@ -41,7 +41,7 @@ const FullPlayer = () => {
         <button
           className="controller-button"
           onClick={() => {
-            audio.currentTime = audio.currentTime - 10;
+            audio.currentTime = audio.currentTime - 10
           }}
           aria-label="Seek backward 10 seconds"
         >
@@ -61,7 +61,7 @@ const FullPlayer = () => {
           disabled={currentIndex === playlist.length - 1}
           className="controller-button"
           onClick={() => {
-            audio.currentTime = audio.currentTime + 30;
+            audio.currentTime = audio.currentTime + 30
           }}
           aria-label="Seek forward 30 seconds"
         >
@@ -171,7 +171,7 @@ const FullPlayer = () => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default FullPlayer;
+export default FullPlayer

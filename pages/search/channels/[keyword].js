@@ -1,5 +1,5 @@
-import { SearchChannelPage } from 'components/screens/SearchChannelPage';
+import { SearchChannelPage } from 'components/screens/SearchChannelPage'
 
 export default function SeachChannel() {
-  return <SearchChannelPage />;
+  return <SearchChannelPage />
 }

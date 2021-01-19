@@ -1,24 +1,24 @@
-import Layout from 'components/common/Layout';
-import MainTitle from 'components/MainTitle';
-import ImgTranslucent from 'components/ImgTranslucent';
-import SectionTitle from 'components/SectionTitle';
-import { durationToMinutes, dateFormatter } from 'lib/utils';
-import DescriptionContainer from 'components/DescriptionContainer';
-import PlayButton from 'components/player/PlayButton';
-import EpisodeListContainer from 'components/episodes/EpisodeListContainer';
-import { episodePropType } from 'lib/customPropTypes';
-import { useFetch } from 'lib/hooks';
-import { getChannelEpisodesUrl } from 'lib/constants';
+import Layout from 'components/common/Layout'
+import MainTitle from 'components/MainTitle'
+import ImgTranslucent from 'components/ImgTranslucent'
+import SectionTitle from 'components/SectionTitle'
+import { durationToMinutes, dateFormatter } from 'lib/utils'
+import DescriptionContainer from 'components/DescriptionContainer'
+import PlayButton from 'components/player/PlayButton'
+import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
+import { episodePropType } from 'lib/customPropTypes'
+import { useFetch } from 'lib/hooks'
+import { getChannelEpisodesUrl } from 'lib/constants'
 
 const PodcastPage = ({ episode }) => {
-  const { channel } = episode;
+  const { channel } = episode
 
-  const channelEpisodesUrl = getChannelEpisodesUrl(channel.id);
+  const channelEpisodesUrl = getChannelEpisodesUrl(channel.id)
 
   const { data: episodesData, isLoading } = useFetch(
     channelEpisodesUrl,
     'audio_clips'
-  );
+  )
 
   return (
     <Layout
@@ -87,11 +87,11 @@ const PodcastPage = ({ episode }) => {
         }
       `}</style>
     </Layout>
-  );
-};
+  )
+}
 
-export default PodcastPage;
+export default PodcastPage
 
 PodcastPage.propTypes = {
   episode: episodePropType,
-};
+}

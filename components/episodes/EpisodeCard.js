@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import { colors, fontWeight } from 'styles/theme';
-import { dateFormatter, durationToMinutes } from 'lib/utils';
-import PropTypes from 'prop-types';
-import { episodePropType } from 'lib/customPropTypes';
-import Description from 'components/ui/Description';
-import CardInfo from 'components/ui/CardInfo';
-import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying';
-import { usePlayer } from 'lib/contexts';
+import Link from 'next/link'
+import { colors, fontWeight } from 'styles/theme'
+import { dateFormatter, durationToMinutes } from 'lib/utils'
+import PropTypes from 'prop-types'
+import { episodePropType } from 'lib/customPropTypes'
+import Description from 'components/ui/Description'
+import CardInfo from 'components/ui/CardInfo'
+import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying'
+import { usePlayer } from 'lib/contexts'
 
 const EpisodeCard = ({ clip, isActive, info }) => {
-  const { isPlaying } = usePlayer();
+  const { isPlaying } = usePlayer()
   return (
     <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
       <a className={`episode ${isActive ? 'active' : ''}`}>
@@ -95,18 +95,18 @@ const EpisodeCard = ({ clip, isActive, info }) => {
         `}</style>
       </a>
     </Link>
-  );
-};
+  )
+}
 
-export default EpisodeCard;
+export default EpisodeCard
 
 EpisodeCard.defaultProps = {
   info: null,
   isActive: false,
-};
+}
 
 EpisodeCard.propTypes = {
   clip: episodePropType,
   isActive: PropTypes.bool,
   info: PropTypes.string,
-};
+}

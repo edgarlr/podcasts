@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { fontWeight, colors } from 'styles/theme';
-import Description from 'components/ui/Description';
-import Image from 'next/image';
+import Link from 'next/link'
+import { fontWeight, colors } from 'styles/theme'
+import Description from 'components/ui/Description'
+import Image from 'next/image'
 
 const ChannelCard = ({ channel }) => {
   return (
@@ -70,7 +70,7 @@ const ChannelCard = ({ channel }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default ChannelCard;
+export default ChannelCard

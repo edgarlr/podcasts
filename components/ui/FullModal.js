@@ -1,8 +1,8 @@
-import { usePlayer } from 'lib/contexts';
-import PropTypes from 'prop-types';
+import { usePlayer } from 'lib/contexts'
+import PropTypes from 'prop-types'
 
 const FullModal = ({ children, isOpen, button }) => {
-  const { current } = usePlayer();
+  const { current } = usePlayer()
   return (
     <div
       className={`modal ${isOpen ? 'full main-container' : ''} ${
@@ -61,13 +61,13 @@ const FullModal = ({ children, isOpen, button }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default FullModal;
+export default FullModal
 
 FullModal.propTypes = {
   children: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
   button: PropTypes.element.isRequired,
-};
+}

@@ -1,5 +1,5 @@
-import { usePlayer } from 'lib/contexts';
-import { useMediaControls, useSharedState } from 'lib/hooks';
+import { usePlayer } from 'lib/contexts'
+import { useMediaControls, useSharedState } from 'lib/hooks'
 
 const AudioElement = () => {
   const {
@@ -8,11 +8,11 @@ const AudioElement = () => {
     audioRef,
     duration,
     SetDuration,
-  } = usePlayer();
+  } = usePlayer()
 
-  const [currentTime, setCurrentTime] = useSharedState('currentTime', 0);
-  const [, setProgress] = useSharedState('progress', 0);
-  const { nextEpisode } = useMediaControls();
+  const [currentTime, setCurrentTime] = useSharedState('currentTime', 0)
+  const [, setProgress] = useSharedState('progress', 0)
+  const { nextEpisode } = useMediaControls()
 
   return (
     <audio
@@ -22,16 +22,16 @@ const AudioElement = () => {
       onPause={() => SetIsPlaying(false)}
       onEnded={() => nextEpisode()}
       onPlaying={() => {
-        SetIsPlaying(true);
-        SetLoading(false);
+        SetIsPlaying(true)
+        SetLoading(false)
       }}
       onTimeUpdate={(e) => {
-        setCurrentTime(e.target.currentTime);
-        setProgress((currentTime * 100) / duration);
+        setCurrentTime(e.target.currentTime)
+        setProgress((currentTime * 100) / duration)
       }}
       src={null}
     />
-  );
-};
+  )
+}
 
-export default AudioElement;
+export default AudioElement

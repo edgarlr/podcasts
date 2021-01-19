@@ -1,16 +1,16 @@
-import MainTitle from 'components/MainTitle';
-import Layout from 'components/common/Layout';
-import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
-import FollowButtonContainer from 'components/FollowButtonContainer';
-import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton';
-import PropTypes from 'prop-types';
-import { channelPropType, episodePropType } from 'lib/customPropTypes';
-import ImgTranslucent from 'components/ImgTranslucent';
-import DescriptionContainer from 'components/DescriptionContainer';
-import { useIsMobile } from 'lib/hooks';
+import MainTitle from 'components/MainTitle'
+import Layout from 'components/common/Layout'
+import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
+import FollowButtonContainer from 'components/FollowButtonContainer'
+import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
+import PropTypes from 'prop-types'
+import { channelPropType, episodePropType } from 'lib/customPropTypes'
+import ImgTranslucent from 'components/ImgTranslucent'
+import DescriptionContainer from 'components/DescriptionContainer'
+import { useIsMobile } from 'lib/hooks'
 
 const ChannelPage = ({ channel, episodes, series }) => {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
   return (
     <Layout
       navigation
@@ -44,13 +44,13 @@ const ChannelPage = ({ channel, episodes, series }) => {
         title={`${episodes.length} available episodes`}
       />
     </Layout>
-  );
-};
+  )
+}
 
-export default ChannelPage;
+export default ChannelPage
 
 ChannelPage.propTypes = {
   channel: channelPropType,
   episodes: PropTypes.arrayOf(episodePropType).isRequired,
   series: PropTypes.arrayOf(channelPropType).isRequired,
-};
+}

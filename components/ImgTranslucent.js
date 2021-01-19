@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
 export default function ImgTranslucent({
   url,
@@ -54,5 +54,5 @@ export default function ImgTranslucent({
         }
       `}</style>
     </div>
-  );
+  )
 }

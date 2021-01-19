@@ -1,8 +1,8 @@
-import Head from 'next/head';
-import { usePlayer } from 'lib/contexts';
-import { colors } from 'styles/theme';
-import Header from './Header';
-import PropTypes from 'prop-types';
+import Head from 'next/head'
+import { usePlayer } from 'lib/contexts'
+import { colors } from 'styles/theme'
+import Header from './Header'
+import PropTypes from 'prop-types'
 
 export default function Layout(props) {
   const {
@@ -12,9 +12,9 @@ export default function Layout(props) {
     navigation,
     pageTitle,
     metaDescription,
-  } = props;
+  } = props
 
-  const { isPlaying, current } = usePlayer();
+  const { isPlaying, current } = usePlayer()
 
   return (
     <>
@@ -47,7 +47,7 @@ export default function Layout(props) {
         }
       `}</style>
     </>
-  );
+  )
 }
 
 Layout.defaultProps = {
@@ -56,7 +56,7 @@ Layout.defaultProps = {
   navigation: false,
   pageTitle: 'Podcast',
   metaDescription: 'Podcasts app using Next.js, SWR and AudioBoom API',
-};
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
@@ -65,4 +65,4 @@ Layout.propTypes = {
   navigation: PropTypes.bool,
   pageTitle: PropTypes.string,
   metaDescription: PropTypes.string,
-};
+}

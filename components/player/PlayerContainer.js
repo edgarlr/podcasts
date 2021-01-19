@@ -1,19 +1,19 @@
-import { usePlayer } from 'lib/contexts';
-import FullPlayerSkeleton from './FullPlayerSkeleton';
-import PropTypes from 'prop-types';
-import Queue from './Queue';
-import FullPlayer from './FullPlayer';
-import { useState } from 'react';
-import IconButton from 'components/ui/IconButton';
-import ChevronDown from 'components/icons/ChevronDown';
-import PlaylistPlay from 'components/icons/PlaylistPlay';
+import { usePlayer } from 'lib/contexts'
+import FullPlayerSkeleton from './FullPlayerSkeleton'
+import PropTypes from 'prop-types'
+import Queue from './Queue'
+import FullPlayer from './FullPlayer'
+import { useState } from 'react'
+import IconButton from 'components/ui/IconButton'
+import ChevronDown from 'components/icons/ChevronDown'
+import PlaylistPlay from 'components/icons/PlaylistPlay'
 
 const PlayerContainer = ({ handleModalClick }) => {
-  const { current } = usePlayer();
+  const { current } = usePlayer()
 
-  const [showPlaylist, setShowPlaylist] = useState(false);
+  const [showPlaylist, setShowPlaylist] = useState(false)
 
-  if (!current) return <FullPlayerSkeleton />;
+  if (!current) return <FullPlayerSkeleton />
 
   return (
     <>
@@ -103,9 +103,9 @@ const PlayerContainer = ({ handleModalClick }) => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default PlayerContainer;
+export default PlayerContainer
 
-PlayerContainer.propTypes = { handleModalClick: PropTypes.func };
+PlayerContainer.propTypes = { handleModalClick: PropTypes.func }

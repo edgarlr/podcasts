@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const Grid = ({ children }) => {
   return (
@@ -14,11 +14,11 @@ const Grid = ({ children }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default Grid;
+export default Grid
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
-};
+}

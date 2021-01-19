@@ -1,7 +1,7 @@
-import { colors } from 'styles/theme';
-import Forward30 from 'components/icons/Forward30';
-import Replay30 from 'components/icons/Replay30';
-import PlayArrow from 'components/icons/PlayArrow';
+import { colors } from 'styles/theme'
+import Forward30 from 'components/icons/Forward30'
+import Replay30 from 'components/icons/Replay30'
+import PlayArrow from 'components/icons/PlayArrow'
 
 const FullPlayerSkeleton = () => {
   return (
@@ -110,7 +110,7 @@ const FullPlayerSkeleton = () => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
-export default FullPlayerSkeleton;
+export default FullPlayerSkeleton

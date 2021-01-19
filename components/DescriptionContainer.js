@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { fontWeight, colors } from 'styles/theme';
+import { useState } from 'react'
+import { fontWeight, colors } from 'styles/theme'
 
 const DescriptionContainer = ({ data }) => {
-  const [isShowed, setIsShowed] = useState(false);
+  const [isShowed, setIsShowed] = useState(false)
 
   return (
     <div onClick={() => setIsShowed(!isShowed)}>
@@ -58,7 +58,7 @@ const DescriptionContainer = ({ data }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default DescriptionContainer;
+export default DescriptionContainer

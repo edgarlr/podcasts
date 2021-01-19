@@ -1,7 +1,7 @@
 export const fontWeight = {
   regular: 400,
   bold: 700,
-};
+}
 
 export const colors = {
   black: '#131414',
@@ -11,10 +11,10 @@ export const colors = {
   midGray: '#636d77',
   gray: '#73788c',
   darkGray: '#383838',
-};
+}
 
 export const mediaQueries = {
   tablet: '768px',
   laptop: '1024px',
   laptopLarge: '1440px',
-};
+}

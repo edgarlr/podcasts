@@ -1,19 +1,19 @@
-import { usePlayer } from 'lib/contexts';
-import MiniPlayerSkeleton from './MiniPlayerSkeleton';
-import { colors, fontWeight } from 'styles/theme';
-import ProgressCircle from './ProgressCircle';
-import { PodcastTitle } from './PodcastTitle';
-import ImgTranslucent from 'components/ImgTranslucent';
-import PropTypes from 'prop-types';
-import { useMediaControls } from 'lib/hooks';
-import Pause from 'components/icons/Pause';
-import PlayArrow from 'components/icons/PlayArrow';
+import { usePlayer } from 'lib/contexts'
+import MiniPlayerSkeleton from './MiniPlayerSkeleton'
+import { colors, fontWeight } from 'styles/theme'
+import ProgressCircle from './ProgressCircle'
+import { PodcastTitle } from './PodcastTitle'
+import ImgTranslucent from 'components/ImgTranslucent'
+import PropTypes from 'prop-types'
+import { useMediaControls } from 'lib/hooks'
+import Pause from 'components/icons/Pause'
+import PlayArrow from 'components/icons/PlayArrow'
 
 export default function MiniPlayer({ handleModalClick }) {
-  const { current, loading, isPlaying } = usePlayer();
-  const { toggleAudio } = useMediaControls();
+  const { current, loading, isPlaying } = usePlayer()
+  const { toggleAudio } = useMediaControls()
 
-  if (!current) return <MiniPlayerSkeleton />;
+  if (!current) return <MiniPlayerSkeleton />
 
   return (
     <>
@@ -126,9 +126,9 @@ export default function MiniPlayer({ handleModalClick }) {
         }
       `}</style>
     </>
-  );
+  )
 }
 
 MiniPlayer.propTypes = {
   handleModalClick: PropTypes.func.isRequired,
-};
+}

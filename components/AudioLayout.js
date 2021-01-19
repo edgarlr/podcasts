@@ -1,5 +1,5 @@
-import React from 'react';
-import PlayerModal from './player/Player';
+import React from 'react'
+import PlayerModal from './player/Player'
 
 const AudioLayout = ({ children }) => {
   return (
@@ -7,7 +7,7 @@ const AudioLayout = ({ children }) => {
       {children}
       <PlayerModal />
     </>
-  );
-};
+  )
+}
 
-export default AudioLayout;
+export default AudioLayout

@@ -1,32 +1,32 @@
-import { usePlayer } from 'lib/contexts';
-import { colors } from 'styles/theme';
-import PropTypes from 'prop-types';
-import { getChannelEpisodesUrl } from 'lib/constants';
-import { useFetch } from 'lib/hooks';
-import PlayArrow from 'components/icons/PlayArrow';
+import { usePlayer } from 'lib/contexts'
+import { colors } from 'styles/theme'
+import PropTypes from 'prop-types'
+import { getChannelEpisodesUrl } from 'lib/constants'
+import { useFetch } from 'lib/hooks'
+import PlayArrow from 'components/icons/PlayArrow'
 
 const PlayButton = ({ episodeId, channelId }) => {
-  const channelEpisodesUrl = getChannelEpisodesUrl(channelId);
+  const channelEpisodesUrl = getChannelEpisodesUrl(channelId)
   const { data: episodesData, isLoading } = useFetch(
     channelEpisodesUrl,
     'audio_clips'
-  );
+  )
 
-  const { SetCurrentIndex, SetPlaylist, audioRef, current } = usePlayer();
+  const { SetCurrentIndex, SetPlaylist, audioRef, current } = usePlayer()
 
   const onPlayClick = () => {
     if (episodesData) {
-      SetPlaylist(episodesData);
+      SetPlaylist(episodesData)
       for (let i = 0; i < episodesData.length; i++) {
         if (episodesData[i].id === episodeId) {
-          audioRef.current.src = episodesData[i].urls.high_mp3;
-          audioRef.current.play();
-          SetCurrentIndex(i);
-          break;
+          audioRef.current.src = episodesData[i].urls.high_mp3
+          audioRef.current.play()
+          SetCurrentIndex(i)
+          break
         }
       }
     }
-  };
+  }
 
   return (
     <button
@@ -67,12 +67,12 @@ const PlayButton = ({ episodeId, channelId }) => {
         }
       `}</style>
     </button>
-  );
-};
+  )
+}
 
-export default PlayButton;
+export default PlayButton
 
 PlayButton.propTypes = {
   episodeId: PropTypes.number.isRequired,
   channelId: PropTypes.number.isRequired,
-};
+}

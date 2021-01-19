@@ -1,5 +1,5 @@
-import { colors, fontWeight } from 'styles/theme';
-import Logo from './ui/icons/Logo';
+import { colors, fontWeight } from 'styles/theme'
+import Logo from './ui/icons/Logo'
 
 export default function LogoTitle() {
   return (
@@ -27,5 +27,5 @@ export default function LogoTitle() {
         }
       `}</style>
     </div>
-  );
+  )
 }

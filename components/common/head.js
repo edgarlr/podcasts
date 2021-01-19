@@ -1,5 +1,5 @@
 // import { useRef } from 'react';
-import NextHead from 'next/head';
+import NextHead from 'next/head'
 
 const Head = () => {
   // const link = useRef(null);
@@ -126,7 +126,7 @@ const Head = () => {
         href="/static/images/favicon-16x16.png"
       />
     </NextHead>
-  );
-};
+  )
+}
 
-export default Head;
+export default Head

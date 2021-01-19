@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 function Logo({ size }) {
   return (
@@ -35,15 +35,15 @@ function Logo({ size }) {
         fill="white"
       />
     </svg>
-  );
+  )
 }
 
 Logo.defaultProps = {
   size: 50,
-};
+}
 
 Logo.propTypes = {
   size: PropTypes.number,
-};
+}
 
-export default Logo;
+export default Logo

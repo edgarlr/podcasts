@@ -1,7 +1,7 @@
-import SectionTitle from 'components/SectionTitle';
-import Grid from 'components/ui/Grid';
-import { PodcastCover } from './PodcastCover';
-import PodcastCoverSkeleton from './PodcastCoverSkeleton';
+import SectionTitle from 'components/SectionTitle'
+import Grid from 'components/ui/Grid'
+import { PodcastCover } from './PodcastCover'
+import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 
 export const ChannelsGrid = ({
   title,
@@ -9,7 +9,7 @@ export const ChannelsGrid = ({
   sectionButton = null,
   loading = false,
 }) => {
-  if (!loading && channels.length === 0) return null;
+  if (!loading && channels.length === 0) return null
 
   return (
     <>
@@ -25,5 +25,5 @@ export const ChannelsGrid = ({
             ))}
       </Grid>
     </>
-  );
-};
+  )
+}

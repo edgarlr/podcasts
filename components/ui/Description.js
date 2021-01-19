@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { colors } from 'styles/theme';
+import PropTypes from 'prop-types'
+import { colors } from 'styles/theme'
 
 const Description = ({ children }) => {
   return (
@@ -21,11 +21,11 @@ const Description = ({ children }) => {
         }
       `}</style>
     </p>
-  );
-};
+  )
+}
 
-export default Description;
+export default Description
 
 Description.propTypes = {
   children: PropTypes.string.isRequired,
-};
+}

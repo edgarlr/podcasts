@@ -20,7 +20,7 @@ const Forward30 = ({ ...props }) => {
         </g>
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default Forward30;
+export default Forward30
