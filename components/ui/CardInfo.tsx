@@ -1,12 +1,11 @@
 import React from 'react'
 import { colors } from 'styles/theme'
-import PropTypes from 'prop-types'
 
-const CardInfo = ({ data }) => {
+const CardInfo = ({ data }: { data: string[] }) => {
   return (
     <div>
       {data.map((text, index) => (
-        <p className="duration" key={index}>
+        <p className="content" key={index}>
           {text}
         </p>
       ))}
@@ -14,12 +13,12 @@ const CardInfo = ({ data }) => {
         div {
           display: flex;
         }
-        .duration {
+        .content {
           color: ${colors.midGray};
           font-size: 0.7rem;
           margin: 0;
         }
-        .duration:not(:last-child):after {
+        .content:not(:last-child):after {
           content: ' · ';
           margin: 0 0.3rem;
           font-weight: bold;
@@ -30,7 +29,3 @@ const CardInfo = ({ data }) => {
 }
 
 export default CardInfo
-
-CardInfo.propTypes = {
-  data: PropTypes.array,
-}

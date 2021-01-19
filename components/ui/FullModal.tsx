@@ -1,7 +1,12 @@
 import { usePlayer } from 'lib/contexts'
-import PropTypes from 'prop-types'
 
-const FullModal = ({ children, isOpen, button }) => {
+type Props = {
+  children: React.ReactNode
+  isOpen: boolean
+  button: React.ReactNode
+}
+
+const FullModal = ({ children, isOpen, button }: Props) => {
   const { current } = usePlayer()
   return (
     <div
@@ -65,9 +70,3 @@ const FullModal = ({ children, isOpen, button }) => {
 }
 
 export default FullModal
-
-FullModal.propTypes = {
-  children: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  button: PropTypes.element.isRequired,
-}
