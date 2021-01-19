@@ -1,4 +1,4 @@
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import MainTitle from 'components/MainTitle';
 import { useFavs } from 'lib/contexts';
 import { ChannelsGrid } from 'components/channel/ChannelsGrid';

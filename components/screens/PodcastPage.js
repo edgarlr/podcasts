@@ -1,4 +1,4 @@
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import MainTitle from 'components/MainTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 import SectionTitle from 'components/SectionTitle';

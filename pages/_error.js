@@ -1,4 +1,4 @@
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 

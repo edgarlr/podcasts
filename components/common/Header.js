@@ -4,10 +4,10 @@ import { colors, fontWeight } from 'styles/theme';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { usePlayer } from 'lib/contexts';
-import IconButton from './ui/IconButton';
-import ArrowLeft from './icons/ArrowLeft';
+import IconButton from '../ui/IconButton';
+import ArrowLeft from 'components/icons/ArrowLeft';
 
-const AppHeader = ({ headerText, navigation, button }) => {
+const Header = ({ headerText, navigation, button }) => {
   const router = useRouter();
 
   const { current } = usePlayer();
@@ -117,14 +117,14 @@ const AppHeader = ({ headerText, navigation, button }) => {
   );
 };
 
-export default AppHeader;
+export default Header;
 
-AppHeader.defaultProps = {
+Header.defaultProps = {
   navigation: false,
   button: null,
 };
 
-AppHeader.propTypes = {
+Header.propTypes = {
   headerText: PropTypes.string.isRequired,
   navigation: PropTypes.bool,
   button: PropTypes.element,

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { usePlayer } from 'lib/contexts';
 import { colors } from 'styles/theme';
-import AppHeader from './AppHeader';
+import Header from './Header';
 import PropTypes from 'prop-types';
 
 export default function Layout(props) {
@@ -31,11 +31,7 @@ export default function Layout(props) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       </Head>
 
-      <AppHeader
-        navigation={navigation}
-        headerText={headerText}
-        button={button}
-      />
+      <Header navigation={navigation} headerText={headerText} button={button} />
 
       <main className={`main-container ${current ? 'playing' : ''}`}>
         {children}

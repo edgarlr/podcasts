@@ -1,5 +1,5 @@
 import MainTitle from 'components/MainTitle';
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel';
 import FollowButtonContainer from 'components/FollowButtonContainer';
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton';

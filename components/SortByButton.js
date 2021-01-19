@@ -2,8 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { colors } from 'styles/theme';
 import IconButton from './ui/IconButton';
-import Close from './icons/Close';
-import Sort from './icons/Sort';
+import Close from 'components/icons/Close';
+import Sort from 'components/icons/Sort';
 
 export default function SortByButton({ handleFilterClick }) {
   const [showDropdown, setShowDropdown] = useState(false);

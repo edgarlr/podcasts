@@ -1,4 +1,4 @@
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import ErrorMessage from 'components/ui/ErrorMessage';
 import Link from 'next/link';
 

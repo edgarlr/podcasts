@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useFetch } from 'lib/hooks';
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import MainTitle from 'components/MainTitle';
 import ClearSearchButton from 'components/search/ClearSearchButton';
 import SearchErrorMessage from 'components/search/SearchErrorMessage';

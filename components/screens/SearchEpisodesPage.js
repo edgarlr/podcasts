@@ -1,4 +1,4 @@
-import Layout from 'components/Layout';
+import Layout from 'components/common/Layout';
 import MainTitle from 'components/MainTitle';
 import { useRouter } from 'next/router';
 import { useFetch } from 'lib/hooks';
