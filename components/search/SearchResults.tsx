@@ -2,11 +2,10 @@ import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
 import SeeAllButton from 'components/search/SeeAllButton'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
-import PropTypes from 'prop-types'
 import { getChannelsSearchUrl, getEpisodesSearchUrl } from 'lib/constants'
 import { useFetch } from 'lib/hooks'
 
-const SearchResults = ({ keyword }) => {
+const SearchResults = ({ keyword }: { keyword: string }) => {
   const channelsUrl = getChannelsSearchUrl(keyword)
   const { data: channelsData, isLoading: channelsLoading } = useFetch(
     channelsUrl,
@@ -51,7 +50,3 @@ const SearchResults = ({ keyword }) => {
 }
 
 export default SearchResults
-
-SearchResults.propTypes = {
-  keyword: PropTypes.string.isRequired,
-}

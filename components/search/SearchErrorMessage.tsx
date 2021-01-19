@@ -1,7 +1,6 @@
 import ErrorMessage from 'components/ui/ErrorMessage'
-import PropTypes from 'prop-types'
 
-const SearchErrorMessage = ({ keyword }) => {
+const SearchErrorMessage = ({ keyword }: { keyword: string }) => {
   return (
     <ErrorMessage
       title={`Couldn't find "${keyword}"`}
@@ -11,7 +10,3 @@ const SearchErrorMessage = ({ keyword }) => {
 }
 
 export default SearchErrorMessage
-
-SearchErrorMessage.propTypes = {
-  keyword: PropTypes.string.isRequired,
-}

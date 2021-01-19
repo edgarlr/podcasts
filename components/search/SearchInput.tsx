@@ -1,11 +1,16 @@
 import { useRouter } from 'next/router'
 import { colors, fontWeight } from 'styles/theme'
-import PropTypes from 'prop-types'
+import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 
-const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
+type Props = {
+  searchKeyword: string
+  setSearchKeyword: Dispatch<SetStateAction<string>>
+}
+
+const SearchInput = ({ searchKeyword, setSearchKeyword }: Props) => {
   const router = useRouter()
 
-  const onSearchChange = (e) => {
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
     setSearchKeyword(value)
     router.push(`/?search=${value}`, undefined, { shallow: true })
@@ -55,8 +60,3 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }) => {
 }
 
 export default SearchInput
-
-SearchInput.propTypes = {
-  searchKeyword: PropTypes.string.isRequired,
-  setSearchKeyword: PropTypes.func.isRequired,
-}
