@@ -3,7 +3,7 @@ import { fontWeight, colors } from 'styles/theme'
 import Description from 'components/ui/Description'
 import Image from 'next/image'
 
-const ChannelCard = ({ channel }) => {
+const ChannelCard = ({ channel }: { channel: TChannel }) => {
   return (
     <div className="card-container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>

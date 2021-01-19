@@ -3,12 +3,19 @@ import SectionTitle from 'components/SectionTitle'
 import { PodcastCover } from './PodcastCover'
 import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 
+type Props = {
+  title: string
+  sectionButton: React.ReactNode
+  channels: TChannel[]
+  loading: boolean
+}
+
 export const ChannelsCarousel = ({
   title,
   channels = [],
   sectionButton = null,
   loading = false,
-}) => {
+}: Props) => {
   if (!loading && channels.length === 0) return null
 
   return (

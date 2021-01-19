@@ -2,6 +2,8 @@ type TImage = {
   original: string
 }
 
+type TChannel = TChannelLong | TChannelShort
+
 type TChannelShort = {
   type: string
   id: number
@@ -24,7 +26,7 @@ type TChannelShort = {
   }
 }
 
-type TChannel = {
+type TChannelLong = {
   id: number
   channel_id: number
   stream_id: number

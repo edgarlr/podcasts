@@ -3,12 +3,19 @@ import Grid from 'components/ui/Grid'
 import { PodcastCover } from './PodcastCover'
 import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 
+type Props = {
+  title: string
+  channels: TChannel[]
+  sectionButton: React.ReactNode
+  loading: boolean
+}
+
 export const ChannelsGrid = ({
   title,
   channels = [],
   sectionButton = null,
   loading = false,
-}) => {
+}: Props) => {
   if (!loading && channels.length === 0) return null
 
   return (

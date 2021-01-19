@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { fontWeight, colors } from 'styles/theme'
-import { channelPropType, channelShortPropType } from 'lib/customPropTypes'
-import { oneOfType } from 'prop-types'
 
-export const PodcastCover = ({ channel }) => {
+export const PodcastCover = ({ channel }: { channel: TChannel }) => {
   return (
     <div className="container">
       <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
@@ -68,8 +66,4 @@ export const PodcastCover = ({ channel }) => {
       `}</style>
     </div>
   )
-}
-
-PodcastCover.propTypes = {
-  channel: oneOfType([channelShortPropType, channelPropType]),
 }

@@ -1,6 +1,11 @@
 import { colors, fontWeight } from 'styles/theme'
 
-const SectionTitle = ({ title, button = null }) => (
+type Props = {
+  title: string
+  button: React.ReactNode
+}
+
+const SectionTitle = ({ title, button = null }: Props) => (
   <div className="section-title">
     <h2 className="main-title">{title}</h2>
 
