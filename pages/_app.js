@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import '../styles/normalize.css';
 import '../styles/main.css';
 import AudioLayout from 'components/AudioLayout';
+import Head from 'components/common/head';
 
 function MyApp({ Component, pageProps }) {
   return (
     <PlayerState>
       <FavsState>
         <AudioLayout>
+          <Head />
           <Component {...pageProps} />
         </AudioLayout>
       </FavsState>
