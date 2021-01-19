@@ -3,12 +3,6 @@ import { useRouter } from 'next/router';
 import { getEpisodeUrl } from 'lib/constants';
 import SkeletonEpisodePage from 'components/screens/skeleton/SkeletonEpisodePage';
 
-export default function podcast({ episode }) {
-  const router = useRouter();
-  if (router.isFallback) return <SkeletonEpisodePage />;
-  return <PodcastPage episode={episode} />;
-}
-
 export async function getStaticPaths() {
   return {
     paths: [],
@@ -25,4 +19,10 @@ export async function getStaticProps({ params }) {
   } = await req.json();
 
   return { props: { episode } };
+}
+
+export default function podcast({ episode }) {
+  const router = useRouter();
+  if (router.isFallback) return <SkeletonEpisodePage />;
+  return <PodcastPage episode={episode} />;
 }
