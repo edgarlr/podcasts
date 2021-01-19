@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { fontWeight, colors } from 'styles/theme';
-import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
-import { oneOfType } from 'prop-types';
 import Description from 'components/ui/Description';
 import Image from 'next/image';
 
@@ -76,7 +74,3 @@ const ChannelCard = ({ channel }) => {
 };
 
 export default ChannelCard;
-
-ChannelCard.propTypes = {
-  channel: oneOfType([channelShortPropType, channelPropType]),
-};

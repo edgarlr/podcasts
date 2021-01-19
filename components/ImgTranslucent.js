@@ -1,9 +1,14 @@
-import PropTypes from 'prop-types';
 import Image from 'next/image';
 
-export default function ImgTranslucent(props) {
-  const { url, alt, fullBlur, borderRadius, width, height, margin } = props;
-
+export default function ImgTranslucent({
+  url,
+  alt,
+  fullBlur = false,
+  borderRadius = null,
+  width,
+  height,
+  margin,
+}) {
   return (
     <div className="image-container">
       <Image
@@ -51,18 +56,3 @@ export default function ImgTranslucent(props) {
     </div>
   );
 }
-
-ImgTranslucent.defaultProps = {
-  fullBlur: false,
-  borderRadius: null,
-};
-
-ImgTranslucent.propTypes = {
-  url: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  fullBlur: PropTypes.bool,
-  borderRadius: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string,
-  margin: PropTypes.string,
-};

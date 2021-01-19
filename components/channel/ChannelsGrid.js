@@ -2,10 +2,13 @@ import SectionTitle from 'components/SectionTitle';
 import Grid from 'components/ui/Grid';
 import { PodcastCover } from './PodcastCover';
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
-import PropTypes, { oneOfType } from 'prop-types';
-import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 
-export const ChannelsGrid = ({ title, channels, sectionButton, loading }) => {
+export const ChannelsGrid = ({
+  title,
+  channels = [],
+  sectionButton = null,
+  loading = false,
+}) => {
   if (!loading && channels.length === 0) return null;
 
   return (
@@ -23,19 +26,4 @@ export const ChannelsGrid = ({ title, channels, sectionButton, loading }) => {
       </Grid>
     </>
   );
-};
-
-ChannelsGrid.defaultProps = {
-  channels: [],
-  sectionButton: null,
-  loading: false,
-};
-
-ChannelsGrid.propTypes = {
-  title: PropTypes.string.isRequired,
-  channels: PropTypes.arrayOf(
-    oneOfType([channelPropType, channelShortPropType])
-  ).isRequired,
-  sectionButton: PropTypes.element,
-  loading: PropTypes.bool,
 };

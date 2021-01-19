@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { colors } from 'styles/theme';
 import IconButton from './ui/IconButton';
 import Close from 'components/icons/Close';
@@ -85,7 +84,3 @@ export default function SortByButton({ handleFilterClick }) {
     </div>
   );
 }
-
-SortByButton.propTypes = {
-  handleFilterClick: PropTypes.func.isRequired,
-};

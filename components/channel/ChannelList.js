@@ -1,9 +1,7 @@
 import PodcastCoverSkeleton from './PodcastCoverSkeleton';
-import PropTypes, { oneOfType } from 'prop-types';
-import { channelPropType, channelShortPropType } from 'lib/customPropTypes';
 import ChannelCard from './ChannelCard';
 
-const ChannelsList = ({ title, channels, loading }) => {
+const ChannelsList = ({ title, channels = [], loading = false }) => {
   if (!loading && channels.length === 0) return null;
 
   return (
@@ -26,21 +24,6 @@ const ChannelsList = ({ title, channels, loading }) => {
       `}</style>
     </div>
   );
-};
-
-ChannelsList.defaultProps = {
-  channels: [],
-  sectionButton: null,
-  loading: false,
-};
-
-ChannelsList.propTypes = {
-  title: PropTypes.string.isRequired,
-  channels: PropTypes.arrayOf(
-    oneOfType([channelPropType, channelShortPropType])
-  ).isRequired,
-  sectionButton: PropTypes.element,
-  loading: PropTypes.bool,
 };
 
 export default ChannelsList;

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { fontWeight, colors } from 'styles/theme';
-import PropTypes from 'prop-types';
 
 const DescriptionContainer = ({ data }) => {
   const [isShowed, setIsShowed] = useState(false);
@@ -63,7 +62,3 @@ const DescriptionContainer = ({ data }) => {
 };
 
 export default DescriptionContainer;
-
-DescriptionContainer.propTypes = {
-  data: PropTypes.string.isRequired,
-};

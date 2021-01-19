@@ -1,4 +1,6 @@
+node_modules
 .next
 .now
-
 .eslintcache
+public
+yarn.lock

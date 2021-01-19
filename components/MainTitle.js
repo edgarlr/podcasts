@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { colors, fontWeight } from 'styles/theme';
-import PropTypes from 'prop-types';
 
-export default function MainTitle({ title, subtitle, linkTo }) {
+export default function MainTitle({ title, subtitle = null, linkTo = null }) {
   return (
     <div>
       {linkTo && (
@@ -71,14 +70,3 @@ export default function MainTitle({ title, subtitle, linkTo }) {
     </div>
   );
 }
-
-MainTitle.defaultProps = {
-  subtitle: null,
-  linkTo: null,
-};
-
-MainTitle.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  linkTo: PropTypes.string,
-};
