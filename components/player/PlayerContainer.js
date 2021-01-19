@@ -1,12 +1,12 @@
 import { usePlayer } from 'lib/contexts';
 import FullPlayerSkeleton from './FullPlayerSkeleton';
-import { colors } from 'styles/theme';
 import PropTypes from 'prop-types';
-import { MdKeyboardArrowDown, MdPlaylistPlay } from 'react-icons/md';
 import Queue from './Queue';
 import FullPlayer from './FullPlayer';
 import { useState } from 'react';
 import IconButton from 'components/ui/IconButton';
+import ChevronDown from 'components/icons/ChevronDown';
+import PlaylistPlay from 'components/icons/PlaylistPlay';
 
 const PlayerContainer = ({ handleModalClick }) => {
   const { current } = usePlayer();
@@ -24,11 +24,7 @@ const PlayerContainer = ({ handleModalClick }) => {
             ariaLabel="Minimize player"
             secondary
           >
-            <MdKeyboardArrowDown
-              size="2.5em"
-              color={colors.white}
-              aria-hidden="true"
-            />
+            <ChevronDown />
           </IconButton>
         </div>
       )}
@@ -37,12 +33,16 @@ const PlayerContainer = ({ handleModalClick }) => {
         {!showPlaylist ? (
           <div className="queue-button">
             Playing next
-            <span>{<MdPlaylistPlay size="1.5rem" color="white" />}</span>
+            <span>
+              <PlaylistPlay />
+            </span>
           </div>
         ) : (
           <div className="queue-button now-playing">
             Queue
-            <span>{<MdKeyboardArrowDown size="1.5rem" color="white" />}</span>
+            <span>
+              <ChevronDown />
+            </span>
           </div>
         )}
       </button>

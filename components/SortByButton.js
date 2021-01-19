@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { MdClose, MdSort } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { colors } from 'styles/theme';
 import IconButton from './ui/IconButton';
+import Close from './icons/Close';
+import Sort from './icons/Sort';
 
 export default function SortByButton({ handleFilterClick }) {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -20,11 +21,7 @@ export default function SortByButton({ handleFilterClick }) {
         handleOnClick={() => setShowDropdown(!showDropdown)}
         ariaLabel="Sort Episodes"
       >
-        {showDropdown ? (
-          <MdClose size="1.5em" aria-hidden="true" />
-        ) : (
-          <MdSort size="1.5em" aria-hidden="true" />
-        )}
+        {showDropdown ? <Close /> : <Sort />}
       </IconButton>
       <div className="sort-dropdown">
         <button

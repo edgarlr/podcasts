@@ -1,9 +1,12 @@
 import { ProgressBar } from './ProgressBar';
 import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
-import { MdPlayArrow, MdPause, MdForward30, MdReplay10 } from 'react-icons/md';
 import { useMediaControls } from 'lib/hooks';
 import { usePlayer } from 'lib/contexts';
+import Replay30 from 'components/icons/Replay30';
+import Pause from 'components/icons/Pause';
+import PlayArrow from 'components/icons/PlayArrow';
+import Forward30 from 'components/icons/Forward30';
 
 const FullPlayer = () => {
   const {
@@ -42,7 +45,7 @@ const FullPlayer = () => {
           }}
           aria-label="Seek backward 10 seconds"
         >
-          <MdReplay10 color="white" size="2.5em" aria-hidden="true" />
+          <Replay30 />
         </button>
 
         <button
@@ -51,15 +54,7 @@ const FullPlayer = () => {
           onClick={() => toggleAudio()}
           aria-label="Play or Pause Song"
         >
-          {isPlaying ? (
-            <MdPause color="white" size="3em" aria-label="Previous Song" />
-          ) : (
-            <MdPlayArrow
-              color="white"
-              size="3em"
-              aria-label="Toogle audio play"
-            />
-          )}
+          {isPlaying ? <Pause /> : <PlayArrow />}
         </button>
 
         <button
@@ -70,7 +65,7 @@ const FullPlayer = () => {
           }}
           aria-label="Seek forward 30 seconds"
         >
-          <MdForward30 color="white" size="2.5em" aria-hidden="true" />
+          <Forward30 />
         </button>
       </div>
 

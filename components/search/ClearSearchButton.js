@@ -1,7 +1,6 @@
+import Close from 'components/icons/Close';
 import IconButton from 'components/ui/IconButton';
 import { useRouter } from 'next/router';
-import { MdClose } from 'react-icons/md';
-import { colors } from 'styles/theme';
 
 const ClearSearchButton = () => {
   const router = useRouter();
@@ -12,7 +11,7 @@ const ClearSearchButton = () => {
 
   return (
     <IconButton handleOnClick={onCloseClick} ariaLabel="Search">
-      <MdClose size="2rem" color={colors.black} aria-hidden="true" />
+      <Close />
     </IconButton>
   );
 };

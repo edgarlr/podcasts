@@ -1,5 +1,7 @@
 import { colors } from 'styles/theme';
-import { MdSkipNext, MdPlayArrow, MdSkipPrevious } from 'react-icons/md';
+import Forward30 from 'components/icons/Forward30';
+import Replay30 from 'components/icons/Replay30';
+import PlayArrow from 'components/icons/PlayArrow';
 
 const FullPlayerSkeleton = () => {
   return (
@@ -14,13 +16,13 @@ const FullPlayerSkeleton = () => {
 
         <div className="main-player">
           <button disabled className="controller-button">
-            <MdSkipPrevious color="white" size="3em" />
+            <Replay30 />
           </button>
           <button disabled className="play-button">
-            <MdPlayArrow color="white" size="3em" />
+            <PlayArrow />
           </button>
           <button disabled className="controller-button">
-            <MdSkipNext color="white" size="3em" />
+            <Forward30 />
           </button>
         </div>
         <div className="progress-bar" />

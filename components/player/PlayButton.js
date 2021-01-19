@@ -1,9 +1,9 @@
 import { usePlayer } from 'lib/contexts';
-import { MdPlayArrow } from 'react-icons/md';
 import { colors } from 'styles/theme';
 import PropTypes from 'prop-types';
 import { getChannelEpisodesUrl } from 'lib/constants';
 import { useFetch } from 'lib/hooks';
+import PlayArrow from 'components/icons/PlayArrow';
 
 const PlayButton = ({ episodeId, channelId }) => {
   const channelEpisodesUrl = getChannelEpisodesUrl(channelId);
@@ -35,7 +35,7 @@ const PlayButton = ({ episodeId, channelId }) => {
       onClick={() => onPlayClick()}
       aria-label="Play podcast"
     >
-      <MdPlayArrow color="white" size="2rem" aria-hidden="true" />
+      <PlayArrow />
 
       <style jsx>{`
         .play-button {

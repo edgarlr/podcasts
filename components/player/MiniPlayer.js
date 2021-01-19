@@ -1,5 +1,4 @@
 import { usePlayer } from 'lib/contexts';
-import { MdPause, MdPlayArrow } from 'react-icons/md';
 import MiniPlayerSkeleton from './MiniPlayerSkeleton';
 import { colors, fontWeight } from 'styles/theme';
 import ProgressCircle from './ProgressCircle';
@@ -7,6 +6,8 @@ import { PodcastTitle } from './PodcastTitle';
 import ImgTranslucent from 'components/ImgTranslucent';
 import PropTypes from 'prop-types';
 import { useMediaControls } from 'lib/hooks';
+import Pause from 'components/icons/Pause';
+import PlayArrow from 'components/icons/PlayArrow';
 
 export default function MiniPlayer({ handleModalClick }) {
   const { current, loading, isPlaying } = usePlayer();
@@ -48,11 +49,7 @@ export default function MiniPlayer({ handleModalClick }) {
         >
           <ProgressCircle size={50} strokeWidth={2} circleStroke="#fff" />
 
-          {isPlaying ? (
-            <MdPause color="white" size="2.2em" />
-          ) : (
-            <MdPlayArrow color="white" size="2.2em" />
-          )}
+          {isPlaying ? <Pause /> : <PlayArrow />}
         </button>
       </div>
 

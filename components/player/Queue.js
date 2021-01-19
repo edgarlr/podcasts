@@ -1,8 +1,8 @@
+import PlayCircle from 'components/icons/PlayCircle';
 import { usePlayer } from 'lib/contexts';
 import { dateFormatter, durationToMinutes } from 'lib/utils';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { MdPlayCircleOutline } from 'react-icons/md';
 import MiniPlayer from './MiniPlayer';
 
 const Queue = () => {
@@ -49,7 +49,7 @@ const Queue = () => {
               {durationToMinutes(episode.duration)}
             </span>
             <div className="play-icon">
-              <MdPlayCircleOutline color={'white'} size={'1.5rem'} />
+              <PlayCircle />
             </div>
           </li>
         ))}

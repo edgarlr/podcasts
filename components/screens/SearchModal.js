@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import FullModal from 'components/ui/FullModal';
 import SearchInput from 'components/search/SearchInput';
 import SearchResults from 'components/search/SearchResults';
-import { MdClose, MdSearch } from 'react-icons/md';
-import { colors } from 'styles/theme';
 import IconButton from 'components/ui/IconButton';
+import Close from 'components/icons/Close';
+import Search from 'components/icons/Search';
 
 const SearchModal = () => {
   const router = useRouter();
@@ -29,14 +29,14 @@ const SearchModal = () => {
 
   let buttonIcon = (
     <IconButton handleOnClick={() => setIsOpen(true)}>
-      <MdSearch size="2rem" color={colors.darkGray} />
+      <Search />
     </IconButton>
   );
 
   if (isOpen) {
     buttonIcon = (
       <IconButton handleOnClick={closeModal}>
-        <MdClose size="2rem" color={colors.darkGray} />
+        <Close />
       </IconButton>
     );
   }
