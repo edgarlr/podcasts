@@ -2,7 +2,8 @@ import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
 import ImgTranslucent from 'components/ImgTranslucent'
 import SectionTitle from 'components/SectionTitle'
-import { durationToMinutes, dateFormatter } from 'lib/utils'
+import { getDurationOnMin } from 'lib/utils/durationToMinutes'
+import { getFormattedDate } from 'lib/utils/dateFormatter'
 import DescriptionContainer from 'components/DescriptionContainer'
 import PlayButton from 'components/player/PlayButton'
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
@@ -42,7 +43,7 @@ const PodcastPage = ({ episode }) => {
       </div>
 
       <SectionTitle
-        title={`${dateFormatter(episode.uploaded_at)} · ${durationToMinutes(
+        title={`${getFormattedDate(episode.uploaded_at)} · ${getDurationOnMin(
           episode.duration
         )}`}
       />

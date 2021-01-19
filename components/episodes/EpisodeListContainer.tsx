@@ -2,12 +2,22 @@ import SectionTitle from 'components/SectionTitle'
 import { usePlayer } from 'lib/contexts'
 import EpisodeCard from './EpisodeCard'
 import EpisodeCardSkeleton from './EpisodeCardSkeleton'
-import PropTypes from 'prop-types'
-import { episodePropType } from 'lib/customPropTypes'
 
-export default function EpisodeListContainer(props) {
-  const { title, episodes, loading, button, searchCards } = props
+type Props = {
+  title: string
+  episodes: TEpisode[]
+  searchCards?: boolean
+  loading?: boolean
+  button: React.ReactNode
+}
 
+export default function EpisodeListContainer({
+  title,
+  episodes = [],
+  loading = false,
+  button = null,
+  searchCards = false,
+}: Props) {
   const { current } = usePlayer()
 
   if (!loading && episodes.length === 0) return null
@@ -30,19 +40,4 @@ export default function EpisodeListContainer(props) {
           ))}
     </div>
   )
-}
-
-EpisodeListContainer.defaultProps = {
-  episodes: [],
-  loading: false,
-  searchCards: false,
-  button: null,
-}
-
-EpisodeListContainer.propTypes = {
-  title: PropTypes.string.isRequired,
-  episodes: PropTypes.arrayOf(episodePropType).isRequired,
-  loading: PropTypes.bool,
-  searchCards: PropTypes.bool,
-  button: PropTypes.element,
 }

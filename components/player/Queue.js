@@ -1,6 +1,7 @@
 import PlayCircle from 'components/icons/PlayCircle'
 import { usePlayer } from 'lib/contexts'
-import { dateFormatter, durationToMinutes } from 'lib/utils'
+import { getDurationOnMin } from 'lib/utils/durationToMinutes'
+import { getFormattedDate } from 'lib/utils/dateFormatter'
 import { useRouter } from 'next/router'
 import React from 'react'
 import MiniPlayer from './MiniPlayer'
@@ -44,9 +45,9 @@ const Queue = () => {
           <li onClick={() => onPodcastClick(episode.id)} key={episode.id}>
             <p>{episode.title}</p>
             <span>
-              {dateFormatter(episode.uploaded_at)}
+              {getFormattedDate(episode.uploaded_at)}
               <b> · </b>
-              {durationToMinutes(episode.duration)}
+              {getDurationOnMin(episode.duration)}
             </span>
             <div className="play-icon">
               <PlayCircle />

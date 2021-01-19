@@ -1,7 +1,13 @@
 import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 import ChannelCard from './ChannelCard'
 
-const ChannelsList = ({ title, channels = [], loading = false }) => {
+type Props = {
+  title: string
+  channels: TChannel[]
+  loading: boolean
+}
+
+const ChannelsList = ({ title, channels = [], loading = false }: Props) => {
   if (!loading && channels.length === 0) return null
 
   return (

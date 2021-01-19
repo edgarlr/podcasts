@@ -1,14 +1,19 @@
 import Link from 'next/link'
 import { colors, fontWeight } from 'styles/theme'
-import { dateFormatter, durationToMinutes } from 'lib/utils'
-import PropTypes from 'prop-types'
-import { episodePropType } from 'lib/customPropTypes'
+import { getDurationOnMin } from 'lib/utils/durationToMinutes'
+import { getFormattedDate } from 'lib/utils/dateFormatter'
 import Description from 'components/ui/Description'
 import CardInfo from 'components/ui/CardInfo'
 import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying'
 import { usePlayer } from 'lib/contexts'
 
-const EpisodeCard = ({ clip, isActive, info }) => {
+type Props = {
+  clip: TEpisode
+  isActive: boolean
+  info: string
+}
+
+const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
   const { isPlaying } = usePlayer()
   return (
     <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
@@ -23,8 +28,8 @@ const EpisodeCard = ({ clip, isActive, info }) => {
 
         <CardInfo
           data={[
-            dateFormatter(clip.uploaded_at),
-            durationToMinutes(clip.duration),
+            getFormattedDate(clip.uploaded_at),
+            getDurationOnMin(clip.duration),
           ]}
         />
 
@@ -99,14 +104,3 @@ const EpisodeCard = ({ clip, isActive, info }) => {
 }
 
 export default EpisodeCard
-
-EpisodeCard.defaultProps = {
-  info: null,
-  isActive: false,
-}
-
-EpisodeCard.propTypes = {
-  clip: episodePropType,
-  isActive: PropTypes.bool,
-  info: PropTypes.string,
-}
