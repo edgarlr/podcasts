@@ -3,8 +3,8 @@ import { colors, fontWeight } from 'styles/theme'
 
 type Props = {
   title: string
-  subtitle: string
-  linkTo: string
+  subtitle?: string
+  linkTo?: string
 }
 
 export default function MainTitle({

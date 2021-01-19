@@ -6,8 +6,8 @@ import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 type Props = {
   title: string
   channels: TChannel[]
-  sectionButton: React.ReactNode
-  loading: boolean
+  sectionButton?: React.ReactNode
+  loading?: boolean
 }
 
 export const ChannelsGrid = ({

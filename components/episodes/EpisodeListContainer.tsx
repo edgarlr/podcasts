@@ -8,7 +8,7 @@ type Props = {
   episodes: TEpisode[]
   searchCards?: boolean
   loading?: boolean
-  button: React.ReactNode
+  button?: React.ReactNode
 }
 
 export default function EpisodeListContainer({

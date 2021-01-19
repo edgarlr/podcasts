@@ -5,11 +5,11 @@ import Header from './Header'
 
 type Props = {
   children: React.ReactNode
-  headerText: string
-  button: React.ReactNode
-  navigation: boolean
-  pageTitle: string
-  metaDescription: string
+  headerText?: string
+  button?: React.ReactNode
+  navigation?: boolean
+  pageTitle?: string
+  metaDescription?: string
 }
 
 export default function Layout({
