@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react'
 
 import { colors, fontWeight } from 'styles/theme'
 import { useRouter } from 'next/router'
-import PropTypes from 'prop-types'
 import { usePlayer } from 'lib/contexts'
 import IconButton from '../ui/IconButton'
 import ArrowLeft from 'components/icons/ArrowLeft'
 
-const Header = ({ headerText, navigation, button }) => {
+type Props = {
+  headerText: string
+  navigation: boolean
+  button: React.ReactNode
+}
+
+const Header = ({ headerText, navigation = false, button = null }: Props) => {
   const router = useRouter()
 
   const { current } = usePlayer()
@@ -118,14 +123,3 @@ const Header = ({ headerText, navigation, button }) => {
 }
 
 export default Header
-
-Header.defaultProps = {
-  navigation: false,
-  button: null,
-}
-
-Header.propTypes = {
-  headerText: PropTypes.string.isRequired,
-  navigation: PropTypes.bool,
-  button: PropTypes.element,
-}

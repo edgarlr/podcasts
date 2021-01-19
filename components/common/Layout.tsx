@@ -2,18 +2,24 @@ import Head from 'next/head'
 import { usePlayer } from 'lib/contexts'
 import { colors } from 'styles/theme'
 import Header from './Header'
-import PropTypes from 'prop-types'
 
-export default function Layout(props) {
-  const {
-    children,
-    headerText,
-    button,
-    navigation,
-    pageTitle,
-    metaDescription,
-  } = props
+type Props = {
+  children: React.ReactNode
+  headerText: string
+  button: React.ReactNode
+  navigation: boolean
+  pageTitle: string
+  metaDescription: string
+}
 
+export default function Layout({
+  children,
+  headerText = null,
+  button = null,
+  navigation = false,
+  pageTitle = 'Podcasts',
+  metaDescription = 'Podcasts App | Next.js, SWR and AudioBoom API',
+}: Props) {
   const { isPlaying, current } = usePlayer()
 
   return (
@@ -48,21 +54,4 @@ export default function Layout(props) {
       `}</style>
     </>
   )
-}
-
-Layout.defaultProps = {
-  headerText: null,
-  button: null,
-  navigation: false,
-  pageTitle: 'Podcast',
-  metaDescription: 'Podcasts app using Next.js, SWR and AudioBoom API',
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  headerText: PropTypes.string.isRequired,
-  button: PropTypes.element,
-  navigation: PropTypes.bool,
-  pageTitle: PropTypes.string,
-  metaDescription: PropTypes.string,
 }
