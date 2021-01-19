@@ -17,7 +17,7 @@ const SearchModal = () => {
   useEffect(() => {
     if (search !== undefined) {
       setIsOpen(true)
-      setSearchKeyword(search)
+      setSearchKeyword(search as string)
     }
   }, [])
 

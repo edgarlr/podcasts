@@ -2,7 +2,7 @@ import { colors, fontWeight } from 'styles/theme'
 
 type Props = {
   title: string
-  button: React.ReactNode
+  button?: React.ReactNode
 }
 
 const SectionTitle = ({ title, button = null }: Props) => (

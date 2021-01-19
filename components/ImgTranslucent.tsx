@@ -1,14 +1,24 @@
 import Image from 'next/image'
 
+type Props = {
+  url: string
+  alt: string
+  fullBlur?: boolean
+  borderRadius?: string
+  width?: string
+  height?: string
+  margin?: string
+}
+
 export default function ImgTranslucent({
   url,
   alt,
   fullBlur = false,
-  borderRadius = null,
-  width,
-  height,
-  margin,
-}) {
+  borderRadius = '20px',
+  width = '100%',
+  height = '100%',
+  margin = '0',
+}: Props) {
   return (
     <div className="image-container">
       <Image
@@ -25,16 +35,16 @@ export default function ImgTranslucent({
 
       <style jsx global>{`
         .image-main {
-          border-radius: ${borderRadius || '20px'};
+          border-radius: ${borderRadius};
         }
       `}</style>
 
       <style jsx>{`
         .image-container {
           position: relative;
-          width: ${width || '100%'};
-          padding-bottom: ${height || '100%'};
-          margin: ${margin || 0};
+          width: ${width};
+          padding-bottom: ${height};
+          margin: ${margin};
         }
         .background-container {
           position: absolute;

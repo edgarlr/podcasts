@@ -11,7 +11,7 @@ import { episodePropType } from 'lib/customPropTypes'
 import { useFetch } from 'lib/hooks'
 import { getChannelEpisodesUrl } from 'lib/constants'
 
-const PodcastPage = ({ episode }) => {
+const PodcastPage = ({ episode }: { episode: TEpisode }) => {
   const { channel } = episode
 
   const channelEpisodesUrl = getChannelEpisodesUrl(channel.id)
