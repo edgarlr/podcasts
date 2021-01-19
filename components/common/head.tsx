@@ -1,8 +1,8 @@
-// import { useRef } from 'react';
+import { useRef } from 'react'
 import NextHead from 'next/head'
 
 const Head = () => {
-  // const link = useRef(null);
+  const link = useRef(null)
 
   return (
     <NextHead>
@@ -12,21 +12,14 @@ const Head = () => {
         href="https://fonts.gstatic.com"
         crossOrigin="true"
       />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
-        media="print"
-        onLoad="this.onload=null;this.removeAttribute('media');"
-      />
 
-      {/* <link
-          ref={link}
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Playfair+Display&display=optional"
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          onLoad={() => (link.current.rel = 'stylesheet')}
-        /> */}
+      <link
+        ref={link}
+        rel="preload"
+        as="style"
+        href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+        onLoad={() => (link.current!.rel = 'stylesheet')}
+      />
 
       {/* status bar transparent */}
       <meta name="apple-mobile-web-app-capable" content="yes" />
