@@ -7,8 +7,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "dev:inspect": "NODE_OPTIONS='--inspect' next",
+    "dev": "next dev",
+    "dev:inspect": "NODE_OPTIONS='--inspect' next dev",
     "format": "prettier . --write",
     "build": "next build",
     "start": "next start"
@@ -24,9 +24,9 @@
     "swr": "^0.3.2"
   },
   "devDependencies": {
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.0",
-    "prettier": "^2.1.2"
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1"
   },
   "prettier": {
     "trailingComma": "es5",

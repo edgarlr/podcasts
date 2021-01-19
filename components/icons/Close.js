@@ -5,6 +5,7 @@ const Close = ({ ...props }) => {
       height="24"
       viewBox="0 0 24 24"
       width="24"
+      fill="currentColor"
       {...props}
     >
       <path d="M0 0h24v24H0z" fill="none" />
