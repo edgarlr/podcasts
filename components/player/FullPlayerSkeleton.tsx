@@ -5,31 +5,29 @@ import PlayArrow from 'components/icons/PlayArrow'
 
 const FullPlayerSkeleton = () => {
   return (
-    <>
-      <div className="container">
-        <div className="img-container" />
+    <div className="container">
+      <div className="img-container" />
 
-        <div className="info">
-          <div className="title-text" />
-          <div className="channel-text" />
-        </div>
+      <div className="info">
+        <div className="title-text" />
+        <div className="channel-text" />
+      </div>
 
-        <div className="main-player">
-          <button disabled className="controller-button">
-            <Replay30 />
-          </button>
-          <button disabled className="play-button">
-            <PlayArrow />
-          </button>
-          <button disabled className="controller-button">
-            <Forward30 />
-          </button>
-        </div>
-        <div className="progress-bar" />
-        <div className="progress-time">
-          <div>00:00</div>
-          <div>00:00</div>
-        </div>
+      <div className="main-player">
+        <button disabled className="controller-button">
+          <Replay30 />
+        </button>
+        <button disabled className="play-button">
+          <PlayArrow />
+        </button>
+        <button disabled className="controller-button">
+          <Forward30 />
+        </button>
+      </div>
+      <div className="progress-bar" />
+      <div className="progress-time">
+        <div>00:00</div>
+        <div>00:00</div>
       </div>
 
       <style jsx>{`
@@ -109,7 +107,7 @@ const FullPlayerSkeleton = () => {
           font-size: 12px;
         }
       `}</style>
-    </>
+    </div>
   )
 }
 
