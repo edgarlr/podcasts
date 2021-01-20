@@ -9,9 +9,10 @@
   "scripts": {
     "dev": "next dev",
     "dev:inspect": "NODE_OPTIONS='--inspect' next dev",
-    "format": "prettier . --write",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier . --write",
+    "type-check": "tsc --pretty --noEmit"
   },
   "keywords": [],
   "author": "@edgarlr",
@@ -38,10 +39,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run type-check"
     }
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,css,md,ts,tsx}": "prettier --write"
   }
 }
