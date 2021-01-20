@@ -5,9 +5,9 @@ import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 
 type Props = {
   title: string
-  sectionButton: React.ReactNode
   channels: TChannel[]
-  loading: boolean
+  sectionButton?: React.ReactNode
+  loading?: boolean
 }
 
 export const ChannelsCarousel = ({

@@ -3,13 +3,17 @@ import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import FollowButtonContainer from 'components/FollowButtonContainer'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
-import PropTypes from 'prop-types'
-import { channelPropType, episodePropType } from 'lib/customPropTypes'
 import ImgTranslucent from 'components/ImgTranslucent'
 import DescriptionContainer from 'components/DescriptionContainer'
 import { useIsMobile } from 'lib/hooks'
 
-const ChannelPage = ({ channel, episodes, series }) => {
+type Props = {
+  channel: TChannel
+  episodes: TEpisode[]
+  series: TChannel[]
+}
+
+const ChannelPage = ({ channel, episodes, series }: Props) => {
   const isMobile = useIsMobile()
   return (
     <Layout
@@ -28,6 +32,7 @@ const ChannelPage = ({ channel, episodes, series }) => {
         url={
           channel.urls.banner_image.original || channel.urls.logo_image.original
         }
+        alt={`${channel.title} cover`}
         borderRadius="20px"
         height={isMobile ? '35%' : '25%'}
         margin=".75rem 0"
@@ -48,9 +53,3 @@ const ChannelPage = ({ channel, episodes, series }) => {
 }
 
 export default ChannelPage
-
-ChannelPage.propTypes = {
-  channel: channelPropType,
-  episodes: PropTypes.arrayOf(episodePropType).isRequired,
-  series: PropTypes.arrayOf(channelPropType).isRequired,
-}

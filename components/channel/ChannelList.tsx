@@ -4,7 +4,7 @@ import ChannelCard from './ChannelCard'
 type Props = {
   title: string
   channels: TChannel[]
-  loading: boolean
+  loading?: boolean
 }
 
 const ChannelsList = ({ title, channels = [], loading = false }: Props) => {

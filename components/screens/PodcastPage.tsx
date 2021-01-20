@@ -7,7 +7,6 @@ import { getFormattedDate } from 'lib/utils/dateFormatter'
 import DescriptionContainer from 'components/DescriptionContainer'
 import PlayButton from 'components/player/PlayButton'
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
-import { episodePropType } from 'lib/customPropTypes'
 import { useFetch } from 'lib/hooks'
 import { getChannelEpisodesUrl } from 'lib/constants'
 
@@ -92,7 +91,3 @@ const PodcastPage = ({ episode }: { episode: TEpisode }) => {
 }
 
 export default PodcastPage
-
-PodcastPage.propTypes = {
-  episode: episodePropType,
-}
