@@ -1,7 +1,7 @@
 import PodcastPage from 'components/screens/PodcastPage'
 import { useRouter } from 'next/router'
 import SkeletonEpisodePage from 'components/screens/skeleton/SkeletonEpisodePage'
-import { getEpisode } from '@lib/api'
+import { getEpisodeById } from '@lib/api'
 import ErrorPage from 'next/error'
 import { InferGetStaticPropsType } from 'next'
 
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const episode: TEpisode = await getEpisode(params.episodeId)
+  const episode: TEpisode = await getEpisodeById(params.episodeId)
 
   // No props will trigger 404
   if (!episode) return { props: {} }
