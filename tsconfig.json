@@ -20,6 +20,6 @@
       "@styles/*": ["styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/utils/fetcher.js"],
   "exclude": ["node_modules"]
 }

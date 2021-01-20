@@ -1,3 +1,19 @@
+type TPlayerContext = {
+  currentIndex: number
+  current: TEpisode
+  playlist: TEpisode[]
+  loading: boolean
+  isPlaying: boolean
+  duration: number
+  audioReference: MutableRefObject<HTMLAudioElement>
+  audioRef: HTMLAudioElement
+  SetCurrentIndex: (index: number) => void
+  SetPlaylist: (playlistArray: TEpisode[]) => void
+  SetLoading: (loading: boolean) => void
+  SetIsPlaying: (isPlaying: boolean) => void
+  SetDuration: (duration: Number) => void
+}
+
 type TImage = {
   original: string
 }

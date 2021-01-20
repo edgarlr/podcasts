@@ -17,7 +17,7 @@ const FullPlayer = () => {
     current,
     audioRef,
   } = usePlayer()
-  const audio = audioRef.current
+  const audio = audioRef
 
   const { toggleAudio } = useMediaControls()
 

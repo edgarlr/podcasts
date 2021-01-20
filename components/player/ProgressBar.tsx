@@ -9,7 +9,7 @@ export const ProgressBar = () => {
   const handleProgress = (e: any) => {
     const compute = (e.target.value * duration) / 100
     setCurrentTime(compute)
-    audioRef.current.currentTime = compute
+    audioRef.currentTime = compute
   }
 
   return (

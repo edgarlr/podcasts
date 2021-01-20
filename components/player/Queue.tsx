@@ -20,8 +20,8 @@ const Queue = () => {
   const onPodcastClick = (id: TEpisode['id']) => {
     for (let i = 0; i < playlist.length; i++) {
       if (playlist[i].id === id) {
-        audioRef.current.src = playlist[i].urls.high_mp3
-        audioRef.current.play()
+        audioRef.src = playlist[i].urls.high_mp3
+        audioRef.play()
         SetCurrentIndex(i)
         break
       }

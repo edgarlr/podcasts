@@ -23,8 +23,8 @@ const PlayButton = ({ episodeId, channelId }: Props) => {
       SetPlaylist(episodesData)
       for (let i = 0; i < episodesData.length; i++) {
         if (episodesData[i].id === episodeId) {
-          audioRef.current.src = episodesData[i].urls.high_mp3
-          audioRef.current.play()
+          audioRef.src = episodesData[i].urls.high_mp3
+          audioRef.play()
           SetCurrentIndex(i)
           break
         }

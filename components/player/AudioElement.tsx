@@ -5,7 +5,7 @@ const AudioElement = () => {
   const {
     SetIsPlaying,
     SetLoading,
-    audioRef,
+    audioReference,
     duration,
     SetDuration,
   } = usePlayer()
@@ -15,7 +15,7 @@ const AudioElement = () => {
   const { nextEpisode } = useMediaControls()
   return (
     <audio
-      ref={audioRef}
+      ref={audioReference}
       onCanPlay={(e) => SetDuration((e.target as HTMLAudioElement).duration)}
       onLoadStart={() => SetLoading(true)}
       onPause={() => SetIsPlaying(false)}
