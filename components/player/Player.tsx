@@ -21,9 +21,9 @@ const PlayerModal = () => {
       {current && isTablet && (
         <div className={`container ${fullView ? 'fullmodal' : ''}`}>
           {!fullView ? (
-            <MiniPlayer handleModalClick={handleModalClick} />
+            <MiniPlayer onClick={handleModalClick} />
           ) : (
-            <PlayerContainer handleModalClick={handleModalClick} />
+            <PlayerContainer onClick={handleModalClick} />
           )}
         </div>
       )}

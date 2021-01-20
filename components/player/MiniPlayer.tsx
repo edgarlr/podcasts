@@ -4,12 +4,16 @@ import { colors, fontWeight } from 'styles/theme'
 import ProgressCircle from './ProgressCircle'
 import { PodcastTitle } from './PodcastTitle'
 import ImgTranslucent from 'components/ImgTranslucent'
-import PropTypes from 'prop-types'
 import { useMediaControls } from 'lib/hooks'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
+import { MouseEvent } from 'react'
 
-export default function MiniPlayer({ handleModalClick }) {
+export default function MiniPlayer({
+  onClick,
+}: {
+  onClick: (event?: MouseEvent) => void
+}) {
   const { current, loading, isPlaying } = usePlayer()
   const { toggleAudio } = useMediaControls()
 
@@ -20,11 +24,11 @@ export default function MiniPlayer({ handleModalClick }) {
       <div className="container">
         <button
           className="nav-button"
-          onClick={handleModalClick}
+          onClick={onClick}
           aria-label="Expand Player"
         />
 
-        <div className="img-container" onClick={() => handleModalClick()}>
+        <div className="img-container" onClick={() => onClick()}>
           <ImgTranslucent
             url={current.urls.image || current.channel.urls.logo_image.original}
             alt={current.title}
@@ -33,7 +37,7 @@ export default function MiniPlayer({ handleModalClick }) {
           />
         </div>
 
-        <div className="info" onClick={() => handleModalClick()}>
+        <div className="info" onClick={() => onClick()}>
           <PodcastTitle
             title={current.title}
             style={{ fontSize: '0.9rem', justifyContent: 'flex-start' }}
@@ -126,8 +130,4 @@ export default function MiniPlayer({ handleModalClick }) {
       `}</style>
     </>
   )
-}
-
-MiniPlayer.propTypes = {
-  handleModalClick: PropTypes.func.isRequired,
 }

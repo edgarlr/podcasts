@@ -1,14 +1,17 @@
 import { usePlayer } from 'lib/contexts'
 import FullPlayerSkeleton from './FullPlayerSkeleton'
-import PropTypes from 'prop-types'
 import Queue from './Queue'
 import FullPlayer from './FullPlayer'
-import { useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import IconButton from 'components/ui/IconButton'
 import ChevronDown from 'components/icons/ChevronDown'
 import PlaylistPlay from 'components/icons/PlaylistPlay'
 
-const PlayerContainer = ({ handleModalClick }) => {
+const PlayerContainer = ({
+  onClick,
+}: {
+  onClick?: (event?: MouseEvent) => void
+}) => {
   const { current } = usePlayer()
 
   const [showPlaylist, setShowPlaylist] = useState(false)
@@ -17,10 +20,10 @@ const PlayerContainer = ({ handleModalClick }) => {
 
   return (
     <>
-      {handleModalClick && (
+      {onClick && (
         <div className="close-button" aria-label="Minimize Player">
           <IconButton
-            onClick={handleModalClick}
+            onClick={onClick}
             ariaLabel="Minimize player"
             variant="secondary"
           >
@@ -107,5 +110,3 @@ const PlayerContainer = ({ handleModalClick }) => {
 }
 
 export default PlayerContainer
-
-PlayerContainer.propTypes = { handleModalClick: PropTypes.func }

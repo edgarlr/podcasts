@@ -36,7 +36,7 @@ const Queue = () => {
     <div className="container">
       <div className="title">Now Playing</div>
       <div style={{ margin: '1rem 0 2.5rem' }}>
-        <MiniPlayer handleModalClick={() => onNowPlayingClick(current.id)} />
+        <MiniPlayer onClick={() => onNowPlayingClick(current.id)} />
       </div>
 
       <ul>

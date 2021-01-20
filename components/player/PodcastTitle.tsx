@@ -2,11 +2,11 @@ import { CSSProperties } from 'react'
 
 type Props = {
   title: string
-  wrapAt: number
-  style: CSSProperties
+  wrapAt?: number
+  style?: CSSProperties
 }
 
-export const PodcastTitle = ({ title, wrapAt = 35, style }: Props) => {
+export const PodcastTitle = ({ title, wrapAt = 35, style = {} }: Props) => {
   if (title.length < wrapAt) {
     return (
       <div className="main-container">
