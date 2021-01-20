@@ -1,12 +1,12 @@
 import { PlayerState } from 'lib/contexts/PlayerState'
 import { FavsState } from 'lib/contexts/FavsState'
-import PropTypes from 'prop-types'
 import '../styles/normalize.css'
 import '../styles/main.css'
 import AudioLayout from 'components/AudioLayout'
 import Head from 'components/common/head'
+import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PlayerState>
       <FavsState>
@@ -20,8 +20,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp
-
-MyApp.propTypes = {
-  Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
-  pageProps: PropTypes.object.isRequired,
-}
