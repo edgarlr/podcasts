@@ -1,11 +1,15 @@
 import { usePlayer } from 'lib/contexts'
 import { colors } from 'styles/theme'
-import PropTypes from 'prop-types'
 import { getChannelEpisodesUrl } from 'lib/constants'
 import { useFetch } from 'lib/hooks'
 import PlayArrow from 'components/icons/PlayArrow'
 
-const PlayButton = ({ episodeId, channelId }) => {
+type Props = {
+  episodeId: TEpisode['id']
+  channelId: TChannel['id']
+}
+
+const PlayButton = ({ episodeId, channelId }: Props) => {
   const channelEpisodesUrl = getChannelEpisodesUrl(channelId)
   const { data: episodesData, isLoading } = useFetch(
     channelEpisodesUrl,
@@ -71,8 +75,3 @@ const PlayButton = ({ episodeId, channelId }) => {
 }
 
 export default PlayButton
-
-PlayButton.propTypes = {
-  episodeId: PropTypes.number.isRequired,
-  channelId: PropTypes.number.isRequired,
-}

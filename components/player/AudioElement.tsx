@@ -13,11 +13,10 @@ const AudioElement = () => {
   const [currentTime, setCurrentTime] = useSharedState('currentTime', 0)
   const [, setProgress] = useSharedState('progress', 0)
   const { nextEpisode } = useMediaControls()
-
   return (
     <audio
       ref={audioRef}
-      onCanPlay={(e) => SetDuration(e.target.duration)}
+      onCanPlay={(e) => SetDuration((e.target as HTMLAudioElement).duration)}
       onLoadStart={() => SetLoading(true)}
       onPause={() => SetIsPlaying(false)}
       onEnded={() => nextEpisode()}
@@ -26,7 +25,7 @@ const AudioElement = () => {
         SetLoading(false)
       }}
       onTimeUpdate={(e) => {
-        setCurrentTime(e.target.currentTime)
+        setCurrentTime((e.target as HTMLAudioElement).currentTime)
         setProgress((currentTime * 100) / duration)
       }}
       src={null}

@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import { useSharedState } from 'lib/hooks/useSharedState'
 
-const ProgressCircle = ({ size, strokeWidth, circleStroke }) => {
+type Props = {
+  size: number
+  strokeWidth: number
+  circleStroke: string
+}
+
+const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
   const [progress] = useSharedState('progress', 0)
 
   const [offset, setOffset] = useState(0)
@@ -61,9 +66,3 @@ const ProgressCircle = ({ size, strokeWidth, circleStroke }) => {
 }
 
 export default ProgressCircle
-
-ProgressCircle.propTypes = {
-  size: PropTypes.number.isRequired,
-  strokeWidth: PropTypes.number.isRequired,
-  circleStroke: PropTypes.string.isRequired,
-}

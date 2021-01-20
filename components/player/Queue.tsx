@@ -17,7 +17,7 @@ const Queue = () => {
 
   const router = useRouter()
 
-  const onPodcastClick = (id) => {
+  const onPodcastClick = (id: TEpisode['id']) => {
     for (let i = 0; i < playlist.length; i++) {
       if (playlist[i].id === id) {
         audioRef.current.src = playlist[i].urls.high_mp3
@@ -28,7 +28,7 @@ const Queue = () => {
     }
   }
 
-  const onNowPlayingClick = (id) => {
+  const onNowPlayingClick = (id: TEpisode['id']) => {
     router.push(`/episodes/${id}`)
   }
 
@@ -41,7 +41,7 @@ const Queue = () => {
 
       <ul>
         <div className="title">Next from: {current.channel.title}</div>
-        {playlist.slice(currentIndex + 1).map((episode) => (
+        {playlist.slice(currentIndex + 1).map((episode: TEpisode) => (
           <li onClick={() => onPodcastClick(episode.id)} key={episode.id}>
             <p>{episode.title}</p>
             <span>

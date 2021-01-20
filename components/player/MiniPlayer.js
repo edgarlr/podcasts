@@ -36,8 +36,7 @@ export default function MiniPlayer({ handleModalClick }) {
         <div className="info" onClick={() => handleModalClick()}>
           <PodcastTitle
             title={current.title}
-            fontSize=".9rem"
-            alwaysJustify="flex-start"
+            style={{ fontSize: '0.9rem', justifyContent: 'flex-start' }}
           />
           <h4>{current.channel.title}</h4>
         </div>
