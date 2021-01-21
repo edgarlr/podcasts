@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { colors } from 'styles/theme'
 import IconButton from './ui/IconButton'
 import Close from 'components/icons/Close'
 import Sort from 'components/icons/Sort'
@@ -84,7 +83,7 @@ export default function SortByButton({
           border-radius: 10px;
         }
         button:not(.active):hover {
-          background: ${colors.whiteHover};
+          background: var(--gray-15);
         }
       `}</style>
     </div>

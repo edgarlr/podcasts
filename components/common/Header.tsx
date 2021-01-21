@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-
-import { colors, fontWeight } from 'styles/theme'
 import { useRouter } from 'next/router'
 import { usePlayer } from 'lib/contexts'
 import IconButton from '../ui/IconButton'
@@ -52,12 +50,6 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
 
       <style jsx>{`
         header {
-          background: ${colors.white};
-        }
-      `}</style>
-
-      <style jsx>{`
-        header {
           z-index: 10;
           position: fixed;
           top: 0;
@@ -68,6 +60,7 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
           height: 3rem;
           padding: 0.1rem 0.8rem;
           justify-content: center;
+          background: var(--white);
         }
         .nav-btn-container {
           position: absolute;
@@ -83,7 +76,7 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
         p {
           margin: 0;
           font-size: 1rem;
-          font-weight: ${fontWeight.bold};
+          font-weight: bold;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;

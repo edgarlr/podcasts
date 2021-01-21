@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { fontWeight, colors } from 'styles/theme'
 import Description from 'components/ui/Description'
 import Image from 'next/image'
 
@@ -13,7 +12,7 @@ const ChannelCard = ({ channel }: { channel: TChannel }) => {
             alt={channel.title}
             width={100}
             height={100}
-            // Class available on PodcastCover.js
+            // Class declared on PodcastCover.js
             className="channel-image"
           />
 
@@ -25,22 +24,13 @@ const ChannelCard = ({ channel }: { channel: TChannel }) => {
       </Link>
 
       <style jsx>{`
-        a {
-          color: ${colors.darkGray};
-        }
-        h2 {
-          font-weight: ${fontWeight.bold};
-        }
-        .card-container:hover {
-          background: ${colors.whiteHover};
-        }
-      `}</style>
-
-      <style jsx>{`
         .card-container {
           padding: 0rem 1rem;
           border-radius: 20px;
           margin: 0 -1rem;
+        }
+        .card-container:hover {
+          background: var(--gray-15);
         }
         .info {
           display: flex;
@@ -54,7 +44,9 @@ const ChannelCard = ({ channel }: { channel: TChannel }) => {
           text-decoration: none;
           padding: 1rem 0;
         }
-
+        a {
+          color: var(--gray-80);
+        }
         h2 {
           padding: 0;
           margin: 8px 0 0;
@@ -65,6 +57,7 @@ const ChannelCard = ({ channel }: { channel: TChannel }) => {
           max-height: 2rem;
           text-overflow: ellipsis;
           display: -webkit-box;
+          font-weight: bold;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
         }

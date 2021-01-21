@@ -1,5 +1,3 @@
-import { colors } from 'styles/theme'
-
 const EpisodeCardSkeleton = () => {
   return (
     <div className="episode">
@@ -8,22 +6,17 @@ const EpisodeCardSkeleton = () => {
       <div className="plays" />
 
       <style jsx>{`
-        .episode {
-          border-bottom: 1px solid ${colors.lightGray};
-        }
         .title,
         .duration,
         .plays {
-          background: ${colors.lightGray};
+          background: var(--gray-20);
         }
-      `}</style>
-
-      <style jsx>{`
         .episode {
           display: block;
           text-decoration: none;
           margin: 0 0.6em;
           padding: 16px 0;
+          border-bottom: 1px solid var(--gray-20);
         }
         .title {
           height: 16px;

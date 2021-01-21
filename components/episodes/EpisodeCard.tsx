@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { colors, fontWeight } from 'styles/theme'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import Description from 'components/ui/Description'
@@ -34,18 +33,18 @@ const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
         />
 
         {isActive && (
-          <span>{isPlaying && <IconAudioPlaying fill={colors.black} />}</span>
+          <span>{isPlaying && <IconAudioPlaying fill={'var(--black)'} />}</span>
         )}
 
         <style jsx>{`
           .episode {
-            border-bottom: 1px solid ${colors.lightGray};
+            border-bottom: 1px solid var(--gray-20);
           }
           .active {
-            background: ${colors.whiteHover};
+            background: var(--gray-15);
           }
           .episode:hover {
-            background: ${colors.whiteHover};
+            background: var(--gray-15);
           }
         `}</style>
 
@@ -85,7 +84,7 @@ const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
             transform: translateY(-50%);
           }
           .meta {
-            font-weight: ${fontWeight.bold};
+            font-weight: bold;
             margin-top: 0.7rem;
             font-size: 0.8rem;
           }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { colors } from 'styles/theme'
 
 const CardInfo = ({ data }: { data: string[] }) => {
   return (
@@ -14,7 +13,7 @@ const CardInfo = ({ data }: { data: string[] }) => {
           display: flex;
         }
         .content {
-          color: ${colors.midGray};
+          color: var(--gray-50);
           font-size: 0.7rem;
           margin: 0;
         }

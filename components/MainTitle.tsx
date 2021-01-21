@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { colors, fontWeight } from 'styles/theme'
 
 type Props = {
   title: string
@@ -32,17 +31,13 @@ export default function MainTitle({
 
       <style jsx>{`
         div {
-          color: ${colors.black};
-          background: ${colors.white};
-          font-weight: ${fontWeight.bold};
-        }
-      `}</style>
-
-      <style jsx>{`
-        div {
           margin-top: 3em;
           height: auto;
           display: block;
+          color: var(--black);
+          background: var(--white);
+          font-weight: bold;
+        }
         }
         .title {
           font-size: 2rem;

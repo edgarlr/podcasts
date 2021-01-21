@@ -1,6 +1,5 @@
 import { usePlayer } from 'lib/contexts'
 import MiniPlayerSkeleton from './MiniPlayerSkeleton'
-import { colors, fontWeight } from 'styles/theme'
 import ProgressCircle from './ProgressCircle'
 import { PodcastTitle } from './PodcastTitle'
 import ImgTranslucent from 'components/ImgTranslucent'
@@ -58,18 +57,9 @@ export default function MiniPlayer({
 
       <style jsx>{`
         button {
-          background: ${colors.black};
+          background: var(--black);
         }
-        h3 {
-          color: ${colors.white};
-        }
-        h4 {
-          color: ${colors.gray};
-          font-weight: ${fontWeight.regular};
-        }
-      `}</style>
 
-      <style jsx>{`
         button[disabled] {
           opacity: 0.3;
         }
@@ -111,6 +101,11 @@ export default function MiniPlayer({
           font-size: 0.7rem;
           margin: 6px 0 0;
           text-transform: uppercase;
+          color: var(--gray-60);
+          font-weight: normal;
+        }
+        h3 {
+          color: var(--white);
         }
         .play-button {
           outline: none;

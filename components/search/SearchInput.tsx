@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import { colors, fontWeight } from 'styles/theme'
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 
 type Props = {
@@ -34,8 +33,8 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }: Props) => {
           font-size: 2em;
           padding: 1rem 0;
           margin: 0;
-          font-weight: ${fontWeight.bold};
-          color: ${colors.black};
+          font-weight: bold;
+          color: var(--black);
           width: 100%;
           border-bottom: 0;
           border-radius: 0;
@@ -48,11 +47,11 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }: Props) => {
           height: 15px;
           width: 15px;
           border-radius: 10px;
-          background: ${colors.gray};
+          background: var(--gray-60);
           color: aliceblue;
         }
         input:placeholder-shown {
-          border-bottom: 1px solid ${colors.lightGray};
+          border-bottom: 1px solid var(--gray-20);
         }
       `}</style>
     </>

@@ -1,5 +1,4 @@
 import { usePlayer } from 'lib/contexts'
-import { colors } from 'styles/theme'
 import { getChannelEpisodesUrl } from 'lib/constants'
 import { useFetch } from 'lib/hooks'
 import PlayArrow from 'components/icons/PlayArrow'
@@ -44,7 +43,7 @@ const PlayButton = ({ episodeId, channelId }: Props) => {
       <style jsx>{`
         .play-button {
           outline: none;
-          background: ${colors.black};
+          background: var(--black);
           border-radius: 50%;
           border: none;
           height: 2.8rem;
@@ -61,10 +60,10 @@ const PlayButton = ({ episodeId, channelId }: Props) => {
           transition: 0.2s;
         }
         .play-button:hover {
-          background: ${colors.whiteHover};
+          background: var(--gray-15);
         }
         .play-button:hover :global(svg) {
-          fill: ${colors.black};
+          fill: var(--black);
         }
         .play-button:disabled {
           opacity: 0.2;

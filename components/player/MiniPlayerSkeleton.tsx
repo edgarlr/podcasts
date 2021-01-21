@@ -1,5 +1,3 @@
-import { colors } from 'styles/theme'
-
 export default function MiniPlayerSkeleton() {
   return (
     <div className="info-container">
@@ -13,11 +11,8 @@ export default function MiniPlayerSkeleton() {
         .img-container,
         .title,
         .channel-title {
-          background: ${colors.darkGray};
+          background: var(--gray-80);
         }
-      `}</style>
-
-      <style jsx>{`
         .info-container {
           display: flex;
           align-items: center;

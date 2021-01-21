@@ -4,7 +4,6 @@ import { usePlayer } from 'lib/contexts'
 import Portal from 'components/ui/Portal'
 import MiniPlayer from 'components/player/MiniPlayer'
 import PlayerContainer from 'components/player/PlayerContainer'
-import { colors } from 'styles/theme'
 
 const Player = () => {
   const { current } = usePlayer()
@@ -34,13 +33,8 @@ const Player = () => {
 
       <style jsx>{`
         .container {
-          background: ${colors.black};
-        }
-      `}</style>
-
-      <style jsx>{`
-        .container {
           z-index: 20;
+          background: var(--black);
           position: fixed;
           right: 0;
           left: 0;

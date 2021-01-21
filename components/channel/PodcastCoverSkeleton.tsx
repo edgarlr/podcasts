@@ -1,5 +1,3 @@
-import { colors } from 'styles/theme'
-
 export default function PodcastCoverSkeleton() {
   return (
     <div>
@@ -8,20 +6,13 @@ export default function PodcastCoverSkeleton() {
 
       <style jsx>{`
         .img {
-          background: ${colors.lightGray};
-        }
-        .title {
-          background: ${colors.lightGray};
-        }
-      `}</style>
-
-      <style jsx>{`
-        .img {
+          background: var(--gray-20);
           width: 100%;
           padding-bottom: 100%;
           border-radius: 20px;
         }
         .title {
+          background: var(--gray-20);
           padding: 0;
           max-width: 70%;
           margin: 8px auto 0;

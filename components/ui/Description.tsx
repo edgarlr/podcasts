@@ -1,5 +1,3 @@
-import { colors } from 'styles/theme'
-
 const Description = ({ content }: { content: string }) => {
   return (
     <p className="description">
@@ -7,7 +5,7 @@ const Description = ({ content }: { content: string }) => {
 
       <style jsx>{`
         .description {
-          color: ${colors.midGray};
+          color: var(--gray-50);
           font-size: 0.85rem;
           padding: 0;
           overflow: hidden;

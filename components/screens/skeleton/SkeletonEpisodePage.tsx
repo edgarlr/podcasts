@@ -1,5 +1,4 @@
 import EpisodeCardSkeleton from 'components/episodes/EpisodeCardSkeleton'
-import { colors } from 'styles/theme'
 
 const SkeletonEpisodePage = () => {
   return (
@@ -38,7 +37,7 @@ const SkeletonEpisodePage = () => {
         .title-line,
         .description-line,
         .cover {
-          background: ${colors.lightGray};
+          background: var(--gray-20);
         }
         .cover {
           width: 100%;
@@ -66,7 +65,7 @@ const SkeletonEpisodePage = () => {
         }
         .episode-list {
           margin-top: 2rem;
-          border-top: 1px solid ${colors.lightGray};
+          border-top: 1px solid var(--gray-20);
         }
       `}</style>
     </div>

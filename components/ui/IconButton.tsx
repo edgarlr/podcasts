@@ -1,6 +1,5 @@
 import cn from 'classnames'
 import { CSSProperties, MouseEvent } from 'react'
-import { colors } from 'styles/theme'
 
 type Props = {
   children: React.ReactNode
@@ -40,7 +39,7 @@ const IconButton = ({
         height: 2.5rem;
       }
       button:hover {
-        background: ${colors.whiteHover};
+        background: var(--gray-15);
       }
       .secondary:hover {
         background: rgba(255, 255, 255, 0.1);

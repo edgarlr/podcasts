@@ -1,4 +1,3 @@
-import { colors } from 'styles/theme'
 import Forward30 from 'components/icons/Forward30'
 import Replay30 from 'components/icons/Replay30'
 import PlayArrow from 'components/icons/PlayArrow'
@@ -31,21 +30,12 @@ const FullPlayerSkeleton = () => {
       </div>
 
       <style jsx>{`
-        .play-button {
-          border: 1px solid ${colors.white};
-        }
-        .progress-time {
-          color: ${colors.midGray};
-        }
         .progress-bar,
         .img-container,
         .title-text,
         .channel-text {
-          background: ${colors.darkGray};
+          background: var(--gray-80);
         }
-      `}</style>
-
-      <style jsx>{`
         .container {
           display: flex;
           flex-direction: column;
@@ -95,6 +85,7 @@ const FullPlayerSkeleton = () => {
           height: 72px;
           border-radius: 50%;
           background: none;
+          border: 1px solid var(--white);
         }
         .progress-bar {
           width: 100%;
@@ -105,6 +96,7 @@ const FullPlayerSkeleton = () => {
           display: flex;
           justify-content: space-between;
           font-size: 12px;
+          color: var(--gray-50);
         }
       `}</style>
     </div>

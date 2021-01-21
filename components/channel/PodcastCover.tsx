@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { fontWeight, colors } from 'styles/theme'
 
 export const PodcastCover = ({ channel }: { channel: TChannel }) => {
   return (
@@ -18,16 +17,6 @@ export const PodcastCover = ({ channel }: { channel: TChannel }) => {
       </Link>
       <h3>{channel.title}</h3>
 
-      <style jsx>{`
-        h3 {
-          color: ${colors.darkGray};
-          font-weight: ${fontWeight.regular};
-        }
-        .container:hover {
-          background: ${colors.whiteHover};
-        }
-      `}</style>
-
       <style jsx global>{`
         .channel-image {
           border-radius: 15px;
@@ -41,8 +30,13 @@ export const PodcastCover = ({ channel }: { channel: TChannel }) => {
           transition: 0.15s;
           cursor: pointer;
         }
+        .container:hover {
+          background: var(--gray-15);
+        }
 
         h3 {
+          color: var(--gray-80);
+          font-weight: normal;
           padding: 0;
           margin: 8px 0 0;
           font-size: 0.9rem;

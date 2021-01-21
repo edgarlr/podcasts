@@ -1,6 +1,4 @@
 import EpisodeCardSkeleton from 'components/episodes/EpisodeCardSkeleton'
-import { colors } from 'styles/theme'
-
 const SkeletonChannelPage = () => {
   return (
     <div className="main-container">
@@ -15,7 +13,7 @@ const SkeletonChannelPage = () => {
       <style jsx>{`
         .main-title,
         .banner {
-          background: ${colors.lightGray};
+          background: var(--gray-20);
         }
         .main-title {
           margin: 3rem 0 1rem;
@@ -30,7 +28,7 @@ const SkeletonChannelPage = () => {
         }
         .episode-list {
           margin-top: 4rem;
-          border-top: 1px solid ${colors.lightGray};
+          border-top: 1px solid var(--gray-20);
         }
       `}</style>
     </div>

@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { usePlayer } from 'lib/contexts'
-import { colors } from 'styles/theme'
 import Header from './Header'
 
 type Props = {
@@ -45,11 +44,11 @@ export default function Layout({
 
       <style jsx global>{`
         body {
-          background: ${colors.white};
-          color: ${colors.darkGray};
+          background: var(--white);
+          color: var(--gray-80);
         }
         a {
-          color: ${colors.darkGray};
+          color: var(--gray-80);
         }
       `}</style>
     </>

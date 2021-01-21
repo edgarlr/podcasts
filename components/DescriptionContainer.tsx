@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { fontWeight, colors } from 'styles/theme'
 
 const DescriptionContainer = ({ content }: { content: string }) => {
   const [isShowed, setIsShowed] = useState<boolean>(false)
@@ -11,17 +10,6 @@ const DescriptionContainer = ({ content }: { content: string }) => {
       </p>
 
       <style jsx>{`
-        div span {
-          font-weight: ${fontWeight.bold};
-          color: ${colors.midGray};
-        }
-        .hide::after {
-          font-weight: ${fontWeight.bold};
-          background: ${colors.white};
-        }
-      `}</style>
-
-      <style jsx>{`
         div {
           margin-top: 1.5rem;
           padding: 0;
@@ -30,6 +18,8 @@ const DescriptionContainer = ({ content }: { content: string }) => {
           font-size: 0.7rem;
           text-transform: uppercase;
           margin: 0;
+          font-weight: bold;
+          color: var(--gray-50);
         }
         p {
           line-height: 1.25;
@@ -53,6 +43,8 @@ const DescriptionContainer = ({ content }: { content: string }) => {
           right: 0;
           left: 30%;
           height: 1.2em;
+          font-weight: bold;
+          background: var(--white);
         }
         @media screen and (min-width: 768px) {
           .hide::after {
