@@ -6,16 +6,16 @@ type Props = {
   selector: string
 }
 
-const PlayerPortal = ({ children, selector }: Props) => {
-  const playerPortalRef = useRef()
+const Portal = ({ children, selector }: Props) => {
+  const PortalRef = useRef()
   const [monted, setMonted] = useState(false)
 
   useEffect(() => {
-    playerPortalRef.current = document.querySelector(selector)
+    PortalRef.current = document.querySelector(selector)
     setMonted(true)
   }, [selector])
 
-  return monted ? createPortal(children, playerPortalRef.current) : null
+  return monted ? createPortal(children, PortalRef.current) : null
 }
 
-export default PlayerPortal
+export default Portal

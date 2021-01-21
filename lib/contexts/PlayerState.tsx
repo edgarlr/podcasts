@@ -8,6 +8,7 @@ import {
   SET_IS_PLAYING,
   SET_DURATION,
 } from './types'
+import AudioElement from '@components/audioplayer/AudioElement'
 
 export const PlayerState = ({ children }) => {
   const initialState = {
@@ -52,6 +53,7 @@ export const PlayerState = ({ children }) => {
       }}
     >
       {children}
+      <AudioElement />
     </PlayerContext.Provider>
   )
 }

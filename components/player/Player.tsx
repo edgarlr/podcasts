@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { useMediaQuery, useMediaSessions } from 'lib/hooks'
 import { usePlayer } from 'lib/contexts'
-import PlayerPortal from 'components/player/PlayerPortal'
+import Portal from 'components/ui/Portal'
 import MiniPlayer from 'components/player/MiniPlayer'
-import AudioElement from 'components/player/AudioElement'
 import PlayerContainer from 'components/player/PlayerContainer'
 import { colors } from 'styles/theme'
 
-const PlayerModal = () => {
+const Player = () => {
   const { current } = usePlayer()
   const [fullView, setFullView] = useState(false)
 
@@ -17,7 +16,7 @@ const PlayerModal = () => {
 
   const isTablet = useMediaQuery(1023)
   return (
-    <PlayerPortal selector="#player">
+    <Portal selector="#player">
       {current && isTablet && (
         <div className={`container ${fullView ? 'fullmodal' : ''}`}>
           {!fullView ? (
@@ -32,8 +31,6 @@ const PlayerModal = () => {
           <PlayerContainer />
         </div>
       )}
-
-      <AudioElement />
 
       <style jsx>{`
         .container {
@@ -81,8 +78,8 @@ const PlayerModal = () => {
           }
         }
       `}</style>
-    </PlayerPortal>
+    </Portal>
   )
 }
 
-export default PlayerModal
+export default Player
