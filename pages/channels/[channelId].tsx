@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import SkeletonChannelPage from 'components/screens/skeleton/SkeletonChannelPage'
 import { getChannelById, getChannelsEpisodes, getChannelsSeries } from 'lib/api'
 import { InferGetStaticPropsType } from 'next'
 import ErrorPage from 'next/error'
@@ -13,7 +12,7 @@ import DescriptionContainer from 'components/DescriptionContainer'
 import { useIsMobile } from 'lib/hooks'
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: true }
+  return { paths: [], fallback: 'blocking' }
 }
 
 export async function getStaticProps({ params }) {
@@ -40,7 +39,6 @@ export default function channel({
   const isMobile = useIsMobile()
 
   if (!isFallback && !channel) return <ErrorPage statusCode={404} />
-  if (isFallback) return <SkeletonChannelPage />
 
   return (
     <Layout

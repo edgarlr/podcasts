@@ -14,7 +14,7 @@ export async function getStaticProps() {
   return { props: { channels } }
 }
 
-const DynamicSearch = dynamic(() => import('components/screens/SearchModal'), {
+const DynamicSearch = dynamic(() => import('@components/search/SearchModal'), {
   ssr: false,
 })
 
