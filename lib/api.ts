@@ -1,9 +1,13 @@
 const API_URL = `https://api.audioboom.com`
 
 export async function fetchAPI(path: string) {
-  const response = await fetch(`${API_URL}${path}`)
-  const data = await response.json()
-  return data
+  try {
+    const response = await fetch(`${API_URL}${path}`)
+    const data = await response.json()
+    return data
+  } catch (error) {
+    return { body: {} }
+  }
 }
 
 export async function getRecommendedChannels() {

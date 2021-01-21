@@ -13,6 +13,7 @@ const AudioElement = () => {
   const [currentTime, setCurrentTime] = useSharedState('currentTime', 0)
   const [, setProgress] = useSharedState('progress', 0)
   const { nextEpisode } = useMediaControls()
+
   return (
     <audio
       ref={audioReference}
