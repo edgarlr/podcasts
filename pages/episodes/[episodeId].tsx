@@ -4,7 +4,7 @@ import ErrorPage from 'next/error'
 import { InferGetStaticPropsType } from 'next'
 import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
-import ImgTranslucent from 'components/ImgTranslucent'
+import ImgTranslucent from '@components/ui/ImgTranslucent'
 import SectionTitle from 'components/SectionTitle'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
@@ -43,7 +43,7 @@ export default function podcast({
         <ImgTranslucent
           url={episode.urls?.image || channel.urls.logo_image.original}
           alt={episode.title}
-          borderRadius="15px"
+          style={{ borderRadius: '15px' }}
         />
         <MainTitle
           title={episode.title}

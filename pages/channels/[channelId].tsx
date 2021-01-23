@@ -7,7 +7,7 @@ import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import FollowButtonContainer from 'components/FollowButtonContainer'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
-import ImgTranslucent from 'components/ImgTranslucent'
+import ImgTranslucent from '@components/ui/ImgTranslucent'
 import DescriptionContainer from 'components/DescriptionContainer'
 import { useIsMobile } from 'lib/hooks'
 
@@ -58,9 +58,11 @@ export default function channel({
           channel.urls.banner_image.original || channel.urls.logo_image.original
         }
         alt={`${channel.title} cover`}
-        borderRadius="20px"
-        height={isMobile ? '35%' : '25%'}
-        margin=".75rem 0"
+        style={{
+          borderRadius: '20px',
+          margin: '.75rem 0',
+          paddingBottom: isMobile ? '25%' : '25%',
+        }}
       />
 
       {series.length === 0 && channel.description.length > 100 && (

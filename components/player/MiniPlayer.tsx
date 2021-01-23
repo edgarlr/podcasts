@@ -2,7 +2,7 @@ import { usePlayer } from 'lib/contexts'
 import MiniPlayerSkeleton from './MiniPlayerSkeleton'
 import ProgressCircle from './ProgressCircle'
 import { PodcastTitle } from './PodcastTitle'
-import ImgTranslucent from 'components/ImgTranslucent'
+import ImgTranslucent from '@components/ui/ImgTranslucent'
 import { useMediaControls } from 'lib/hooks'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
@@ -32,7 +32,7 @@ export default function MiniPlayer({
             url={current.urls.image || current.channel.urls.logo_image.original}
             alt={current.title}
             fullBlur
-            borderRadius="10px"
+            style={{ borderRadius: '10px' }}
           />
         </div>
 

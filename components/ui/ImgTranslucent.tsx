@@ -1,26 +1,22 @@
 import Image from 'next/image'
+import { CSSProperties } from 'react'
+import cn from 'classnames'
 
 type Props = {
   url: string
   alt: string
   fullBlur?: boolean
-  borderRadius?: string
-  width?: string
-  height?: string
-  margin?: string
+  style: CSSProperties
 }
 
 export default function ImgTranslucent({
   url,
   alt,
+  style,
   fullBlur = false,
-  borderRadius = '20px',
-  width = '100%',
-  height = '100%',
-  margin = '0',
 }: Props) {
   return (
-    <div className="image-container">
+    <div className="image-container" style={style}>
       <Image
         src={url}
         alt={alt}
@@ -29,22 +25,22 @@ export default function ImgTranslucent({
         className="image-main"
       />
 
-      <div className={`background-container ${fullBlur ? 'ultra' : ''}`}>
+      <div className={cn('background-container', { ['ultra']: fullBlur })}>
         <Image src={url} layout="fill" objectFit="cover" quality={25} />
       </div>
 
       <style jsx global>{`
         .image-main {
-          border-radius: ${borderRadius};
+          border-radius: 15px;
         }
       `}</style>
 
       <style jsx>{`
         .image-container {
           position: relative;
-          width: ${width};
-          padding-bottom: ${height};
-          margin: ${margin};
+          width: 100%;
+          padding-bottom: 100%;
+          margin: 0;
         }
         .background-container {
           position: absolute;

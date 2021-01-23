@@ -1,6 +1,6 @@
 import { ProgressBar } from './ProgressBar'
 import { PodcastTitle } from './PodcastTitle'
-import ImgTranslucent from 'components/ImgTranslucent'
+import ImgTranslucent from '@components/ui/ImgTranslucent'
 import { useMediaControls } from 'lib/hooks'
 import { usePlayer } from 'lib/contexts'
 import Replay30 from 'components/icons/Replay30'
@@ -28,7 +28,7 @@ const FullPlayer = () => {
           url={current.urls.image || current.channel.urls.logo_image.original}
           alt={current.title}
           fullBlur
-          borderRadius="15px"
+          style={{ borderRadius: '15px' }}
         />
       </div>
 
