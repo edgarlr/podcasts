@@ -9,7 +9,7 @@ import FollowButtonContainer from 'components/FollowButtonContainer'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
 import ImgTranslucent from '@components/ui/ImgTranslucent'
 import DescriptionContainer from 'components/DescriptionContainer'
-import { useIsMobile } from 'lib/hooks'
+import { useIsMobile } from 'lib/hooks/use-media-queries'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }

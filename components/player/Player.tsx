@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { useMediaQuery, useMediaSessions } from 'lib/hooks'
+import { useMediaSessions } from 'lib/hooks'
 import { usePlayer } from 'lib/contexts'
 import Portal from 'components/ui/Portal'
 import MiniPlayer from 'components/player/MiniPlayer'
 import PlayerContainer from 'components/player/PlayerContainer'
+import { useMediaQuery } from '@lib/hooks/use-media-queries'
 
 const Player = () => {
   const { current } = usePlayer()
