@@ -2,7 +2,7 @@ import { useReducer } from 'react'
 import { FavsContext } from 'lib/contexts'
 import { ADD_TO_FOLLOW, REMOVE_FROM_FOLLOW } from './types'
 import { FavsReducer } from './FavsReducer'
-import { useLocalStorage } from 'lib/hooks'
+import { useLocalStorage } from 'lib/hooks/use-local-storage'
 
 export const FavsState = ({ children }) => {
   const [favs] = useLocalStorage('favs', undefined)

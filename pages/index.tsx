@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from 'next'
 import dynamic from 'next/dynamic'
 import { getRecommendedChannels } from 'lib/api'
-import { useFavs } from 'lib/contexts'
+import { useFavs } from 'lib/hooks/use-favs'
 import { useIsMobile } from 'lib/hooks'
 import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
@@ -21,7 +21,7 @@ const DynamicSearch = dynamic(() => import('@components/search/SearchModal'), {
 export default function Home({
   channels,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { myList } = useFavs()
+  const { favs } = useFavs()
   const isMobile = useIsMobile()
 
   return (
@@ -32,7 +32,7 @@ export default function Home({
     >
       <MainTitle title="Podcasts App" />
 
-      <ChannelsCarousel title="Followed" channels={myList} />
+      <ChannelsCarousel title="Followed" channels={favs} />
 
       {isMobile ? (
         <>

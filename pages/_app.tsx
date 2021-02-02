@@ -1,5 +1,5 @@
 import { PlayerState } from 'lib/contexts/PlayerState'
-import { FavsState } from 'lib/contexts/FavsState'
+import FavsProvider from 'components/FavsProvider'
 import '../styles/normalize.css'
 import '../styles/main.css'
 import Head from 'components/common/head'
@@ -8,13 +8,13 @@ import Player from '@components/player/Player'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <PlayerState>
-      <FavsState>
+    <FavsProvider>
+      <PlayerState>
         <Head />
         <Component {...pageProps} />
         <Player />
-      </FavsState>
-    </PlayerState>
+      </PlayerState>
+    </FavsProvider>
   )
 }
 

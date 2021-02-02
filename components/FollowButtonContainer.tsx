@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import { useFavs } from 'lib/contexts'
-import { useLocalStorage } from 'lib/hooks'
+import { useFavs } from 'lib/hooks/use-favs'
 import Button from './ui/Button'
 
 const FollowButtonContainer = ({ channel }: { channel: TChannel }) => {
-  const { myList, Follow, Unfollow } = useFavs()
-  const [isFollowed, setIsFollowed] = useState(
-    myList.some((c: TChannel) => c.id === channel.id)
-  )
-  const [, setLocalStorage] = useLocalStorage('favs', [])
+  const { favs, addToFavs, removeFromFavs } = useFavs()
+
+  const isOnFavs = favs.some((item: TChannel) => item.id === channel.id)
 
   const handleFollowClick = () => {
-    if (!isFollowed) {
-      Follow(channel)
-      setIsFollowed(true)
-      setLocalStorage(myList)
+    if (isOnFavs) {
+      removeFromFavs(channel)
     } else {
-      Unfollow(channel)
-      setIsFollowed(false)
-      setLocalStorage(myList)
+      addToFavs(channel)
     }
   }
 
   return (
     <Button
       onClick={handleFollowClick}
-      variant={isFollowed ? 'secondary' : 'primary'}
+      variant={isOnFavs ? 'secondary' : 'primary'}
       ariaLabel="Follow this channel"
     >
-      {isFollowed ? 'Following' : 'Follow'}
+      {isOnFavs ? 'Following' : 'Follow'}
     </Button>
   )
 }
