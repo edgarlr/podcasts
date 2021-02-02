@@ -1,6 +1,6 @@
 import { usePlayer } from 'lib/contexts'
 import { getChannelEpisodesUrl } from 'lib/constants'
-import { useFetch } from 'lib/hooks'
+import { useFetch } from 'lib/hooks/use-fetch'
 import PlayArrow from 'components/icons/PlayArrow'
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 const PlayButton = ({ episodeId, channelId }: Props) => {
   const channelEpisodesUrl = getChannelEpisodesUrl(channelId)
-  const { data: episodesData, isLoading } = useFetch(
+  const { data: episodesData, isLoading } = useFetch<TEpisode[]>(
     channelEpisodesUrl,
     'audio_clips'
   )

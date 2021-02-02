@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useFetch } from 'lib/hooks'
+import { useFetch } from 'lib/hooks/use-fetch'
 import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
 import ClearSearchButton from 'components/search/ClearSearchButton'
@@ -13,7 +13,7 @@ export default function SeachChannel() {
   } = useRouter()
 
   const channelsUrl = getChannelsSearchUrl(keyword as string)
-  const { data, isLoading } = useFetch(channelsUrl, 'channels')
+  const { data, isLoading } = useFetch<TChannel[]>(channelsUrl, 'channels')
 
   return (
     <Layout

@@ -1,5 +1,5 @@
 import { getChannelEpisodesUrl } from '@lib/constants'
-import { useFetch } from '@lib/hooks'
+import { useFetch } from '@lib/hooks/use-fetch'
 import EpisodeListContainer from './EpisodeListContainer'
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 const DynamicEpisodeList = ({ channel }: Props) => {
   const channelEpisodesUrl = getChannelEpisodesUrl(channel.id)
 
-  const { data: episodesData, isLoading } = useFetch(
+  const { data: episodesData, isLoading } = useFetch<TEpisode[]>(
     channelEpisodesUrl,
     'audio_clips'
   )

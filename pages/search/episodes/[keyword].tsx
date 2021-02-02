@@ -1,7 +1,7 @@
 import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
 import { useRouter } from 'next/router'
-import { useFetch } from 'lib/hooks'
+import { useFetch } from 'lib/hooks/use-fetch'
 import ClearSearchButton from 'components/search/ClearSearchButton'
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
@@ -13,7 +13,7 @@ export default function SeachChannel() {
   } = useRouter()
 
   const episodesUrl = getEpisodesSearchUrl(keyword as string)
-  const { data, isLoading } = useFetch(episodesUrl, 'audio_clips')
+  const { data, isLoading } = useFetch<TEpisode[]>(episodesUrl, 'audio_clips')
 
   return (
     <Layout
