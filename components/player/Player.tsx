@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useMediaSessions } from 'lib/hooks'
+import { useMediaSessions } from 'lib/hooks/useMediaSessions'
 import { usePlayer } from 'lib/contexts'
 import Portal from 'components/ui/Portal'
 import MiniPlayer from 'components/player/MiniPlayer'

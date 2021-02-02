@@ -1,5 +1,5 @@
 import { usePlayer } from 'lib/contexts'
-import { useMediaControls } from 'lib/hooks'
+import { useMediaControls } from 'lib/hooks/useMediaControls'
 import { useSharedState } from 'lib/hooks/use-shared-state'
 
 const AudioElement = () => {
