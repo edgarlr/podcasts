@@ -1,5 +1,5 @@
-import { useSortEpisodes } from 'lib/hooks'
 import SortByButton from 'components/SortByButton'
+import { useState } from 'react'
 import EpisodeListContainer from './EpisodeListContainer'
 
 const EpisodesListWithSortButton = ({
@@ -9,22 +9,40 @@ const EpisodesListWithSortButton = ({
   title: string
   episodes: TEpisode[]
 }) => {
-  const [list, setList, sortList] = useSortEpisodes(episodes, 'uploaded_at')
+  const [key, setKey] = useState('uploaded_at')
+  const [inverse, setInverse] = useState(false)
+
+  const sortedEpisodes = (): TEpisode[] => {
+    if (inverse) {
+      return [...episodes].sort((a, b) =>
+        a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0
+      )
+    }
+    if (key === 'counts') {
+      return [...episodes].sort((a, b) =>
+        a[key].plays < b[key].plays ? 1 : a[key].plays > b[key].plays ? -1 : 0
+      )
+    }
+    return [...episodes].sort((a, b) =>
+      a[key] < b[key] ? 1 : a[key] > b[key] ? -1 : 0
+    )
+  }
 
   const handleFilterClick = (type: 'latest' | 'popular' | 'oldest') => {
     if (type === 'latest') {
-      setList(sortList('uploaded_at'))
+      setKey('uploaded_at')
     } else if (type === 'popular') {
-      setList(sortList('counts'))
+      setKey('counts')
     } else {
-      setList(sortList('uploaded_at', true))
+      setKey('uploaded_at')
+      setInverse(true)
     }
   }
 
   return (
     <EpisodeListContainer
       title={title}
-      episodes={list as TEpisode[]}
+      episodes={sortedEpisodes()}
       button={<SortByButton handleFilterClick={handleFilterClick} />}
     />
   )
