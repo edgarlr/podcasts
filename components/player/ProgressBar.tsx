@@ -1,10 +1,10 @@
 import { usePlayer } from 'lib/contexts'
-import { useSharedState } from 'lib/hooks/useSharedState'
+import { useSharedState } from '@lib/hooks/use-shared-state'
 import { getDurationInMSS } from 'lib/utils/durationToMSS'
 
 export const ProgressBar = () => {
   const { duration, audioRef } = usePlayer()
-  const [currentTime, setCurrentTime] = useSharedState('currentTime', 0)
+  const [currentTime, setCurrentTime] = useSharedState<number>('currentTime', 0)
 
   const handleProgress = (e: any) => {
     const compute = (e.target.value * duration) / 100

@@ -1,5 +1,6 @@
 import { usePlayer } from 'lib/contexts'
-import { useMediaControls, useSharedState } from 'lib/hooks'
+import { useMediaControls } from 'lib/hooks'
+import { useSharedState } from 'lib/hooks/use-shared-state'
 
 const AudioElement = () => {
   const {
@@ -10,8 +11,8 @@ const AudioElement = () => {
     SetDuration,
   } = usePlayer()
 
-  const [currentTime, setCurrentTime] = useSharedState('currentTime', 0)
-  const [, setProgress] = useSharedState('progress', 0)
+  const [currentTime, setCurrentTime] = useSharedState<number>('currentTime', 0)
+  const [, setProgress] = useSharedState<number>('progress', 0)
   const { nextEpisode } = useMediaControls()
 
   return (

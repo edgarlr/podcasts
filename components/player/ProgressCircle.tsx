@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useSharedState } from 'lib/hooks/useSharedState'
+import { useSharedState } from '@lib/hooks/use-shared-state'
 
 type Props = {
   size: number
@@ -8,7 +8,7 @@ type Props = {
 }
 
 const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
-  const [progress] = useSharedState('progress', 0)
+  const [progress] = useSharedState<number>('progress', 0)
 
   const [offset, setOffset] = useState(0)
   const circleRef = useRef(null)
