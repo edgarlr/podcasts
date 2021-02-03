@@ -15,7 +15,9 @@ export const useMediaSessions = () => {
     }
 
     if ('mediaSession' in navigator && current) {
-      navigator.mediaSession.metadata = new window.MediaMetadata({
+      const navigator: any = window.navigator
+
+      navigator.mediaSession.metadata = new (window as any).MediaMetadata({
         title: current.title,
         artist: current.channel.title,
         artwork: [
