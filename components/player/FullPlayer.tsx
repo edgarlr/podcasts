@@ -1,7 +1,7 @@
 import { ProgressBar } from './ProgressBar'
 import { PodcastTitle } from './PodcastTitle'
 import ImgTranslucent from '@components/ui/ImgTranslucent'
-import { useMediaControls } from 'lib/hooks/useMediaControls'
+import { useMediaControls } from '@lib/hooks/use-media-controls'
 import { usePlayer } from 'lib/contexts'
 import Replay30 from 'components/icons/Replay30'
 import Pause from 'components/icons/Pause'
