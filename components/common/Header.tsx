@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import IconButton from '../ui/IconButton'
 import ArrowLeft from 'components/icons/ArrowLeft'
 

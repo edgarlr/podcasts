@@ -1,12 +1,18 @@
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import { useEffect } from 'react'
-import { useMediaControls } from '@lib/hooks/use-media-controls'
 
 export const useMediaSessions = () => {
-  const { current, audioRef, currentIndex, playlist } = usePlayer()
-  const { prevEpisode, nextEpisode } = useMediaControls()
-
-  const audio = audioRef
+  const {
+    current,
+    currentIndex,
+    playlist,
+    prevEpisode,
+    nextEpisode,
+    play,
+    pause,
+    seekForward,
+    replay,
+  } = usePlayer()
 
   useEffect(() => {
     const next = () => {
@@ -34,20 +40,20 @@ export const useMediaSessions = () => {
         ],
       })
       navigator.mediaSession.setActionHandler('play', () => {
-        audio.play()
+        play(current.id)
       })
       navigator.mediaSession.setActionHandler('pause', () => {
-        audio.pause()
+        pause()
       })
       navigator.mediaSession.setActionHandler('seekbackward', () => {
-        audio.currentTime = audio.currentTime - 15
+        replay(15)
       })
 
       navigator.mediaSession.setActionHandler('seekforward', () => {
-        audio.currentTime = audio.currentTime + 30
+        seekForward(30)
       })
       navigator.mediaSession.setActionHandler('previoustrack', prevEpisode)
       navigator.mediaSession.setActionHandler('nexttrack', next())
     }
-  }, [current, audioRef])
+  }, [current])
 }

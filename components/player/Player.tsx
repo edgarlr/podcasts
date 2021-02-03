@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useMediaSessions } from '@lib/hooks/use-media-sessions'
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import Portal from 'components/ui/Portal'
 import MiniPlayer from 'components/player/MiniPlayer'
 import PlayerContainer from 'components/player/PlayerContainer'

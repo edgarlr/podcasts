@@ -4,7 +4,7 @@ import { getFormattedDate } from 'lib/utils/dateFormatter'
 import Description from 'components/ui/Description'
 import CardInfo from 'components/ui/CardInfo'
 import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying'
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 
 type Props = {
   clip: TEpisode

@@ -1,5 +1,5 @@
 import PlayCircle from 'components/icons/PlayCircle'
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import { useRouter } from 'next/router'
@@ -7,26 +7,9 @@ import React from 'react'
 import MiniPlayer from './MiniPlayer'
 
 const Queue = () => {
-  const {
-    playlist,
-    currentIndex,
-    current,
-    SetCurrentIndex,
-    audioRef,
-  } = usePlayer()
+  const { playlist, currentIndex, current, play } = usePlayer()
 
   const router = useRouter()
-
-  const onPodcastClick = (id: TEpisode['id']) => {
-    for (let i = 0; i < playlist.length; i++) {
-      if (playlist[i].id === id) {
-        audioRef.src = playlist[i].urls.high_mp3
-        audioRef.play()
-        SetCurrentIndex(i)
-        break
-      }
-    }
-  }
 
   const onNowPlayingClick = (id: TEpisode['id']) => {
     router.push(`/episodes/${id}`)
@@ -42,7 +25,7 @@ const Queue = () => {
       <ul>
         <div className="title">Next from: {current.channel.title}</div>
         {playlist.slice(currentIndex + 1).map((episode: TEpisode) => (
-          <li onClick={() => onPodcastClick(episode.id)} key={episode.id}>
+          <li onClick={() => play(episode.id)} key={episode.id}>
             <p>{episode.title}</p>
             <span>
               {getFormattedDate(episode.uploaded_at)}

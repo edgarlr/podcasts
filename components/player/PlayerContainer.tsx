@@ -1,4 +1,4 @@
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import FullPlayerSkeleton from './FullPlayerSkeleton'
 import Queue from './Queue'
 import FullPlayer from './FullPlayer'

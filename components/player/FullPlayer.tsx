@@ -1,8 +1,7 @@
 import { ProgressBar } from './ProgressBar'
 import { PodcastTitle } from './PodcastTitle'
 import ImgTranslucent from '@components/ui/ImgTranslucent'
-import { useMediaControls } from '@lib/hooks/use-media-controls'
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import Replay30 from 'components/icons/Replay30'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
@@ -15,11 +14,10 @@ const FullPlayer = () => {
     playlist,
     isPlaying,
     current,
-    audioRef,
+    seekForward,
+    replay,
+    toggleAudio,
   } = usePlayer()
-  const audio = audioRef
-
-  const { toggleAudio } = useMediaControls()
 
   return (
     <div className="container">
@@ -40,9 +38,7 @@ const FullPlayer = () => {
       <div className="main-player">
         <button
           className="controller-button"
-          onClick={() => {
-            audio.currentTime = audio.currentTime - 10
-          }}
+          onClick={() => replay(10)}
           aria-label="Seek backward 10 seconds"
         >
           <Replay30 />
@@ -60,9 +56,7 @@ const FullPlayer = () => {
         <button
           disabled={currentIndex === playlist.length - 1}
           className="controller-button"
-          onClick={() => {
-            audio.currentTime = audio.currentTime + 30
-          }}
+          onClick={() => seekForward(30)}
           aria-label="Seek forward 30 seconds"
         >
           <Forward30 />

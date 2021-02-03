@@ -5,7 +5,6 @@ type TPlayerContext = {
   loading: boolean
   isPlaying: boolean
   duration: number
-  audioReference: MutableRefObject<HTMLAudioElement>
   audioRef: HTMLAudioElement
   SetCurrentIndex: (index: number) => void
   SetPlaylist: (playlistArray: TEpisode[]) => void

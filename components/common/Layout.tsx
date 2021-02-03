@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import Header from './Header'
 
 type Props = {

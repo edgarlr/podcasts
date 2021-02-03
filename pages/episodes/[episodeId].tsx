@@ -50,7 +50,7 @@ export default function podcast({
           subtitle={channel.title}
           linkTo={`/channels/${channel.id}`}
         />
-        <PlayButton episodeId={episode.id} channelId={channel.id} />
+        <PlayButton episode={episode} channelId={channel.id} />
       </div>
 
       <SectionTitle

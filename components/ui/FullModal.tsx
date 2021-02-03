@@ -1,4 +1,4 @@
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 
 type Props = {
   children: React.ReactNode

@@ -1,30 +1,33 @@
-import { usePlayer } from 'lib/contexts'
-import { useMediaControls } from '@lib/hooks/use-media-controls'
+import { usePlayer } from 'lib/hooks/use-player'
 import { useSharedState } from 'lib/hooks/use-shared-state'
+import { MutableRefObject } from 'react'
 
-const AudioElement = () => {
+const AudioElement = ({
+  forwadedRef,
+}: {
+  forwadedRef: MutableRefObject<HTMLAudioElement>
+}) => {
   const {
-    SetIsPlaying,
-    SetLoading,
-    audioReference,
+    setIsPlaying,
+    setLoading,
     duration,
-    SetDuration,
+    setDuration,
+    nextEpisode,
   } = usePlayer()
 
   const [currentTime, setCurrentTime] = useSharedState<number>('currentTime', 0)
   const [, setProgress] = useSharedState<number>('progress', 0)
-  const { nextEpisode } = useMediaControls()
 
   return (
     <audio
-      ref={audioReference}
-      onCanPlay={(e) => SetDuration((e.target as HTMLAudioElement).duration)}
-      onLoadStart={() => SetLoading(true)}
-      onPause={() => SetIsPlaying(false)}
+      ref={forwadedRef}
+      onCanPlay={(e) => setDuration((e.target as HTMLAudioElement).duration)}
+      onLoadStart={() => setLoading(true)}
+      onPause={() => setIsPlaying(false)}
       onEnded={() => nextEpisode()}
       onPlaying={() => {
-        SetIsPlaying(true)
-        SetLoading(false)
+        setIsPlaying(true)
+        setLoading(false)
       }}
       onTimeUpdate={(e) => {
         setCurrentTime((e.target as HTMLAudioElement).currentTime)

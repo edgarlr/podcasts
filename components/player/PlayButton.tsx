@@ -1,40 +1,32 @@
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import { getChannelEpisodesUrl } from 'lib/constants'
 import { useFetch } from 'lib/hooks/use-fetch'
 import PlayArrow from 'components/icons/PlayArrow'
 
 type Props = {
-  episodeId: TEpisode['id']
+  episode: TEpisode
   channelId: TChannel['id']
 }
 
-const PlayButton = ({ episodeId, channelId }: Props) => {
+const PlayButton = ({ episode, channelId }: Props) => {
   const channelEpisodesUrl = getChannelEpisodesUrl(channelId)
   const { data: episodesData, isLoading } = useFetch<TEpisode[]>(
     channelEpisodesUrl,
     'audio_clips'
   )
 
-  const { SetCurrentIndex, SetPlaylist, audioRef, current } = usePlayer()
+  const { current, setPlaylist, play } = usePlayer()
 
   const onPlayClick = () => {
-    if (episodesData) {
-      SetPlaylist(episodesData)
-      for (let i = 0; i < episodesData.length; i++) {
-        if (episodesData[i].id === episodeId) {
-          audioRef.src = episodesData[i].urls.high_mp3
-          audioRef.play()
-          SetCurrentIndex(i)
-          break
-        }
-      }
-    }
+    if (!episodesData) return
+    setPlaylist(episodesData)
+    play(episode.id)
   }
 
   return (
     <button
       className="play-button"
-      disabled={isLoading || (current && current.id === episodeId)}
+      disabled={isLoading || (current && current.id === episode.id)}
       onClick={() => onPlayClick()}
       aria-label="Play podcast"
     >

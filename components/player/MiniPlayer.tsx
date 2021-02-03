@@ -1,9 +1,8 @@
-import { usePlayer } from 'lib/contexts'
+import { usePlayer } from 'lib/hooks/use-player'
 import MiniPlayerSkeleton from './MiniPlayerSkeleton'
 import ProgressCircle from './ProgressCircle'
 import { PodcastTitle } from './PodcastTitle'
 import ImgTranslucent from '@components/ui/ImgTranslucent'
-import { useMediaControls } from '@lib/hooks/use-media-controls'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
 import { MouseEvent } from 'react'
@@ -13,8 +12,7 @@ export default function MiniPlayer({
 }: {
   onClick: (event?: MouseEvent) => void
 }) {
-  const { current, loading, isPlaying } = usePlayer()
-  const { toggleAudio } = useMediaControls()
+  const { current, loading, isPlaying, toggleAudio } = usePlayer()
 
   if (!current) return <MiniPlayerSkeleton />
 
