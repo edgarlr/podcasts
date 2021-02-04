@@ -25,7 +25,7 @@ const Queue = () => {
       <ul>
         <div className="title">Next from: {current.channel.title}</div>
         {playlist.slice(currentIndex + 1).map((episode: TEpisode) => (
-          <li onClick={() => play(episode.id)} key={episode.id}>
+          <li onClick={() => play(episode)} key={episode.id}>
             <p>{episode.title}</p>
             <span>
               {getFormattedDate(episode.uploaded_at)}

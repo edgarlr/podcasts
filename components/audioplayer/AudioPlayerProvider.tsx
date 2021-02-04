@@ -1,4 +1,4 @@
-import { useReducer, useRef } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import {
   PlayerState,
   PlayerContext,
@@ -22,6 +22,55 @@ export const AudioPlayerProvider = ({ children }) => {
     { currentIndex, current, playlist, loading, isPlaying, duration },
     dispatch,
   ] = useReducer(PlayerReducer, initialPlayerState)
+
+  useEffect(() => {
+    if ('mediaSession' in navigator && current) {
+      const { mediaSession }: any = window.navigator
+      mediaSession.metadata = new (window as any).MediaMetadata({
+        title: current.title,
+        artist: current.channel.title,
+        artwork: [
+          {
+            src: current.urls.image || current.channel.urls.logo_image.original,
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: current.urls.image || current.channel.urls.logo_image.original,
+            sizes: '256x256',
+            type: 'image/png',
+          },
+        ],
+      })
+    }
+  }, [current])
+
+  useEffect(() => {
+    const navigator: any = window.navigator
+
+    const next = () => {
+      if (currentIndex < playlist.length - 1) return nextEpisode
+      return null
+    }
+
+    if ('mediaSession' in navigator && current) {
+      navigator.mediaSession.setActionHandler('play', () => {
+        audioRef.current.play()
+      })
+      navigator.mediaSession.setActionHandler('pause', () => {
+        audioRef.current.pause()
+      })
+      navigator.mediaSession.setActionHandler('seekbackward', () => {
+        replay(15)
+      })
+
+      navigator.mediaSession.setActionHandler('seekforward', () => {
+        seekForward(30)
+      })
+      navigator.mediaSession.setActionHandler('previoustrack', prevEpisode)
+      navigator.mediaSession.setActionHandler('nexttrack', next())
+    }
+  }, [])
 
   const setCurrentIndex = (index: PlayerState['currentIndex']) =>
     dispatch({ type: 'SET_CURRENT_INDEX', payload: index })
@@ -73,17 +122,12 @@ export const AudioPlayerProvider = ({ children }) => {
     audio.paused ? audio.play() : audio.pause()
   }
 
-  const play = (trackId: TEpisode['id']) => {
+  const play = (track: TEpisode) => {
     if (!audioRef.current) return
-    for (let i = 0; i < playlist.length; i++) {
-      if (playlist[i].id === trackId) {
-        setCurrentIndex(i)
-        audioRef.current.src = playlist[i].urls.high_mp3
-        audioRef.current.play()
-        break
-      }
-    }
+    audioRef.current.src = track.urls.high_mp3
+    audioRef.current.play()
   }
+
   const pause = () => {
     if (!audioRef.current) return
     audioRef.current.pause()

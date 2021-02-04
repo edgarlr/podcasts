@@ -15,12 +15,18 @@ const PlayButton = ({ episode, channelId }: Props) => {
     'audio_clips'
   )
 
-  const { current, setPlaylist, play } = usePlayer()
+  const { current, setCurrentIndex, setPlaylist, play } = usePlayer()
 
   const onPlayClick = () => {
     if (!episodesData) return
     setPlaylist(episodesData)
-    play(episode.id)
+    for (let i = 0; i < episodesData.length; i++) {
+      if (episodesData[i].id === episode.id) {
+        setCurrentIndex(i)
+        play(episodesData[i])
+        break
+      }
+    }
   }
 
   return (

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useMediaSessions } from '@lib/hooks/use-media-sessions'
 import { usePlayer } from 'lib/hooks/use-player'
 import Portal from 'components/ui/Portal'
 import MiniPlayer from 'components/player/MiniPlayer'
@@ -11,8 +10,6 @@ const Player = () => {
   const [fullView, setFullView] = useState(false)
 
   const handleModalClick = () => setFullView(!fullView)
-
-  useMediaSessions()
 
   const isTablet = useMediaQuery(1023)
   return (
