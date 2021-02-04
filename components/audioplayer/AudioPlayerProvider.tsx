@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react'
+import { useEffect, useMemo, useReducer, useRef } from 'react'
 import {
   PlayerState,
   PlayerContext,
@@ -42,6 +42,10 @@ export const AudioPlayerProvider = ({ children }) => {
           },
         ],
       })
+      // Clean up media session metadata
+      return () => {
+        mediaSession.metadata = null
+      }
     }
   }, [current])
 
@@ -69,6 +73,16 @@ export const AudioPlayerProvider = ({ children }) => {
       })
       navigator.mediaSession.setActionHandler('previoustrack', prevEpisode)
       navigator.mediaSession.setActionHandler('nexttrack', next())
+
+      return () => {
+        // Clean up media session handlers
+        navigator.mediaSession.setActionHandler('play', null)
+        navigator.mediaSession.setActionHandler('pause', null)
+        navigator.mediaSession.setActionHandler('seekbackward', null)
+        navigator.mediaSession.setActionHandler('seekforward', null)
+        navigator.mediaSession.setActionHandler('previoustrack', null)
+        navigator.mediaSession.setActionHandler('nexttrack', null)
+      }
     }
   }, [])
 
@@ -147,6 +161,22 @@ export const AudioPlayerProvider = ({ children }) => {
     if (!audioRef.current) return
     audioRef.current.currentTime = time
   }
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (
+        e.code === 'Space' &&
+        current &&
+        !(e.target instanceof HTMLInputElement) &&
+        !(e.target instanceof HTMLButtonElement)
+      ) {
+        e.preventDefault()
+        toggleAudio()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [toggleAudio])
 
   return (
     <PlayerContext.Provider
