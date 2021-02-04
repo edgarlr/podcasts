@@ -22,7 +22,7 @@
     "next": "^10.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "swr": "^0.3.2"
+    "swr": "0.4.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
