@@ -4,7 +4,10 @@ import { getDurationInMSS } from 'lib/utils/durationToMSS'
 
 export const ProgressBar = () => {
   const { duration, updateTime } = usePlayer()
-  const [currentTime, setCurrentTime] = useSharedState<number>('currentTime', 0)
+  const [currentTime, setCurrentTime] = useSharedState<number>(
+    '/episodes/currentTime',
+    0
+  )
 
   const handleProgress = (e: any) => {
     const compute = (e.target.value * duration) / 100

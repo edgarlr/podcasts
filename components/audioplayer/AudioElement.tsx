@@ -9,7 +9,7 @@ const AudioElement = ({
 }) => {
   const { setIsPlaying, setLoading, setDuration, nextEpisode } = usePlayer()
 
-  const [, setCurrentTime] = useSharedState<number>('currentTime', 0)
+  const [, setCurrentTime] = useSharedState<number>('/episodes/currentTime', 0)
 
   return (
     <audio

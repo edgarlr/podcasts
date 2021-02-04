@@ -10,7 +10,7 @@ type Props = {
 
 const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
   const { duration } = usePlayer()
-  const [currentTime] = useSharedState<number>('currentTime', 0)
+  const [currentTime] = useSharedState<number>('/episodes/currentTime', 0)
 
   const [offset, setOffset] = useState(0)
   const circleRef = useRef(null)
