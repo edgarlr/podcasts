@@ -23,6 +23,8 @@ export const AudioPlayerProvider = ({ children }) => {
     dispatch,
   ] = useReducer(PlayerReducer, initialPlayerState)
 
+  console.log('hol')
+
   const setCurrentIndex = (index: PlayerState['currentIndex']) =>
     dispatch({ type: 'SET_CURRENT_INDEX', payload: index })
 

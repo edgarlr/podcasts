@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSharedState } from '@lib/hooks/use-shared-state'
+import { usePlayer } from '@lib/hooks/use-player'
 
 type Props = {
   size: number
@@ -8,19 +9,20 @@ type Props = {
 }
 
 const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
-  const [progress] = useSharedState<number>('progress', 0)
+  const { duration } = usePlayer()
+  const [currentTime] = useSharedState<number>('currentTime', 0)
 
   const [offset, setOffset] = useState(0)
   const circleRef = useRef(null)
-
   const center = size / 2
   const radius = size / 2 - strokeWidth / 2
   const circumference = 2 * Math.PI * radius
 
   useEffect(() => {
-    const progressOfsett = ((100 - progress) / 100) * circumference
+    const progressOfsett =
+      ((100 - (currentTime * 100) / duration) / 100) * circumference
     setOffset(progressOfsett)
-  }, [setOffset, circumference, progress, offset])
+  }, [setOffset, circumference, currentTime, duration, offset])
 
   return (
     <div>

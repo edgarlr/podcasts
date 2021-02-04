@@ -7,16 +7,9 @@ const AudioElement = ({
 }: {
   forwadedRef: MutableRefObject<HTMLAudioElement>
 }) => {
-  const {
-    setIsPlaying,
-    setLoading,
-    duration,
-    setDuration,
-    nextEpisode,
-  } = usePlayer()
+  const { setIsPlaying, setLoading, setDuration, nextEpisode } = usePlayer()
 
-  const [currentTime, setCurrentTime] = useSharedState<number>('currentTime', 0)
-  const [, setProgress] = useSharedState<number>('progress', 0)
+  const [, setCurrentTime] = useSharedState<number>('currentTime', 0)
 
   return (
     <audio
@@ -31,7 +24,6 @@ const AudioElement = ({
       }}
       onTimeUpdate={(e) => {
         setCurrentTime((e.target as HTMLAudioElement).currentTime)
-        setProgress((currentTime * 100) / duration)
       }}
       src={null}
     />
