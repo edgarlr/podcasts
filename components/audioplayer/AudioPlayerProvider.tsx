@@ -93,6 +93,7 @@ export const AudioPlayerProvider = ({ children }) => {
       mediaSession.metadata = new (window as any).MediaMetadata({
         title: current.title,
         artist: current.channel.title,
+        album: current.channel.title,
         artwork: [
           {
             src: current.urls.image || current.channel.urls.logo_image.original,
