@@ -1,3 +1,13 @@
+:root {
+  --black: #131414;
+  --white: white;
+  --gray-15: #f4f4f6;
+  --gray-20: #e2e2e2;
+  --gray-50: #636d77;
+  --gray-60: #73788c;
+  --gray-80: #383838;
+}
+
 body {
   font-family: 'Kumbh Sans', sans-serif;
   margin: 0;
