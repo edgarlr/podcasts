@@ -12,7 +12,7 @@ export const useFavs = (): FavsContextProps => {
   const result = useContext(FavsContext)
 
   if (!result) {
-    throw new Error()
+    throw new Error(`useFavs must be used within a FavsProvider`)
   }
 
   return result

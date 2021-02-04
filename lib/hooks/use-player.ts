@@ -29,7 +29,7 @@ export const PlayerContext = createContext<PlayerContextProps | null>(null)
 export const usePlayer = (): PlayerContextProps => {
   const result = useContext(PlayerContext)
   if (!result) {
-    throw new Error()
+    throw new Error(`usePlayer must be used within a PlayerProvider`)
   }
   return result
 }
