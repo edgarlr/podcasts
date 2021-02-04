@@ -19,7 +19,6 @@ type PlayerContextProps = PlayerState & {
   prevEpisode: () => void
   toggleAudio: () => void
   play: (track: TEpisode) => void
-  pause: () => void
   seekForward: (time: number) => void
   replay: (time: number) => void
   updateTime: (time: number) => void
