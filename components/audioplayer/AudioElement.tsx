@@ -1,5 +1,5 @@
 import { usePlayer } from 'lib/hooks/use-player'
-import { useSharedState } from 'lib/hooks/use-shared-state'
+// import { useSharedState } from 'lib/hooks/use-shared-state'
 import { MutableRefObject } from 'react'
 
 const AudioElement = ({
@@ -9,7 +9,7 @@ const AudioElement = ({
 }) => {
   const { setIsPlaying, setLoading, setDuration, nextEpisode } = usePlayer()
 
-  const [, setCurrentTime] = useSharedState<number>('/episodes/currentTime', 0)
+  // const [, setCurrentTime] = useSharedState<number>('/episodes/currentTime', 0)
 
   return (
     <audio
@@ -22,9 +22,9 @@ const AudioElement = ({
         setIsPlaying(true)
         setLoading(false)
       }}
-      onTimeUpdate={(e) => {
-        setCurrentTime((e.target as HTMLAudioElement).currentTime)
-      }}
+      // onTimeUpdate={(e) => {
+      //   setCurrentTime((e.target as HTMLAudioElement).currentTime)
+      // }}
       src={null}
     />
   )

@@ -22,6 +22,7 @@ type PlayerContextProps = PlayerState & {
   seekForward: (time: number) => void
   replay: (time: number) => void
   updateTime: (time: number) => void
+  audioRef: HTMLAudioElement
 }
 
 export const PlayerContext = createContext<PlayerContextProps | null>(null)

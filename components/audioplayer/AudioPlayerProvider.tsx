@@ -193,6 +193,7 @@ export const AudioPlayerProvider = ({ children }) => {
         seekForward,
         replay,
         updateTime,
+        audioRef: audioRef.current,
       }}
     >
       {children}
