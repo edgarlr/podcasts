@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { usePlayer } from 'lib/hooks/use-player'
 import Header from './Header'
+import Footer from './Footer'
 
 type Props = {
   children: React.ReactNode
@@ -37,6 +38,8 @@ export default function Layout({
       <main className={`main-container ${current ? 'playing' : ''}`}>
         {children}
       </main>
+
+      <Footer />
     </>
   )
 }

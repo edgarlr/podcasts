@@ -1,3 +1,6 @@
+export const GITHUB_URL = 'https://github.com/edgarlr'
+export const TWITTER_URL = 'https://twitter.com/@edgarlr_'
+
 const BASE_API_URL = `https://api.audioboom.com`
 
 export const getChannelEpisodesUrl = (channelId) =>
