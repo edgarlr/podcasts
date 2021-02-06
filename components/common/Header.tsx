@@ -5,6 +5,7 @@ import IconButton from '../ui/IconButton'
 import ArrowLeft from 'components/icons/ArrowLeft'
 import cn from 'classnames'
 import dynamic from 'next/dynamic'
+import Logo from '@components/icons/Logo'
 
 type Props = {
   headerText: string
@@ -53,7 +54,10 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
       {headerText ? (
         <p className={cn('title', { ['show']: isShowed })}>{headerText}</p>
       ) : (
-        <div className="title logo show">Podcasts</div>
+        <div className="logo">
+          <Logo style={{ marginRight: '0.2rem' }} />
+          Podcasts
+        </div>
       )}
 
       {button ? button : <DynamicSearch />}
@@ -90,15 +94,19 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           transition-property: opacity, transform;
           transition-duration: 0.2s;
         }
+        .title.show {
+          opacity: 1;
+          transform: translateY(2px);
+        }
         .logo {
           position: absolute;
           left: 0;
           padding: 0.8rem;
+          font-weight: bold;
           font-size: var(--font-2xl);
-        }
-        .title.show {
-          opacity: 1;
-          transform: translateY(2px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         @media screen and (min-width: 766px) {
           header {

@@ -89,6 +89,7 @@ body {
   padding: 2rem 1.5rem 7rem;
   transition: 0.25s;
 }
+
 @media screen and (min-width: 768px) {
   .main-container {
     padding: 2rem 5rem 7rem;
