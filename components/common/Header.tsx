@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import { usePlayer } from 'lib/hooks/use-player'
 import IconButton from '../ui/IconButton'
 import ArrowLeft from 'components/icons/ArrowLeft'
+import cn from 'classnames'
+import dynamic from 'next/dynamic'
 
 type Props = {
   headerText: string
@@ -10,18 +12,22 @@ type Props = {
   button: React.ReactNode
 }
 
-const Header = ({ headerText, navigation = false, button = null }: Props) => {
+const DynamicSearch = dynamic(() => import('@components/search/SearchModal'), {
+  ssr: false,
+})
+
+const Header = ({ headerText, navigation = true, button = null }: Props) => {
   const router = useRouter()
 
   const { current } = usePlayer()
 
-  const [fixedNav, setFixedNav] = useState(false)
+  const [isShowed, setIsShowed] = useState(false)
 
   const fixNavigation = () => {
     if (window.scrollY > 110) {
-      setFixedNav(true)
+      setIsShowed(true)
     } else {
-      setFixedNav(false)
+      setIsShowed(false)
     }
   }
 
@@ -33,20 +39,24 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
   }, [])
 
   return (
-    <header
-      className={`${button ? 'full-nav' : ''} ${current ? 'playing' : ''}`}
-    >
+    <header className={cn({ ['playing']: current })}>
       {navigation && (
-        <div className="nav-btn-container">
-          <IconButton onClick={() => router.back()} ariaLabel="go back">
-            <ArrowLeft />
-          </IconButton>
-        </div>
+        <IconButton
+          onClick={() => router.back()}
+          ariaLabel="Go back"
+          className="back-btn"
+        >
+          <ArrowLeft />
+        </IconButton>
       )}
 
-      <p className={fixedNav && 'show'}>{headerText}</p>
+      {headerText ? (
+        <p className={cn('title', { ['show']: isShowed })}>{headerText}</p>
+      ) : (
+        <div className="title logo show">Podcasts</div>
+      )}
 
-      {button}
+      {button ? button : <DynamicSearch />}
 
       <style jsx>{`
         header {
@@ -57,25 +67,19 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
           right: 0;
           display: flex;
           align-items: center;
-          height: 3rem;
-          padding: 0.1rem 0.8rem;
           justify-content: center;
+          padding: 0 0.8rem;
           background: var(--white);
+          height: 3.5rem;
         }
-        .nav-btn-container {
+        header > :global(.back-btn) {
           position: absolute;
           left: 0.5rem;
           padding: 0;
         }
-        .full-nav {
-          justify-content: space-between;
-        }
-        .full-nav .nav-btn-container {
-          position: static;
-        }
-        p {
+        .title {
           margin: 0;
-          font-size: 1rem;
+          font-size: var(--font-md);
           font-weight: bold;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -83,20 +87,27 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
           max-width: 55%;
           opacity: 0;
           transform: translateY(6px);
-          transition: 0.2s;
+          transition-property: opacity, transform;
+          transition-duration: 0.2s;
         }
-        p.show {
+        .logo {
+          position: absolute;
+          left: 0;
+          padding: 0.8rem;
+          font-size: var(--font-2xl);
+        }
+        .title.show {
           opacity: 1;
           transform: translateY(2px);
         }
         @media screen and (min-width: 766px) {
           header {
-            padding: 0.5rem 1.5rem 0;
+            padding: 0.5rem 1.5rem;
           }
-          p {
+          .title {
             font-size: 1.2rem;
           }
-          .nav-btn-container {
+          header > :global(.back-btn) {
             left: 1.5rem;
           }
         }

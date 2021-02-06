@@ -5,7 +5,11 @@ import Link from 'next/link'
 export default function Custom404() {
   return (
     <div style={{ textAlign: 'center' }}>
-      <Layout pageTitle="404. Page not found" headerText="404. Page not found">
+      <Layout
+        navigation={false}
+        pageTitle="404. Page not found"
+        headerText="404. Page not found"
+      >
         <ErrorMessage
           title={`404. Page Not Found`}
           subtitle="We couldn't find this page"

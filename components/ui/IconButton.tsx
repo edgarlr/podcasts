@@ -19,7 +19,13 @@ const IconButton = ({
   ariaLabel,
 }: Props) => (
   <button
-    className={cn({ ['secondary']: variant === 'secondary' }, className)}
+    className={cn(
+      {
+        ['primary']: variant === 'primary',
+        ['secondary']: variant === 'secondary',
+      },
+      className
+    )}
     onClick={onClick}
     aria-label={ariaLabel}
     style={style}
@@ -38,8 +44,8 @@ const IconButton = ({
         width: 2.5rem;
         height: 2.5rem;
       }
-      button:hover {
-        background: var(--gray-15);
+      .primary:hover {
+        background: var(--primary-05);
       }
       .secondary:hover {
         background: rgba(255, 255, 255, 0.1);

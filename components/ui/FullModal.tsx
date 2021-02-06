@@ -46,7 +46,7 @@ const FullModal = ({ children, isOpen, button }: Props) => {
           padding: 0;
           position: absolute;
           right: 0.5rem;
-          top: 0.75rem;
+          top: 0.5rem;
         }
         @media screen and (min-width: 766px) {
           .action-button {

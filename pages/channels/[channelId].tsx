@@ -42,16 +42,16 @@ export default function channel({
 
   return (
     <Layout
-      navigation
       headerText={channel.title}
       metaDescription={channel.description}
       pageTitle={`${channel.title} | Podcasts`}
-      button={<FollowButtonContainer channel={channel} />}
     >
       <MainTitle
         title={channel.title}
         subtitle={channel.parent_channel_id && 'Serie'}
       />
+
+      <FollowButtonContainer channel={channel} />
 
       <ImgTranslucent
         url={

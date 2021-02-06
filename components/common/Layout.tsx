@@ -15,7 +15,7 @@ export default function Layout({
   children,
   headerText = null,
   button = null,
-  navigation = false,
+  navigation = true,
   pageTitle = 'Podcasts',
   metaDescription = 'Podcasts App | Next.js, SWR and AudioBoom API',
 }: Props) {
@@ -41,16 +41,6 @@ export default function Layout({
       <main className={`main-container ${current ? 'playing' : ''}`}>
         {children}
       </main>
-
-      <style jsx global>{`
-        body {
-          background: var(--white);
-          color: var(--gray-80);
-        }
-        a {
-          color: var(--gray-80);
-        }
-      `}</style>
     </>
   )
 }

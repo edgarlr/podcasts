@@ -14,10 +14,6 @@ export async function getStaticProps() {
   return { props: { channels } }
 }
 
-const DynamicSearch = dynamic(() => import('@components/search/SearchModal'), {
-  ssr: false,
-})
-
 export default function Home({
   channels,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -25,11 +21,7 @@ export default function Home({
   const isMobile = useIsMobile()
 
   return (
-    <Layout
-      headerText="Podcasts App"
-      pageTitle="Podcasts App"
-      button={<DynamicSearch />}
-    >
+    <Layout navigation={false} pageTitle="Podcasts App">
       <MainTitle title="Podcasts App" />
 
       <ChannelsCarousel title="Followed" channels={favs} />

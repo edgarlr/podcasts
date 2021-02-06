@@ -34,7 +34,6 @@ export default function podcast({
 
   return (
     <Layout
-      navigation
       headerText={episode.title}
       pageTitle={`${episode.title} | Podcasts`}
       metaDescription={episode.description}

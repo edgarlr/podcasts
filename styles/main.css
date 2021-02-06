@@ -33,24 +33,24 @@
   --black-a-20: rgba(19, 20, 20, 02);
 
   /* Theme Colors */
-  --primary: #131415;
-  --primary-95: #1f2020;
-  --primary-90: #2b2c2c;
-  --primary-80: #424343;
-  --primary-60: #717272;
-  --primary-50: #898989;
-  --primary-40: #a1a1a1;
-  --primary-20: #d0d0d0;
-  --primary-10: #e7e7e7;
-  --primary-05: #f3f3f3;
-  --secondary: #ffffff;
+  --primary: var(--black);
+  --primary-95: var(--gray-95);
+  --primary-90: var(--gray-90);
+  --primary-80: var(--gray-80);
+  --primary-60: var(--gray-60);
+  --primary-50: var(--gray-60);
+  --primary-40: var(--gray-40);
+  --primary-20: var(--gray-20);
+  --primary-10: var(--gray-10);
+  --primary-05: var(--gray-05);
+  --secondary: var(--white);
 
   /* Aplha Colors */
-  --primary-a-80: rgba(19, 20, 20, 08);
-  --primary-a-60: rgba(19, 20, 20, 06);
-  --primary-a-50: rgba(19, 20, 20, 05);
-  --primary-a-40: rgba(19, 20, 20, 04);
-  --primary-a-20: rgba(19, 20, 20, 02);
+  --primary-a-80: var(--black-a-80);
+  --primary-a-60: var(--black-a-60);
+  --primary-a-50: var(--black-a-50);
+  --primary-a-40: var(--black-a-40);
+  --primary-a-20: var(--black-a-20);
 }
 
 *,
@@ -76,7 +76,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--secondary);
-  color: var(--primary-95);
+  color: var(--primary);
 }
 
 body {
