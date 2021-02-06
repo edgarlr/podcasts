@@ -83,12 +83,12 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         }
         .title {
           margin: 0;
-          font-size: var(--font-md);
+          font-size: var(--font-lg);
           font-weight: bold;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
-          max-width: 55%;
+          max-width: 65%;
           opacity: 0;
           transform: translateY(6px);
           transition-property: opacity, transform;
