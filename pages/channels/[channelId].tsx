@@ -4,7 +4,7 @@ import { InferGetStaticPropsType } from 'next'
 import MainTitle from 'components/MainTitle'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
-import FollowButtonContainer from 'components/FollowButtonContainer'
+import FollowButton from '@components/FollowButton'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
 import ImgTranslucent from '@components/ui/ImgTranslucent'
 import DescriptionContainer from 'components/DescriptionContainer'
@@ -51,7 +51,7 @@ export default function channel({
         subtitle={channel.parent_channel_id && 'Serie'}
       />
 
-      <FollowButtonContainer channel={channel} />
+      <FollowButton channel={channel} />
 
       <ImgTranslucent
         url={

@@ -1,6 +1,5 @@
 import { CSSProperties, MouseEvent } from 'react'
 import cn from 'classnames'
-import ArrowLeft from '@components/icons/ArrowLeft'
 
 type Props = {
   children: React.ReactNode
@@ -42,8 +41,6 @@ const Button = ({
 
       <style jsx>{`
         button {
-          color: var(--secondary);
-          background: var(--primary);
           font-size: var(--font-md);
           font-weight: bold;
           border: none;
@@ -54,10 +51,18 @@ const Button = ({
           transition: transform 0.15s;
           transform: scale(1);
           display: flex;
+          position: static;
           justify-content: center;
           align-items: center;
           width: max-content;
           margin: 0 auto;
+          border: 1px solid transparent;
+        }
+        button:hover {
+          transform: scale(1.015);
+        }
+        button:disabled {
+          opacity: 0.25;
         }
         span {
           line-height: 0.5;
@@ -69,27 +74,23 @@ const Button = ({
         .subfix {
           padding-left: 0.5rem;
         }
-        .secondary {
-          background: var(--white);
-          color: var(--black);
-          border: 1px solid var(--black);
-        }
-        button:hover {
-          transform: scale(1.015);
+        .primary {
+          color: var(--secondary);
+          background: var(--primary);
         }
         .primary:hover {
           color: var(--primary);
           background: var(--secondary);
           border: 1px solid var(--primary);
         }
-        .primary:disabled {
-          opacity: 0.25;
+        .secondary {
+          background: var(--secondary);
+          color: var(--primary-80);
+          border: 1px solid var(--primary-50);
         }
-        @media screen and (min-width: 768px) {
-          button {
-            padding: 8px 16px 6px;
-            font-size: 0.8rem;
-          }
+        .secondary:hover {
+          color: var(--primary);
+          border: 1px solid var(--primary);
         }
       `}</style>
     </button>

@@ -1,7 +1,7 @@
 import { useFavs } from 'lib/hooks/use-favs'
 import Button from './ui/Button'
 
-const FollowButtonContainer = ({ channel }: { channel: TChannel }) => {
+const FollowButton = ({ channel }: { channel: TChannel }) => {
   const { favs, addToFavs, removeFromFavs } = useFavs()
 
   const isOnFavs = favs.some((item: TChannel) => item.id === channel.id)
@@ -25,4 +25,4 @@ const FollowButtonContainer = ({ channel }: { channel: TChannel }) => {
   )
 }
 
-export default FollowButtonContainer
+export default FollowButton
