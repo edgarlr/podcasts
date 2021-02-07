@@ -2,7 +2,7 @@ import { usePlayer } from 'lib/hooks/use-player'
 import MiniPlayerSkeleton from './MiniPlayerSkeleton'
 import ProgressCircle from './ProgressCircle'
 import { PodcastTitle } from './PodcastTitle'
-import ImgTranslucent from '@components/ui/ImgTranslucent'
+import TranslucentImage from '@components/ui/TranslucentImage'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
 import { MouseEvent } from 'react'
@@ -26,11 +26,12 @@ export default function MiniPlayer({
         />
 
         <div className="img-container" onClick={() => onClick()}>
-          <ImgTranslucent
+          <TranslucentImage
             url={current.urls.image || current.channel.urls.logo_image.original}
-            alt={current.title}
-            fullBlur
-            style={{ borderRadius: '10px' }}
+            alt={`${current.title} cover`}
+            width={48}
+            height={48}
+            blur="large"
           />
         </div>
 

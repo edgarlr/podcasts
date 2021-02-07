@@ -3,7 +3,7 @@ import { getEpisodeById } from '@lib/api'
 import { InferGetStaticPropsType } from 'next'
 import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
-import ImgTranslucent from '@components/ui/ImgTranslucent'
+import TranslucentImage from '@components/ui/TranslucentImage'
 import SectionTitle from 'components/SectionTitle'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
@@ -39,10 +39,11 @@ export default function podcast({
       metaDescription={episode.description}
     >
       <div className="title-container">
-        <ImgTranslucent
+        <TranslucentImage
           url={episode.urls?.image || channel.urls.logo_image.original}
-          alt={episode.title}
-          style={{ borderRadius: '15px' }}
+          alt={`${episode.title} cover`}
+          width={128}
+          height={128}
         />
         <MainTitle
           title={episode.title}

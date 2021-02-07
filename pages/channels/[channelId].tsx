@@ -6,9 +6,8 @@ import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import FollowButton from '@components/FollowButton'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
-import ImgTranslucent from '@components/ui/ImgTranslucent'
+import TranslucentImage from '@components/ui/TranslucentImage'
 import DescriptionContainer from 'components/DescriptionContainer'
-import { useIsMobile } from 'lib/hooks/use-media-queries'
 import Custom404 from 'pages/404'
 
 export async function getStaticPaths() {
@@ -36,10 +35,8 @@ export default function channel({
   series,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { isFallback } = useRouter()
-  const isMobile = useIsMobile()
 
   if (!isFallback && !channel) return <Custom404 />
-
   return (
     <Layout
       headerText={channel.title}
@@ -51,19 +48,18 @@ export default function channel({
         subtitle={channel.parent_channel_id && 'Serie'}
       />
 
-      <FollowButton channel={channel} />
-
-      <ImgTranslucent
-        url={
-          channel.urls.banner_image.original || channel.urls.logo_image.original
-        }
+      <TranslucentImage
+        url={channel.urls.logo_image.original}
         alt={`${channel.title} cover`}
+        width={150}
+        height={150}
+        shape="circle"
         style={{
-          borderRadius: '20px',
-          margin: '.75rem 0',
-          paddingBottom: isMobile ? '25%' : '25%',
+          margin: '1rem auto',
         }}
       />
+
+      <FollowButton channel={channel} />
 
       {series.length === 0 && channel.description.length > 100 && (
         <DescriptionContainer content={channel.description} />

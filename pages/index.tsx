@@ -1,10 +1,8 @@
 import { InferGetStaticPropsType } from 'next'
-import dynamic from 'next/dynamic'
 import { getRecommendedChannels } from 'lib/api'
 import { useFavs } from 'lib/hooks/use-favs'
 import { useIsMobile } from 'lib/hooks/use-media-queries'
 import Layout from 'components/common/Layout'
-import MainTitle from 'components/MainTitle'
 import { ChannelsGrid } from 'components/channel/ChannelsGrid'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import ChannelsList from 'components/channel/ChannelList'
@@ -22,8 +20,6 @@ export default function Home({
 
   return (
     <Layout navigation={false} pageTitle="Podcasts App">
-      <MainTitle title="Podcasts App" />
-
       <ChannelsCarousel title="Followed" channels={favs} />
 
       {isMobile ? (

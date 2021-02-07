@@ -1,6 +1,6 @@
 import { ProgressBar } from './ProgressBar'
 import { PodcastTitle } from './PodcastTitle'
-import ImgTranslucent from '@components/ui/ImgTranslucent'
+import TranslucentImage from '@components/ui/TranslucentImage'
 import { usePlayer } from 'lib/hooks/use-player'
 import Replay30 from 'components/icons/Replay30'
 import Pause from 'components/icons/Pause'
@@ -22,11 +22,12 @@ const FullPlayer = () => {
   return (
     <div className="container">
       <div className="img-container">
-        <ImgTranslucent
+        <TranslucentImage
           url={current.urls.image || current.channel.urls.logo_image.original}
-          alt={current.title}
-          fullBlur
-          style={{ borderRadius: '15px' }}
+          alt={`${current.title} cover`}
+          blur="large"
+          width={200}
+          height={200}
         />
       </div>
 
