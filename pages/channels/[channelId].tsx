@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { getChannelById, getChannelsEpisodes, getChannelsSeries } from 'lib/api'
 import { InferGetStaticPropsType } from 'next'
-import ErrorPage from 'next/error'
 import MainTitle from 'components/MainTitle'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
@@ -10,6 +9,7 @@ import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSort
 import ImgTranslucent from '@components/ui/ImgTranslucent'
 import DescriptionContainer from 'components/DescriptionContainer'
 import { useIsMobile } from 'lib/hooks/use-media-queries'
+import Custom404 from 'pages/404'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }
@@ -38,7 +38,7 @@ export default function channel({
   const { isFallback } = useRouter()
   const isMobile = useIsMobile()
 
-  if (!isFallback && !channel) return <ErrorPage statusCode={404} />
+  if (!isFallback && !channel) return <Custom404 />
 
   return (
     <Layout

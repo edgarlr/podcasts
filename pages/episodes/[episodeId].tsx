@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { getEpisodeById } from '@lib/api'
-import ErrorPage from 'next/error'
 import { InferGetStaticPropsType } from 'next'
 import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
@@ -11,6 +10,7 @@ import { getFormattedDate } from 'lib/utils/dateFormatter'
 import DescriptionContainer from 'components/DescriptionContainer'
 import PlayButton from 'components/player/PlayButton'
 import DynamicEpisodeList from '@components/episodes/DynamicEpisodeList'
+import Custom404 from 'pages/404'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }
@@ -28,7 +28,7 @@ export default function podcast({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { isFallback } = useRouter()
 
-  if (!isFallback && !episode) return <ErrorPage statusCode={404} />
+  if (!isFallback && !episode) return <Custom404 />
 
   const { channel } = episode
 

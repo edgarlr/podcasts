@@ -55,7 +55,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         <p className={cn('title', { ['show']: isShowed })}>{headerText}</p>
       ) : (
         <div className="logo">
-          <Logo style={{ marginRight: '0.2rem' }} />
+          <Logo style={{ marginRight: '0.4rem' }} />
           Podcasts
         </div>
       )}

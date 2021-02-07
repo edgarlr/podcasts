@@ -88,6 +88,9 @@ body {
 .main-container {
   padding: 2rem 1.5rem 7rem;
   transition: 0.25s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
@@ -120,8 +123,10 @@ button {
   padding: 0;
 }
 a {
+  color: var(--primary);
   text-decoration: none;
 }
+
 input {
   border-radius: 0;
   -webkit-appearance: none !important;
