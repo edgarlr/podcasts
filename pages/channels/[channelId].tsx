@@ -1,14 +1,12 @@
 import { useRouter } from 'next/router'
 import { getChannelById, getChannelsEpisodes, getChannelsSeries } from 'lib/api'
 import { InferGetStaticPropsType } from 'next'
-import MainTitle from 'components/MainTitle'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
-import FollowButton from '@components/FollowButton'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
-import TranslucentImage from '@components/ui/TranslucentImage'
 import DescriptionContainer from 'components/DescriptionContainer'
 import Custom404 from 'pages/404'
+import ChannelHeader from '@components/channel/ChannelHeader'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }
@@ -43,23 +41,7 @@ export default function channel({
       metaDescription={channel.description}
       pageTitle={`${channel.title} | Podcasts`}
     >
-      <MainTitle
-        title={channel.title}
-        subtitle={channel.parent_channel_id && 'Serie'}
-      />
-
-      <TranslucentImage
-        url={channel.urls.logo_image.original}
-        alt={`${channel.title} cover`}
-        width={150}
-        height={150}
-        shape="circle"
-        style={{
-          margin: '1rem auto',
-        }}
-      />
-
-      <FollowButton channel={channel} />
+      <ChannelHeader channel={channel} />
 
       {series.length === 0 && channel.description.length > 100 && (
         <DescriptionContainer content={channel.description} />

@@ -4,15 +4,17 @@ type Props = {
   title: string
   subtitle?: string
   linkTo?: string
+  className?: string
 }
 
 export default function MainTitle({
   title,
   subtitle = null,
   linkTo = null,
+  className = '',
 }: Props) {
   return (
-    <div>
+    <div className={className}>
       {linkTo && (
         <Link href={linkTo}>
           <a>{subtitle}</a>
@@ -31,7 +33,6 @@ export default function MainTitle({
 
       <style jsx>{`
         div {
-          margin-top: 3em;
           height: auto;
           display: block;
           color: var(--black);

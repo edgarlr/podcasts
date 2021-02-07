@@ -40,6 +40,38 @@ export default function Layout({
       </main>
 
       <Footer />
+
+      <style jsx>{`
+        .main-container {
+          padding: 3.5rem 1.5rem 7rem;
+          transition: padding 0.25s;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        @media screen and (min-width: 768px) {
+          .main-container {
+            padding: 2rem 5rem 7rem;
+          }
+        }
+        @media screen and (min-width: 1024px) {
+          .main-container {
+            padding: 2rem 12rem 7rem;
+          }
+          .main-container.playing {
+            padding: 2rem 26rem 7rem 4rem;
+          }
+        }
+        @media screen and (min-width: 1440px) {
+          .main-container {
+            padding: 2rem 18rem 7rem;
+          }
+          .main-container.playing {
+            padding: 2rem 30rem 7rem 8rem;
+          }
+        }
+      `}</style>
     </>
   )
 }
