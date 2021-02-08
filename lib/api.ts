@@ -1,4 +1,4 @@
-const API_URL = `https://api.audioboom.com`
+const API_URL = 'https://api.audioboom.com'
 
 export async function fetchAPI(path: string) {
   try {
@@ -42,3 +42,14 @@ export async function getChannelsSeries(channelId: string) {
   } = await fetchAPI(`/channels/${channelId}/child_channels?api_version=1`)
   return data
 }
+
+export const getChannelEpisodesUrl = (channelId: TChannel['id']) =>
+  `${API_URL}/channels/${channelId}/audio_clips?api_version=1`
+
+export const getEpisodesSearchUrl = (keyword: string) =>
+  `${API_URL}/audio_clips?api_version=1&find[query]=${encodeURIComponent(
+    keyword
+  )}`
+
+export const getChannelsSearchUrl = (keyword: string) =>
+  `${API_URL}/channels?api_version=1&find[title]=${encodeURIComponent(keyword)}`

@@ -1,4 +1,4 @@
-import { getChannelEpisodesUrl } from '@lib/constants'
+import { getChannelEpisodesUrl } from '@lib/api'
 import { useFetch } from '@lib/hooks/use-fetch'
 import EpisodeListContainer from './EpisodeListContainer'
 

@@ -4,7 +4,7 @@ import Layout from 'components/common/Layout'
 import MainTitle from 'components/MainTitle'
 import ClearSearchButton from 'components/search/ClearSearchButton'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
-import { getChannelsSearchUrl } from 'lib/constants'
+import { getChannelsSearchUrl } from 'lib/api'
 import { ChannelsGrid } from 'components/channel/ChannelsGrid'
 
 export default function SeachChannel() {

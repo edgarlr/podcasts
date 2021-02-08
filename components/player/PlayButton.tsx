@@ -1,5 +1,5 @@
 import { usePlayer } from 'lib/hooks/use-player'
-import { getChannelEpisodesUrl } from 'lib/constants'
+import { getChannelEpisodesUrl } from 'lib/api'
 import { useFetch } from 'lib/hooks/use-fetch'
 import PlayArrow from 'components/icons/PlayArrow'
 

@@ -2,7 +2,7 @@ import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
 import SeeAllButton from 'components/search/SeeAllButton'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
-import { getChannelsSearchUrl, getEpisodesSearchUrl } from 'lib/constants'
+import { getChannelsSearchUrl, getEpisodesSearchUrl } from 'lib/api'
 import { useFetch } from 'lib/hooks/use-fetch'
 
 const SearchResults = ({ keyword }: { keyword: string }) => {

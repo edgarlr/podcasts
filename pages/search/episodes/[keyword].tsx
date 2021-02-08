@@ -5,7 +5,7 @@ import { useFetch } from 'lib/hooks/use-fetch'
 import ClearSearchButton from 'components/search/ClearSearchButton'
 import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
-import { getEpisodesSearchUrl } from 'lib/constants'
+import { getEpisodesSearchUrl } from 'lib/api'
 
 export default function SeachChannel() {
   const {
