@@ -5,9 +5,10 @@ const Description = ({ content }: { content: string }) => {
 
       <style jsx>{`
         .description {
-          color: var(--gray-50);
-          font-size: 0.85rem;
+          color: var(--gray-60);
+          font-size: var(--font-sm);
           padding: 0;
+          margin: 0.75rem 0;
           overflow: hidden;
           line-height: 1.25;
           position: relative;
