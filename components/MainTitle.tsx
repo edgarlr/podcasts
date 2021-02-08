@@ -40,10 +40,11 @@ export default function MainTitle({
           color: var(--primary);
           background: var(--secondary);
           font-weight: bold;
+          margin: 0.5rem 0;
         }
         .title {
           font-size: var(--font-3xl);
-          margin: 0.5rem 0;
+          margin: 0.25rem 0;
         }
         .title.long {
           font-size: var(--font-lg);
@@ -70,6 +71,7 @@ export default function MainTitle({
         p,
         a {
           margin: 0;
+          color: var(--primary-60);
           font-size: var(--font-xs);
           text-transform: uppercase;
         }

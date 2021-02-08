@@ -4,8 +4,6 @@ import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import PlayButton from '@components/PlayButton'
 import Description from '@components/ui/Description'
-import IconButton from '@components/ui/IconButton'
-import Sort from '@components/icons/Sort'
 
 const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
   const { channel } = episode
@@ -40,13 +38,13 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
           margin: 1.5rem 0;
           position: relative;
           display: flex;
-          gap: 1rem;
         }
         .title-container > :global(:first-child) {
           flex: 0 0 128px;
         }
         .title-container > :global(:nth-child(2)) {
           flex: 1;
+          margin-left: 1rem;
         }
         .info {
           font-size: var(--font-xs);
@@ -61,11 +59,11 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
           align-items: center;
         }
         @media screen and (min-width: 768px) {
-          .title-container {
-            gap: 2rem;
-          }
           .title-container > :global(:first-child) {
             flex: 0 0 150px;
+          }
+          .title-container > :global(:nth-child(2)) {
+            margin-left: 2rem;
           }
         }
       `}</style>
