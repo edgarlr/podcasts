@@ -2,9 +2,10 @@ import Link from 'next/link'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import Description from 'components/ui/Description'
-import CardInfo from 'components/ui/CardInfo'
+import CardInfo from '@components/episodes/EpisodeCard/CardInfo'
 import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying'
 import { usePlayer } from 'lib/hooks/use-player'
+import cn from 'classnames'
 
 type Props = {
   clip: TEpisode
@@ -14,9 +15,10 @@ type Props = {
 
 const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
   const { isPlaying } = usePlayer()
+
   return (
-    <Link href="/episodes/[episodeId]" as={`/episodes/${clip.id}`}>
-      <a className={`episode ${isActive ? 'active' : ''}`}>
+    <Link href={`/episodes/${clip.id}`}>
+      <a className={cn('episode', { ['active']: isActive })}>
         <h2>{clip.title}</h2>
 
         {info ? (
@@ -32,41 +34,36 @@ const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
           ]}
         />
 
-        {isActive && (
-          <span>{isPlaying && <IconAudioPlaying fill={'var(--black)'} />}</span>
+        {isActive && isPlaying && (
+          <span>
+            <IconAudioPlaying fill={'var(--primary)'} />
+          </span>
         )}
-
-        <style jsx>{`
-          .episode {
-            border-bottom: 1px solid var(--gray-20);
-          }
-          .active {
-            background: var(--gray-15);
-          }
-          .episode:hover {
-            background: var(--gray-15);
-          }
-        `}</style>
 
         <style jsx>{`
           .episode {
             display: block;
             text-decoration: none;
             margin: 0;
-            padding: 16px 0.3rem;
+            padding: 1rem 0.25rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: background-color 0.2s;
+            border-bottom: 1px solid var(--primary-20);
+          }
+          .episode:hover {
+            background: var(--primary-05);
           }
           .active {
             margin: -0.5rem;
+            background: var(--primary-05);
             border-bottom: 0;
             border-radius: 20px;
-            padding: 16px 3.5rem 16px 1rem;
+            padding: 1rem 3.75rem 1rem 1rem;
             position: relative;
           }
           h2 {
             margin: 0.8rem 0;
-            font-size: 16px;
+            font-size: var(--font-md);
           }
           .active p,
           .active h2 {
@@ -79,21 +76,24 @@ const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
           }
           .active span {
             position: absolute;
-            right: 2rem;
+            right: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
           }
           .meta {
             font-weight: bold;
-            margin-top: 0.7rem;
-            font-size: 0.8rem;
+            margin-top: 0.75rem;
+            font-size: var(--font-xs);
           }
           @media screen and (min-width: 720px) {
             .episode {
-              padding: 16px 1rem;
+              padding: 1rem;
             }
             .episode.active {
-              padding: 16px 5rem 16px 1.5rem;
+              padding: 1rem 6rem 1rem 1.5rem;
+            }
+            .active span {
+              right: 2.5rem;
             }
           }
         `}</style>

@@ -4,7 +4,6 @@ import { InferGetStaticPropsType } from 'next'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
-import DescriptionContainer from 'components/DescriptionContainer'
 import Custom404 from 'pages/404'
 import ChannelHeader from '@components/channel/ChannelHeader'
 

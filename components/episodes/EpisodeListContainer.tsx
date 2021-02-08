@@ -1,7 +1,7 @@
 import SectionTitle from 'components/SectionTitle'
 import { usePlayer } from 'lib/hooks/use-player'
-import EpisodeCard from './EpisodeCard'
-import EpisodeCardSkeleton from './EpisodeCardSkeleton'
+import EpisodeCard from './EpisodeCard/EpisodeCard'
+import EpisodeCardSkeleton from './EpisodeCard/EpisodeCardSkeleton'
 
 type Props = {
   title: string
@@ -23,7 +23,7 @@ export default function EpisodeListContainer({
   if (!loading && episodes.length === 0) return null
 
   return (
-    <div>
+    <section>
       <SectionTitle title={title} button={button} />
 
       {loading
@@ -38,6 +38,6 @@ export default function EpisodeListContainer({
               info={!searchCards ? null : clip.channel.title}
             />
           ))}
-    </div>
+    </section>
   )
 }

@@ -9,14 +9,14 @@ const EpisodeCardSkeleton = () => {
         .title,
         .duration,
         .plays {
-          background: var(--gray-20);
+          background: var(--primary-20);
         }
         .episode {
           display: block;
           text-decoration: none;
           margin: 0 0.6em;
           padding: 16px 0;
-          border-bottom: 1px solid var(--gray-20);
+          border-bottom: 1px solid var(--primary-20);
         }
         .title {
           height: 16px;
