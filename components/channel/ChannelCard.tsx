@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Description from 'components/ui/Description'
 import Image from 'next/image'
 
 const ChannelCard = ({ channel }: { channel: TChannel }) => {
@@ -18,7 +17,7 @@ const ChannelCard = ({ channel }: { channel: TChannel }) => {
 
           <div className="info">
             <h2>{channel.title}</h2>
-            <Description content={channel.description} />
+            <p className="description">{channel.description}</p>
           </div>
         </div>
       </Link>
@@ -43,6 +42,19 @@ const ChannelCard = ({ channel }: { channel: TChannel }) => {
           grid-gap: 2rem;
           text-decoration: none;
           padding: 1rem 0;
+        }
+        .description {
+          color: var(--gray-60);
+          font-size: var(--font-sm);
+          padding: 0;
+          margin: 0.75rem 0;
+          overflow: hidden;
+          line-height: 1.25;
+          position: relative;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
         }
         a {
           color: var(--gray-80);

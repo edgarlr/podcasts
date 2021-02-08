@@ -1,4 +1,4 @@
-import DescriptionContainer from '@components/DescriptionContainer'
+import Description from '@components/ui/Description'
 import FollowButton from '@components/FollowButton'
 import MainTitle from '@components/MainTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
@@ -25,7 +25,10 @@ const ChannelHeader = ({ channel }: { channel: TChannel }) => {
       <FollowButton channel={channel} />
 
       {channel.description.length > 100 && (
-        <DescriptionContainer content={channel.description} />
+        <Description
+          content={channel.description}
+          style={{ marginTop: '2rem' }}
+        />
       )}
 
       <style jsx>{`

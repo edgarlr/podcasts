@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import cn from 'classnames'
 
 type Props = {
   title: string
@@ -24,9 +25,10 @@ export default function MainTitle({
       {subtitle && !linkTo && <p>{subtitle}</p>}
 
       <h1
-        className={`title ${
-          title.length < 15 ? '' : title.length > 35 ? 'extra-long' : 'long'
-        }`}
+        className={cn('title', {
+          ['long']: title.length > 15 && title.length < 35,
+          ['extra-long']: title.length >= 35,
+        })}
       >
         {title}
       </h1>
@@ -39,37 +41,36 @@ export default function MainTitle({
           background: var(--secondary);
           font-weight: bold;
         }
-        }
         .title {
-          font-size: 2rem;
-          margin: 8px 0;
+          font-size: var(--font-3xl);
+          margin: 0.5rem 0;
         }
         .title.long {
-          font-size: 1.2rem;
+          font-size: var(--font-lg);
         }
         .title.extra-long {
-          font-size: 0.85rem;
+          font-size: var(--font-md);
         }
         @media screen and (min-width: 768px) {
           .title.long {
-            font-size: 1.5rem;
+            font-size: var(--font-2xl);
           }
           .title.extra-long {
-            font-size: 1.2rem;
+            font-size: var(--font-lg);
           }
         }
         @media screen and (min-width: 1024px) {
           .title.long {
-            font-size: 2rem;
+            font-size: var(--font-3xl);
           }
           .title.extra-long {
-            font-size: 1.5rem;
+            font-size: var(--font-2xl);
           }
         }
         p,
         a {
           margin: 0;
-          font-size: 0.7rem;
+          font-size: var(--font-xs);
           text-transform: uppercase;
         }
       `}</style>
