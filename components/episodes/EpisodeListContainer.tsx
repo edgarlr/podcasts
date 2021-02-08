@@ -1,5 +1,4 @@
 import SectionTitle from 'components/SectionTitle'
-import { usePlayer } from 'lib/hooks/use-player'
 import EpisodeCard from './EpisodeCard/EpisodeCard'
 import EpisodeCardSkeleton from './EpisodeCard/EpisodeCardSkeleton'
 
@@ -18,8 +17,6 @@ export default function EpisodeListContainer({
   button = null,
   searchCards = false,
 }: Props) {
-  const { current } = usePlayer()
-
   if (!loading && episodes.length === 0) return null
 
   return (
@@ -34,7 +31,6 @@ export default function EpisodeListContainer({
             <EpisodeCard
               clip={clip}
               key={clip.id}
-              isActive={current && current.id === clip.id}
               info={!searchCards ? null : clip.channel.title}
             />
           ))}

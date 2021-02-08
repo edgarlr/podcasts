@@ -8,12 +8,13 @@ import cn from 'classnames'
 
 type Props = {
   clip: TEpisode
-  isActive: boolean
   info: string
 }
 
-const EpisodeCard = ({ clip, isActive = false, info = null }: Props) => {
-  const { isPlaying } = usePlayer()
+const EpisodeCard = ({ clip, info = null }: Props) => {
+  const { isPlaying, current } = usePlayer()
+
+  const isActive = current && current.id === clip.id
 
   return (
     <Link href={`/episodes/${clip.id}`}>
