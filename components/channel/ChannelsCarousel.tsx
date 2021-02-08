@@ -19,17 +19,17 @@ export const ChannelsCarousel = ({
   loading = false,
   style = {},
 }: Props) => {
-  if (!loading && channels.length === 0) return null
+  if (!loading && (!channels || channels.length === 0)) return null
 
   return (
     <section className="section-carousel" style={style}>
-      {/* <SectionTitle title={title} button={sectionButton} /> */}
-      <h3>{title}</h3>
+      <SectionTitle title={title} button={sectionButton} />
+      {/* <h3>{title}</h3> */}
       <CarouselGrid>
         {loading
           ? [1, 2, 3].map((card) => <PodcastCoverSkeleton key={card} />)
           : channels.map((channel, index) => (
-              // For the cases where the api response width the same element twice
+              // Use the index as key for the cases where the api response width the same element twice
               <PodcastCover channel={channel} key={`${channel.id}${index}`} />
             ))}
       </CarouselGrid>
@@ -37,6 +37,14 @@ export const ChannelsCarousel = ({
       <style jsx>{`
         .section-carousel {
           padding: 1.5rem 0;
+        }
+        .section-carousel > :global(:first-child) {
+          margin-bottom: 1.5rem;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
         }
         .section-carousel h3 {
           margin-top: 0;

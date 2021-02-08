@@ -3,7 +3,7 @@ import MainTitle from 'components/MainTitle'
 import { useRouter } from 'next/router'
 import { useFetch } from 'lib/hooks/use-fetch'
 import ClearSearchButton from 'components/search/ClearSearchButton'
-import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
+import EpisodesList from '@components/episodes/EpisodesList'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
 import { getEpisodesSearchUrl } from 'lib/api'
 
@@ -26,7 +26,7 @@ export default function SeachChannel() {
       ) : (
         <>
           <MainTitle title={`"${keyword}" in search`} />
-          <EpisodeListContainer
+          <EpisodesList
             title="All Episodes"
             episodes={data}
             loading={isLoading}

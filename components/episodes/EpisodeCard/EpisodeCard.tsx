@@ -49,7 +49,7 @@ const EpisodeCard = ({ clip, info = null }: Props) => {
             padding: 2rem 0.25rem;
             cursor: pointer;
             transition: background-color 0.2s;
-            border-bottom: 1px solid var(--primary-20);
+            border-bottom: var(--default-border);
           }
           .episode:hover {
             background: var(--primary-05);

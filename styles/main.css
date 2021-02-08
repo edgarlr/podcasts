@@ -51,6 +51,9 @@
   --primary-a-50: var(--black-a-50);
   --primary-a-40: var(--black-a-40);
   --primary-a-20: var(--black-a-20);
+
+  /* Elements */
+  --default-border: 1px solid var(--primary-20);
 }
 
 *,

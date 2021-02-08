@@ -83,7 +83,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         }
         .title {
           margin: 0;
-          font-size: var(--font-lg);
+          font-size: var(--font-md);
           font-weight: bold;
           text-overflow: ellipsis;
           overflow: hidden;

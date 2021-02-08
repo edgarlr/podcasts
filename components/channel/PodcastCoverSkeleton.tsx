@@ -6,17 +6,18 @@ export default function PodcastCoverSkeleton() {
 
       <style jsx>{`
         .img {
-          background: var(--gray-20);
-          width: 100%;
+          background: var(--primary-10);
+          width: 150px;
+          height: 150px;
           padding-bottom: 100%;
           border-radius: 20px;
         }
         .title {
-          background: var(--gray-20);
+          background: var(--primary-10);
           padding: 0;
           max-width: 70%;
-          margin: 8px auto 0;
-          height: 0.9rem;
+          margin: 12px 0.5rem 0;
+          height: 1rem;
         }
       `}</style>
     </div>

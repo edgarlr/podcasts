@@ -1,6 +1,6 @@
 import { getChannelEpisodesUrl } from '@lib/api'
 import { useFetch } from '@lib/hooks/use-fetch'
-import EpisodeListContainer from './EpisodeListContainer'
+import EpisodesList from './EpisodesList'
 
 type Props = {
   channel: {
@@ -22,7 +22,7 @@ const DynamicEpisodeList = ({ channel }: Props) => {
   )
 
   return (
-    <EpisodeListContainer
+    <EpisodesList
       title={`More episodes from ${channel.title}`}
       loading={isLoading}
       episodes={episodesData}

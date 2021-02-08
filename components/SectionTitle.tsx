@@ -13,16 +13,16 @@ const SectionTitle = ({ title, button = null }: Props) => (
       .section-title {
         display: flex;
         justify-content: space-between;
-        align-content: center;
+        align-items: center;
         padding: 0 0 1rem;
-        border-bottom: 1px solid var(--gray-20);
+        border-bottom: var(--default-border);
       }
       .main-title {
-        font-size: 0.7rem;
-        text-transform: uppercase;
+        font-size: var(--font-md);
+        color: var(--primary-80);
+        text-transform: capitalize;
         margin: auto 0;
         font-weight: bold;
-        color: var(--gray-50);
       }
     `}</style>
   </div>

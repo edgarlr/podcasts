@@ -16,7 +16,7 @@ const EpisodeCardSkeleton = () => {
           text-decoration: none;
           margin: 0 0.6em;
           padding: 1rem 0;
-          border-bottom: 1px solid var(--primary-20);
+          border-bottom: var(--default-border);
         }
         .title {
           height: 16px;

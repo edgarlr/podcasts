@@ -10,14 +10,14 @@ type Props = {
   button?: React.ReactNode
 }
 
-export default function EpisodeListContainer({
+const EpisodesList = ({
   title,
   episodes = [],
   loading = false,
   button = null,
   searchCards = false,
-}: Props) {
-  if (!loading && episodes.length === 0) return null
+}: Props) => {
+  if (!loading && (!episodes || episodes.length === 0)) return null
 
   return (
     <section>
@@ -31,9 +31,11 @@ export default function EpisodeListContainer({
             <EpisodeCard
               clip={clip}
               key={clip.id}
-              info={!searchCards ? null : clip.channel.title}
+              info={searchCards && (clip.channel?.title || null)}
             />
           ))}
     </section>
   )
 }
+
+export default EpisodesList

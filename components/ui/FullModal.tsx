@@ -31,11 +31,12 @@ const FullModal = ({ children, isOpen, button }: Props) => {
           left: 0;
           top: 0;
           bottom: 100%;
+          padding: 4rem 1.5rem;
           transition: bottom 0.3s;
         }
         .full {
           overflow-y: scroll;
-          background: white;
+          background: var(--secondary);
           bottom: 0;
           text-align: left;
         }
@@ -53,15 +54,24 @@ const FullModal = ({ children, isOpen, button }: Props) => {
             right: 1.5rem;
             top: 0.75rem;
           }
+          .modal {
+            padding: 4rem 5rem;
+          }
         }
         @media screen and (min-width: 1024px) {
           .action-button.playing {
             right: 24rem;
           }
+          .modal {
+            padding: 4rem 15%;
+          }
         }
         @media screen and (min-width: 1440px) {
           .action-button.playing {
             right: 26rem;
+          }
+          .modal {
+            padding: 4rem 20%;
           }
         }
       `}</style>

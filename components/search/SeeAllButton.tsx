@@ -14,9 +14,9 @@ const SeeAllButton = ({
 
     <style jsx>{`
       a {
-        font-size: 0.9rem;
+        font-size: var(--font-sm);
         font-weight: bold;
-        color: var(--gray-80);
+        color: var(--gray-60);
         text-decoration: none;
       }
     `}</style>
