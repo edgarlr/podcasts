@@ -2,6 +2,7 @@ import { usePlayer } from 'lib/hooks/use-player'
 import { getChannelEpisodesUrl } from 'lib/api'
 import { useFetch } from 'lib/hooks/use-fetch'
 import PlayArrow from 'components/icons/PlayArrow'
+import Button from './ui/Button'
 
 type Props = {
   episode: TEpisode
@@ -17,6 +18,8 @@ const PlayButton = ({ episode, channelId }: Props) => {
 
   const { current, setCurrentIndex, setPlaylist, play } = usePlayer()
 
+  const isActive = current && current.id === episode.id
+
   const onPlayClick = () => {
     if (!episodesData) return
     setPlaylist(episodesData)
@@ -30,44 +33,15 @@ const PlayButton = ({ episode, channelId }: Props) => {
   }
 
   return (
-    <button
-      className="play-button"
-      disabled={isLoading || (current && current.id === episode.id)}
+    <Button
       onClick={() => onPlayClick()}
-      aria-label="Play podcast"
+      ariaLabel="Play Episode"
+      disabled={isLoading || isActive}
+      subfix={!isActive ? <PlayArrow /> : null}
+      variant={!isActive ? 'primary' : 'secondary'}
     >
-      <PlayArrow />
-
-      <style jsx>{`
-        .play-button {
-          outline: none;
-          background: var(--black);
-          border-radius: 50%;
-          border: none;
-          height: 2.8rem;
-          width: 2.8rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          position: absolute;
-          right: 0;
-          bottom: 0;
-          transform: translateY(130%);
-          opacity: 1;
-          transition: 0.2s;
-        }
-        .play-button:hover {
-          background: var(--gray-15);
-        }
-        .play-button:hover :global(svg) {
-          fill: var(--black);
-        }
-        .play-button:disabled {
-          opacity: 0.2;
-        }
-      `}</style>
-    </button>
+      {isActive ? 'Playing' : 'Play'}
+    </Button>
   )
 }
 

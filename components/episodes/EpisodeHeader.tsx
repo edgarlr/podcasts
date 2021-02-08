@@ -2,8 +2,10 @@ import MainTitle from 'components/MainTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
-import PlayButton from 'components/player/PlayButton'
+import PlayButton from '@components/PlayButton'
 import Description from '@components/ui/Description'
+import IconButton from '@components/ui/IconButton'
+import Sort from '@components/icons/Sort'
 
 const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
   const { channel } = episode
@@ -27,12 +29,9 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
         episode.uploaded_at
       )} · ${getDurationOnMin(episode.duration)}`}</p>
 
-      <Description
-        content={episode.description}
-        style={{ marginBottom: '2rem' }}
-      />
+      <Description content={episode.description} />
 
-      <div>
+      <div className="actions-buttons">
         <PlayButton episode={episode} channelId={channel.id} />
       </div>
 
@@ -55,6 +54,11 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
           color: var(--primary-60);
           text-transform: uppercase;
           margin: 2rem 0 0;
+        }
+        .actions-buttons {
+          margin: 2rem 0 3rem;
+          display: flex;
+          align-items: center;
         }
         @media screen and (min-width: 768px) {
           .title-container {

@@ -10,6 +10,7 @@ type Props = {
   variant?: 'primary' | 'secondary'
   style?: CSSProperties
   className?: string
+  disabled: boolean
 }
 
 const Button = ({
@@ -21,6 +22,7 @@ const Button = ({
   style = {},
   className,
   ariaLabel,
+  disabled = false,
 }: Props) => {
   return (
     <button
@@ -34,6 +36,7 @@ const Button = ({
       )}
       style={style}
       aria-label={ariaLabel}
+      disabled={disabled}
     >
       {prefix && <span className="prefix">{prefix}</span>}
       {children}
@@ -55,7 +58,7 @@ const Button = ({
           justify-content: center;
           align-items: center;
           width: max-content;
-          margin: 0 auto;
+          margin: 0;
           border: 1px solid transparent;
         }
         button:hover {
@@ -73,6 +76,7 @@ const Button = ({
         }
         .subfix {
           padding-left: 0.5rem;
+          margin-right: -0.5rem;
         }
         .primary {
           color: var(--secondary);
