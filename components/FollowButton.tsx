@@ -19,6 +19,9 @@ const FollowButton = ({ channel }: { channel: TChannel }) => {
       onClick={handleFollowClick}
       variant={isOnFavs ? 'secondary' : 'primary'}
       ariaLabel="Follow this channel"
+      style={{
+        margin: '0 auto',
+      }}
     >
       {isOnFavs ? 'Following' : 'Follow'}
     </Button>

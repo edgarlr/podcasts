@@ -65,6 +65,7 @@ const EpisodeCard = ({ clip, info = null }: Props) => {
           h2 {
             margin: 0;
             font-size: var(--font-md);
+            color: var(--primary-90);
           }
           .active p,
           .active h2 {

@@ -10,7 +10,7 @@ type Props = {
   variant?: 'primary' | 'secondary'
   style?: CSSProperties
   className?: string
-  disabled: boolean
+  disabled?: boolean
 }
 
 const Button = ({
