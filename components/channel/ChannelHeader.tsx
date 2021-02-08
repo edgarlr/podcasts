@@ -1,3 +1,4 @@
+import DescriptionContainer from '@components/DescriptionContainer'
 import FollowButton from '@components/FollowButton'
 import MainTitle from '@components/MainTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
@@ -20,10 +21,16 @@ const ChannelHeader = ({ channel }: { channel: TChannel }) => {
         subtitle={channel.parent_channel_id && 'Serie'}
         className="channelTitle"
       />
+
       <FollowButton channel={channel} />
+
+      {channel.description.length > 100 && (
+        <DescriptionContainer content={channel.description} />
+      )}
+
       <style jsx>{`
         .channel-header {
-          padding: 1rem 0 2.5rem 0;
+          padding: 1rem 0;
         }
         .channel-header > :global(.channelTitle) {
           text-align: center;

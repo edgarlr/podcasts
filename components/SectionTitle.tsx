@@ -14,7 +14,7 @@ const SectionTitle = ({ title, button = null }: Props) => (
         display: flex;
         justify-content: space-between;
         align-content: center;
-        padding: 1rem 0;
+        padding: 0 0 1rem;
         border-bottom: 1px solid var(--gray-20);
       }
       .main-title {

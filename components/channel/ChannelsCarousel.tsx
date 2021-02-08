@@ -19,8 +19,9 @@ export const ChannelsCarousel = ({
   if (!loading && channels.length === 0) return null
 
   return (
-    <>
-      <SectionTitle title={title} button={sectionButton} />
+    <section className="section-carousel">
+      {/* <SectionTitle title={title} button={sectionButton} /> */}
+      <h3>{title}</h3>
       <CarouselGrid>
         {loading
           ? [1, 2, 3].map((card) => <PodcastCoverSkeleton key={card} />)
@@ -29,6 +30,17 @@ export const ChannelsCarousel = ({
               <PodcastCover channel={channel} key={`${channel.id}${index}`} />
             ))}
       </CarouselGrid>
-    </>
+
+      <style jsx>{`
+        .section-carousel {
+          padding: 2.5rem 0;
+        }
+        .section-carousel h3 {
+          margin-top: 0;
+          font-size: var(--font-2xl);
+          text-transform: capitalize;
+        }
+      `}</style>
+    </section>
   )
 }

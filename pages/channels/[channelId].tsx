@@ -35,6 +35,7 @@ export default function channel({
   const { isFallback } = useRouter()
 
   if (!isFallback && !channel) return <Custom404 />
+
   return (
     <Layout
       headerText={channel.title}
@@ -42,10 +43,6 @@ export default function channel({
       pageTitle={`${channel.title} | Podcasts`}
     >
       <ChannelHeader channel={channel} />
-
-      {series.length === 0 && channel.description.length > 100 && (
-        <DescriptionContainer content={channel.description} />
-      )}
 
       <ChannelsCarousel title={`${channel.title}'S SERIES`} channels={series} />
 

@@ -11,7 +11,7 @@ const DescriptionContainer = ({ content }: { content: string }) => {
 
       <style jsx>{`
         div {
-          margin-top: 1.5rem;
+          margin-top: 2rem;
           padding: 0;
         }
         div span {

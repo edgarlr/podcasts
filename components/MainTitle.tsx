@@ -35,8 +35,8 @@ export default function MainTitle({
         div {
           height: auto;
           display: block;
-          color: var(--black);
-          background: var(--white);
+          color: var(--primary);
+          background: var(--secondary);
           font-weight: bold;
         }
         }
