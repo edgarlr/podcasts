@@ -2,12 +2,14 @@ import CarouselGrid from 'components/ui/CarouselGrid'
 import SectionTitle from 'components/SectionTitle'
 import { PodcastCover } from './PodcastCover'
 import PodcastCoverSkeleton from './PodcastCoverSkeleton'
+import { CSSProperties } from 'react'
 
 type Props = {
   title: string
   channels: TChannel[]
   sectionButton?: React.ReactNode
   loading?: boolean
+  style?: CSSProperties
 }
 
 export const ChannelsCarousel = ({
@@ -15,11 +17,12 @@ export const ChannelsCarousel = ({
   channels = [],
   sectionButton = null,
   loading = false,
+  style = {},
 }: Props) => {
   if (!loading && channels.length === 0) return null
 
   return (
-    <section className="section-carousel">
+    <section className="section-carousel" style={style}>
       {/* <SectionTitle title={title} button={sectionButton} /> */}
       <h3>{title}</h3>
       <CarouselGrid>
@@ -33,7 +36,7 @@ export const ChannelsCarousel = ({
 
       <style jsx>{`
         .section-carousel {
-          padding: 2.5rem 0;
+          padding: 1.5rem 0;
         }
         .section-carousel h3 {
           margin-top: 0;

@@ -10,8 +10,18 @@ export async function fetchAPI(path: string) {
   }
 }
 
-export async function getRecommendedChannels() {
-  const { body: data } = await fetchAPI('/channels/recommended?api_version=2')
+export async function getRecommendedChannels(limit?: number) {
+  const fullUri = limit
+    ? `/channels/recommended?page[items]=${limit}&api_version=2`
+    : '/channels/recommended?api_version=2'
+  const { body: data } = await fetchAPI(fullUri)
+  return data
+}
+
+export async function getRecommendedChannelsByCategory(id: number) {
+  const { body: data } = await fetchAPI(
+    `/channels/recommended?category_ids[]=${id}&api_version=2`
+  )
   return data
 }
 

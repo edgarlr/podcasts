@@ -43,7 +43,7 @@ export default function Layout({
 
       <style jsx>{`
         .main-container {
-          padding: 3.5rem 1.5rem 7rem;
+          padding: 3.5rem 1.5rem 4rem;
           transition: padding 0.25s;
           min-height: 100vh;
           display: flex;
