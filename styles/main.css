@@ -101,3 +101,11 @@ input {
   border-radius: 0;
   -webkit-appearance: none !important;
 }
+
+/* Images utilities */
+.square-image {
+  border-radius: 15px;
+}
+.circle-image {
+  border-radius: 50%;
+}

@@ -9,9 +9,10 @@ const CarouselGrid = ({ children }: { children: React.ReactNode }) => {
           flex-wrap: nowrap;
           -webkit-overflow-scrolling: touch;
           -ms-overflow-style: -ms-autohiding-scrollbar;
+          overflow-y: visible;
           overflow-x: scroll;
           margin: 0 -1.5rem;
-
+          padding: 0.25rem 0;
           scroll-snap-type: x proximity;
           -ms-overflow-style: none;
         }

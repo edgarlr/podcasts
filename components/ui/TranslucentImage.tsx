@@ -21,6 +21,7 @@ export default function TranslucentImage({
   blur = 'normal',
   style = {},
 }: Props) {
+  // Clases declared on main.css
   const imageShape = cn({
     ['square-image']: shape === 'square',
     ['circle-image']: shape === 'circle',
@@ -51,15 +52,6 @@ export default function TranslucentImage({
           className={imageShape}
         />
       </div>
-
-      <style jsx global>{`
-        .square-image {
-          border-radius: 15px;
-        }
-        .circle-image {
-          border-radius: 50%;
-        }
-      `}</style>
 
       <style jsx>{`
         .image-container {
