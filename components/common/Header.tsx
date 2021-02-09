@@ -119,7 +119,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         }
         @media screen and (min-width: 766px) {
           header {
-            padding: 0.5rem 1.5rem;
+            padding: 0 1.5rem;
           }
           .title {
             font-size: 1.2rem;
@@ -130,12 +130,12 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         }
         @media screen and (min-width: 1024px) {
           header.playing {
-            padding: 1rem 24rem 0 1.5rem;
+            padding: 0 24rem 0 1.5rem;
           }
         }
         @media screen and (min-width: 1440px) {
           header.playing {
-            padding: 1rem 26rem 0 1.5rem;
+            padding: 0 26rem 0 1.5rem;
           }
         }
       `}</style>

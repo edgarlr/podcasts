@@ -52,23 +52,23 @@ export default function Layout({
 
         @media screen and (min-width: 768px) {
           .main-container {
-            padding: 2rem 5rem 7rem;
+            padding: 3.5rem 5rem 7rem;
           }
         }
         @media screen and (min-width: 1024px) {
           .main-container {
-            padding: 2rem 12rem 7rem;
+            padding: 3.5rem 12rem 7rem;
           }
           .main-container.playing {
-            padding: 2rem 26rem 7rem 4rem;
+            padding: 3.5rem 26rem 7rem 4rem;
           }
         }
         @media screen and (min-width: 1440px) {
           .main-container {
-            padding: 2rem 18rem 7rem;
+            padding: 3.5rem 18rem 7rem;
           }
           .main-container.playing {
-            padding: 2rem 30rem 7rem 8rem;
+            padding: 3.5rem 30rem 7rem 8rem;
           }
         }
       `}</style>
