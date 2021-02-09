@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useFetch } from 'lib/hooks/use-fetch'
 import Layout from 'components/common/Layout'
-import MainTitle from 'components/MainTitle'
+import PageTitle from '@components/ui/PageTitle'
 import ClearSearchButton from 'components/search/ClearSearchButton'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
 import { getChannelsSearchUrl } from 'lib/api'
@@ -26,7 +26,7 @@ export default function SeachChannel() {
         <SearchErrorMessage keyword={keyword as string} />
       ) : (
         <>
-          <MainTitle title={`"${keyword}" in search`} />
+          <PageTitle title={`"${keyword}" in search`} />
           <ChannelsGrid
             title="All channels"
             channels={data}

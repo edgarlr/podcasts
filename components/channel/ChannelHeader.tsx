@@ -1,6 +1,6 @@
 import Description from '@components/ui/Description'
 import FollowButton from '@components/FollowButton'
-import MainTitle from '@components/MainTitle'
+import PageTitle from '@components/ui/PageTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
 
 const ChannelHeader = ({ channel }: { channel: TChannel }) => {
@@ -16,7 +16,7 @@ const ChannelHeader = ({ channel }: { channel: TChannel }) => {
           margin: '1rem auto',
         }}
       />
-      <MainTitle
+      <PageTitle
         title={channel.title}
         subtitle={channel.parent_channel_id && 'Serie'}
         className="channelTitle"

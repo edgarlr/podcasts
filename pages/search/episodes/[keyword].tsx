@@ -1,5 +1,5 @@
 import Layout from 'components/common/Layout'
-import MainTitle from 'components/MainTitle'
+import PageTitle from '@components/ui/PageTitle'
 import { useRouter } from 'next/router'
 import { useFetch } from 'lib/hooks/use-fetch'
 import ClearSearchButton from 'components/search/ClearSearchButton'
@@ -26,7 +26,7 @@ export default function SeachChannel() {
         <SearchErrorMessage keyword={keyword as string} />
       ) : (
         <>
-          <MainTitle title={`"${keyword}" in search`} />
+          <PageTitle title={`"${keyword}" in search`} />
           <EpisodesList
             title="All Episodes"
             episodes={data}

@@ -1,4 +1,4 @@
-import MainTitle from 'components/MainTitle'
+import PageTitle from '@components/ui/PageTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
@@ -16,7 +16,7 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
           width={150}
           height={150}
         />
-        <MainTitle
+        <PageTitle
           title={episode.title}
           subtitle={channel.title}
           linkTo={`/channels/${channel.id}`}

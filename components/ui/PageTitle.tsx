@@ -8,7 +8,7 @@ type Props = {
   className?: string
 }
 
-export default function MainTitle({
+export default function PageTitle({
   title,
   subtitle = null,
   linkTo = null,
