@@ -6,12 +6,11 @@ import Replay30 from 'components/icons/Replay30'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
 import Forward30 from 'components/icons/Forward30'
+import IconButton from '@components/ui/IconButton'
 
 const FullPlayer = () => {
   const {
     loading,
-    currentIndex,
-    playlist,
     isPlaying,
     current,
     seekForward,
@@ -21,15 +20,14 @@ const FullPlayer = () => {
 
   return (
     <div className="container">
-      <div className="img-container">
-        <TranslucentImage
-          url={current.urls.image || current.channel.urls.logo_image.original}
-          alt={`${current.title} cover`}
-          blur="large"
-          width={200}
-          height={200}
-        />
-      </div>
+      <TranslucentImage
+        url={current.urls.image || current.channel.urls.logo_image.original}
+        alt={`${current.title} cover`}
+        blur="large"
+        width={200}
+        height={200}
+        style={{ margin: '0 auto' }}
+      />
 
       <div className="info">
         <PodcastTitle title={current.title} />
@@ -37,31 +35,34 @@ const FullPlayer = () => {
       </div>
 
       <div className="main-player">
-        <button
-          className="controller-button"
+        <IconButton
           onClick={() => replay(10)}
-          aria-label="Seek backward 10 seconds"
+          ariaLabel="Seek backawards 10 Seconds"
+          className="controller-button"
         >
-          <Replay30 />
-        </button>
+          <Replay30 width={40} height={40} />
+        </IconButton>
 
         <button
           className="play-button"
           disabled={loading}
           onClick={() => toggleAudio()}
-          aria-label="Play or Pause Song"
+          aria-label="Toggle play"
         >
-          {isPlaying ? <Pause /> : <PlayArrow />}
+          {isPlaying ? (
+            <Pause width={44} height={44} />
+          ) : (
+            <PlayArrow width={44} height={44} />
+          )}
         </button>
 
-        <button
-          disabled={currentIndex === playlist.length - 1}
-          className="controller-button"
+        <IconButton
           onClick={() => seekForward(30)}
-          aria-label="Seek forward 30 seconds"
+          ariaLabel="Seek forward 30 seconds"
+          className="controller-button"
         >
-          <Forward30 />
-        </button>
+          <Forward30 width={40} height={40} />
+        </IconButton>
       </div>
 
       <ProgressBar />
@@ -71,96 +72,81 @@ const FullPlayer = () => {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 20vh 2rem 10vh;
+          padding: 20vh 0 10vh;
           bottom: 1.5rem;
           height: 100%;
-          color: white;
-          position: relative;
-        }
-        @media screen and (max-height: 665px) {
-          .container {
-            padding: 15vh 2rem 10vh;
-          }
-        }
-        .nav-button {
-          background: transparent;
-          outline: none;
-          border: none;
-          cursor: pointer;
-          position: absolute;
-          left: 1rem;
-          top: 1.5rem;
-          z-index: 11;
-          border-radius: 50%;
-          width: 2.5rem;
-          height: 2.5rem;
-        }
-        .nav-button:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-        .img-container {
           width: 75%;
-          max-width: 250px;
           margin: 0 auto;
           position: relative;
         }
-        .info {
-          width: 90%;
-          max-width: 20rem;
-          margin: 1em auto;
+        p {
+          max-width: 100%;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          font-size: var(--font-sm);
+          margin: 8px 0;
+          color: var(--primary-40);
+          font-weight: normal;
+        }
+        .info {
+          width: 100%;
+          max-width: 20rem;
+          margin: 0;
           text-align: center;
+          z-index: 100;
         }
-        p {
-          margin: 6px 0;
-          font-size: 12px;
-          font-weight: 400;
-          color: #a8a8a8;
-          text-transform: uppercase;
-        }
-        button {
-          outline: none;
-        }
-        button[disabled] {
-          opacity: 0.3;
-        }
-
         .main-player {
           display: flex;
-          justify-content: space-around;
+          justify-content: space-between;
           align-items: center;
-          margin: 3% 0 8%;
+          margin: 0;
         }
-        .controller-button {
-          background: none;
-          border: none;
-          display: flex;
-          align-content: center;
-          justify-content: center;
-          transition: 0.2s;
-          border-radius: 50%;
-          padding: 0.2rem;
-        }
+
         .play-button {
-          width: 72px;
-          height: 72px;
-          border-radius: 50%;
-          border: 1px solid white;
-          background: none;
-          transition: 0.2s;
-        }
-        .play-button:focus {
           outline: none;
+          width: 4.75rem;
+          height: 4.75rem;
+          border-radius: 50%;
+          border: var(--default-border);
+          color: var(--secondary);
+          background: none;
+          transition: border, background-color 0.2s;
         }
-        .play-button:hover,
-        .controller-button:hover {
-          background: rgba(255, 255, 255, 0.05);
+        .play-button[disabled] {
+          opacity: 0.3;
         }
+        .play-button:focus,
+        .play-button:hover {
+          outline: none;
+          background: var(--primary-90);
+        }
+
+        .main-player > :global(.controller-button) {
+          color: white;
+          height: 3.5rem;
+          width: 3.5rem;
+        }
+
+        .main-player > :global(.controller-button:hover) {
+          background: var(--primary-95);
+        }
+
+        @media screen and (max-height: 668px) {
+          .container {
+            padding: 15vh 0 10vh;
+          }
+        }
+        @media screen and (max-height: 568px) {
+          .container {
+            padding: 12vh 0 10vh;
+          }
+        }
+
         @media screen and (min-width: 766px) and (max-width: 1023px) and (orientation: portrait) {
           .container {
-            padding: 3rem 8rem 2rem;
+            padding: 3rem 0 2rem;
+            width: 50%;
             max-height: 40rem;
           }
         }

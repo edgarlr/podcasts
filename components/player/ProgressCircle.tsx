@@ -19,6 +19,7 @@ const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
   useEffect(() => {
     const progressOfsett =
       ((100 - (audioRef.currentTime * 100) / duration) / 100) * circumference
+    if (!progressOfsett) return
     setOffset(progressOfsett)
   }, [setOffset, circumference, audioRef, duration, offset])
 

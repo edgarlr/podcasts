@@ -37,7 +37,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
 
       <div className="info" onClick={onClick}>
         <PodcastTitle title={current.title} />
-        <h4>{current.channel.title}</h4>
+        <p>{current.channel.title}</p>
       </div>
 
       <button
@@ -112,7 +112,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
         .play-button:hover {
           background: var(--primary-95);
         }
-        h4 {
+        p {
           max-width: 100%;
           white-space: nowrap;
           overflow: hidden;
