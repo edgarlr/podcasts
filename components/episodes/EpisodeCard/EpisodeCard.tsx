@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import CardInfo from '@components/episodes/EpisodeCard/CardInfo'
-import IconAudioPlaying from 'components/ui/icons/IconAudioPlaying'
+import AnimatedLogo from '@components/icons/AnimatedLogo'
 import { usePlayer } from 'lib/hooks/use-player'
 import cn from 'classnames'
 
@@ -36,7 +36,7 @@ const EpisodeCard = ({ clip, info = null }: Props) => {
 
         {isActive && isPlaying && (
           <span>
-            <IconAudioPlaying fill={'var(--primary)'} />
+            <AnimatedLogo fill={'var(--primary)'} />
           </span>
         )}
 

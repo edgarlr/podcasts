@@ -12,6 +12,7 @@ const Player = () => {
   const handleModalClick = () => setFullView(!fullView)
 
   const isTablet = useMediaQuery(1023)
+
   return (
     <Portal selector="#player">
       {current && isTablet && (
@@ -23,6 +24,7 @@ const Player = () => {
           )}
         </div>
       )}
+
       {current && !isTablet && (
         <div className="container desktop">
           <PlayerContainer />
@@ -38,7 +40,7 @@ const Player = () => {
           left: 0;
           bottom: 0;
           height: 5rem;
-          padding: 0 1rem;
+          padding: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -56,7 +58,7 @@ const Player = () => {
           height: 100%;
           top: 0;
           left: auto;
-          border-radius: 20px 0 0;
+          border-radius: 0;
           box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
         }
         @media screen and (min-width: 1440px) {

@@ -124,7 +124,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           .title {
             font-size: 1.2rem;
           }
-          header > :global(.back-btn) {
+          header.playing > :global(.back-btn) {
             left: 1.5rem;
           }
         }
@@ -132,7 +132,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           header.playing {
             padding: 0 21rem 0 1.5rem;
           }
-          header > :global(:last-child) {
+          header.playing > :global(:last-child) {
             right: 21.5rem;
           }
         }
@@ -140,7 +140,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           header.playing {
             padding: 0 23rem 0 1.5rem;
           }
-          header > :global(:last-child) {
+          header.playing > :global(:last-child) {
             right: 23.5rem;
           }
         }
