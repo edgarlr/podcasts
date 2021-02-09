@@ -36,10 +36,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
       </div>
 
       <div className="info" onClick={onClick}>
-        <PodcastTitle
-          title={current.title}
-          style={{ fontSize: '0.9rem', justifyContent: 'flex-start' }}
-        />
+        <PodcastTitle title={current.title} />
         <h4>{current.channel.title}</h4>
       </div>
 
@@ -95,6 +92,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
         }
         .info {
           flex: 0 0 1;
+          width: 100%;
           overflow: hidden;
           margin: 0 1rem;
           z-index: 2;
@@ -120,8 +118,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
           overflow: hidden;
           text-overflow: ellipsis;
           font-size: var(--font-xs);
-          margin: 4px 0 0;
-          text-transform: uppercase;
+          margin: 4px 0;
           color: var(--primary-40);
           font-weight: normal;
         }
