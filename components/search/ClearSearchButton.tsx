@@ -4,13 +4,8 @@ import { useRouter } from 'next/router'
 
 const ClearSearchButton = () => {
   const router = useRouter()
-
-  const onCloseClick = () => {
-    router.push('/?search=', undefined, { shallow: true })
-  }
-
   return (
-    <IconButton onClick={onCloseClick} ariaLabel="Search">
+    <IconButton onClick={() => router.replace('/search?q=')} ariaLabel="Search">
       <Close />
     </IconButton>
   )

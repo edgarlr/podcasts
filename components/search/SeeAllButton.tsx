@@ -8,7 +8,7 @@ const SeeAllButton = ({
   keyword: string
 }) => (
   <>
-    <Link href={`/search/${section}/${encodeURIComponent(keyword)}`}>
+    <Link href={`/search/${section}/${encodeURIComponent(keyword)}`} replace>
       <a>See all {section}</a>
     </Link>
 

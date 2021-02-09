@@ -18,8 +18,9 @@ export default function SeachChannel() {
   return (
     <Layout
       headerText={`"${keyword}" in search`}
-      pageTitle="Search | Podcasts App"
+      pageTitle="Search | Podcasts"
       button={<ClearSearchButton />}
+      navigation={false}
     >
       {!isLoading && data.length === 0 ? (
         <SearchErrorMessage keyword={keyword as string} />
@@ -30,6 +31,7 @@ export default function SeachChannel() {
             title="All channels"
             channels={data}
             loading={isLoading}
+            style={{ marginTop: '1rem' }}
           />
         </>
       )}

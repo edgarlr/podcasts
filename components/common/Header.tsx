@@ -4,18 +4,14 @@ import { usePlayer } from 'lib/hooks/use-player'
 import IconButton from '../ui/IconButton'
 import ArrowLeft from 'components/icons/ArrowLeft'
 import cn from 'classnames'
-import dynamic from 'next/dynamic'
 import Logo from '@components/icons/Logo'
+import Search from '@components/icons/Search'
 
 type Props = {
   headerText: string
   navigation: boolean
   button: React.ReactNode
 }
-
-const DynamicSearch = dynamic(() => import('@components/search/SearchModal'), {
-  ssr: false,
-})
 
 const Header = ({ headerText, navigation = true, button = null }: Props) => {
   const router = useRouter()
@@ -60,7 +56,16 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         </div>
       )}
 
-      {button ? button : <DynamicSearch />}
+      {button ? (
+        button
+      ) : (
+        <IconButton
+          onClick={() => router.push('/search')}
+          ariaLabel="Go to search"
+        >
+          <Search />
+        </IconButton>
+      )}
 
       <style jsx>{`
         header {
@@ -80,6 +85,10 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           position: absolute;
           left: 0.5rem;
           padding: 0;
+        }
+        header > :global(:last-child) {
+          position: absolute;
+          right: 0.5rem;
         }
         .title {
           margin: 0;

@@ -1,4 +1,5 @@
 import SectionTitle from 'components/SectionTitle'
+import { CSSProperties } from 'react'
 import EpisodeCard from './EpisodeCard/EpisodeCard'
 import EpisodeCardSkeleton from './EpisodeCard/EpisodeCardSkeleton'
 
@@ -8,6 +9,7 @@ type Props = {
   searchCards?: boolean
   loading?: boolean
   button?: React.ReactNode
+  style?: CSSProperties
 }
 
 const EpisodesList = ({
@@ -16,11 +18,12 @@ const EpisodesList = ({
   loading = false,
   button = null,
   searchCards = false,
+  style = {},
 }: Props) => {
   if (!loading && (!episodes || episodes.length === 0)) return null
 
   return (
-    <section>
+    <section style={style}>
       <SectionTitle title={title} button={button} />
 
       {loading

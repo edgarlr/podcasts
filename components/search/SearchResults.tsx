@@ -33,13 +33,14 @@ const SearchResults = ({ keyword }: { keyword: string }) => {
         sectionButton={<SeeAllButton section="channels" keyword={keyword} />}
         channels={channels}
         loading={channelsLoading}
-        style={{ marginBottom: '1rem' }}
+        style={{ paddingBottom: '0' }}
       />
       <EpisodesList
         title="Episodes"
         button={<SeeAllButton section="episodes" keyword={keyword} />}
         episodes={episodes}
         loading={episodesLoading}
+        style={{ marginTop: '1.5rem' }}
         searchCards
       />
     </>

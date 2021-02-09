@@ -12,7 +12,7 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }: Props) => {
   const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
     setSearchKeyword(value)
-    router.push(`?search=${value}`, undefined, { shallow: true })
+    router.replace(`/search?q=${value}`, undefined, { shallow: true })
   }
 
   return (
