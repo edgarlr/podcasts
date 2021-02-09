@@ -14,19 +14,21 @@ const FullPlayerSkeleton = () => {
 
       <div className="main-player">
         <button disabled className="controller-button">
-          <Replay30 />
+          <Replay30 width={40} height={40} />
         </button>
         <button disabled className="play-button">
-          <PlayArrow />
+          <PlayArrow width={44} height={44} />
         </button>
         <button disabled className="controller-button">
-          <Forward30 />
+          <Forward30 width={40} height={40} />
         </button>
       </div>
-      <div className="progress-bar" />
-      <div className="progress-time">
-        <div>00:00</div>
-        <div>00:00</div>
+      <div>
+        <div className="progress-bar" />
+        <div className="progress-time">
+          <div>00:00</div>
+          <div>00:00</div>
+        </div>
       </div>
 
       <style jsx>{`
@@ -34,47 +36,51 @@ const FullPlayerSkeleton = () => {
         .img-container,
         .title-text,
         .channel-text {
-          background: var(--gray-90);
+          background: var(--primary-90);
+          animation: var(--skeleton-animation);
         }
         .container {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           padding: 1rem;
-          height: 70%;
+          width: 75%;
+          margin: 0 auto;
+          height: 75%;
         }
         .img-container {
           width: 80%;
-          max-width: 250px;
+          max-width: 200px;
           padding-bottom: 80%;
-          margin: auto;
-          border-radius: 20px;
+          margin: 0 auto;
+          border-radius: 15px;
         }
         .info {
-          width: 90%;
-          margin: 0 auto 5rem;
+          width: 100%;
+          margin: 0 auto;
         }
         .title-text {
           margin: 10px auto;
           height: 14px;
           width: 100%;
-          border-radius: 5px;
         }
         .channel-text {
-          margin: 10px auto;
-          height: 14px;
+          margin: 16px auto;
+          height: 16px;
           width: 60%;
-          border-radius: 5px;
         }
         button[disabled] {
           outline: none;
           opacity: 0.3;
         }
+        button {
+          color: var(--secondary);
+        }
         .main-player {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          margin-bottom: 10%;
+          margin: 2rem 0;
         }
         .controller-button {
           background: none;
@@ -96,7 +102,7 @@ const FullPlayerSkeleton = () => {
           display: flex;
           justify-content: space-between;
           font-size: 12px;
-          color: var(--gray-50);
+          color: var(--primary-50);
         }
       `}</style>
     </div>
