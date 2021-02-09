@@ -5,76 +5,82 @@ import { PodcastTitle } from './PodcastTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
-import { MouseEvent } from 'react'
+import { CSSProperties, MouseEvent } from 'react'
 
-export default function MiniPlayer({
-  onClick,
-}: {
+type Props = {
   onClick: (event?: MouseEvent) => void
-}) {
+  style?: CSSProperties
+}
+
+export default function MiniPlayer({ onClick, style = {} }: Props) {
   const { current, loading, isPlaying, toggleAudio } = usePlayer()
 
-  if (!current) return <MiniPlayerSkeleton />
+  if (!current || loading) return <MiniPlayerSkeleton />
 
   return (
-    <>
-      <div className="container">
-        <button
-          className="nav-button"
-          onClick={onClick}
-          aria-label="Expand Player"
+    <div className="container" style={style}>
+      <button
+        className="expand-button"
+        onClick={onClick}
+        aria-label="Expand Player"
+      />
+
+      <div className="img-container" onClick={onClick}>
+        <TranslucentImage
+          url={current.urls.image || current.channel.urls.logo_image.original}
+          alt={`${current.title} cover`}
+          width={48}
+          height={48}
+          blur="large"
         />
-
-        <div className="img-container" onClick={() => onClick()}>
-          <TranslucentImage
-            url={current.urls.image || current.channel.urls.logo_image.original}
-            alt={`${current.title} cover`}
-            width={48}
-            height={48}
-            blur="large"
-          />
-        </div>
-
-        <div className="info" onClick={() => onClick()}>
-          <PodcastTitle
-            title={current.title}
-            style={{ fontSize: '0.9rem', justifyContent: 'flex-start' }}
-          />
-          <h4>{current.channel.title}</h4>
-        </div>
-
-        <button
-          className="play-button"
-          disabled={loading}
-          onClick={() => toggleAudio()}
-        >
-          <ProgressCircle size={50} strokeWidth={2} circleStroke="#fff" />
-
-          {isPlaying ? <Pause /> : <PlayArrow />}
-        </button>
       </div>
 
+      <div className="info" onClick={onClick}>
+        <PodcastTitle
+          title={current.title}
+          style={{ fontSize: '0.9rem', justifyContent: 'flex-start' }}
+        />
+        <h4>{current.channel.title}</h4>
+      </div>
+
+      <button
+        className="play-button"
+        disabled={loading}
+        onClick={() => toggleAudio()}
+        aria-label="Toggle Play"
+      >
+        <ProgressCircle
+          size={48}
+          strokeWidth={2}
+          circleStroke="var(--secondary)"
+        />
+
+        {isPlaying ? <Pause /> : <PlayArrow />}
+      </button>
+
       <style jsx>{`
+        .container {
+          max-width: 100%;
+          height: 100%;
+          padding: 1rem 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+        }
         button {
-          background: var(--black);
+          background: var(--primary);
         }
 
         button[disabled] {
           opacity: 0.3;
         }
-        .container {
-          max-width: 100%;
-          display: grid;
-          grid-template-columns: 3rem 1fr 3rem;
-          grid-gap: 1rem;
-          align-items: center;
-          cursor: pointer;
-        }
-        .nav-button {
+
+        .expand-button {
           outline: none;
           border: none;
           height: 3px;
-          width: 30px;
+          width: 2rem;
           border-radius: 5px;
           position: absolute;
           top: -10px;
@@ -83,45 +89,43 @@ export default function MiniPlayer({
         }
 
         .img-container {
-          flex-grow: 1;
+          flex: 0 0 3rem;
           width: 100%;
+          z-index: 1;
         }
         .info {
-          max-width: 100%;
-          max-width: 20rem;
-          overflow-x: hidden;
-        }
-        h4 {
-          flex-grow: 2;
-          max-width: 100%;
-          white-space: nowrap;
+          flex: 0 0 1;
           overflow: hidden;
-          text-overflow: ellipsis;
-          font-size: 0.7rem;
-          margin: 6px 0 0;
-          text-transform: uppercase;
-          color: var(--gray-60);
-          font-weight: normal;
-        }
-        h3 {
-          color: var(--white);
+          margin: 0 1rem;
+          z-index: 2;
         }
         .play-button {
-          outline: none;
-          border: none;
+          flex: 0 0 3rem;
+          width: 3rem;
+          height: 3rem;
           display: flex;
           justify-content: center;
           align-items: center;
           background: transparent;
+          color: var(--secondary);
           border-radius: 50%;
-          height: 3rem;
-          width: 3rem;
-          transition: background 0.2s;
+          transition: background-color 0.2s;
         }
         .play-button:hover {
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--primary-95);
+        }
+        h4 {
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: var(--font-xs);
+          margin: 4px 0 0;
+          text-transform: uppercase;
+          color: var(--primary-40);
+          font-weight: normal;
         }
       `}</style>
-    </>
+    </div>
   )
 }

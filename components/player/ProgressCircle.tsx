@@ -50,7 +50,7 @@ const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
         }
         svg {
           display: block;
-          margin: 20px auto;
+          margin: 0;
           max-width: 100%;
           transform: rotate(-85deg);
         }

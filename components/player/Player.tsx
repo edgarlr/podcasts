@@ -18,7 +18,10 @@ const Player = () => {
       {current && isTablet && (
         <div className={`container ${fullView ? 'fullmodal' : ''}`}>
           {!fullView ? (
-            <MiniPlayer onClick={handleModalClick} />
+            <MiniPlayer
+              onClick={handleModalClick}
+              style={{ padding: '1rem', overflow: 'hidden' }}
+            />
           ) : (
             <PlayerContainer onClick={handleModalClick} />
           )}
@@ -34,7 +37,7 @@ const Player = () => {
       <style jsx>{`
         .container {
           z-index: 20;
-          background: var(--black);
+          background: var(--primary);
           position: fixed;
           right: 0;
           left: 0;
@@ -46,7 +49,7 @@ const Player = () => {
           justify-content: center;
           margin: 0 -1px -1px -1px;
           border-radius: 20px 20px 0 0;
-          transition: 0.2s;
+          transition: height 0.2s;
           box-shadow: 0px -5px 20px rgba(255, 255, 255, 0.3);
         }
         .fullmodal {
@@ -58,6 +61,7 @@ const Player = () => {
           height: 100%;
           top: 0;
           left: auto;
+          right: 0;
           border-radius: 0;
           box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
         }
