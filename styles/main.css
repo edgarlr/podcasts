@@ -54,6 +54,7 @@
 
   /* Elements */
   --default-border: 1px solid var(--primary-20);
+  --default-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   --skeleton-animation: skeleton-tilt 1.15s infinite ease-in-out alternate;
 }
 

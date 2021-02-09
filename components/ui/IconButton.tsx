@@ -42,8 +42,8 @@ const IconButton = ({
         align-items: center;
         cursor: pointer;
         border-radius: 50%;
-        width: 2.5rem;
-        height: 2.5rem;
+        line-height: 0.5;
+        padding: 0.625rem;
       }
       .primary:hover {
         background: var(--primary-05);

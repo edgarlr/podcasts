@@ -5,7 +5,6 @@ import Facebook from '@components/icons/Facebook'
 import { useState, useEffect, useRef, MouseEvent } from 'react'
 import IconButton from './ui/IconButton'
 import { SITE_URL } from '@lib/constants'
-import Button from './ui/Button'
 import ExternalLink from './ui/ExternalLink'
 
 type Props = {
@@ -24,7 +23,6 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
 
   const onShareClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-
     if (navigator.share) {
       navigator
         .share({
@@ -49,20 +47,21 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
     }
   }
 
-  useEffect(() => {
-    const onOutsideClick = (e: any) => {
-      if (
-        shareMenuRef.current &&
-        !shareMenuRef.current.contains(e.target) &&
-        showShare
-      ) {
-        setShowShare(false)
-      }
-    }
+  // useEffect(() => {
+  //   const onOutsideClick = (e: any) => {
+  //     console.log('hola')
+  //     if (
+  //       showShare &&
+  //       shareMenuRef.current &&
+  //       !shareMenuRef.current.contains(e.target)
+  //     ) {
+  //       setShowShare(false)
+  //     }
+  //   }
 
-    document.addEventListener('click', onOutsideClick)
-    return () => document.removeEventListener('click', onOutsideClick)
-  }, [showShare])
+  //   document.addEventListener('click', onOutsideClick)
+  //   return () => document.removeEventListener('click', onOutsideClick)
+  // }, [])
 
   useEffect(() => {
     // Early return when isCopied is false.
@@ -82,51 +81,142 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
       </IconButton>
 
       {showShare && (
-        <ul className="absolute z-20 right-0 bg-secondary flex flex-col p-4 border rounded-lg w-64">
-          <li>
-            <button
-              aria-label="Share on facebook"
-              className="py-4 flex"
-              onClick={() =>
-                window.open(
-                  `https://www.facebook.com/sharer/sharer.php?u=${fullURL}`,
-                  'facebook-share-dialog',
-                  'width=800,height=600'
-                )
-              }
-            >
-              <Facebook className="mr-4 " />
-              Share on Facebook
-            </button>
-          </li>
-          <li>
-            <ExternalLink
-              className="py-4 flex"
-              ariaLabel="Share on twitter"
-              to={`https://twitter.com/intent/tweet?url=${fullURL}&text=${title}`}
-            >
-              <Twitter className="mr-4 " />
-              Share on Twitter
-            </ExternalLink>
-          </li>
-          <li className="border flex rounded-md max-w-full">
-            <p className="whitespace-nowrap overflow-hidden overflow-ellipsis p-2">
-              {fullURL}
-            </p>
-            <Button
-              className="bg-primary-10"
-              onClick={onCopyToClipboard}
-              ariaLabel="Copy to clipboard"
-            >
-              {isCopied ? 'Copied' : 'Copy'}
-            </Button>
-          </li>
-        </ul>
+        <div className="menu">
+          <p className="title">Share</p>
+          <ul className="list">
+            <li>
+              <button
+                aria-label="Share on facebook"
+                className="link-element"
+                onClick={() =>
+                  window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${fullURL}`,
+                    'facebook-share-dialog',
+                    'width=800,height=600'
+                  )
+                }
+              >
+                Share on Facebook
+                <Facebook
+                  width={20}
+                  height={20}
+                  style={{ marginLeft: 'auto' }}
+                />
+              </button>
+            </li>
+            <li>
+              <ExternalLink
+                ariaLabel="Share on twitter"
+                to={`https://twitter.com/intent/tweet?url=${fullURL}&text=${title}`}
+                className="link-element"
+              >
+                Share on Twitter
+                <Twitter
+                  width={20}
+                  height={20}
+                  style={{ marginLeft: 'auto' }}
+                />
+              </ExternalLink>
+            </li>
+            <li>
+              <div className="copy-clipboard">
+                <p className="clipboard-text" title={fullURL}>
+                  {fullURL}
+                </p>
+                <button
+                  className="clipboard-btn"
+                  onClick={onCopyToClipboard}
+                  aria-label="Copy to clipboard"
+                >
+                  {isCopied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
       )}
 
       <style jsx>{`
         .container {
           position: relative;
+        }
+        .menu {
+          position: absolute;
+          z-index: 20;
+          left: 0;
+          margin-top: 0.5rem;
+          padding: 1rem 0;
+          display: flex;
+          flex-direction: column;
+          border-radius: 15px;
+          background: var(--secondary);
+          box-shadow: var(--default-shadow);
+          border: var(--default-border);
+        }
+        .title {
+          padding: 0 1.5rem;
+          margin: 0.25rem 0 0.5rem 0;
+          font-weight: bold;
+          font-size: var(--font-sm);
+        }
+        .list {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          border-radius: 15px;
+        }
+        .list li {
+          list-style: none;
+          padding: 0.75rem 1.5rem;
+          cursor: pointer;
+        }
+        .list li:hover {
+          background: var(--primary-05);
+        }
+        .list > li :global(.link-element) {
+          font-size: var(--font-sm);
+          color: var(--primary);
+          padding: 0;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+        }
+        .copy-clipboard {
+          display: flex;
+          max-width: 14rem;
+          border: var(--default-border);
+          border-radius: 10px;
+          transition: border 0.15s;
+          margin: -0.5rem;
+        }
+        .clipboard-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          transition: border 0.15s;
+          border-right: var(--default-border);
+          padding: 0.625rem 0.5rem;
+          font-size: var(--font-sm);
+          margin: 0;
+        }
+        .clipboard-btn {
+          background: var(--primary-05);
+          font-size: var(--font-sm);
+          padding: 0 0.75rem;
+          border: none;
+          border-radius: 0 10px 10px 0;
+        }
+        .copy-clipboard:hover {
+          border: 1px solid var(--primary-50);
+          background: var(--secondary);
+        }
+        .copy-clipboard:hover .clipboard-text {
+          border-right: 1px solid var(--primary-50);
+        }
+        .copy-clipboard:hover .clipboard-btn {
+          background: var(--primary-10);
         }
       `}</style>
     </div>
