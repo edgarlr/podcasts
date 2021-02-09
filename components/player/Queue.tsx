@@ -45,25 +45,22 @@ const Queue = () => {
         .container {
           padding: 0 2rem 3rem;
           height: 100%;
-          color: white;
+          color: var(--secondary);
           position: relative;
           overflow-y: scroll;
           position: relative;
           margin-top: 5rem;
         }
-
         .title {
-          color: white;
           width: 100%;
           text-align: left;
           padding: 0;
           margin: 1rem 0;
           font-weight: bold;
+          overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          overflow: hidden;
-          font-size: 0.95rem;
-          position: relative;
+          font-size: var(--font-md);
         }
 
         .episodes-list {
@@ -103,6 +100,15 @@ const Queue = () => {
 
         li:hover > .play-icon {
           opacity: 1;
+        }
+
+        @media screen and (min-width: 1440px) {
+          .container {
+            padding: 0 2.5rem 3rem;
+          }
+          .episode-title {
+            font-size: var(--font-xs);
+          }
         }
       `}</style>
     </div>
