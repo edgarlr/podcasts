@@ -34,13 +34,13 @@ const FullPlayerSkeleton = () => {
         .img-container,
         .title-text,
         .channel-text {
-          background: var(--gray-80);
+          background: var(--gray-90);
         }
         .container {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 2em 2em 0;
+          padding: 1rem;
           height: 70%;
         }
         .img-container {

@@ -54,6 +54,7 @@
 
   /* Elements */
   --default-border: 1px solid var(--primary-20);
+  --skeleton-animation: skeleton-tilt 1.15s infinite ease-in-out alternate;
 }
 
 *,
@@ -111,4 +112,14 @@ input {
 }
 .circle-image {
   border-radius: 50%;
+}
+
+/* Animations */
+@keyframes skeleton-tilt {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
 }

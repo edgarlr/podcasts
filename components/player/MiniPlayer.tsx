@@ -15,7 +15,7 @@ type Props = {
 export default function MiniPlayer({ onClick, style = {} }: Props) {
   const { current, loading, isPlaying, toggleAudio } = usePlayer()
 
-  if (!current || loading) return <MiniPlayerSkeleton />
+  if (!current) return <MiniPlayerSkeleton />
 
   return (
     <div className="container" style={style}>
