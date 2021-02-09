@@ -14,6 +14,7 @@ export default function MainTitle({
   linkTo = null,
   className = '',
 }: Props) {
+  console.log(title.length)
   return (
     <div className={className}>
       {linkTo && (
@@ -21,18 +22,17 @@ export default function MainTitle({
           <a>{subtitle}</a>
         </Link>
       )}
-
       {subtitle && !linkTo && <p>{subtitle}</p>}
-
       <h1
         className={cn('title', {
-          ['long']: title.length > 15 && title.length < 35,
-          ['extra-long']: title.length >= 35,
+          ['md']: title.length < 80 && title.length >= 60,
+          ['lg']: title.length < 60 && title.length >= 40,
+          ['xl']: title.length < 40 && title.length >= 30,
+          ['xxl']: title.length < 30,
         })}
       >
         {title}
       </h1>
-
       <style jsx>{`
         div {
           height: auto;
@@ -43,30 +43,20 @@ export default function MainTitle({
           margin: 0.5rem 0;
         }
         .title {
-          font-size: var(--font-3xl);
+          font-size: var(--font-sm);
           margin: 0.25rem 0;
         }
-        .title.long {
-          font-size: var(--font-lg);
-        }
-        .title.extra-long {
+        .title.md {
           font-size: var(--font-md);
         }
-        @media screen and (min-width: 768px) {
-          .title.long {
-            font-size: var(--font-2xl);
-          }
-          .title.extra-long {
-            font-size: var(--font-lg);
-          }
+        .title.lg {
+          font-size: var(--font-lg);
         }
-        @media screen and (min-width: 1024px) {
-          .title.long {
-            font-size: var(--font-3xl);
-          }
-          .title.extra-long {
-            font-size: var(--font-2xl);
-          }
+        .title.xl {
+          font-size: var(--font-xl);
+        }
+        .title.xxl {
+          font-size: var(--font-2xl);
         }
         p,
         a {
@@ -74,6 +64,23 @@ export default function MainTitle({
           color: var(--primary-60);
           font-size: var(--font-xs);
           text-transform: uppercase;
+        }
+        @media screen and (min-width: 1024px) {
+          .title {
+            font-size: var(--font-lg);
+          }
+          .title.md {
+            font-size: var(--font-xl);
+          }
+          .title.lg {
+            font-size: var(--font-xl);
+          }
+          .title.xl {
+            font-size: var(--font-2xl);
+          }
+          .title.xxl {
+            font-size: var(--font-3xl);
+          }
         }
       `}</style>
     </div>
