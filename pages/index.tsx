@@ -19,7 +19,7 @@ export default function Home({
   const isMobile = useIsMobile()
 
   return (
-    <Layout navigation={false} pageTitle="Podcasts App">
+    <Layout navigation={false}>
       <ChannelsCarousel title="Followed" channels={favs} />
 
       {isMobile ? (

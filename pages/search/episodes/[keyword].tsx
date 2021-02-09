@@ -18,7 +18,7 @@ export default function SeachChannel() {
   return (
     <Layout
       headerText={`"${keyword}" in search`}
-      pageTitle="Search | Podcasts"
+      pageTitle="Search"
       button={<ClearSearchButton />}
       navigation={false}
     >

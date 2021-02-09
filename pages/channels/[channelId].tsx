@@ -47,7 +47,7 @@ export default function channel({
     <Layout
       headerText={channel.title}
       metaDescription={channel.description}
-      pageTitle={`${channel.title} | Podcasts`}
+      pageTitle={channel.title}
     >
       <ChannelHeader channel={channel} />
 

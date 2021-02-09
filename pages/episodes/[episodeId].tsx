@@ -34,7 +34,7 @@ export default function podcast({
   return (
     <Layout
       headerText={episode.title}
-      pageTitle={`${episode.title} | Podcasts`}
+      pageTitle={episode.title}
       metaDescription={episode.description}
     >
       <EpisodeHeader episode={episode} />

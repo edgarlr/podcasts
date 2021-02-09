@@ -28,7 +28,7 @@ export default function SearchPage() {
     <Layout
       headerText={searchKeyword ? `"${searchKeyword}" in search` : 'Search'}
       navigation={false}
-      pageTitle="Search | Podcasts"
+      pageTitle="Search"
       button={buttonIcon}
     >
       <SearchInput

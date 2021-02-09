@@ -17,8 +17,8 @@ export default function Layout({
   headerText = null,
   button = null,
   navigation = true,
-  pageTitle = 'Podcasts',
-  metaDescription = 'Podcasts App | Next.js, SWR and AudioBoom API',
+  pageTitle = 'Listen and discover free podcasts',
+  metaDescription = 'Next.js, SWR and AudioBoom API',
 }: Props) {
   const { isPlaying, current } = usePlayer()
 
@@ -28,7 +28,7 @@ export default function Layout({
         <title>
           {isPlaying
             ? `Playing: ${current.title} | ${current.channel.title}`
-            : pageTitle}
+            : `${pageTitle} | Podcasts`}
         </title>
         <meta name="description" content={metaDescription} />
       </Head>
