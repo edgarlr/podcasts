@@ -5,15 +5,19 @@ export default function PodcastCoverSkeleton() {
       <div className="title" />
 
       <style jsx>{`
-        .img {
+        .img,
+        .title {
           background: var(--primary-10);
+          background: var(--primary-10);
+          animation: var(--skeleton-animation);
+        }
+        .img {
           width: 150px;
           height: 150px;
           padding-bottom: 100%;
           border-radius: 20px;
         }
         .title {
-          background: var(--primary-10);
           padding: 0;
           max-width: 70%;
           margin: 12px 0.5rem 0;

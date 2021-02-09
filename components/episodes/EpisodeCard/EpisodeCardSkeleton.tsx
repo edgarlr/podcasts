@@ -10,6 +10,7 @@ const EpisodeCardSkeleton = () => {
         .duration,
         .plays {
           background: var(--primary-20);
+          animation: var(--skeleton-animation);
         }
         .episode {
           display: block;
