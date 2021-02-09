@@ -24,6 +24,7 @@ export default function SortByButton({
       <IconButton
         onClick={() => setShowDropdown(!showDropdown)}
         ariaLabel="Sort Episodes"
+        variant="tertiary"
       >
         {showDropdown ? <Close /> : <Sort />}
       </IconButton>

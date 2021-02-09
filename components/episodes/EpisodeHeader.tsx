@@ -4,6 +4,7 @@ import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import PlayButton from '@components/PlayButton'
 import Description from '@components/ui/Description'
+import ShareButton from '@components/ShareButton'
 
 const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
   const { channel } = episode
@@ -31,6 +32,11 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
 
       <div className="actions-buttons">
         <PlayButton episode={episode} channelId={channel.id} />
+        <ShareButton
+          path={`/episodes/${episode.id}`}
+          title={episode.title}
+          message="Check this episode"
+        />
       </div>
 
       <style jsx>{`
@@ -57,6 +63,7 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
           margin: 2rem 0 3rem;
           display: flex;
           align-items: center;
+          gap: 1rem;
         }
         @media screen and (min-width: 768px) {
           .title-container > :global(:first-child) {

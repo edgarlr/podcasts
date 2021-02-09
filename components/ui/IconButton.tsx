@@ -7,7 +7,7 @@ type Props = {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
   style?: CSSProperties
   className?: string
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'tertiary'
 }
 
 const IconButton = ({
@@ -23,6 +23,7 @@ const IconButton = ({
       {
         ['primary']: variant === 'primary',
         ['secondary']: variant === 'secondary',
+        ['tertiary']: variant === 'tertiary',
       },
       className
     )}
@@ -49,6 +50,14 @@ const IconButton = ({
       }
       .secondary:hover {
         background: rgba(255, 255, 255, 0.1);
+      }
+      .tertiary {
+        color: var(--primary-80);
+        border: var(--default-border);
+      }
+      .tertiary:hover {
+        color: var(--primary);
+        border: 1px solid var(--primary);
       }
     `}</style>
   </button>
