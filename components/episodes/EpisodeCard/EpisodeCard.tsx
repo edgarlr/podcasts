@@ -103,10 +103,10 @@ const EpisodeCard = ({ clip, info = null }: Props) => {
           }
           @media screen and (min-width: 720px) {
             .episode {
-              padding: 1rem;
+              padding: 2rem 1rem;
             }
             .episode.active {
-              padding: 1rem 6rem 1rem 1.5rem;
+              padding: 2rem 6rem 2rem 1.5rem;
             }
             .active span {
               right: 2.5rem;

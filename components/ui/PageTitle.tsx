@@ -14,7 +14,6 @@ export default function PageTitle({
   linkTo = null,
   className = '',
 }: Props) {
-  console.log(title.length)
   return (
     <div className={className}>
       {linkTo && (

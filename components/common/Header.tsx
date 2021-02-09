@@ -130,12 +130,18 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         }
         @media screen and (min-width: 1024px) {
           header.playing {
-            padding: 0 24rem 0 1.5rem;
+            padding: 0 21rem 0 1.5rem;
+          }
+          header > :global(:last-child) {
+            right: 21.5rem;
           }
         }
         @media screen and (min-width: 1440px) {
           header.playing {
-            padding: 0 26rem 0 1.5rem;
+            padding: 0 23rem 0 1.5rem;
+          }
+          header > :global(:last-child) {
+            right: 23.5rem;
           }
         }
       `}</style>
