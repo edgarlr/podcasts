@@ -19,7 +19,7 @@ export const ChannelsGrid = ({
   loading = false,
   style = {},
 }: Props) => {
-  if (!loading && channels.length === 0) return null
+  if (!loading && (!channels || channels.length === 0)) return null
 
   return (
     <section style={style}>
