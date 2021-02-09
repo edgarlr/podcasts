@@ -74,7 +74,7 @@ const PlayerContainer = ({
           padding: 1rem 0 0.5rem;
           margin: 0;
           border-top: 1px solid var(--primary-80);
-          transition: 0.1s;
+          transition: transform 0.1s;
         }
         .queue-button:hover {
           transform: scale(1.025);

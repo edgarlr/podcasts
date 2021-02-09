@@ -2,6 +2,11 @@ type TImage = {
   original: string
 }
 
+type TToast = {
+  id: number
+  content: string
+}
+
 type TChannel = TChannelLong | TChannelShort
 
 type TChannelShort = {

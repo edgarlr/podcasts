@@ -5,14 +5,17 @@ import Head from 'components/common/head'
 import type { AppProps } from 'next/app'
 import Player from '@components/player/Player'
 import { AudioPlayerProvider } from '@components/audioplayer/AudioPlayerProvider'
+import ToastProvider from '@components/ui/Toast/ToastProvider'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <FavsProvider>
       <AudioPlayerProvider>
-        <Head />
-        <Component {...pageProps} />
-        <Player />
+        <ToastProvider>
+          <Head />
+          <Component {...pageProps} />
+          <Player />
+        </ToastProvider>
       </AudioPlayerProvider>
     </FavsProvider>
   )
