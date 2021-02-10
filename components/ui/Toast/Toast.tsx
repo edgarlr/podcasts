@@ -36,7 +36,7 @@ const Toast = ({ children, id }: Props) => {
           width: 90%;
           margin: 1rem auto;
           padding: 0.5rem 0.5rem 0.5rem 1rem;
-          border-radius: 5px;
+          border-radius: 10px;
           background: var(--secondary);
           font-size: var(--font-sm);
           border: var(--default-border);

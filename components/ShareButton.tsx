@@ -6,6 +6,8 @@ import { useState, useEffect, useRef, MouseEvent } from 'react'
 import IconButton from './ui/IconButton'
 import { SITE_URL } from '@lib/constants'
 import ExternalLink from './ui/ExternalLink'
+import { useToast } from '@lib/hooks/use-toast'
+import Copy from './icons/Copy'
 
 type Props = {
   title: string
@@ -15,7 +17,8 @@ type Props = {
 
 const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
   const [showShare, setShowShare] = useState(false)
-  const [isCopied, setIsCopied] = useState(false)
+
+  const { addToast } = useToast()
 
   const shareMenuRef = useRef<HTMLDivElement>(null)
 
@@ -42,7 +45,7 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(fullURL)
-        .then(() => setIsCopied(true))
+        .then(() => addToast('Copied to the clipboard'))
         .catch(console.error)
     }
   }
@@ -62,17 +65,6 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
   //   document.addEventListener('click', onOutsideClick)
   //   return () => document.removeEventListener('click', onOutsideClick)
   // }, [])
-
-  useEffect(() => {
-    // Early return when isCopied is false.
-    if (!isCopied) return
-
-    const timer = setTimeout(() => {
-      setIsCopied(!isCopied)
-    }, 3000)
-
-    return () => clearTimeout(timer)
-  }, [isCopied])
 
   return (
     <div className="container" ref={shareMenuRef}>
@@ -119,18 +111,17 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
               </ExternalLink>
             </li>
             <li>
-              <div className="copy-clipboard">
-                <p className="clipboard-text" title={fullURL}>
-                  {fullURL}
-                </p>
-                <button
-                  className="clipboard-btn"
-                  onClick={onCopyToClipboard}
-                  aria-label="Copy to clipboard"
-                >
-                  {isCopied ? 'Copied' : 'Copy'}
-                </button>
-              </div>
+              <button
+                className="copy-clipboard"
+                onClick={onCopyToClipboard}
+                aria-label="Copy to clipboard"
+                title={fullURL}
+              >
+                {fullURL}
+                <span className="clipboard-icon">
+                  <Copy width={16} height={16} />
+                </span>
+              </button>
             </li>
           </ul>
         </div>
@@ -184,39 +175,30 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
           height: 100%;
         }
         .copy-clipboard {
-          display: flex;
           max-width: 14rem;
           border: var(--default-border);
           border-radius: 10px;
           transition: border 0.15s;
           margin: -0.5rem;
-        }
-        .clipboard-text {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          transition: border 0.15s;
-          border-right: var(--default-border);
-          padding: 0.625rem 0.5rem;
+          padding: 0.75rem 2.25rem 0.75rem 0.5rem;
           font-size: var(--font-sm);
-          margin: 0;
+          color: var(--primary-80);
+          position: relative;
         }
-        .clipboard-btn {
-          background: var(--primary-05);
-          font-size: var(--font-sm);
+        .clipboard-icon {
+          color: var(--primary);
+          position: absolute;
+          right: 0;
           padding: 0 0.75rem;
-          border: none;
-          border-radius: 0 10px 10px 0;
+          line-height: 0.5;
         }
         .copy-clipboard:hover {
           border: 1px solid var(--primary-50);
           background: var(--secondary);
-        }
-        .copy-clipboard:hover .clipboard-text {
-          border-right: 1px solid var(--primary-50);
-        }
-        .copy-clipboard:hover .clipboard-btn {
-          background: var(--primary-10);
+          color: var(--primary);
         }
       `}</style>
     </div>
