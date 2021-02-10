@@ -1,15 +1,14 @@
 export default function PodcastCoverSkeleton() {
   return (
     <div>
-      <div className="img" />
-      <div className="title" />
+      <div className="img opacityPulse" />
+      <div className="title opacityPulse" />
 
       <style jsx>{`
         .img,
         .title {
           background: var(--primary-10);
           background: var(--primary-10);
-          animation: var(--skeleton-animation);
         }
         .img {
           width: 150px;

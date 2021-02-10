@@ -55,7 +55,6 @@
   /* Elements */
   --default-border: 1px solid var(--primary-20);
   --default-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
-  --skeleton-animation: skeleton-tilt 1.15s infinite ease-in-out alternate;
 }
 
 *,
@@ -116,11 +115,32 @@ input {
 }
 
 /* Animations */
-@keyframes skeleton-tilt {
+.opacityPulse {
+  animation: opacityPulse 1.15s infinite ease-in-out alternate;
+  will-change: opacity;
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.15s ease-in-out;
+  will-change: transform, opacity;
+}
+
+@keyframes opacityPulse {
   from {
     opacity: 1;
   }
   to {
     opacity: 0.5;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

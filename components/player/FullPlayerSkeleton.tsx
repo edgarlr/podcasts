@@ -5,11 +5,11 @@ import PlayArrow from 'components/icons/PlayArrow'
 const FullPlayerSkeleton = () => {
   return (
     <div className="container">
-      <div className="img-container" />
+      <div className="img-container opacityPulse" />
 
       <div className="info">
-        <div className="title-text" />
-        <div className="channel-text" />
+        <div className="title-text opacityPulse" />
+        <div className="channel-text opacityPulse" />
       </div>
 
       <div className="main-player">
@@ -24,7 +24,7 @@ const FullPlayerSkeleton = () => {
         </button>
       </div>
       <div>
-        <div className="progress-bar" />
+        <div className="progress-bar opacityPulse" />
         <div className="progress-time">
           <div>00:00</div>
           <div>00:00</div>
@@ -37,7 +37,6 @@ const FullPlayerSkeleton = () => {
         .title-text,
         .channel-text {
           background: var(--primary-90);
-          animation: var(--skeleton-animation);
         }
         .container {
           display: flex;

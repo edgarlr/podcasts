@@ -1,16 +1,15 @@
 const EpisodeCardSkeleton = () => {
   return (
     <div className="episode">
-      <div className="title" />
-      <div className="duration" />
-      <div className="plays" />
+      <div className="title opacityPulse" />
+      <div className="duration opacityPulse" />
+      <div className="plays opacityPulse" />
 
       <style jsx>{`
         .title,
         .duration,
         .plays {
           background: var(--primary-20);
-          animation: var(--skeleton-animation);
         }
         .episode {
           display: block;

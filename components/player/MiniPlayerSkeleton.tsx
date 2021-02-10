@@ -1,10 +1,10 @@
 export default function MiniPlayerSkeleton() {
   return (
     <div className="info-container">
-      <div className="img-container" />
+      <div className="img-container opacityPulse" />
       <div className="info">
-        <div className="title" />
-        <div className="channel-title" />
+        <div className="title opacityPulse" />
+        <div className="channel-title opacityPulse" />
       </div>
 
       <style jsx>{`
@@ -12,7 +12,6 @@ export default function MiniPlayerSkeleton() {
         .title,
         .channel-title {
           background: var(--gray-90);
-          animation: var(--skeleton-animation);
         }
         .info-container {
           display: flex;
