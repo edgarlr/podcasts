@@ -28,8 +28,13 @@ const ChannelsList = ({ title, channels = [], loading = false }: Props) => {
             ))}
       </div>
       <style jsx>{`
+        section {
+          padding: 2rem 0;
+          flex: 0 0 23rem;
+        }
         h3 {
-          font-size: 1rem;
+          font-size: var(--font-lg);
+          margin: 0 1.5rem 1rem;
         }
       `}</style>
     </section>
