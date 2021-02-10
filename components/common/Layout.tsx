@@ -24,13 +24,6 @@ export default function Layout({
 }: Props) {
   const { isPlaying, current } = usePlayer()
 
-  // TO prevent CLS but keep the animations on player open
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   return (
     <>
       <Head>
@@ -47,7 +40,6 @@ export default function Layout({
       <main
         className={cn('main-container', {
           ['playing']: current,
-          ['mounted']: mounted,
         })}
       >
         {children}
@@ -71,10 +63,9 @@ export default function Layout({
         @media screen and (min-width: 1024px) {
           .main-container {
             padding: 3.5rem 12rem 7rem;
-          }
-          .mounted {
             transition: padding 0.25s;
           }
+
           .main-container.playing {
             padding: 3.5rem 26rem 7rem 4rem;
           }

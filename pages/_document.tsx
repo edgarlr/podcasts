@@ -16,7 +16,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body>
+        <body className="loading">
           <Main />
           <div id="player" />
           <NextScript />

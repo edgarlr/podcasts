@@ -6,8 +6,13 @@ import type { AppProps } from 'next/app'
 import Player from '@components/player/Player'
 import { AudioPlayerProvider } from '@components/audioplayer/AudioPlayerProvider'
 import ToastProvider from '@components/ui/Toast/ToastProvider'
+import { useEffect } from 'react'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    document.body.classList?.remove('loading')
+  }, [])
+
   return (
     <FavsProvider>
       <AudioPlayerProvider>
