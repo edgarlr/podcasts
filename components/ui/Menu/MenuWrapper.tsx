@@ -11,14 +11,20 @@ const MenuWrapper = ({ children }) => {
   }, [])
 
   useEffect(() => {
+    if (!isVisible) return
+
     const onOutsideClick = (e: any) => {
-      if (isVisible && menuRef.current && !menuRef.current.contains(e.target)) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         toggle()
       }
     }
 
     document.addEventListener('click', onOutsideClick)
-    return () => document.removeEventListener('click', onOutsideClick)
+    document.addEventListener('touchstart', onOutsideClick)
+    return () => {
+      document.removeEventListener('click', onOutsideClick)
+      document.removeEventListener('touchstart', onOutsideClick)
+    }
   }, [isVisible])
 
   const value = useMemo(() => ({ isVisible, toggle }), [isVisible])
