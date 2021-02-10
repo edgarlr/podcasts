@@ -11,7 +11,7 @@ const ChannelsList = ({ title, channels = [], loading = false }: Props) => {
   if (!loading && channels.length === 0) return null
 
   return (
-    <div>
+    <section>
       <h3>{title}</h3>
       <div>
         {loading
@@ -20,7 +20,11 @@ const ChannelsList = ({ title, channels = [], loading = false }: Props) => {
             ))
           : channels.map((channel, index) => (
               // Cases when API responses with the same element twice.
-              <ChannelCard channel={channel} key={`${channel.id}${index}`} />
+              <ChannelCard
+                channel={channel}
+                index={index}
+                key={`${channel.id}${index}`}
+              />
             ))}
       </div>
       <style jsx>{`
@@ -28,7 +32,7 @@ const ChannelsList = ({ title, channels = [], loading = false }: Props) => {
           font-size: 1rem;
         }
       `}</style>
-    </div>
+    </section>
   )
 }
 

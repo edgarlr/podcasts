@@ -1,80 +1,89 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-const ChannelCard = ({ channel }: { channel: TChannel }) => {
+type Props = {
+  channel: TChannel
+  index: number
+}
+
+const ChannelCard = ({ channel, index }: Props) => {
   return (
-    <div className="card-container">
-      <Link href="/channels/[channelId]" as={`/channels/${channel.id}`}>
+    <>
+      <Link href={`/channels/${channel.id}`}>
         <div className="channel">
-          <Image
-            src={channel.urls.logo_image.original}
-            alt={channel.title}
-            width={100}
-            height={100}
-            // Class declared on PodcastCover.js
-            className="channel-image"
-          />
+          <p className="number">{index + 1}</p>
+          <div className="image-container">
+            <Image
+              src={channel.urls.logo_image.original}
+              alt={channel.title}
+              width={72}
+              height={72}
+              // Clases declared on main.css
+              className="square-image"
+            />
+          </div>
 
           <div className="info">
-            <h2>{channel.title}</h2>
+            <h2 className="title">{channel.title}</h2>
             <p className="description">{channel.description}</p>
           </div>
         </div>
       </Link>
 
       <style jsx>{`
-        .card-container {
-          padding: 0rem 1rem;
-          border-radius: 20px;
-          margin: 0 -1rem;
+        .channel {
+          display: flex;
+          align-items: center;
+          max-width: 100%;
+          padding: 1rem 0;
+          width: 100%;
+          cursor: pointer;
+          transform: scale(1);
+          transition: transform 0.15s;
         }
-        .card-container:hover {
-          background: var(--gray-15);
+        .channel:hover {
+          transform: scale(1.02);
+        }
+        .number {
+          font-size: var(--font-md);
+          font-weight: bold;
+          color: var(--primary);
+        }
+        .image-container {
+          flex: 0 0 4.5rem;
+          margin: 0 1rem;
+          width: 100%;
         }
         .info {
+          flex: 0 0 1;
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
-        .channel {
-          display: grid;
-          grid-template-columns: 1fr 2.5fr;
-          grid-gap: 2rem;
-          text-decoration: none;
-          padding: 1rem 0;
+        .title,
+        .description {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          padding: 0;
+          line-height: 1.25;
+        }
+        .title {
+          font-size: var(--font-sm);
+          margin: 0;
+          max-height: 2rem;
+          font-weight: bold;
         }
         .description {
+          font-size: var(--font-xs);
           color: var(--gray-60);
-          font-size: var(--font-sm);
-          padding: 0;
-          margin: 0.75rem 0;
-          overflow: hidden;
-          line-height: 1.25;
-          position: relative;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-        }
-        a {
-          color: var(--gray-80);
-        }
-        h2 {
-          padding: 0;
-          margin: 8px 0 0;
-          font-size: 0.9rem;
-          overflow: hidden;
-          line-height: 1.2;
-          text-overflow: ellipsis;
-          max-height: 2rem;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          font-weight: bold;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
+          max-height: 1.7rem;
+          margin: 0.25rem 0;
         }
       `}</style>
-    </div>
+    </>
   )
 }
 

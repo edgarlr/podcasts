@@ -30,12 +30,12 @@ export default function Home({
         </>
       ) : (
         <>
-          <ChannelsCarousel title="Featured" channels={channels.slice(0, 6)} />
           <h2>Explore</h2>
           <div className="list-container">
             <ChannelsList title="Trending" channels={channels.slice(7, 13)} />
             <ChannelsList title="Last Added" channels={channels.slice(14)} />
           </div>
+          <ChannelsCarousel title="Featured" channels={channels.slice(0, 6)} />
         </>
       )}
 
