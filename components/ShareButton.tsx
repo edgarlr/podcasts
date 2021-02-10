@@ -1,7 +1,7 @@
 import Share from '@components/icons/Share'
 import Twitter from '@components/icons/Twitter'
 import Facebook from '@components/icons/Facebook'
-import { useState, useEffect, useRef, MouseEvent } from 'react'
+import { MouseEvent } from 'react'
 import { SITE_URL } from '@lib/constants'
 import ExternalLink from './ui/ExternalLink'
 import { useToast } from '@lib/hooks/use-toast'
@@ -15,8 +15,6 @@ type Props = {
 }
 
 const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
-  const [showShare, setShowShare] = useState(false)
-
   const { addToast } = useToast()
 
   const fullURL = `${SITE_URL}${path}`
@@ -31,8 +29,6 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
           url: fullURL,
         })
         .catch(console.error)
-    } else {
-      setShowShare(!showShare)
     }
   }
 
@@ -50,13 +46,12 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
   return (
     <>
       <MenuWrapper>
-        <MenuButton ariaLabel="Share">
+        <MenuButton onClick={onShareClick} ariaLabel="Share">
           <Share />
         </MenuButton>
         <Menu title="Share" position="left">
           <MenuItem>
             <button
-              aria-label="Share on facebook"
               className="menu-item"
               onClick={() =>
                 window.open(

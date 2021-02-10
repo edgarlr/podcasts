@@ -11,14 +11,14 @@ type Props = {
 const Toast = ({ children, id }: Props) => {
   const { removeToast } = useToast()
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     removeToast(id)
-  //   }, 3000)
-  //   return () => {
-  //     clearTimeout(timer)
-  //   }
-  // })
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      removeToast(id)
+    }, 3000)
+    return () => {
+      clearTimeout(timer)
+    }
+  })
 
   return (
     <div className="toast fadeInUp">

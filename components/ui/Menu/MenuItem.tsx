@@ -1,8 +1,13 @@
 import cn from 'classnames'
+// import { MouseEvent } from 'react'
 
 type Props = {
   children: React.ReactNode
   active?: boolean
+  // onClick?: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  // href?: string
+  // external?: boolean
+  // subfix?: React.ReactNode
 }
 const MenuItem = ({ children, active = false }: Props) => {
   return (

@@ -1,6 +1,5 @@
 import { useMenuContext } from './use-menu-context'
 import cn from 'classnames'
-import { useEffect, useRef } from 'react'
 
 type Props = {
   children: React.ReactNode
