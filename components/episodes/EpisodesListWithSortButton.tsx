@@ -1,4 +1,4 @@
-import SortByButton from 'components/SortByButton'
+import SortButton from '@components/SortButton'
 import { useState } from 'react'
 import EpisodesList from './EpisodesList'
 
@@ -43,7 +43,7 @@ const EpisodesListWithSortButton = ({
     <EpisodesList
       title={title}
       episodes={sortedEpisodes()}
-      button={<SortByButton handleFilterClick={handleFilterClick} />}
+      button={<SortButton handleFilterClick={handleFilterClick} />}
     />
   )
 }

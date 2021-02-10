@@ -122,7 +122,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
             padding: 0 1.5rem;
           }
           .title {
-            font-size: 1.2rem;
+            font-size: var(--font-md);
           }
           header.playing > :global(.back-btn) {
             left: 1.5rem;
