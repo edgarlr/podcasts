@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { usePlayer } from 'lib/hooks/use-player'
 import Header from './Header'
 import Footer from './Footer'
+import { useEffect, useState } from 'react'
+import cn from 'classnames'
 
 type Props = {
   children: React.ReactNode
@@ -22,6 +24,13 @@ export default function Layout({
 }: Props) {
   const { isPlaying, current } = usePlayer()
 
+  // TO prevent CLS but keep the animations on player open
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <>
       <Head>
@@ -35,7 +44,12 @@ export default function Layout({
 
       <Header navigation={navigation} headerText={headerText} button={button} />
 
-      <main className={`main-container ${current ? 'playing' : ''}`}>
+      <main
+        className={cn('main-container', {
+          ['playing']: current,
+          ['mounted']: mounted,
+        })}
+      >
         {children}
       </main>
 
@@ -44,7 +58,6 @@ export default function Layout({
       <style jsx>{`
         .main-container {
           padding: 3.5rem 1.5rem 4rem;
-          transition: padding 0.25s;
           min-height: 100vh;
           display: flex;
           flex-direction: column;
@@ -58,6 +71,9 @@ export default function Layout({
         @media screen and (min-width: 1024px) {
           .main-container {
             padding: 3.5rem 12rem 7rem;
+          }
+          .mounted {
+            transition: padding 0.25s;
           }
           .main-container.playing {
             padding: 3.5rem 26rem 7rem 4rem;
