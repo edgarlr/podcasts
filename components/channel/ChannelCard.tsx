@@ -34,9 +34,9 @@ const ChannelCard = ({ channel, index }: Props) => {
         .channel {
           display: flex;
           align-items: center;
-          max-width: 100%;
           padding: 1rem 0;
           width: 100%;
+          max-width: 100%;
           cursor: pointer;
           transform: scale(1);
           transition: transform 0.15s;
