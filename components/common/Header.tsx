@@ -36,7 +36,9 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
   }, [])
 
   return (
-    <header className={cn({ ['playing']: current })}>
+    <header
+      className={cn({ ['playing']: current, ['home']: router.route === '/' })}
+    >
       {navigation && (
         <IconButton
           onClick={() => router.back()}
@@ -116,6 +118,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           justify-content: center;
           align-items: center;
         }
+
         @media screen and (min-width: 766px) {
           header {
             padding: 0 1.5rem;
@@ -128,6 +131,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           }
           .logo {
             font-size: var(--font-xl);
+            margin-left: 1rem;
           }
         }
         @media screen and (min-width: 1024px) {
@@ -137,6 +141,15 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           header.playing > :global(:last-child) {
             right: 21.5rem;
           }
+          .home > :global(:last-child) {
+            right: 9.5rem;
+          }
+          .home .logo {
+            margin-left: 10.5rem;
+          }
+          .home.playing .logo {
+            margin-left: 2.5rem;
+          }
         }
         @media screen and (min-width: 1440px) {
           header.playing {
@@ -144,6 +157,12 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           }
           header.playing > :global(:last-child) {
             right: 23.5rem;
+          }
+          .home > :global(:last-child) {
+            right: 12.5rem;
+          }
+          .home .logo {
+            margin-left: 12.5rem;
           }
         }
       `}</style>
