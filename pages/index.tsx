@@ -22,7 +22,6 @@ export default function Home({
   episodes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { favs } = useFavs()
-
   return (
     <Layout navigation={false}>
       <Hero episodes={episodes} />
@@ -31,7 +30,8 @@ export default function Home({
         channels={favs}
         className="home-carousel followed"
       />
-      <hr />
+      {favs.length > 0 && <hr />}
+
       <h2>Explore</h2>
       <div className="list-container">
         <ChannelsList title="Trending" channels={channels.slice(0, 5)} />
