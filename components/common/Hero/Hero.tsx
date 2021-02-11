@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import HeroCard from './HeroCard'
 
 const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
@@ -15,6 +15,17 @@ const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
     if (activeIndex > episodes.length) return
     setActiveIndex((oldIndex) => oldIndex + 1)
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      activeIndex === episodes.length - 1
+        ? setActiveIndex(0)
+        : setActiveIndex((oldIndex) => oldIndex + 1)
+    }, 10000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [activeIndex])
 
   if (!episodes || episodes.length === 0) return null
 
@@ -35,6 +46,18 @@ const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
         .hero-container {
           position: relative;
           min-height: min-content;
+          margin: 2rem 0;
+          height: 39rem;
+          border-bottom: var(--default-border);
+        }
+        @media screen and (min-width: 1024px) {
+          .hero-container {
+            padding: 0;
+            margin: 0 -5rem 2rem;
+            height: 28rem;
+            display: flex;
+            align-items: center;
+          }
         }
       `}</style>
     </section>

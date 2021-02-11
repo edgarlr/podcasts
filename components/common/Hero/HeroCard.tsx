@@ -44,7 +44,7 @@ const HeroCard = ({
         />
       </div>
 
-      <div className={cn('info-container', { ['show']: isActive })}>
+      <div className={cn('info-container', { ['active-info']: isActive })}>
         <div className="arrows">
           <IconButton
             onClick={onPrevClick}
@@ -77,7 +77,7 @@ const HeroCard = ({
           <p className="description">{episode.description}</p>
         )}
 
-        <p className="info">{`${getFormattedDate(
+        <p className="meta-info">{`${getFormattedDate(
           episode.uploaded_at
         )} · ${getDurationOnMin(episode.duration)}`}</p>
         <PlayButton episode={episode} channelId={episode.channel.id} />
@@ -85,17 +85,19 @@ const HeroCard = ({
 
       <style jsx>{`
         .card-container {
-          padding: 2.5rem 0 1.5rem;
           position: absolute;
           top: 0;
           right: 0;
           left: 0;
           bottom: 0;
           z-index: ${9 - index};
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
         }
         .active-card {
           z-index: 10;
-          position: relative;
         }
         .image-container {
           margin: 0 auto;
@@ -116,14 +118,15 @@ const HeroCard = ({
         }
         .info-container {
           width: 100%;
-          padding: 0.5rem 0;
+          align-self: flex-start;
           display: flex;
           flex-direction: column;
+          padding: 0.5rem 0;
           opacity: 0;
           transition: opacity 0.2s;
           will-change: opacity;
         }
-        .show {
+        .active-info {
           opacity: 1;
         }
         .hide {
@@ -132,7 +135,7 @@ const HeroCard = ({
         .arrows {
           display: flex;
           justify-content: center;
-          padding: 1rem 0;
+          margin: 1rem 0;
         }
         .channel-title {
           margin: 0;
@@ -156,7 +159,7 @@ const HeroCard = ({
         }
         .description {
           color: var(--gray-60);
-          font-size: var(--font-md);
+          font-size: var(--font-sm);
           padding: 0;
           margin: 0.5rem 0;
           overflow: hidden;
@@ -164,15 +167,42 @@ const HeroCard = ({
           position: relative;
           text-overflow: ellipsis;
           display: -webkit-box;
-          -webkit-line-clamp: 4;
+          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
         }
-        .info {
+        .meta-info {
           font-weight: bold;
           margin: 0.5rem 0 1.75rem;
           text-transform: uppercase;
           font-size: var(--font-xs);
           color: var(--primary-60);
+        }
+        @media screen and (min-width: 426px) {
+          .info-container {
+            width: 80%;
+            margin: 0 auto;
+          }
+        }
+        @media screen and (min-width: 1024px) {
+          .card-container {
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+          }
+          .info-container {
+            width: 100%;
+            margin: 0;
+            padding-top: 4rem;
+            flex: 0 0 60%;
+          }
+          .arrows {
+            margin: 0 -0.75rem 1rem;
+            justify-content: flex-start;
+          }
+          .image-container {
+            margin: 0;
+            margin-left: auto;
+          }
         }
       `}</style>
     </div>

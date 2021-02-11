@@ -84,7 +84,7 @@ export const ProgressBar = () => {
           color: var(--primary-40);
           font-size: var(--font-xs);
         }
-        @media screen and (min-width: 1240px) {
+        @media screen and (min-width: 1024px) {
           .slider::-webkit-slider-thumb {
             opacity: 0;
           }
