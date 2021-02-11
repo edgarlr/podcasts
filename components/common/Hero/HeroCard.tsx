@@ -29,20 +29,24 @@ const HeroCard = ({
   const isActive = active === index
   return (
     <div className={cn('card-container', { ['active-card']: isActive })}>
-      <div
-        className={cn('image-container', {
-          ['active-img']: isActive,
-          ['rotate-img']: !isActive,
-          ['hide']: index < active,
-        })}
-      >
-        <TranslucentImage
-          url={episode.urls?.image || episode.channel.urls.logo_image.original}
-          alt={`${episode.title} cover`}
-          width={200}
-          height={200}
-        />
-      </div>
+      <Link href={`/episodes/${episode.id}`}>
+        <div
+          className={cn('image-container', {
+            ['active-img']: isActive,
+            ['rotate-img']: !isActive,
+            ['hide']: index < active,
+          })}
+        >
+          <TranslucentImage
+            url={
+              episode.urls?.image || episode.channel.urls.logo_image.original
+            }
+            alt={`${episode.title} cover`}
+            width={200}
+            height={200}
+          />
+        </div>
+      </Link>
 
       <div className={cn('info-container', { ['active-info']: isActive })}>
         <div className="arrows">
@@ -64,17 +68,21 @@ const HeroCard = ({
         <Link href={`/channels/${episode.channel.id}`}>
           <a className="channel-title">{episode.channel.title}</a>
         </Link>
-        <h1
-          className={cn('title', {
-            ['md']: episode.title.length < 80 && episode.title.length >= 60,
-            ['lg']: episode.title.length < 60 && episode.title.length >= 40,
-            ['xl']: episode.title.length < 40,
-          })}
-        >
-          {episode.title}
-        </h1>
+        <Link href={`/episodes/${episode.id}`}>
+          <h1
+            className={cn('title', {
+              ['md']: episode.title.length < 80 && episode.title.length >= 60,
+              ['lg']: episode.title.length < 60 && episode.title.length >= 40,
+              ['xl']: episode.title.length < 40,
+            })}
+          >
+            {episode.title}
+          </h1>
+        </Link>
         {episode.description && (
-          <p className="description">{episode.description}</p>
+          <Link href={`/episodes/${episode.id}`}>
+            <p className="description">{episode.description}</p>
+          </Link>
         )}
 
         <p className="meta-info">{`${getFormattedDate(
@@ -104,6 +112,7 @@ const HeroCard = ({
           width: max-content;
           transition: transform 0.2s;
           will-change: transform;
+          cursor: pointer;
         }
         .card-container:nth-of-type(odd) .rotate-img {
           transform: ${`rotate(calc(3deg * ${index}))`};
@@ -144,6 +153,7 @@ const HeroCard = ({
           color: var(--primary-60);
         }
         .title {
+          cursor: pointer;
           margin: 0.5rem 0;
           text-transform: capitalize;
           font-size: var(--font-lg);
@@ -158,6 +168,7 @@ const HeroCard = ({
           font-size: var(--font-3xl);
         }
         .description {
+          cursor: pointer;
           color: var(--gray-60);
           font-size: var(--font-sm);
           padding: 0;
