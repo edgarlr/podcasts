@@ -4,9 +4,9 @@ import EpisodeCard from './EpisodeCard/EpisodeCard'
 import EpisodeCardSkeleton from './EpisodeCard/EpisodeCardSkeleton'
 
 type Props = {
-  title: string
   episodes: TEpisode[]
   searchCards?: boolean
+  title?: string
   loading?: boolean
   button?: React.ReactNode
   style?: CSSProperties
@@ -24,7 +24,7 @@ const EpisodesList = ({
 
   return (
     <section style={style}>
-      <SectionTitle title={title} button={button} />
+      {title && <SectionTitle title={title} button={button} />}
 
       {loading
         ? [1, 2, 3, 4, 5, 6, 7, 8].map((card) => (

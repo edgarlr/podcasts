@@ -21,13 +21,7 @@ const DynamicEpisodeList = ({ channel }: Props) => {
     'audio_clips'
   )
 
-  return (
-    <EpisodesList
-      title={`More episodes from ${channel.title}`}
-      loading={isLoading}
-      episodes={episodesData}
-    />
-  )
+  return <EpisodesList loading={isLoading} episodes={episodesData} />
 }
 
 export default DynamicEpisodeList

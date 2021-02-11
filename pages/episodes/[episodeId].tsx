@@ -6,6 +6,7 @@ import DynamicEpisodeList from '@components/episodes/DynamicEpisodeList'
 import Custom404 from 'pages/404'
 import { ChannelsCarousel } from '@components/channel/ChannelsCarousel'
 import EpisodeHeader from '@components/episodes/EpisodeHeader'
+import SectionTitle from '@components/SectionTitle'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }
@@ -38,6 +39,8 @@ export default function podcast({
       metaDescription={episode.description}
     >
       <EpisodeHeader episode={episode} />
+
+      <SectionTitle title={`More from: ${episode.channel.title}`} border />
 
       <DynamicEpisodeList channel={channel} />
 

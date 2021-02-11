@@ -33,7 +33,7 @@ const ChannelHeader = ({ channel }: { channel: TChannel }) => {
 
       <style jsx>{`
         .channel-header {
-          padding: 1rem 0;
+          margin: 1rem 0;
         }
         .channel-header > :global(.channelTitle) {
           text-align: center;
