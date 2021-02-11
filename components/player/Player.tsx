@@ -52,6 +52,12 @@ const Player = () => {
           transition: height 0.2s;
           box-shadow: 0px -5px 20px rgba(255, 255, 255, 0.3);
         }
+        @media screen and (display-mode: standalone) {
+          .container {
+            padding: 0;
+            height: 5.5rem;
+          }
+        }
         .fullmodal {
           height: 95vh;
           box-shadow: 0px -35px 25px rgba(255, 255, 255, 1);
@@ -68,11 +74,6 @@ const Player = () => {
         @media screen and (min-width: 1440px) {
           .desktop {
             width: 22rem;
-          }
-        }
-        @media screen and (display-mode: standalone) {
-          .container {
-            padding: 0 1rem 1.5rem;
           }
         }
       `}</style>
