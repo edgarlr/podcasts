@@ -1,25 +1,80 @@
 import cn from 'classnames'
-// import { MouseEvent } from 'react'
+import Link from 'next/link'
+import { HTMLAttributes, MouseEvent } from 'react'
+import ExternalLink from '../ExternalLink'
+import { useMenuContext } from './use-menu-context'
 
-type Props = {
+interface Props extends HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   active?: boolean
-  // onClick?: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void
-  // href?: string
-  // external?: boolean
-  // subfix?: React.ReactNode
+  subfix?: React.ReactNode
+  onClick?: (e: MouseEvent) => void
+  href?: string
+  external?: boolean
+  unstyled?: boolean
 }
-const MenuItem = ({ children, active = false }: Props) => {
+
+const MenuItem = ({
+  children,
+  active = false,
+  subfix = null,
+  external = false,
+  unstyled = false,
+  href,
+  onClick,
+  ...rest
+}: Props) => {
+  const { toggle } = useMenuContext()
+
+  const handleOnClick = (e: MouseEvent) => {
+    onClick && onClick(e)
+    toggle()
+  }
+
+  let Component: any
+
+  if (href) {
+    if (external) {
+      Component = (
+        <ExternalLink to={href} ariaLabel="Link" className="menu-item">
+          {children}
+        </ExternalLink>
+      )
+    } else {
+      Component = (
+        <Link href={href}>
+          <a className="menu-item">{children}</a>
+        </Link>
+      )
+    }
+  } else if (onClick) {
+    Component = (
+      <button onClick={handleOnClick} className="menu-item" {...rest}>
+        {children}
+      </button>
+    )
+  } else if (unstyled) {
+    Component = <>{children}</>
+  } else {
+    Component = <span className="menu-item">{children}</span>
+  }
+
   return (
     <li className={cn('list-element', { ['active']: active })}>
-      {children}
+      {Component}
+
+      {subfix && <span className="subfix">{subfix}</span>}
+
       <style jsx>{`
         .list-element {
           list-style: none;
-          padding: 1.25rem 2rem;
-          margin: 0.25rem 0;
           cursor: pointer;
+          padding: 0;
+          margin: 0.25rem 0;
+          height: 4rem;
           position: relative;
+          display: flex;
+          align-items: center;
         }
         .list-element:hover {
           background: var(--primary-a-05);
@@ -28,10 +83,15 @@ const MenuItem = ({ children, active = false }: Props) => {
           font-weight: bold;
           background: var(--primary-a-05);
         }
+        .subfix {
+          position: absolute;
+          right: 1.5rem;
+          pointer-events: none;
+        }
         .list-element > :global(.menu-item) {
           font-size: var(--font-lg);
           color: var(--primary);
-          padding: 0;
+          padding: 0 2rem;
           display: flex;
           align-items: center;
           width: 100%;
@@ -56,17 +116,12 @@ const MenuItem = ({ children, active = false }: Props) => {
         }
         @media screen and (min-width: 641px) {
           .list-element {
-            padding: 0.75rem 1.5rem;
             margin: 0;
-          }
-          .list-element:hover {
-            background: var(--primary-05);
-          }
-          .list-element.active {
-            background: var(--primary-05);
+            height: 3rem;
           }
           .list-element > :global(.menu-item) {
             font-size: var(--font-sm);
+            padding: 0 1.5rem;
           }
           .list-element.active > :global(.menu-item)::after {
             margin: auto 1rem;

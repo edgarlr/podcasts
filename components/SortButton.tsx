@@ -22,20 +22,26 @@ export default function SortButton({
         <Sort />
       </MenuButton>
       <Menu title="Sort Episodes">
-        <MenuItem active={isActive === 'popular'}>
-          <button id="popular" onClick={onBtnClick} className="menu-item">
-            Most popular
-          </button>
+        <MenuItem
+          active={isActive === 'popular'}
+          onClick={onBtnClick}
+          id="popular"
+        >
+          Most popular
         </MenuItem>
-        <MenuItem active={isActive === 'oldest'}>
-          <button id="oldest" onClick={onBtnClick} className="menu-item">
-            Date added (oldest)
-          </button>
+        <MenuItem
+          id="oldest"
+          onClick={onBtnClick}
+          active={isActive === 'oldest'}
+        >
+          Date added (oldest)
         </MenuItem>
-        <MenuItem active={isActive === 'latest'}>
-          <button id="latest" onClick={onBtnClick} className="menu-item">
-            Date added (newest)
-          </button>
+        <MenuItem
+          id="latest"
+          onClick={onBtnClick}
+          active={isActive === 'latest'}
+        >
+          Date added (newest)
         </MenuItem>
       </Menu>
     </MenuWrapper>

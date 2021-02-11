@@ -63,7 +63,9 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
           margin: 2rem 0 3rem;
           display: flex;
           align-items: center;
-          gap: 1rem;
+        }
+        .actions-buttons > :global(:nth-child(2)) {
+          margin-left: 1rem;
         }
         @media screen and (min-width: 768px) {
           .title-container > :global(:first-child) {

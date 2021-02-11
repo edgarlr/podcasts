@@ -3,7 +3,6 @@ import Twitter from '@components/icons/Twitter'
 import Facebook from '@components/icons/Facebook'
 import { MouseEvent } from 'react'
 import { SITE_URL } from '@lib/constants'
-import ExternalLink from './ui/ExternalLink'
 import { useToast } from '@lib/hooks/use-toast'
 import Copy from './icons/Copy'
 import { Menu, MenuButton, MenuItem, MenuWrapper } from './ui/Menu'
@@ -34,13 +33,20 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
 
   const onCopyToClipboard = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(fullURL)
         .then(() => addToast('Copied to the clipboard'))
         .catch(console.error)
     }
+  }
+
+  const onFacebookShare = () => {
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${fullURL}`,
+      'facebook-share-dialog',
+      'width=800,height=600'
+    )
   }
 
   return (
@@ -50,32 +56,20 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
           <Share />
         </MenuButton>
         <Menu title="Share" position="left">
-          <MenuItem>
-            <button
-              className="menu-item"
-              onClick={() =>
-                window.open(
-                  `https://www.facebook.com/sharer/sharer.php?u=${fullURL}`,
-                  'facebook-share-dialog',
-                  'width=800,height=600'
-                )
-              }
-            >
-              Share on Facebook
-              <Facebook width={20} height={20} style={{ marginLeft: 'auto' }} />
-            </button>
+          <MenuItem
+            subfix={<Facebook width={20} height={20} />}
+            onClick={onFacebookShare}
+          >
+            Share on Facebook
           </MenuItem>
-          <MenuItem>
-            <ExternalLink
-              ariaLabel="Share on twitter"
-              to={`https://twitter.com/intent/tweet?url=${fullURL}&text=${title}`}
-              className="menu-item"
-            >
-              Share on Twitter
-              <Twitter width={20} height={20} style={{ marginLeft: 'auto' }} />
-            </ExternalLink>
+          <MenuItem
+            subfix={<Twitter width={20} height={20} />}
+            href={`https://twitter.com/intent/tweet?url=${fullURL}&text=${title}`}
+            external
+          >
+            Share on Twitter
           </MenuItem>
-          <MenuItem>
+          <MenuItem unstyled>
             <button
               className="copy-clipboard"
               onClick={onCopyToClipboard}
@@ -93,23 +87,23 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
 
       <style jsx>{`
         .copy-clipboard {
-          width: 100%;
+          width: calc(100% - 2rem);
+          margin: 0 auto;
           border: var(--default-border);
           border-radius: 10px;
           transition: border 0.15s;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          padding: 0.75rem 2.25rem 0.75rem 0.5rem;
+          padding: 0.75rem 2.75rem 0.75rem 0.5rem;
           font-size: var(--font-sm);
           color: var(--primary-80);
-          transform: scale(1.05);
+          position: relative;
         }
         .clipboard-icon {
           color: var(--primary);
           position: absolute;
-          right: 0;
-          padding: 0 0.75rem;
+          right: 0.75rem;
           line-height: 0.5;
         }
         .copy-clipboard:hover {
