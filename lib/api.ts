@@ -18,6 +18,16 @@ export async function getRecommendedChannels(limit?: number) {
   return data
 }
 
+export async function getRecommendedEpisodes(limit?: number) {
+  const fullUri = limit
+    ? `/audio_clips?page[items]=${limit}&api_version=1`
+    : '/audio_clips?api_version=1'
+  const {
+    body: { audio_clips: data },
+  } = await fetchAPI(fullUri)
+  return data
+}
+
 export async function getRecommendedChannelsByCategory(id: number) {
   const { body: data } = await fetchAPI(
     `/channels/recommended?category_ids[]=${id}&api_version=2`

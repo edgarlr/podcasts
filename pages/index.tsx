@@ -1,22 +1,28 @@
 import { InferGetStaticPropsType } from 'next'
-import { getRecommendedChannels } from 'lib/api'
+import { getRecommendedChannels, getRecommendedEpisodes } from 'lib/api'
 import { useFavs } from 'lib/hooks/use-favs'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import ChannelsList from 'components/channel/ChannelList'
+import Hero from '@components/Hero'
 
 export async function getStaticProps() {
-  const channels: TChannel[] = await getRecommendedChannels()
-  return { props: { channels } }
+  const [channels, episodes]: [TChannel[], TEpisode[]] = await Promise.all([
+    getRecommendedChannels(),
+    getRecommendedEpisodes(1),
+  ])
+  return { props: { channels, episodes } }
 }
 
 export default function Home({
   channels,
+  episodes,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { favs } = useFavs()
 
   return (
     <Layout navigation={false}>
+      <Hero episodes={episodes} />
       <ChannelsCarousel title="Followed" channels={favs} />
       <hr />
       <h2>Explore</h2>

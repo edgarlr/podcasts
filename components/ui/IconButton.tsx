@@ -8,6 +8,7 @@ type Props = {
   style?: CSSProperties
   className?: string
   variant?: 'primary' | 'secondary' | 'tertiary'
+  disabled?: boolean
 }
 
 const IconButton = ({
@@ -17,6 +18,7 @@ const IconButton = ({
   style = {},
   className,
   ariaLabel,
+  disabled = false,
 }: Props) => (
   <button
     className={cn(
@@ -30,6 +32,7 @@ const IconButton = ({
     onClick={onClick}
     aria-label={ariaLabel}
     style={style}
+    disabled={disabled}
   >
     {children}
     <style jsx>{`
