@@ -4,12 +4,12 @@ import { useFavs } from 'lib/hooks/use-favs'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import ChannelsList from 'components/channel/ChannelList'
-import Hero from '@components/Hero'
+import { Hero } from '@components/common/Hero'
 
 export async function getStaticProps() {
   const [channels, episodes]: [TChannel[], TEpisode[]] = await Promise.all([
     getRecommendedChannels(),
-    getRecommendedEpisodes(1),
+    getRecommendedEpisodes(5),
   ])
   return { props: { channels, episodes } }
 }

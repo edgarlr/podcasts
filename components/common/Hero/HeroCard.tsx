@@ -1,25 +1,41 @@
 import { getFormattedDate } from '@lib/utils/dateFormatter'
 import { getDurationOnMin } from '@lib/utils/durationToMinutes'
 import Link from 'next/link'
-import React from 'react'
+import { MouseEvent } from 'react'
 import cn from 'classnames'
-import TranslucentImage from './ui/TranslucentImage'
-import PlayButton from './PlayButton'
-import IconButton from './ui/IconButton'
-import ArrowLeft from './icons/ArrowLeft'
-import ArrowRight from './icons/ArrowRight'
+import TranslucentImage from '@components/ui/TranslucentImage'
+import IconButton from '@components/ui/IconButton'
+import ArrowLeft from '@components/icons/ArrowLeft'
+import ArrowRight from '@components/icons/ArrowRight'
+import PlayButton from '@components/PlayButton'
 
 type HeroCardProps = {
   episode: TEpisode
   index: number
   listLength: number
+  active: number
+  onPrevClick: (e: MouseEvent) => void
+  onNextClick: (e: MouseEvent) => void
 }
 
-const HeroCard = ({ episode, index, listLength }: HeroCardProps) => {
-  console.log()
+const HeroCard = ({
+  episode,
+  index,
+  listLength,
+  active,
+  onPrevClick,
+  onNextClick,
+}: HeroCardProps) => {
+  const isActive = active === index
   return (
-    <div className="card-container">
-      <div className="image-container">
+    <div className={cn('card-container', { ['active-card']: isActive })}>
+      <div
+        className={cn('image-container', {
+          ['active-img']: isActive,
+          ['rotate-img']: !isActive,
+          ['hide']: index < active,
+        })}
+      >
         <TranslucentImage
           url={episode.urls?.image || episode.channel.urls.logo_image.original}
           alt={`${episode.title} cover`}
@@ -28,14 +44,19 @@ const HeroCard = ({ episode, index, listLength }: HeroCardProps) => {
         />
       </div>
 
-      <div className="info-container">
+      <div className={cn('info-container', { ['show']: isActive })}>
         <div className="arrows">
-          <IconButton disabled={index === 0} ariaLabel="Prev Episode">
+          <IconButton
+            onClick={onPrevClick}
+            disabled={index === 0}
+            ariaLabel="Prev Episode"
+          >
             <ArrowLeft width={28} height={28} />
           </IconButton>
           <IconButton
             disabled={index + 1 === listLength}
             ariaLabel="Prev Episode"
+            onClick={onNextClick}
           >
             <ArrowRight width={28} height={28} />
           </IconButton>
@@ -64,17 +85,49 @@ const HeroCard = ({ episode, index, listLength }: HeroCardProps) => {
 
       <style jsx>{`
         .card-container {
-          padding: 2.5rem 0;
+          padding: 2.5rem 0 1.5rem;
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          z-index: ${9 - index};
+        }
+        .active-card {
+          z-index: 10;
+          position: relative;
+        }
+        .image-container {
+          margin: 0 auto;
+          width: max-content;
+          transition: transform 0.2s;
+          will-change: transform;
+        }
+        .card-container:nth-of-type(odd) .rotate-img {
+          transform: ${`rotate(calc(3deg * ${index}))`};
+        }
+
+        .card-container:nth-of-type(even) .rotate-img {
+          transform: ${`rotate(calc(-3deg * ${index}))`};
+        }
+        .active-img {
+          transform: rotate(0deg);
+          z-index: 100;
         }
         .info-container {
           width: 100%;
           padding: 0.5rem 0;
           display: flex;
           flex-direction: column;
+          opacity: 0;
+          transition: opacity 0.2s;
+          will-change: opacity;
         }
-        .image-container {
-          margin: 0 auto;
-          width: max-content;
+        .show {
+          opacity: 1;
+        }
+        .hide {
+          visibility: hidden;
         }
         .arrows {
           display: flex;
@@ -126,21 +179,4 @@ const HeroCard = ({ episode, index, listLength }: HeroCardProps) => {
   )
 }
 
-const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
-  if (!episodes || episodes.length === 0) return null
-
-  return (
-    <section>
-      {episodes.map((episode, index) => (
-        <HeroCard
-          episode={episode}
-          index={index}
-          listLength={episodes.length}
-          key={episode.id}
-        />
-      ))}
-    </section>
-  )
-}
-
-export default Hero
+export default HeroCard

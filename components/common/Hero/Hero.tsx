@@ -1,0 +1,44 @@
+import { MouseEvent, useState } from 'react'
+import HeroCard from './HeroCard'
+
+const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const prevIndex = (e: MouseEvent) => {
+    e.preventDefault()
+    if (activeIndex <= 0) return
+    setActiveIndex((oldIndex) => oldIndex - 1)
+  }
+
+  const nextIndex = (e: MouseEvent) => {
+    e.preventDefault()
+    if (activeIndex > episodes.length) return
+    setActiveIndex((oldIndex) => oldIndex + 1)
+  }
+
+  if (!episodes || episodes.length === 0) return null
+
+  return (
+    <section className="hero-container">
+      {episodes.map((episode, index) => (
+        <HeroCard
+          episode={episode}
+          index={index}
+          active={activeIndex}
+          listLength={episodes.length}
+          key={episode.id}
+          onPrevClick={prevIndex}
+          onNextClick={nextIndex}
+        />
+      ))}
+      <style jsx>{`
+        .hero-container {
+          position: relative;
+          min-height: min-content;
+        }
+      `}</style>
+    </section>
+  )
+}
+
+export default Hero
