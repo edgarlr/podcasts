@@ -65,7 +65,6 @@ export default function Layout({
             padding: 3.5rem 12rem 7rem;
             transition: padding 0.25s;
           }
-
           .main-container.playing {
             padding: 3.5rem 26rem 7rem 4rem;
           }

@@ -36,7 +36,7 @@ const Player = () => {
 
       <style jsx>{`
         .container {
-          z-index: 20;
+          z-index: 101;
           background: var(--primary);
           position: fixed;
           right: 0;

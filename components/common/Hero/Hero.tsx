@@ -53,10 +53,15 @@ const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
         @media screen and (min-width: 1024px) {
           .hero-container {
             padding: 0;
-            margin: 0 -5rem 2rem;
+            margin: 0 0 2rem;
             height: 28rem;
             display: flex;
             align-items: center;
+          }
+        }
+        @media screen and (min-width: 1440px) {
+          .hero-container {
+            margin: 0 -4rem 2rem;
           }
         }
       `}</style>

@@ -69,7 +69,7 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
 
       <style jsx>{`
         header {
-          z-index: 10;
+          z-index: 100;
           position: fixed;
           top: 0;
           left: 0;
