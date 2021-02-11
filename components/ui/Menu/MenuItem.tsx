@@ -16,19 +16,19 @@ const MenuItem = ({ children, active = false }: Props) => {
       <style jsx>{`
         .list-element {
           list-style: none;
-          padding: 0.75rem 1.5rem;
+          padding: 1rem 2rem;
           cursor: pointer;
           position: relative;
         }
         .list-element:hover {
-          background: var(--primary-05);
+          background: var(--primary-a-05);
         }
         .list-element.active {
           font-weight: bold;
-          background: var(--primary-05);
+          background: var(--primary-a-05);
         }
         .list-element > :global(.menu-item) {
-          font-size: var(--font-sm);
+          font-size: var(--font-lg);
           color: var(--primary);
           padding: 0;
           display: flex;
@@ -47,11 +47,28 @@ const MenuItem = ({ children, active = false }: Props) => {
           height: 24px;
           width: 24px;
           content: '';
-          margin: auto 1rem;
+          margin: auto 2rem;
           background-size: 24px;
           background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22feather%20feather-check%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C/polyline%3E%3C/svg%3E');
           background-repeat: no-repeat;
           pointer-events: none;
+        }
+        @media screen and (min-width: 641px) {
+          .list-element {
+            padding: 0.75rem 1.5rem;
+          }
+          .list-element:hover {
+            background: var(--primary-05);
+          }
+          .list-element.active {
+            background: var(--primary-05);
+          }
+          .list-element > :global(.menu-item) {
+            font-size: var(--font-sm);
+          }
+          .list-element.active > :global(.menu-item)::after {
+            margin: auto 1rem;
+          }
         }
       `}</style>
     </li>

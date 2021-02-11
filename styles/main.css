@@ -26,11 +26,15 @@
   --white: #ffffff;
 
   /* Aplha Colors */
-  --black-a-80: rgba(19, 20, 20, 08);
-  --black-a-60: rgba(19, 20, 20, 06);
-  --black-a-50: rgba(19, 20, 20, 05);
-  --black-a-40: rgba(19, 20, 20, 04);
-  --black-a-20: rgba(19, 20, 20, 02);
+  --black-a-95: rgba(19, 20, 20, 0.95);
+  --black-a-90: rgba(19, 20, 20, 0.9);
+  --black-a-80: rgba(19, 20, 20, 0.8);
+  --black-a-60: rgba(19, 20, 20, 0.6);
+  --black-a-50: rgba(19, 20, 20, 0.5);
+  --black-a-40: rgba(19, 20, 20, 0.4);
+  --black-a-20: rgba(19, 20, 20, 0.2);
+  --black-a-10: rgba(19, 20, 20, 0.1);
+  --black-a-05: rgba(19, 20, 20, 0.05);
 
   /* Theme Colors */
   --primary: var(--black);
@@ -46,11 +50,15 @@
   --secondary: var(--white);
 
   /* Aplha Colors */
+  --primary-a-95: var(--black-a-95);
+  --primary-a-90: var(--black-a-90);
   --primary-a-80: var(--black-a-80);
   --primary-a-60: var(--black-a-60);
   --primary-a-50: var(--black-a-50);
   --primary-a-40: var(--black-a-40);
   --primary-a-20: var(--black-a-20);
+  --primary-a-10: var(--black-a-10);
+  --primary-a-05: var(--black-a-05);
 
   /* Elements */
   --default-border: 1px solid var(--primary-20);

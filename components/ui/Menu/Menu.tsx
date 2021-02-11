@@ -1,5 +1,6 @@
 import { useMenuContext } from './use-menu-context'
 import cn from 'classnames'
+import { useIsMobile } from '@lib/hooks/use-media-queries'
 
 type Props = {
   children: React.ReactNode
@@ -8,19 +9,31 @@ type Props = {
   width?: string
 }
 const Menu = ({ children, title, position = 'right', width }: Props) => {
-  const { isVisible } = useMenuContext()
+  const { isVisible, toggle } = useMenuContext()
+
+  const isMobile = useIsMobile()
 
   if (!isVisible) return null
 
   return (
     <div
-      className={cn('menu', {
-        ['position-left']: position === 'left',
-        ['position-right']: position === 'right',
-      })}
+      className={
+        isMobile
+          ? 'mobile'
+          : cn('menu', {
+              ['position-left']: position === 'left',
+              ['position-right']: position === 'right',
+            })
+      }
     >
       <p className="title">{title}</p>
       <ul className="list">{children}</ul>
+
+      {isMobile && (
+        <button onClick={toggle} className="close-btn">
+          Close
+        </button>
+      )}
 
       <style jsx>{`
         .menu {
@@ -54,6 +67,50 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
           display: flex;
           flex-direction: column;
           border-radius: 15px;
+        }
+        .mobile {
+          position: fixed;
+          left: 0;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          z-index: 20;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          padding: 110% 0 0;
+          overflow-y: scroll;
+        }
+        .mobile::before {
+          content: '';
+          position: fixed;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          z-index: -1;
+          right: 0;
+          background: rgba(255, 255, 255, 0.25);
+          backdrop-filter: blur(15px);
+        }
+        .mobile .title {
+          font-size: var(--font-3xl);
+          text-align: center;
+          margin: 2rem 0;
+        }
+        .mobile .list {
+          margin-bottom: 8rem;
+        }
+        .close-btn {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 6rem;
+          border-top: var(--default-border);
+          font-size: var(--font-xl);
+          font-weight: bold;
+          text-align: center;
         }
       `}</style>
     </div>
