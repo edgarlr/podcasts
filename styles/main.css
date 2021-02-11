@@ -133,6 +133,16 @@ body.loading * {
   will-change: opacity;
 }
 
+.fadeIn {
+  animation: fadeIn 0.15s ease-in-out;
+  will-change: opacity;
+}
+
+.slideUp {
+  animation: slideUp 0.15s ease-in-out;
+  will-change: transform;
+}
+
 .fadeInUp {
   animation: fadeInUp 0.15s ease-in-out;
   will-change: transform, opacity;
@@ -144,6 +154,24 @@ body.loading * {
   }
   to {
     opacity: 0.5;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 

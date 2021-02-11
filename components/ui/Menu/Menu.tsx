@@ -18,8 +18,8 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
 
   if (isMobile) {
     return (
-      <div className="mobile-menu">
-        <div className="content">
+      <div className="mobile-menu fadeIn">
+        <div className="content slideUp">
           <p className="title">{title}</p>
           <ul className="list">{children}</ul>
         </div>
@@ -60,8 +60,8 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
             left: 0;
             right: 0;
             z-index: -1;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
           }
           .title {
             font-size: var(--font-3xl);
