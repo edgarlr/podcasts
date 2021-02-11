@@ -46,7 +46,7 @@ const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
         .hero-container {
           position: relative;
           min-height: min-content;
-          margin: 2rem 0;
+          margin: 2.5rem 0 2rem;
           height: 39rem;
           border-bottom: var(--default-border);
         }

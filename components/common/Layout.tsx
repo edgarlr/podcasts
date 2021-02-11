@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { usePlayer } from 'lib/hooks/use-player'
 import Header from './Header'
 import Footer from './Footer'
-import { useEffect, useState } from 'react'
 import cn from 'classnames'
 
 type Props = {

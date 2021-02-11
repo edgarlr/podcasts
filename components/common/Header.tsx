@@ -126,6 +126,9 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
           header.playing > :global(.back-btn) {
             left: 1.5rem;
           }
+          .logo {
+            font-size: var(--font-xl);
+          }
         }
         @media screen and (min-width: 1024px) {
           header.playing {
