@@ -29,12 +29,20 @@ const ChannelsList = ({ title, channels = [], loading = false }: Props) => {
       </div>
       <style jsx>{`
         section {
-          padding: 2rem 0;
-          flex: 0 0 23rem;
+          padding: 2rem 0.5rem 2rem 0;
+          flex: 0 0 1;
         }
         h3 {
           font-size: var(--font-lg);
-          margin: 0 1.5rem 1rem;
+          margin: 0 0 1rem;
+        }
+        @media screen and (min-width: 768px) {
+          section {
+            flex: 0 0 45%;
+          }
+          h3 {
+            margin: 0 1.5rem 1rem;
+          }
         }
       `}</style>
     </section>

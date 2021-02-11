@@ -43,9 +43,15 @@ export default function Home({
         }
         h2 {
           margin: 0;
-          margin-left: 1.5rem;
+          margin-left: 0;
           padding: 1rem 0 0;
           font-size: var(--font-2xl);
+        }
+
+        @media screen and (min-width: 768px) {
+          h2 {
+            margin-left: 1.5rem;
+          }
         }
       `}</style>
     </Layout>
