@@ -78,7 +78,7 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
           top: 0;
           bottom: 0;
           width: 100%;
-          padding: 110% 0 0;
+
           overflow-y: scroll;
         }
         .mobile::before {
@@ -95,7 +95,7 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
         .mobile .title {
           font-size: var(--font-3xl);
           text-align: center;
-          margin: 2rem 0;
+          margin: auto 0 1rem;
         }
         .mobile .list {
           margin-bottom: 8rem;
@@ -107,6 +107,7 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
           right: 0;
           width: 100%;
           height: 6rem;
+          padding-bottom: 0.5rem;
           border-top: var(--default-border);
           font-size: var(--font-xl);
           font-weight: bold;

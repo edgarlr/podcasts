@@ -16,7 +16,8 @@ const MenuItem = ({ children, active = false }: Props) => {
       <style jsx>{`
         .list-element {
           list-style: none;
-          padding: 1rem 2rem;
+          padding: 1.25rem 2rem;
+          margin: 0.25rem 0;
           cursor: pointer;
           position: relative;
         }
@@ -56,6 +57,7 @@ const MenuItem = ({ children, active = false }: Props) => {
         @media screen and (min-width: 641px) {
           .list-element {
             padding: 0.75rem 1.5rem;
+            margin: 0;
           }
           .list-element:hover {
             background: var(--primary-05);

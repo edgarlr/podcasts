@@ -93,18 +93,17 @@ const ShareButton = ({ title, path, message = 'Chech this link' }: Props) => {
 
       <style jsx>{`
         .copy-clipboard {
-          max-width: 14rem;
+          width: 100%;
           border: var(--default-border);
           border-radius: 10px;
           transition: border 0.15s;
-          margin: -0.5rem;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
           padding: 0.75rem 2.25rem 0.75rem 0.5rem;
           font-size: var(--font-sm);
           color: var(--primary-80);
-          position: relative;
+          transform: scale(1.05);
         }
         .clipboard-icon {
           color: var(--primary);
