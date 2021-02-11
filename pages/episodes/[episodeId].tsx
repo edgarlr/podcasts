@@ -19,7 +19,10 @@ export async function getStaticProps({ params }) {
   ])
   // No props will trigger 404
   if (!episode) return { props: {} }
-  return { props: { episode, recommended } }
+  return {
+    props: { episode, recommended },
+    revalidate: 60 * 60 * 24, // Once a day
+  }
 }
 
 export default function podcast({

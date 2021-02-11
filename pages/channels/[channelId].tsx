@@ -30,7 +30,10 @@ export async function getStaticProps({ params }) {
   ])
   // No props will trigger 404
   if (!channel) return { props: {} }
-  return { props: { channel, episodes, series, recommended } }
+  return {
+    props: { channel, episodes, series, recommended },
+    revalidate: 60 * 60 * 24, // Once a day
+  }
 }
 
 export default function channel({

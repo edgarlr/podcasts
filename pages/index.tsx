@@ -11,7 +11,10 @@ export async function getStaticProps() {
     getRecommendedChannels(),
     getRecommendedEpisodes(5),
   ])
-  return { props: { channels, episodes } }
+  return {
+    props: { channels, episodes },
+    revalidate: 60 * 60 * 24, // Once a day
+  }
 }
 
 export default function Home({
