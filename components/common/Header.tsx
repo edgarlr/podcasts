@@ -84,7 +84,6 @@ const Header = ({ headerText, navigation = true, button = null }: Props) => {
         header > :global(.back-btn) {
           position: absolute;
           left: 0.5rem;
-          padding: 0;
         }
         header > :global(:last-child) {
           position: absolute;
