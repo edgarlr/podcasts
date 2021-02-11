@@ -26,6 +26,12 @@ export const ProgressBar = () => {
         id="pgrbar"
         className="slider"
       />
+      <div
+        className="progressbar-fill"
+        style={{
+          width: currentTime ? `${(currentTime * 100) / duration}%` : 0,
+        }}
+      />
 
       <div className="progress-time">
         <div>{getDurationInMSS(audioRef.currentTime)}</div>
@@ -36,37 +42,35 @@ export const ProgressBar = () => {
         .slider {
           -webkit-appearance: none;
           height: 3px;
-          background-color: #5e5f5f;
+          background-color: var(--primary-80);
           width: 100%;
           outline: none;
-          -webkit-transition: 0.2s;
-          transition: opacity 0.2s;
-          margin-bottom: 1rem;
           position: relative;
           cursor: pointer;
-          transition: height 0.15s;
+          transition: background-color 0.15s;
         }
         .slider:hover {
-          height: 5px;
+          background-color: var(--primary-60);
         }
 
         .slider::-webkit-slider-thumb {
           -webkit-appearance: none;
           -moz-appearance: none;
           -ms-progress-appearance: none;
-          width: 2rem;
-          height: 2rem;
+          width: 1rem;
+          height: 1rem;
           border-radius: 50%;
-          border: 4px solid #131414;
           cursor: pointer;
-          background: #fff;
+          background: var(--secondary);
         }
 
         .progressbar-fill {
-          height: 4px;
+          height: 3px;
           position: relative;
-          background: rgb(104, 252, 46);
-          transform: translateY(calc(-1rem - 4px));
+          pointer-events: none;
+          background: var(--secondary);
+          transform: translateY(calc(-100% - 4px));
+          width: 0;
         }
 
         .slider::-webkit-slider-runnable-track {
@@ -74,10 +78,20 @@ export const ProgressBar = () => {
         }
 
         .progress-time {
+          margin: 0.5rem 0;
           display: flex;
           justify-content: space-between;
-          color: #979797;
-          font-size: 12px;
+          color: var(--primary-40);
+          font-size: var(--font-xs);
+        }
+        @media screen and (min-width: 1024px) {
+          .slider::-webkit-slider-thumb {
+            opacity: 0;
+          }
+          .slider:hover::-webkit-slider-thumb,
+          .slider:focus::-webkit-slider-thumb {
+            opacity: 1;
+          }
         }
       `}</style>
     </div>

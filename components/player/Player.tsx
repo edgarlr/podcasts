@@ -12,17 +12,22 @@ const Player = () => {
   const handleModalClick = () => setFullView(!fullView)
 
   const isTablet = useMediaQuery(1023)
+
   return (
     <Portal selector="#player">
       {current && isTablet && (
         <div className={`container ${fullView ? 'fullmodal' : ''}`}>
           {!fullView ? (
-            <MiniPlayer onClick={handleModalClick} />
+            <MiniPlayer
+              onClick={handleModalClick}
+              style={{ padding: '1rem', overflow: 'hidden' }}
+            />
           ) : (
             <PlayerContainer onClick={handleModalClick} />
           )}
         </div>
       )}
+
       {current && !isTablet && (
         <div className="container desktop">
           <PlayerContainer />
@@ -31,20 +36,20 @@ const Player = () => {
 
       <style jsx>{`
         .container {
-          z-index: 20;
-          background: var(--black);
+          z-index: 101;
+          background: var(--primary);
           position: fixed;
           right: 0;
           left: 0;
           bottom: 0;
           height: 5rem;
-          padding: 0 1rem;
+          padding: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
           margin: 0 -1px -1px -1px;
           border-radius: 20px 20px 0 0;
-          transition: 0.2s;
+          transition: height 0.2s;
           box-shadow: 0px -5px 20px rgba(255, 255, 255, 0.3);
         }
         .fullmodal {
@@ -56,7 +61,8 @@ const Player = () => {
           height: 100%;
           top: 0;
           left: auto;
-          border-radius: 20px 0 0;
+          right: 0;
+          border-radius: 0;
           box-shadow: 0 0 20px rgba(100, 100, 100, 0.2);
         }
         @media screen and (min-width: 1440px) {

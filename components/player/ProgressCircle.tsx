@@ -19,6 +19,7 @@ const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
   useEffect(() => {
     const progressOfsett =
       ((100 - (audioRef.currentTime * 100) / duration) / 100) * circumference
+    if (!progressOfsett) return
     setOffset(progressOfsett)
   }, [setOffset, circumference, audioRef, duration, offset])
 
@@ -50,7 +51,7 @@ const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
         }
         svg {
           display: block;
-          margin: 20px auto;
+          margin: 0;
           max-width: 100%;
           transform: rotate(-85deg);
         }

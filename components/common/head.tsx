@@ -1,9 +1,6 @@
-import { useRef } from 'react'
 import NextHead from 'next/head'
 
 const Head = () => {
-  const link = useRef(null)
-
   return (
     <NextHead>
       {/* Google fonts */}
@@ -14,11 +11,8 @@ const Head = () => {
       />
 
       <link
-        ref={link}
-        rel="preload"
-        as="style"
-        href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
-        onLoad={() => (link.current!.rel = 'stylesheet')}
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"
+        rel="stylesheet"
       />
 
       {/* status bar transparent */}

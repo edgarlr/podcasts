@@ -1,10 +1,13 @@
+import cn from 'classnames'
+
 type Props = {
   title: string
   button?: React.ReactNode
+  border?: boolean
 }
 
-const SectionTitle = ({ title, button = null }: Props) => (
-  <div className="section-title">
+const SectionTitle = ({ title, button = null, border = false }: Props) => (
+  <div className={cn('section-title', { ['with-button']: button || border })}>
     <h2 className="main-title">{title}</h2>
 
     {button}
@@ -13,16 +16,23 @@ const SectionTitle = ({ title, button = null }: Props) => (
       .section-title {
         display: flex;
         justify-content: space-between;
-        align-content: center;
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--gray-20);
+        align-items: center;
+        padding: 0.5rem 0;
       }
       .main-title {
-        font-size: 0.7rem;
-        text-transform: uppercase;
+        font-size: var(--font-xl);
+        color: var(--primary);
+        text-transform: capitalize;
         margin: auto 0;
         font-weight: bold;
-        color: var(--gray-50);
+      }
+      .with-button {
+        border-bottom: var(--default-border);
+        padding: 0 0 1rem;
+      }
+      .with-button > .main-title {
+        font-size: var(--font-md);
+        color: var(--primary);
       }
     `}</style>
   </div>

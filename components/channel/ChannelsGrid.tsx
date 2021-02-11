@@ -1,5 +1,6 @@
 import SectionTitle from 'components/SectionTitle'
 import Grid from 'components/ui/Grid'
+import { CSSProperties } from 'react'
 import { PodcastCover } from './PodcastCover'
 import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 
@@ -8,6 +9,7 @@ type Props = {
   channels: TChannel[]
   sectionButton?: React.ReactNode
   loading?: boolean
+  style?: CSSProperties
 }
 
 export const ChannelsGrid = ({
@@ -15,11 +17,12 @@ export const ChannelsGrid = ({
   channels = [],
   sectionButton = null,
   loading = false,
+  style = {},
 }: Props) => {
-  if (!loading && channels.length === 0) return null
+  if (!loading && (!channels || channels.length === 0)) return null
 
   return (
-    <>
+    <section style={style}>
       <SectionTitle title={title} button={sectionButton} />
       <Grid>
         {loading
@@ -31,6 +34,6 @@ export const ChannelsGrid = ({
               <PodcastCover channel={channel} key={`${channel.id}${index}`} />
             ))}
       </Grid>
-    </>
+    </section>
   )
 }

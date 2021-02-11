@@ -1,30 +1,30 @@
 import SectionTitle from 'components/SectionTitle'
-import { usePlayer } from 'lib/hooks/use-player'
-import EpisodeCard from './EpisodeCard'
-import EpisodeCardSkeleton from './EpisodeCardSkeleton'
+import { CSSProperties } from 'react'
+import EpisodeCard from './EpisodeCard/EpisodeCard'
+import EpisodeCardSkeleton from './EpisodeCard/EpisodeCardSkeleton'
 
 type Props = {
-  title: string
   episodes: TEpisode[]
   searchCards?: boolean
+  title?: string
   loading?: boolean
   button?: React.ReactNode
+  style?: CSSProperties
 }
 
-export default function EpisodeListContainer({
+const EpisodesList = ({
   title,
   episodes = [],
   loading = false,
   button = null,
   searchCards = false,
-}: Props) {
-  const { current } = usePlayer()
-
-  if (!loading && episodes.length === 0) return null
+  style = {},
+}: Props) => {
+  if (!loading && (!episodes || episodes.length === 0)) return null
 
   return (
-    <div>
-      <SectionTitle title={title} button={button} />
+    <section style={style}>
+      {title && <SectionTitle title={title} button={button} />}
 
       {loading
         ? [1, 2, 3, 4, 5, 6, 7, 8].map((card) => (
@@ -34,10 +34,11 @@ export default function EpisodeListContainer({
             <EpisodeCard
               clip={clip}
               key={clip.id}
-              isActive={current && current.id === clip.id}
-              info={!searchCards ? null : clip.channel.title}
+              info={searchCards && (clip.channel?.title || null)}
             />
           ))}
-    </div>
+    </section>
   )
 }
+
+export default EpisodesList

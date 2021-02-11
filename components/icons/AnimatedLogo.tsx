@@ -1,4 +1,4 @@
-const IconAudioPlaying = ({ ...props }) => {
+const AnimatedLogo = ({ ...props }) => {
   return (
     <>
       <svg
@@ -35,4 +35,4 @@ const IconAudioPlaying = ({ ...props }) => {
   )
 }
 
-export default IconAudioPlaying
+export default AnimatedLogo

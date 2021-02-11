@@ -1,11 +1,11 @@
 import Layout from 'components/common/Layout'
-import MainTitle from 'components/MainTitle'
+import PageTitle from '@components/ui/PageTitle'
 import { useRouter } from 'next/router'
 import { useFetch } from 'lib/hooks/use-fetch'
 import ClearSearchButton from 'components/search/ClearSearchButton'
-import EpisodeListContainer from 'components/episodes/EpisodeListContainer'
+import EpisodesList from '@components/episodes/EpisodesList'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
-import { getEpisodesSearchUrl } from 'lib/constants'
+import { getEpisodesSearchUrl } from 'lib/api'
 
 export default function SeachChannel() {
   const {
@@ -17,20 +17,21 @@ export default function SeachChannel() {
 
   return (
     <Layout
-      navigation
       headerText={`"${keyword}" in search`}
-      pageTitle="Search | Podcasts App"
+      pageTitle="Search"
       button={<ClearSearchButton />}
+      navigation={false}
     >
       {!isLoading && data.length === 0 ? (
         <SearchErrorMessage keyword={keyword as string} />
       ) : (
         <>
-          <MainTitle title={`"${keyword}" in search`} />
-          <EpisodeListContainer
+          <PageTitle title={`"${keyword}" in search`} />
+          <EpisodesList
             title="All Episodes"
             episodes={data}
             loading={isLoading}
+            style={{ marginTop: '1rem' }}
           />
         </>
       )}

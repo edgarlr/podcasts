@@ -1,4 +1,4 @@
-const API_URL = `https://api.audioboom.com`
+const API_URL = 'https://api.audioboom.com'
 
 export async function fetchAPI(path: string) {
   try {
@@ -10,8 +10,28 @@ export async function fetchAPI(path: string) {
   }
 }
 
-export async function getRecommendedChannels() {
-  const { body: data } = await fetchAPI('/channels/recommended?api_version=2')
+export async function getRecommendedChannels(limit?: number) {
+  const fullUri = limit
+    ? `/channels/recommended?page[items]=${limit}&api_version=2`
+    : '/channels/recommended?api_version=2'
+  const { body: data } = await fetchAPI(fullUri)
+  return data
+}
+
+export async function getRecommendedEpisodes(limit?: number) {
+  const fullUri = limit
+    ? `/audio_clips?page[items]=${limit}&api_version=1`
+    : '/audio_clips?api_version=1'
+  const {
+    body: { audio_clips: data },
+  } = await fetchAPI(fullUri)
+  return data
+}
+
+export async function getRecommendedChannelsByCategory(id: number) {
+  const { body: data } = await fetchAPI(
+    `/channels/recommended?category_ids[]=${id}&api_version=2`
+  )
   return data
 }
 
@@ -42,3 +62,14 @@ export async function getChannelsSeries(channelId: string) {
   } = await fetchAPI(`/channels/${channelId}/child_channels?api_version=1`)
   return data
 }
+
+export const getChannelEpisodesUrl = (channelId: TChannel['id']) =>
+  `${API_URL}/channels/${channelId}/audio_clips?api_version=1`
+
+export const getEpisodesSearchUrl = (keyword: string) =>
+  `${API_URL}/audio_clips?api_version=1&find[query]=${encodeURIComponent(
+    keyword
+  )}`
+
+export const getChannelsSearchUrl = (keyword: string) =>
+  `${API_URL}/channels?api_version=1&find[title]=${encodeURIComponent(keyword)}`

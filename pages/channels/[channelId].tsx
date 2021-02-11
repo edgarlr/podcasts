@@ -1,79 +1,74 @@
 import { useRouter } from 'next/router'
-import { getChannelById, getChannelsEpisodes, getChannelsSeries } from 'lib/api'
+import {
+  getChannelById,
+  getChannelsEpisodes,
+  getChannelsSeries,
+  getRecommendedChannels,
+} from 'lib/api'
 import { InferGetStaticPropsType } from 'next'
-import ErrorPage from 'next/error'
-import MainTitle from 'components/MainTitle'
 import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
-import FollowButtonContainer from 'components/FollowButtonContainer'
 import EpisodesListWithSortButton from 'components/episodes/EpisodesListWithSortButton'
-import ImgTranslucent from '@components/ui/ImgTranslucent'
-import DescriptionContainer from 'components/DescriptionContainer'
-import { useIsMobile } from 'lib/hooks/use-media-queries'
+import Custom404 from 'pages/404'
+import ChannelHeader from '@components/channel/ChannelHeader'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }
 }
 
 export async function getStaticProps({ params }) {
-  const [channel, episodes, series]: [
+  const [channel, episodes, series, recommended]: [
     TChannel,
     TEpisode[],
+    TChannel[],
     TChannel[]
   ] = await Promise.all([
     getChannelById(params.channelId),
     getChannelsEpisodes(params.channelId),
     getChannelsSeries(params.channelId),
+    getRecommendedChannels(5),
   ])
   // No props will trigger 404
   if (!channel) return { props: {} }
-  return { props: { channel, episodes, series } }
+  return {
+    props: { channel, episodes, series, recommended },
+    revalidate: 60 * 60 * 24, // Once a day
+  }
 }
 
 export default function channel({
   channel,
   episodes,
   series,
+  recommended,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { isFallback } = useRouter()
-  const isMobile = useIsMobile()
 
-  if (!isFallback && !channel) return <ErrorPage statusCode={404} />
+  if (!isFallback && !channel) return <Custom404 />
 
   return (
     <Layout
-      navigation
       headerText={channel.title}
       metaDescription={channel.description}
-      pageTitle={`${channel.title} | Podcasts`}
-      button={<FollowButtonContainer channel={channel} />}
+      pageTitle={channel.title}
     >
-      <MainTitle
-        title={channel.title}
-        subtitle={channel.parent_channel_id && 'Serie'}
+      <ChannelHeader channel={channel} />
+
+      <ChannelsCarousel
+        title={`${channel.title}'S SERIES`}
+        channels={series}
+        style={{ margin: '1.5rem 0' }}
       />
-
-      <ImgTranslucent
-        url={
-          channel.urls.banner_image.original || channel.urls.logo_image.original
-        }
-        alt={`${channel.title} cover`}
-        style={{
-          borderRadius: '20px',
-          margin: '.75rem 0',
-          paddingBottom: isMobile ? '25%' : '25%',
-        }}
-      />
-
-      {series.length === 0 && channel.description.length > 100 && (
-        <DescriptionContainer content={channel.description} />
-      )}
-
-      <ChannelsCarousel title={`${channel.title}'S SERIES`} channels={series} />
 
       <EpisodesListWithSortButton
         episodes={episodes}
         title={`${episodes.length} available episodes`}
+      />
+
+      <ChannelsCarousel
+        title="Recommended Show"
+        channels={recommended}
+        style={{ marginTop: '5rem' }}
       />
     </Layout>
   )

@@ -27,7 +27,7 @@ const PlayerContainer = ({
             ariaLabel="Minimize player"
             variant="secondary"
           >
-            <ChevronDown />
+            <ChevronDown fill="var(--secondary)" width="32" height="32" />
           </IconButton>
         </div>
       )}
@@ -53,13 +53,6 @@ const PlayerContainer = ({
       {!showPlaylist ? <FullPlayer /> : <Queue />}
 
       <style jsx>{`
-        .container {
-          height: 100%;
-        }
-        .player-container {
-          overflow-y: scroll;
-          padding: 0 2rem;
-        }
         .close-button {
           z-index: 22;
           position: absolute;
@@ -78,15 +71,10 @@ const PlayerContainer = ({
           cursor: pointer;
           display: flex;
           justify-content: space-between;
-          padding: 0.5rem 0 0 0;
+          padding: 1rem 0 0.5rem;
           margin: 0;
-          border-top: 1px solid rgba(255, 255, 255, 0.2);
-          transition: 0.1s;
-        }
-        @media screen and (display-mode: standalone) {
-          .queue-button {
-            bottom: 2rem;
-          }
+          border-top: 1px solid var(--primary-80);
+          transition: transform 0.1s;
         }
         .queue-button:hover {
           transform: scale(1.025);
@@ -98,10 +86,9 @@ const PlayerContainer = ({
           left: 30%;
           right: 30%;
         }
-        @media screen and (min-width: 766px) and (max-width: 1023px) and (orientation: portrait) {
-          .player-container {
-            padding: 3rem 8rem 2rem;
-            max-height: 40rem;
+        @media screen and (display-mode: standalone) {
+          .queue-button {
+            bottom: 2rem;
           }
         }
       `}</style>

@@ -1,41 +1,100 @@
 :root {
-  --black: #131414;
-  --white: white;
-  --gray-15: #f4f4f6;
-  --gray-20: #e2e2e2;
-  --gray-50: #636d77;
-  --gray-60: #73788c;
-  --gray-80: #383838;
+  --font-sans: 'Fira Sans', serif, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+
+  /* Font Size */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
+  --font-2xl: 1.5rem;
+  --font-3xl: 2rem;
+
+  /* Theme Colors */
+  --black: #131415;
+  --gray-95: #1f2020;
+  --gray-90: #2b2c2c;
+  --gray-80: #424343;
+  --gray-60: #717272;
+  --gray-50: #898989;
+  --gray-40: #a1a1a1;
+  --gray-20: #d0d0d0;
+  --gray-10: #e7e7e7;
+  --gray-05: #f3f3f3;
+  --white: #ffffff;
+
+  /* Aplha Colors */
+  --black-a-95: rgba(19, 20, 20, 0.95);
+  --black-a-90: rgba(19, 20, 20, 0.9);
+  --black-a-80: rgba(19, 20, 20, 0.8);
+  --black-a-60: rgba(19, 20, 20, 0.6);
+  --black-a-50: rgba(19, 20, 20, 0.5);
+  --black-a-40: rgba(19, 20, 20, 0.4);
+  --black-a-20: rgba(19, 20, 20, 0.2);
+  --black-a-10: rgba(19, 20, 20, 0.1);
+  --black-a-05: rgba(19, 20, 20, 0.05);
+
+  /* Theme Colors */
+  --primary: var(--black);
+  --primary-95: var(--gray-95);
+  --primary-90: var(--gray-90);
+  --primary-80: var(--gray-80);
+  --primary-60: var(--gray-60);
+  --primary-50: var(--gray-60);
+  --primary-40: var(--gray-40);
+  --primary-20: var(--gray-20);
+  --primary-10: var(--gray-10);
+  --primary-05: var(--gray-05);
+  --secondary: var(--white);
+
+  /* Aplha Colors */
+  --primary-a-95: var(--black-a-95);
+  --primary-a-90: var(--black-a-90);
+  --primary-a-80: var(--black-a-80);
+  --primary-a-60: var(--black-a-60);
+  --primary-a-50: var(--black-a-50);
+  --primary-a-40: var(--black-a-40);
+  --primary-a-20: var(--black-a-20);
+  --primary-a-10: var(--black-a-10);
+  --primary-a-05: var(--black-a-05);
+
+  /* Elements */
+  --default-border: 1px solid var(--primary-20);
+  --default-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  font-feature-settings: 'case' 1, 'rlig' 1, 'calt' 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--secondary);
+  color: var(--primary);
 }
 
 body {
-  font-family: 'Kumbh Sans', sans-serif;
+  position: relative;
+  min-height: 100%;
   margin: 0;
-}
-.main-container {
-  padding: 2rem 1.5rem 7rem;
-  transition: 0.25s;
-}
-@media screen and (min-width: 768px) {
-  .main-container {
-    padding: 2rem 5rem 7rem;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .main-container {
-    padding: 2rem 12rem 7rem;
-  }
-  .main-container.playing {
-    padding: 2rem 26rem 7rem 4rem;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .main-container {
-    padding: 2rem 18rem 7rem;
-  }
-  .main-container.playing {
-    padding: 2rem 30rem 7rem 8rem;
-  }
 }
 
 button {
@@ -46,9 +105,83 @@ button {
   padding: 0;
 }
 a {
+  color: var(--primary);
   text-decoration: none;
 }
+
 input {
   border-radius: 0;
   -webkit-appearance: none !important;
+}
+
+/* Remove all transitions on loading to prevent CLS */
+body.loading * {
+  transition: none !important;
+}
+
+/* Images utilities */
+.square-image {
+  border-radius: 15px;
+}
+.circle-image {
+  border-radius: 50%;
+}
+
+/* Animations */
+.opacityPulse {
+  animation: opacityPulse 1.15s infinite ease-in-out alternate;
+  will-change: opacity;
+}
+
+.fadeIn {
+  animation: fadeIn 0.15s ease-in-out;
+  will-change: opacity;
+}
+
+.slideUp {
+  animation: slideUp 0.15s ease-in-out;
+  will-change: transform;
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.15s ease-in-out;
+  will-change: transform, opacity;
+}
+
+@keyframes opacityPulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

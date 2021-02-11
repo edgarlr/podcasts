@@ -1,44 +1,45 @@
 export default function MiniPlayerSkeleton() {
   return (
     <div className="info-container">
-      <div className="img-container" />
+      <div className="img-container opacityPulse" />
       <div className="info">
-        <div className="title" />
-        <div className="channel-title" />
+        <div className="title opacityPulse" />
+        <div className="channel-title opacityPulse" />
       </div>
 
       <style jsx>{`
         .img-container,
         .title,
         .channel-title {
-          background: var(--gray-80);
+          background: var(--gray-90);
         }
         .info-container {
           display: flex;
           align-items: center;
           position: relative;
+          padding: 1rem;
         }
 
         .img-container {
-          min-width: 3.5em;
-          min-height: 3.5em;
-          border-radius: 15px;
+          min-width: 3rem;
+          min-height: 3rem;
+          border-radius: 10px;
         }
         .info {
-          margin-left: 1em;
+          margin-left: 1rem;
           width: 100%;
         }
         .title {
-          height: 0.85em;
+          height: 0.8rem;
           width: 80%;
           border-radius: 2px;
           margin: 0 0 4px;
         }
         .channel-title {
-          height: 0.7em;
+          height: 0.7rem;
           width: 45%;
           border-radius: 2px;
-          margin: 0;
+          margin-top: 8px;
         }
       `}</style>
     </div>

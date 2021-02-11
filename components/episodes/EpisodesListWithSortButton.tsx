@@ -1,6 +1,6 @@
-import SortByButton from 'components/SortByButton'
+import SortButton from '@components/SortButton'
 import { useState } from 'react'
-import EpisodeListContainer from './EpisodeListContainer'
+import EpisodesList from './EpisodesList'
 
 const EpisodesListWithSortButton = ({
   title,
@@ -40,10 +40,10 @@ const EpisodesListWithSortButton = ({
   }
 
   return (
-    <EpisodeListContainer
+    <EpisodesList
       title={title}
       episodes={sortedEpisodes()}
-      button={<SortByButton handleFilterClick={handleFilterClick} />}
+      button={<SortButton handleFilterClick={handleFilterClick} />}
     />
   )
 }

@@ -3,6 +3,9 @@ import { useRouter } from 'next/router'
 import { usePlayer } from 'lib/hooks/use-player'
 import IconButton from '../ui/IconButton'
 import ArrowLeft from 'components/icons/ArrowLeft'
+import cn from 'classnames'
+import Logo from '@components/icons/Logo'
+import Search from '@components/icons/Search'
 
 type Props = {
   headerText: string
@@ -10,18 +13,18 @@ type Props = {
   button: React.ReactNode
 }
 
-const Header = ({ headerText, navigation = false, button = null }: Props) => {
+const Header = ({ headerText, navigation = true, button = null }: Props) => {
   const router = useRouter()
 
   const { current } = usePlayer()
 
-  const [fixedNav, setFixedNav] = useState(false)
+  const [isShowed, setIsShowed] = useState(false)
 
   const fixNavigation = () => {
     if (window.scrollY > 110) {
-      setFixedNav(true)
+      setIsShowed(true)
     } else {
-      setFixedNav(false)
+      setIsShowed(false)
     }
   }
 
@@ -34,80 +37,132 @@ const Header = ({ headerText, navigation = false, button = null }: Props) => {
 
   return (
     <header
-      className={`${button ? 'full-nav' : ''} ${current ? 'playing' : ''}`}
+      className={cn({ ['playing']: current, ['home']: router.route === '/' })}
     >
       {navigation && (
-        <div className="nav-btn-container">
-          <IconButton onClick={() => router.back()} ariaLabel="go back">
-            <ArrowLeft />
-          </IconButton>
+        <IconButton
+          onClick={() => router.back()}
+          ariaLabel="Go back"
+          className="back-btn"
+        >
+          <ArrowLeft />
+        </IconButton>
+      )}
+
+      {headerText ? (
+        <p className={cn('title', { ['show']: isShowed })}>{headerText}</p>
+      ) : (
+        <div className="logo">
+          <Logo style={{ marginRight: '0.4rem' }} />
+          Podcasts
         </div>
       )}
 
-      <p className={fixedNav && 'show'}>{headerText}</p>
-
-      {button}
+      {button ? (
+        button
+      ) : (
+        <IconButton
+          onClick={() => router.push('/search')}
+          ariaLabel="Go to search"
+        >
+          <Search />
+        </IconButton>
+      )}
 
       <style jsx>{`
         header {
-          z-index: 10;
+          z-index: 100;
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           display: flex;
           align-items: center;
-          height: 3rem;
-          padding: 0.1rem 0.8rem;
           justify-content: center;
+          padding: 0 0.8rem;
           background: var(--white);
+          height: 3.5rem;
         }
-        .nav-btn-container {
+        header > :global(.back-btn) {
           position: absolute;
           left: 0.5rem;
-          padding: 0;
         }
-        .full-nav {
-          justify-content: space-between;
+        header > :global(:last-child) {
+          position: absolute;
+          right: 0.5rem;
         }
-        .full-nav .nav-btn-container {
-          position: static;
-        }
-        p {
+        .title {
           margin: 0;
-          font-size: 1rem;
+          font-size: var(--font-md);
           font-weight: bold;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
-          max-width: 55%;
+          max-width: 65%;
           opacity: 0;
           transform: translateY(6px);
-          transition: 0.2s;
+          transition-property: opacity, transform;
+          transition-duration: 0.2s;
         }
-        p.show {
+        .title.show {
           opacity: 1;
           transform: translateY(2px);
         }
+        .logo {
+          position: absolute;
+          left: 0;
+          padding: 0.8rem;
+          font-weight: bold;
+          font-size: var(--font-2xl);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         @media screen and (min-width: 766px) {
           header {
-            padding: 0.5rem 1.5rem 0;
+            padding: 0 1.5rem;
           }
-          p {
-            font-size: 1.2rem;
+          .title {
+            font-size: var(--font-md);
           }
-          .nav-btn-container {
+          header.playing > :global(.back-btn) {
             left: 1.5rem;
+          }
+          .logo {
+            font-size: var(--font-xl);
+            margin-left: 1rem;
           }
         }
         @media screen and (min-width: 1024px) {
           header.playing {
-            padding: 1rem 24rem 0 1.5rem;
+            padding: 0 21rem 0 1.5rem;
+          }
+          header.playing > :global(:last-child) {
+            right: 21.5rem;
+          }
+          .home > :global(:last-child) {
+            right: 9.5rem;
+          }
+          .home .logo {
+            margin-left: 10.5rem;
+          }
+          .home.playing .logo {
+            margin-left: 2.5rem;
           }
         }
         @media screen and (min-width: 1440px) {
           header.playing {
-            padding: 1rem 26rem 0 1.5rem;
+            padding: 0 23rem 0 1.5rem;
+          }
+          header.playing > :global(:last-child) {
+            right: 23.5rem;
+          }
+          .home > :global(:last-child) {
+            right: 12.5rem;
+          }
+          .home .logo {
+            margin-left: 12.5rem;
           }
         }
       `}</style>

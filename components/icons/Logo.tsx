@@ -8,9 +8,9 @@ const Logo = ({ ...props }) => {
       viewBox="0 0 24 24"
       {...props}
     >
-      <rect id="firstLine" x="0" y="0" height="24" width="6" />
-      <rect x="9" y="0" height="24" width="6" />
-      <rect x="18" y="0" height="24" width="6" />
+      <path d="M16.875 7.5H20.625V16.5H16.875V7.5Z" />
+      <path d="M10.125 3H13.875V21H10.125V3Z" />
+      <path d="M3.375 7.5H7.125V16.5H3.375V7.5Z" />
     </svg>
   )
 }

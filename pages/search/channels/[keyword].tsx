@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useFetch } from 'lib/hooks/use-fetch'
 import Layout from 'components/common/Layout'
-import MainTitle from 'components/MainTitle'
+import PageTitle from '@components/ui/PageTitle'
 import ClearSearchButton from 'components/search/ClearSearchButton'
 import SearchErrorMessage from 'components/search/SearchErrorMessage'
-import { getChannelsSearchUrl } from 'lib/constants'
+import { getChannelsSearchUrl } from 'lib/api'
 import { ChannelsGrid } from 'components/channel/ChannelsGrid'
 
 export default function SeachChannel() {
@@ -17,20 +17,21 @@ export default function SeachChannel() {
 
   return (
     <Layout
-      navigation
       headerText={`"${keyword}" in search`}
-      pageTitle="Search | Podcasts App"
+      pageTitle="Search"
       button={<ClearSearchButton />}
+      navigation={false}
     >
       {!isLoading && data.length === 0 ? (
         <SearchErrorMessage keyword={keyword as string} />
       ) : (
         <>
-          <MainTitle title={`"${keyword}" in search`} />
+          <PageTitle title={`"${keyword}" in search`} />
           <ChannelsGrid
             title="All channels"
             channels={data}
             loading={isLoading}
+            style={{ marginTop: '1rem' }}
           />
         </>
       )}

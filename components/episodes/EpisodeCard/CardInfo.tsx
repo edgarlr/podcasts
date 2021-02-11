@@ -13,8 +13,8 @@ const CardInfo = ({ data }: { data: string[] }) => {
           display: flex;
         }
         .content {
-          color: var(--gray-50);
-          font-size: 0.7rem;
+          color: var(--primary-50);
+          font-size: var(--font-xs);
           margin: 0;
         }
         .content:not(:last-child):after {

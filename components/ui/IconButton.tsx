@@ -7,7 +7,8 @@ type Props = {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
   style?: CSSProperties
   className?: string
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'tertiary'
+  disabled?: boolean
 }
 
 const IconButton = ({
@@ -17,12 +18,21 @@ const IconButton = ({
   style = {},
   className,
   ariaLabel,
+  disabled = false,
 }: Props) => (
   <button
-    className={cn({ ['secondary']: variant === 'secondary' }, className)}
+    className={cn(
+      {
+        ['primary']: variant === 'primary',
+        ['secondary']: variant === 'secondary',
+        ['tertiary']: variant === 'tertiary',
+      },
+      className
+    )}
     onClick={onClick}
     aria-label={ariaLabel}
     style={style}
+    disabled={disabled}
   >
     {children}
     <style jsx>{`
@@ -35,14 +45,22 @@ const IconButton = ({
         align-items: center;
         cursor: pointer;
         border-radius: 50%;
-        width: 2.5rem;
-        height: 2.5rem;
+        line-height: 0.5;
+        padding: 0.625rem;
       }
-      button:hover {
-        background: var(--gray-15);
+      .primary:hover {
+        background: var(--primary-05);
       }
       .secondary:hover {
         background: rgba(255, 255, 255, 0.1);
+      }
+      .tertiary {
+        color: var(--primary-80);
+        border: var(--default-border);
+      }
+      .tertiary:hover {
+        color: var(--primary);
+        border: 1px solid var(--primary);
       }
     `}</style>
   </button>
