@@ -8,6 +8,7 @@ type Props = {
   position?: 'left' | 'right'
   width?: string
 }
+
 const Menu = ({ children, title, position = 'right', width }: Props) => {
   const { isVisible, toggle } = useMenuContext()
 
@@ -15,25 +16,91 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
 
   if (!isVisible) return null
 
-  return (
-    <div
-      className={
-        isMobile
-          ? 'mobile'
-          : cn('menu', {
-              ['position-left']: position === 'left',
-              ['position-right']: position === 'right',
-            })
-      }
-    >
-      <p className="title">{title}</p>
-      <ul className="list">{children}</ul>
+  if (isMobile) {
+    return (
+      <div className="mobile-menu">
+        <div className="content">
+          <p className="title">{title}</p>
+          <ul className="list">{children}</ul>
+        </div>
 
-      {isMobile && (
         <button onClick={toggle} className="close-btn">
           Close
         </button>
-      )}
+
+        <style jsx>{`
+          .mobile-menu {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+          }
+          .content {
+            flex: 0 0 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            padding-top: 10rem;
+            overflow-y: scroll;
+            min-height: calc(100% - 5rem);
+            max-height: calc(100% - 5rem);
+            overflow-y: scroll;
+          }
+          .mobile-menu::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+          }
+          .title {
+            font-size: var(--font-3xl);
+            text-align: center;
+            margin: auto 0 2rem;
+            font-weight: bold;
+          }
+          .list {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+          }
+          .close-btn {
+            flex: 0 0 5rem;
+            width: 100%;
+            height: 6rem;
+            padding-bottom: 0.5rem;
+            border-top: var(--default-border);
+            font-size: var(--font-xl);
+            font-weight: bold;
+            text-align: center;
+          }
+        `}</style>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className={cn('menu', {
+        ['position-left']: position === 'left',
+        ['position-right']: position === 'right',
+      })}
+    >
+      <p className="title">{title}</p>
+      <ul className="list">{children}</ul>
 
       <style jsx>{`
         .menu {
@@ -67,51 +134,6 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
           display: flex;
           flex-direction: column;
           border-radius: 15px;
-        }
-        .mobile {
-          position: fixed;
-          left: 0;
-          right: 0;
-          display: flex;
-          flex-direction: column;
-          z-index: 20;
-          top: 0;
-          bottom: 0;
-          width: 100%;
-
-          overflow-y: scroll;
-        }
-        .mobile::before {
-          content: '';
-          position: fixed;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          z-index: -1;
-          right: 0;
-          background: rgba(255, 255, 255, 0.25);
-          backdrop-filter: blur(15px);
-        }
-        .mobile .title {
-          font-size: var(--font-3xl);
-          text-align: center;
-          margin: auto 0 1rem;
-        }
-        .mobile .list {
-          margin-bottom: 8rem;
-        }
-        .close-btn {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          width: 100%;
-          height: 6rem;
-          padding-bottom: 0.5rem;
-          border-top: var(--default-border);
-          font-size: var(--font-xl);
-          font-weight: bold;
-          text-align: center;
         }
       `}</style>
     </div>
