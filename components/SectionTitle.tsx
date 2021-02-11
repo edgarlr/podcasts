@@ -18,8 +18,8 @@ const SectionTitle = ({ title, button = null }: Props) => (
         border-bottom: var(--default-border);
       }
       .main-title {
-        font-size: var(--font-md);
-        color: var(--primary-80);
+        font-size: var(--font-lg);
+        color: var(--primary-90);
         text-transform: capitalize;
         margin: auto 0;
         font-weight: bold;

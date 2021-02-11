@@ -21,12 +21,12 @@ export default function Home({
       <hr />
       <h2>Explore</h2>
       <div className="list-container">
-        <ChannelsList title="Trending" channels={channels.slice(7, 13)} />
-        <ChannelsList title="Last Added" channels={channels.slice(14)} />
+        <ChannelsList title="Trending" channels={channels.slice(0, 5)} />
+        <ChannelsList title="Last Added" channels={channels.slice(5, 10)} />
       </div>
       <hr />
-      <ChannelsCarousel title="Shows" channels={channels.slice(0, 6)} />
-      <ChannelsCarousel title="Episodes" channels={channels.slice(0, 6)} />
+      <ChannelsCarousel title="Shows" channels={channels.slice(10, 15)} />
+      <ChannelsCarousel title="Episodes" channels={channels.slice(15)} />
 
       <style jsx>{`
         hr {
