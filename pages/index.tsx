@@ -23,7 +23,11 @@ export default function Home({
   return (
     <Layout navigation={false}>
       <Hero episodes={episodes} />
-      <ChannelsCarousel title="Followed" channels={favs} />
+      <ChannelsCarousel
+        title="Followed"
+        channels={favs}
+        className="home-carousel followed"
+      />
       <hr />
       <h2>Explore</h2>
       <div className="list-container">
@@ -31,12 +35,20 @@ export default function Home({
         <ChannelsList title="Last Added" channels={channels.slice(5, 10)} />
       </div>
       <hr />
-      <ChannelsCarousel title="Shows" channels={channels.slice(10, 15)} />
-      <ChannelsCarousel title="Episodes" channels={channels.slice(15)} />
+      <ChannelsCarousel
+        title="Shows"
+        channels={channels.slice(10, 15)}
+        className="home-carousel"
+      />
+      <ChannelsCarousel
+        title="Episodes"
+        channels={channels.slice(15)}
+        className="home-carousel"
+      />
 
       <style jsx>{`
         hr {
-          margin: 5rem 0;
+          margin: 2rem 0;
           height: 1px;
           border: none;
           background: var(--primary-20);
@@ -49,14 +61,25 @@ export default function Home({
         }
         h2 {
           margin: 0;
-          margin-left: 0;
+          margin-top: 1rem;
           padding: 1rem 0 0;
           font-size: var(--font-2xl);
         }
-
+        :global(.home-carousel) {
+          margin: 0.5rem 0;
+        }
         @media screen and (min-width: 768px) {
+          hr {
+            margin: 5rem 0;
+          }
           h2 {
             margin-left: 1.5rem;
+          }
+          :global(.home-carousel) {
+            margin: 1rem 0;
+          }
+          :global(.followed) {
+            margin-top: 2rem;
           }
         }
       `}</style>

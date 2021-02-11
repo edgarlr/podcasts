@@ -3,6 +3,7 @@ import SectionTitle from 'components/SectionTitle'
 import { PodcastCover } from './PodcastCover'
 import PodcastCoverSkeleton from './PodcastCoverSkeleton'
 import { CSSProperties } from 'react'
+import cn from 'classnames'
 
 type Props = {
   title: string
@@ -10,6 +11,7 @@ type Props = {
   sectionButton?: React.ReactNode
   loading?: boolean
   style?: CSSProperties
+  className?: string
 }
 
 export const ChannelsCarousel = ({
@@ -18,13 +20,13 @@ export const ChannelsCarousel = ({
   sectionButton = null,
   loading = false,
   style = {},
+  className = '',
 }: Props) => {
   if (!loading && (!channels || channels.length === 0)) return null
 
   return (
-    <section className="section-carousel" style={style}>
+    <section className={cn('section-carousel', className)} style={style}>
       <SectionTitle title={title} button={sectionButton} />
-      {/* <h3>{title}</h3> */}
       <CarouselGrid>
         {loading
           ? [1, 2, 3].map((card) => <PodcastCoverSkeleton key={card} />)
@@ -45,11 +47,6 @@ export const ChannelsCarousel = ({
           display: flex;
           justify-content: space-between;
           align-items: baseline;
-        }
-        .section-carousel h3 {
-          margin-top: 0;
-          font-size: var(--font-2xl);
-          text-transform: capitalize;
         }
       `}</style>
     </section>

@@ -26,14 +26,13 @@ const CarouselGrid = ({ children }: { children: React.ReactNode }) => {
         .channels-carousel > :global(div) {
           scroll-snap-align: start;
           flex: 0 0 auto;
-          max-width: calc(144px + 1.5rem);
+          max-width: calc(136px + 1.5rem);
           padding-left: 1.5rem;
         }
 
         @media screen and (min-width: 768px) {
           .channels-carousel > :global(div) {
-            margin-right: 1rem;
-            max-width: calc(150px + 1.5rem);
+            margin-right: 2.5rem;
           }
         }
       `}</style>
