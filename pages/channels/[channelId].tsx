@@ -32,7 +32,7 @@ export async function getStaticProps({ params }) {
   if (!channel) return { props: {} }
   return {
     props: { channel, episodes, series, recommended },
-    revalidate: 60 * 60 * 24, // Once a day
+    // revalidate: 60 * 60 * 24, // Once a day
   }
 }
 

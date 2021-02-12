@@ -21,7 +21,7 @@ export async function getStaticProps({ params }) {
   if (!episode) return { props: {} }
   return {
     props: { episode, recommended },
-    revalidate: 60 * 60 * 24, // Once a day
+    // revalidate: 60 * 60 * 24, // Once a day
   }
 }
 
