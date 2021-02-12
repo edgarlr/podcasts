@@ -28,7 +28,7 @@ const EpisodeHeader = ({ episode }: { episode: TEpisode }) => {
         episode.uploaded_at
       )} · ${getDurationOnMin(episode.duration)}`}</p>
 
-      <Description content={episode.description} />
+      {episode.description && <Description content={episode.description} />}
 
       <div className="actions-buttons">
         <PlayButton episode={episode} channelId={channel.id} />
