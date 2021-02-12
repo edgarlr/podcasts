@@ -37,7 +37,7 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
             bottom: 0;
             width: 100%;
             height: 100%;
-            z-index: 20;
+            z-index: 102;
             display: flex;
             flex-direction: column;
           }
