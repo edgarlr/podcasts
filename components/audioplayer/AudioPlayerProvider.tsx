@@ -197,7 +197,7 @@ export const AudioPlayerProvider = ({ children }) => {
       }}
     >
       {children}
-      <AudioElement forwadedRef={audioRef} />
+      <AudioElement ref={audioRef} />
     </PlayerContext.Provider>
   )
 }
