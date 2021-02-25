@@ -1,10 +1,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { MenuContext } from './use-menu-context'
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock'
+import { useIsMobile } from '@lib/hooks/use-media-queries'
 
 const MenuWrapper = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
 
   const toggle = useCallback(() => {
     setIsVisible((oldVisible) => !oldVisible)
@@ -24,6 +31,19 @@ const MenuWrapper = ({ children }) => {
     return () => {
       document.removeEventListener('click', onOutsideClick)
       document.removeEventListener('touchstart', onOutsideClick)
+    }
+  }, [isVisible])
+
+  useEffect(() => {
+    if (menuRef.current && isMobile) {
+      if (isVisible) {
+        disableBodyScroll(menuRef.current)
+      } else {
+        enableBodyScroll(menuRef.current)
+      }
+    }
+    return () => {
+      clearAllBodyScrollLocks()
     }
   }, [isVisible])
 
