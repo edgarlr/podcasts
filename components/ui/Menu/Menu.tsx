@@ -40,6 +40,8 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
             z-index: 102;
             display: flex;
             flex-direction: column;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(130%);
           }
           .content {
             flex: 0 0 1;
@@ -51,17 +53,6 @@ const Menu = ({ children, title, position = 'right', width }: Props) => {
             min-height: calc(100% - 5rem);
             max-height: calc(100% - 5rem);
             overflow-y: scroll;
-          }
-          .mobile-menu::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: -1;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
           }
           .title {
             font-size: var(--font-3xl);
