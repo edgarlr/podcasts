@@ -1,5 +1,5 @@
 import PlayCircle from 'components/icons/PlayCircle'
-import { usePlayer } from 'lib/hooks/use-player'
+import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import { useRouter } from 'next/router'
@@ -7,7 +7,9 @@ import React from 'react'
 import MiniPlayer from './MiniPlayer'
 
 const Queue = () => {
-  const { playlist, currentIndex, current, play } = usePlayer()
+  const { playlist, currentIndex, current } = usePlayer()
+
+  const { play } = usePlayerControls()
 
   const router = useRouter()
 
