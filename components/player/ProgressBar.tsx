@@ -1,9 +1,10 @@
-import { usePlayer } from 'lib/hooks/use-player'
+import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
 import { getDurationInMSS } from 'lib/utils/durationToMSS'
 import { useEffect, useState } from 'react'
 
 export const ProgressBar = () => {
-  const { duration, updateTime, audioRef } = usePlayer()
+  const { duration, audioRef } = usePlayer()
+  const { updateTime } = usePlayerControls()
   const [currentTime, setCurrentTime] = useState(0)
 
   const handleProgress = (e: any) => {

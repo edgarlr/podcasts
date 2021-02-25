@@ -1,4 +1,4 @@
-import { usePlayer } from 'lib/hooks/use-player'
+import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
 import { getChannelEpisodesUrl } from 'lib/api'
 import { useFetch } from 'lib/hooks/use-fetch'
 import PlayArrow from 'components/icons/PlayArrow'
@@ -16,7 +16,9 @@ const PlayButton = ({ episode, channelId }: Props) => {
     'audio_clips'
   )
 
-  const { current, setCurrentIndex, setPlaylist, play } = usePlayer()
+  const { current, setCurrentIndex, setPlaylist } = usePlayer()
+
+  const { play } = usePlayerControls()
 
   const isActive = current && current.id === episode.id
 

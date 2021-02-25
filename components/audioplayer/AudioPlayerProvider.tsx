@@ -3,6 +3,7 @@ import {
   PlayerState,
   PlayerContext,
   PlayerReducer,
+  PlayerControlsContext,
 } from '@lib/hooks/use-player'
 import AudioElement from './AudioElement'
 
@@ -186,18 +187,23 @@ export const AudioPlayerProvider = ({ children }) => {
         setLoading,
         setIsPlaying,
         setDuration,
-        prevEpisode,
-        nextEpisode,
-        toggleAudio,
-        play,
-        seekForward,
-        replay,
-        updateTime,
         audioRef: audioRef.current,
       }}
     >
-      {children}
-      <AudioElement ref={audioRef} />
+      <PlayerControlsContext.Provider
+        value={{
+          prevEpisode,
+          nextEpisode,
+          toggleAudio,
+          play,
+          seekForward,
+          replay,
+          updateTime,
+        }}
+      >
+        {children}
+        <AudioElement ref={audioRef} />
+      </PlayerControlsContext.Provider>
     </PlayerContext.Provider>
   )
 }

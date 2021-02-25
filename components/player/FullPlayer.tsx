@@ -1,7 +1,7 @@
 import { ProgressBar } from './ProgressBar'
 import { PodcastTitle } from './PodcastTitle'
 import TranslucentImage from '@components/ui/TranslucentImage'
-import { usePlayer } from 'lib/hooks/use-player'
+import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
 import Replay30 from 'components/icons/Replay30'
 import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
@@ -9,14 +9,9 @@ import Forward30 from 'components/icons/Forward30'
 import IconButton from '@components/ui/IconButton'
 
 const FullPlayer = () => {
-  const {
-    loading,
-    isPlaying,
-    current,
-    seekForward,
-    replay,
-    toggleAudio,
-  } = usePlayer()
+  const { loading, isPlaying, current } = usePlayer()
+
+  const { seekForward, replay, toggleAudio } = usePlayerControls()
 
   return (
     <div className="container">

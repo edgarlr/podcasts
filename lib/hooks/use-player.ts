@@ -15,6 +15,22 @@ type PlayerContextProps = PlayerState & {
   setLoading: (loading: PlayerState['loading']) => void
   setIsPlaying: (isPlaying: PlayerState['isPlaying']) => void
   setDuration: (duration: PlayerState['duration']) => void
+  audioRef: HTMLAudioElement
+}
+
+export const PlayerContext = createContext<PlayerContextProps | null>(null)
+
+export const usePlayer = (): PlayerContextProps => {
+  const context = useContext(PlayerContext)
+  if (!context) {
+    throw new Error(`usePlayer must be used within a PlayerProvider`)
+  }
+  return context
+}
+
+/* Controls Context */
+
+type PlayerContextControlsProps = {
   nextEpisode: () => void
   prevEpisode: () => void
   toggleAudio: () => void
@@ -22,17 +38,18 @@ type PlayerContextProps = PlayerState & {
   seekForward: (time: number) => void
   replay: (time: number) => void
   updateTime: (time: number) => void
-  audioRef: HTMLAudioElement
 }
 
-export const PlayerContext = createContext<PlayerContextProps | null>(null)
+export const PlayerControlsContext = createContext<PlayerContextControlsProps | null>(
+  null
+)
 
-export const usePlayer = (): PlayerContextProps => {
-  const result = useContext(PlayerContext)
-  if (!result) {
+export const usePlayerControls = (): PlayerContextControlsProps => {
+  const context = useContext(PlayerControlsContext)
+  if (!context) {
     throw new Error(`usePlayer must be used within a PlayerProvider`)
   }
-  return result
+  return context
 }
 
 export type PlayerActions =

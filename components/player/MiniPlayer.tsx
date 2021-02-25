@@ -1,4 +1,4 @@
-import { usePlayer } from 'lib/hooks/use-player'
+import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
 import MiniPlayerSkeleton from './MiniPlayerSkeleton'
 import ProgressCircle from './ProgressCircle'
 import { PodcastTitle } from './PodcastTitle'
@@ -13,7 +13,8 @@ type Props = {
 }
 
 export default function MiniPlayer({ onClick, style = {} }: Props) {
-  const { current, loading, isPlaying, toggleAudio } = usePlayer()
+  const { current, loading, isPlaying } = usePlayer()
+  const { toggleAudio } = usePlayerControls()
 
   if (!current) return <MiniPlayerSkeleton />
 
