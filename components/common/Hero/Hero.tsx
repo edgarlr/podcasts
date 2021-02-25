@@ -1,7 +1,14 @@
 import { MouseEvent, useEffect, useState } from 'react'
 import HeroCard from './HeroCard'
 
-const Hero = ({ episodes }: { episodes: TEpisode[] }) => {
+const Hero = ({ episodes: initialEpisodes }: { episodes: TEpisode[] }) => {
+  // Only render episodes with title and cover image
+  const episodes = initialEpisodes.filter(
+    (episode) =>
+      episode.title &&
+      (episode.urls?.image || episode.channel.urls.logo_image.original)
+  )
+
   const [activeIndex, setActiveIndex] = useState(0)
 
   const prevIndex = (e: MouseEvent) => {

@@ -14,22 +14,29 @@ const CarouselGrid = ({ children }: { children: React.ReactNode }) => {
           margin: 0 -1.5rem;
           padding: 0.25rem 0;
           scroll-snap-type: x proximity;
+          scroll-padding-left: 1.5rem;
+
           -ms-overflow-style: none;
         }
-        .channels-carousel::after {
+        .channels-carousel::before {
           content: '';
           padding-left: 1.5rem;
         }
+
+        .channels-carousel::after {
+          content: '';
+          padding-left: 8.5rem;
+        }
+
         .channels-carousel::-webkit-scrollbar {
           display: none;
         }
         .channels-carousel > :global(div) {
           scroll-snap-align: start;
           flex: 0 0 auto;
-          max-width: calc(136px + 1.5rem);
-          padding-left: 1.5rem;
+          width: 8.5rem;
+          margin-right: 1.4rem;
         }
-
         @media screen and (min-width: 768px) {
           .channels-carousel > :global(div) {
             margin-right: 2.5rem;

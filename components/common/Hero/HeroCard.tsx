@@ -27,6 +27,12 @@ const HeroCard = ({
   onNextClick,
 }: HeroCardProps) => {
   const isActive = active === index
+
+  const episodeCover =
+    episode.urls?.image || episode.channel.urls.logo_image.original
+
+  if (!episode.title || !episodeCover) return null
+
   return (
     <div className={cn('card-container', { ['active-card']: isActive })}>
       <Link href={`/episodes/${episode.id}`}>
@@ -38,9 +44,7 @@ const HeroCard = ({
           })}
         >
           <TranslucentImage
-            url={
-              episode.urls?.image || episode.channel.urls.logo_image.original
-            }
+            url={episodeCover}
             alt={`${episode.title} cover`}
             width={200}
             height={200}

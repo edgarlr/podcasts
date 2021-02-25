@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
 import { MenuContext } from './use-menu-context'
+import { useIsMobile } from '@lib/hooks/use-media-queries'
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from 'body-scroll-lock'
-import { useIsMobile } from '@lib/hooks/use-media-queries'
 
 const MenuWrapper = ({ children }) => {
   const [isVisible, setIsVisible] = useState(false)

@@ -5,6 +5,7 @@ import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import ChannelsList from 'components/channel/ChannelList'
 import { Hero } from '@components/common/Hero'
+import image from 'next/image'
 
 export async function getStaticProps() {
   const [channels, episodes]: [TChannel[], TEpisode[]] = await Promise.all([
