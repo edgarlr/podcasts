@@ -15,17 +15,13 @@ const CarouselGrid = ({ children }: { children: React.ReactNode }) => {
           padding: 0.25rem 0;
           scroll-snap-type: x proximity;
           scroll-padding-left: 1.5rem;
-
           -ms-overflow-style: none;
         }
-        .channels-carousel::before {
-          content: '';
-          padding-left: 1.5rem;
-        }
 
+        .channels-carousel::before,
         .channels-carousel::after {
           content: '';
-          padding-left: 8.5rem;
+          padding-left: 1.5rem;
         }
 
         .channels-carousel::-webkit-scrollbar {
@@ -40,6 +36,9 @@ const CarouselGrid = ({ children }: { children: React.ReactNode }) => {
         @media screen and (min-width: 768px) {
           .channels-carousel > :global(div) {
             margin-right: 2.5rem;
+          }
+          .channels-carousel::after {
+            padding-left: 0;
           }
         }
       `}</style>
