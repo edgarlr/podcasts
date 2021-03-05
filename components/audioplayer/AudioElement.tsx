@@ -1,16 +1,12 @@
 import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
-// import { useSharedState } from 'lib/hooks/use-shared-state'
-import { forwardRef } from 'react'
 
-const AudioElement = forwardRef<HTMLAudioElement>((_, ref) => {
-  const { setIsPlaying, setLoading, setDuration } = usePlayer()
+const AudioElement = () => {
+  const { setIsPlaying, setLoading, setDuration, setAudioRef } = usePlayer()
   const { nextEpisode } = usePlayerControls()
-
-  // const [, setCurrentTime] = useSharedState<number>('/episodes/currentTime', 0)
 
   return (
     <audio
-      ref={ref}
+      ref={setAudioRef}
       onCanPlay={(e) => setDuration((e.target as HTMLAudioElement).duration)}
       onLoadStart={() => setLoading(true)}
       onPause={() => setIsPlaying(false)}
@@ -25,6 +21,6 @@ const AudioElement = forwardRef<HTMLAudioElement>((_, ref) => {
       src={null}
     />
   )
-})
+}
 
 export default AudioElement

@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { createContext, Dispatch, SetStateAction, useContext } from 'react'
 
 export type PlayerState = {
   currentIndex: number | null
@@ -16,6 +16,7 @@ type PlayerContextProps = PlayerState & {
   setIsPlaying: (isPlaying: PlayerState['isPlaying']) => void
   setDuration: (duration: PlayerState['duration']) => void
   audioRef: HTMLAudioElement
+  setAudioRef: Dispatch<SetStateAction<HTMLAudioElement>>
 }
 
 export const PlayerContext = createContext<PlayerContextProps | null>(null)

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import {
   PlayerState,
   PlayerContext,
@@ -8,7 +8,7 @@ import {
 import AudioElement from './AudioElement'
 
 export const AudioPlayerProvider = ({ children }) => {
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const [audioRef, setAudioRef] = useState<HTMLAudioElement>(null)
 
   const initialPlayerState: PlayerState = {
     currentIndex: null,
@@ -40,52 +40,52 @@ export const AudioPlayerProvider = ({ children }) => {
     dispatch({ type: 'SET_DURATION', payload: duration })
 
   const toggleAudio = () => {
-    if (!audioRef.current) return
-    audioRef.current.paused ? audioRef.current.play() : audioRef.current.pause()
+    if (!audioRef) return
+    audioRef.paused ? audioRef.play() : audioRef.pause()
   }
 
   const play = (track: TEpisode) => {
-    if (!audioRef.current) return
-    audioRef.current.src = track.urls.high_mp3
-    audioRef.current.play()
+    if (!audioRef) return
+    audioRef.src = track.urls.high_mp3
+    audioRef.play()
   }
 
   const nextEpisode = () => {
     if (currentIndex >= playlist.length - 1) return null
-    audioRef.current.pause()
-    audioRef.current.currentTime = 0
+    audioRef.pause()
+    audioRef.currentTime = 0
     setCurrentIndex(currentIndex + 1)
-    audioRef.current.src = playlist[currentIndex + 1].urls.high_mp3
-    audioRef.current.play()
+    audioRef.src = playlist[currentIndex + 1].urls.high_mp3
+    audioRef.play()
   }
 
   const prevEpisode = () => {
-    if (!audioRef.current) return
-    audioRef.current.pause()
-    if (audioRef.current.currentTime > 5 || currentIndex === 0) {
-      audioRef.current.currentTime = 0
-      audioRef.current.play()
+    if (!audioRef) return
+    audioRef.pause()
+    if (audioRef.currentTime > 5 || currentIndex === 0) {
+      audioRef.currentTime = 0
+      audioRef.play()
     } else {
-      audioRef.current.currentTime = 0
+      audioRef.currentTime = 0
       setCurrentIndex(currentIndex - 1)
-      audioRef.current.src = playlist[currentIndex - 1].urls.high_mp3
-      audioRef.current.play()
+      audioRef.src = playlist[currentIndex - 1].urls.high_mp3
+      audioRef.play()
     }
   }
 
   const seekForward = (time: number) => {
-    if (!audioRef.current) return
-    audioRef.current.currentTime = audioRef.current.currentTime + time
+    if (!audioRef) return
+    audioRef.currentTime = audioRef.currentTime + time
   }
 
   const replay = (time: number) => {
-    if (!audioRef.current) return
-    audioRef.current.currentTime = audioRef.current.currentTime - time
+    if (!audioRef) return
+    audioRef.currentTime = audioRef.currentTime - time
   }
 
   const updateTime = (time: number) => {
-    if (!audioRef.current) return
-    audioRef.current.currentTime = time
+    if (!audioRef) return
+    audioRef.currentTime = time
   }
 
   useEffect(() => {
@@ -134,10 +134,10 @@ export const AudioPlayerProvider = ({ children }) => {
     if ('mediaSession' in navigator) {
       const { mediaSession }: any = navigator
       mediaSession.setActionHandler('play', () => {
-        audioRef.current.play()
+        audioRef.play()
       })
       mediaSession.setActionHandler('pause', () => {
-        audioRef.current.pause()
+        audioRef.pause()
       })
       mediaSession.setActionHandler('seekbackward', () => {
         replay(15)
@@ -155,7 +155,7 @@ export const AudioPlayerProvider = ({ children }) => {
         mediaSession.setActionHandler('seekforward', null)
       }
     }
-  }, [])
+  }, [audioRef])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -187,7 +187,8 @@ export const AudioPlayerProvider = ({ children }) => {
         setLoading,
         setIsPlaying,
         setDuration,
-        audioRef: audioRef.current,
+        audioRef,
+        setAudioRef,
       }}
     >
       <PlayerControlsContext.Provider
@@ -202,7 +203,7 @@ export const AudioPlayerProvider = ({ children }) => {
         }}
       >
         {children}
-        <AudioElement ref={audioRef} />
+        <AudioElement />
       </PlayerControlsContext.Provider>
     </PlayerContext.Provider>
   )
