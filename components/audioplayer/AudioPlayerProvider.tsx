@@ -4,6 +4,7 @@ import {
   PlayerContext,
   PlayerReducer,
   PlayerControlsContext,
+  PlayerCurrentTimeContext,
 } from '@lib/hooks/use-player'
 import AudioElement from './AudioElement'
 
@@ -13,6 +14,8 @@ export const AudioPlayerProvider = ({
   children: React.ReactNode
 }) => {
   const [audioRef, setAudioRef] = useState<HTMLAudioElement>(null)
+
+  const [currentTime, setCurrentTime] = useState(0)
 
   const initialPlayerState: PlayerState = {
     currentIndex: null,
@@ -215,8 +218,12 @@ export const AudioPlayerProvider = ({
           updateTime,
         }}
       >
-        {children}
-        <AudioElement />
+        <PlayerCurrentTimeContext.Provider
+          value={{ currentTime, setCurrentTime }}
+        >
+          {children}
+          <AudioElement />
+        </PlayerCurrentTimeContext.Provider>
       </PlayerControlsContext.Provider>
     </PlayerContext.Provider>
   )

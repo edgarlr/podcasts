@@ -1,7 +1,12 @@
-import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
+import {
+  usePlayer,
+  usePlayerControls,
+  usePlayerCurrentTime,
+} from 'lib/hooks/use-player'
 
 const AudioElement = () => {
   const { setIsPlaying, setLoading, setDuration, setAudioRef } = usePlayer()
+  const { setCurrentTime } = usePlayerCurrentTime()
   const { nextEpisode } = usePlayerControls()
 
   return (
@@ -15,9 +20,9 @@ const AudioElement = () => {
         setIsPlaying(true)
         setLoading(false)
       }}
-      // onTimeUpdate={(e) => {
-      //   setCurrentTime((e.target as HTMLAudioElement).currentTime)
-      // }}
+      onTimeUpdate={(e) => {
+        setCurrentTime((e.target as HTMLAudioElement).currentTime)
+      }}
       src={null}
     />
   )

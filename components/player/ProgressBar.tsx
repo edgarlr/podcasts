@@ -1,27 +1,27 @@
-import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
+import {
+  usePlayer,
+  usePlayerControls,
+  usePlayerCurrentTime,
+} from 'lib/hooks/use-player'
 import { getDurationInMSS } from 'lib/utils/durationToMSS'
-import { useEffect, useState } from 'react'
 
 export const ProgressBar = () => {
-  const { duration, audioRef } = usePlayer()
+  const { duration } = usePlayer()
+  const { currentTime } = usePlayerCurrentTime()
   const { updateTime } = usePlayerControls()
-  const [currentTime, setCurrentTime] = useState(0)
 
   const handleProgress = (e: any) => {
     const compute = (e.target.value * duration) / 100
-    setCurrentTime(compute)
     updateTime(compute)
   }
 
-  useEffect(() => {
-    setCurrentTime(audioRef.currentTime)
-  }, [audioRef])
+  const progress = currentTime ? (currentTime * 100) / duration : 0
 
   return (
     <div>
       <input
         onChange={handleProgress}
-        value={currentTime ? (currentTime * 100) / duration : 0}
+        value={progress}
         type="range"
         name="progressbar"
         id="pgrbar"
@@ -30,12 +30,12 @@ export const ProgressBar = () => {
       <div
         className="progressbar-fill"
         style={{
-          width: currentTime ? `${(currentTime * 100) / duration}%` : 0,
+          width: `${progress}%`,
         }}
       />
 
       <div className="progress-time">
-        <div>{getDurationInMSS(audioRef.currentTime)}</div>
+        <div>{getDurationInMSS(currentTime)}</div>
         <div>{getDurationInMSS(duration)}</div>
       </div>
 

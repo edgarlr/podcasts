@@ -30,7 +30,6 @@ export const usePlayer = (): PlayerContextProps => {
 }
 
 /* Controls Context */
-
 type PlayerContextControlsProps = {
   nextEpisode: () => void
   prevEpisode: () => void
@@ -48,7 +47,29 @@ export const PlayerControlsContext = createContext<PlayerContextControlsProps | 
 export const usePlayerControls = (): PlayerContextControlsProps => {
   const context = useContext(PlayerControlsContext)
   if (!context) {
-    throw new Error('usePlayer must be used within a PlayerProvider')
+    throw new Error(
+      'usePlayerControls must be used within a PlayerControlsProvider'
+    )
+  }
+  return context
+}
+
+/* Controls Context */
+type PlayerCurrentTimeContext = {
+  currentTime: number
+  setCurrentTime: Dispatch<SetStateAction<number>>
+}
+
+export const PlayerCurrentTimeContext = createContext<PlayerCurrentTimeContext | null>(
+  null
+)
+
+export const usePlayerCurrentTime = (): PlayerCurrentTimeContext => {
+  const context = useContext(PlayerCurrentTimeContext)
+  if (!context) {
+    throw new Error(
+      'usePlayerCurrentTime must be used within a PlayerCurrentTimeProvider'
+    )
   }
   return context
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { usePlayer } from '@lib/hooks/use-player'
+import { usePlayer, usePlayerCurrentTime } from '@lib/hooks/use-player'
 
 type Props = {
   size: number
@@ -8,7 +8,9 @@ type Props = {
 }
 
 const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
-  const { duration, audioRef } = usePlayer()
+  const { duration } = usePlayer()
+
+  const { currentTime } = usePlayerCurrentTime()
 
   const [offset, setOffset] = useState(0)
   const circleRef = useRef(null)
@@ -18,10 +20,10 @@ const ProgressCircle = ({ size, strokeWidth, circleStroke }: Props) => {
 
   useEffect(() => {
     const progressOfsett =
-      ((100 - (audioRef.currentTime * 100) / duration) / 100) * circumference
+      ((100 - (currentTime * 100) / duration) / 100) * circumference
     if (!progressOfsett) return
     setOffset(progressOfsett)
-  }, [setOffset, circumference, audioRef, duration, offset])
+  }, [setOffset, circumference, currentTime, duration, offset])
 
   return (
     <div>
