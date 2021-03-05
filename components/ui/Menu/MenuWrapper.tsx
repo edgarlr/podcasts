@@ -7,7 +7,7 @@ import {
   clearAllBodyScrollLocks,
 } from 'body-scroll-lock'
 
-const MenuWrapper = ({ children }) => {
+const MenuWrapper = ({ children }: { children: React.ReactNode }) => {
   const [isVisible, setIsVisible] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile()
@@ -31,7 +31,7 @@ const MenuWrapper = ({ children }) => {
       document.removeEventListener('click', onOutsideClick)
       document.removeEventListener('touchstart', onOutsideClick)
     }
-  }, [isVisible])
+  }, [isVisible, toggle])
 
   useEffect(() => {
     if (menuRef.current && isMobile) {
@@ -44,9 +44,9 @@ const MenuWrapper = ({ children }) => {
     return () => {
       clearAllBodyScrollLocks()
     }
-  }, [isVisible])
+  }, [isVisible, isMobile])
 
-  const value = useMemo(() => ({ isVisible, toggle }), [isVisible])
+  const value = useMemo(() => ({ isVisible, toggle }), [isVisible, toggle])
 
   return (
     <MenuContext.Provider value={value}>

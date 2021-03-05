@@ -32,7 +32,7 @@ const Hero = ({ episodes: initialEpisodes }: { episodes: TEpisode[] }) => {
     return () => {
       clearTimeout(timer)
     }
-  }, [activeIndex])
+  }, [activeIndex, episodes])
 
   if (!episodes || episodes.length === 0) return null
 

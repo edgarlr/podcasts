@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useCallback, useEffect, useMemo, useReducer, useState } from 'react'
 import {
   PlayerState,
   PlayerContext,
@@ -43,10 +43,10 @@ export const AudioPlayerProvider = ({
   const setDuration = (duration: PlayerState['duration']) =>
     dispatch({ type: 'SET_DURATION', payload: duration })
 
-  const toggleAudio = () => {
+  const toggleAudio = useCallback(() => {
     if (!audioRef) return
     audioRef.paused ? audioRef.play() : audioRef.pause()
-  }
+  }, [audioRef])
 
   const play = (track: TEpisode) => {
     if (!audioRef) return
@@ -54,16 +54,16 @@ export const AudioPlayerProvider = ({
     audioRef.play()
   }
 
-  const nextEpisode = () => {
+  const nextEpisode = useCallback(() => {
     if (currentIndex >= playlist.length - 1) return null
     audioRef.pause()
     audioRef.currentTime = 0
     setCurrentIndex(currentIndex + 1)
     audioRef.src = playlist[currentIndex + 1].urls.high_mp3
     audioRef.play()
-  }
+  }, [audioRef, currentIndex, playlist])
 
-  const prevEpisode = () => {
+  const prevEpisode = useCallback(() => {
     if (!audioRef) return
     audioRef.pause()
     if (audioRef.currentTime > 5 || currentIndex === 0) {
@@ -75,17 +75,23 @@ export const AudioPlayerProvider = ({
       audioRef.src = playlist[currentIndex - 1].urls.high_mp3
       audioRef.play()
     }
-  }
+  }, [audioRef, currentIndex, playlist])
 
-  const seekForward = (time: number) => {
-    if (!audioRef) return
-    audioRef.currentTime = audioRef.currentTime + time
-  }
+  const seekForward = useCallback(
+    (time: number) => {
+      if (!audioRef) return
+      audioRef.currentTime = audioRef.currentTime + time
+    },
+    [audioRef]
+  )
 
-  const replay = (time: number) => {
-    if (!audioRef) return
-    audioRef.currentTime = audioRef.currentTime - time
-  }
+  const replay = useCallback(
+    (time: number) => {
+      if (!audioRef) return
+      audioRef.currentTime = audioRef.currentTime - time
+    },
+    [audioRef]
+  )
 
   const updateTime = (time: number) => {
     if (!audioRef) return
@@ -132,7 +138,7 @@ export const AudioPlayerProvider = ({
         mediaSession.setActionHandler('nexttrack', null)
       }
     }
-  }, [currentIndex, playlist])
+  }, [currentIndex, playlist, nextEpisode, prevEpisode])
 
   useEffect(() => {
     if ('mediaSession' in navigator) {
@@ -159,7 +165,7 @@ export const AudioPlayerProvider = ({
         mediaSession.setActionHandler('seekforward', null)
       }
     }
-  }, [audioRef])
+  }, [audioRef, seekForward, replay])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -175,26 +181,29 @@ export const AudioPlayerProvider = ({
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [toggleAudio])
+  }, [toggleAudio, current])
+
+  const playerValue = useMemo(
+    () => ({
+      currentIndex,
+      current,
+      playlist,
+      loading,
+      isPlaying,
+      duration,
+      setCurrentIndex,
+      setPlaylist,
+      setLoading,
+      setIsPlaying,
+      setDuration,
+      audioRef,
+      setAudioRef,
+    }),
+    [audioRef, current, currentIndex, playlist, loading, isPlaying, duration]
+  )
 
   return (
-    <PlayerContext.Provider
-      value={{
-        currentIndex,
-        current,
-        playlist,
-        loading,
-        isPlaying,
-        duration,
-        setCurrentIndex,
-        setPlaylist,
-        setLoading,
-        setIsPlaying,
-        setDuration,
-        audioRef,
-        setAudioRef,
-      }}
-    >
+    <PlayerContext.Provider value={playerValue}>
       <PlayerControlsContext.Provider
         value={{
           prevEpisode,

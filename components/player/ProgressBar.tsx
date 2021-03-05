@@ -15,7 +15,7 @@ export const ProgressBar = () => {
 
   useEffect(() => {
     setCurrentTime(audioRef.currentTime)
-  }, [])
+  }, [audioRef])
 
   return (
     <div>

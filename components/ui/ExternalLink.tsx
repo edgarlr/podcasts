@@ -19,11 +19,12 @@ function ExternalLink({
   ariaLabel,
 }: Props) {
   return (
+    // eslint-disable-next-line  react/jsx-no-target-blank
     <a
       href={to}
       // Change target and rel attributes is newTab is true
       target={newTab ? '_blank' : '_self'}
-      rel={newTab ? 'noopener noreferrer' : ''}
+      rel={newTab ? 'noreferrer noopener' : ''}
       style={style}
       aria-label={ariaLabel}
       className={cn('hover:opacity-50', className)}

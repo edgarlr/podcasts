@@ -16,7 +16,7 @@ export default function SearchPage() {
     if (q !== undefined) {
       setSearchKeyword(q as string)
     }
-  }, [])
+  }, [q])
 
   const buttonIcon = (
     <IconButton onClick={() => router.back()} ariaLabel="Close Search">

@@ -3,3 +3,4 @@
 !/components/
 !/lib/
 !/pages/
+!next-env.d.ts

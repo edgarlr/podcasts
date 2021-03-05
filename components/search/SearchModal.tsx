@@ -19,7 +19,7 @@ const SearchModal = () => {
       setIsOpen(true)
       setSearchKeyword(search as string)
     }
-  }, [])
+  }, [search])
 
   const closeModal = () => {
     router.push('/', undefined, { shallow: true })
