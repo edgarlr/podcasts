@@ -1,12 +1,11 @@
-import FavsProvider from 'components/FavsProvider'
-import '../styles/normalize.css'
-import '../styles/main.css'
-import Head from 'components/common/head'
+import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
+import FavsProvider from 'components/FavsProvider'
+import Head from 'components/common/head'
 import Player from '@components/player/Player'
 import { AudioPlayerProvider } from '@components/audioplayer/AudioPlayerProvider'
 import ToastProvider from '@components/ui/Toast/ToastProvider'
-import { useEffect } from 'react'
+import '../styles/main.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {

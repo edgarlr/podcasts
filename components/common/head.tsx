@@ -3,16 +3,20 @@ import NextHead from 'next/head'
 const Head = () => {
   return (
     <NextHead>
-      {/* Google fonts */}
+      {/* Fonts */}
       <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="true"
+        rel="preload"
+        href="/fonts/fira-sans-latin-regular.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
       />
-
       <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"
-        rel="stylesheet"
+        rel="preload"
+        href="/fonts/fira-sans-latin-700.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
       />
 
       {/* status bar transparent */}
