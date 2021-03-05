@@ -4,24 +4,31 @@ import {
   usePlayerCurrentTime,
 } from 'lib/hooks/use-player'
 import { getDurationInMSS } from 'lib/utils/durationToMSS'
+import { useEffect, useState } from 'react'
 
 export const ProgressBar = () => {
   const { duration } = usePlayer()
   const { currentTime } = usePlayerCurrentTime()
   const { updateTime } = usePlayerControls()
+  const [computedCurrentTime, setComputedCurrentTime] = useState(0)
 
   const handleProgress = (e: any) => {
     const compute = (e.target.value * duration) / 100
+    setComputedCurrentTime(compute)
     updateTime(compute)
   }
 
   const progress = currentTime ? (currentTime * 100) / duration : 0
 
+  useEffect(() => {
+    setComputedCurrentTime(currentTime)
+  }, [currentTime])
+
   return (
     <div>
       <input
         onChange={handleProgress}
-        value={progress}
+        value={computedCurrentTime ? (computedCurrentTime * 100) / duration : 0}
         type="range"
         name="progressbar"
         id="pgrbar"
