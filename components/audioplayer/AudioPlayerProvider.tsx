@@ -7,7 +7,11 @@ import {
 } from '@lib/hooks/use-player'
 import AudioElement from './AudioElement'
 
-export const AudioPlayerProvider = ({ children }) => {
+export const AudioPlayerProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const [audioRef, setAudioRef] = useState<HTMLAudioElement>(null)
 
   const initialPlayerState: PlayerState = {

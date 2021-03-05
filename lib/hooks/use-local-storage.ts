@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useLocalStorage = <T>(
-  key: string,
-  initialValue: T
-): [T, (value: T) => void] => {
+export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const readValue = () => {
     if (typeof window === undefined) initialValue
     try {
@@ -46,5 +43,5 @@ export const useLocalStorage = <T>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return [storedValue, setLocalStorage]
+  return [storedValue, setLocalStorage] as const
 }
