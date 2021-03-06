@@ -7,7 +7,7 @@ import React from 'react'
 import MiniPlayer from './MiniPlayer'
 
 const Queue = () => {
-  const { playlist, currentIndex, current } = usePlayer()
+  const { playlist, currentIndex, current, setCurrentIndex } = usePlayer()
 
   const { play } = usePlayerControls()
 
@@ -15,6 +15,16 @@ const Queue = () => {
 
   const onNowPlayingClick = (id: TEpisode['id']) => {
     router.push(`/episodes/${id}`)
+  }
+
+  const onPlayClick = (episode: TEpisode) => {
+    for (let i = 0; i < playlist.length; i++) {
+      if (playlist[i].id === episode.id) {
+        setCurrentIndex(i)
+        play(playlist[i])
+        break
+      }
+    }
   }
 
   return (
@@ -29,16 +39,21 @@ const Queue = () => {
 
       <ul className="episodes-list">
         {playlist.slice(currentIndex + 1).map((episode: TEpisode) => (
-          <li onClick={() => play(episode)} key={episode.id}>
-            <p className="episode-title">{episode.title}</p>
-            <span className="episode-info">
-              {getFormattedDate(episode.uploaded_at)}
-              <b> · </b>
-              {getDurationOnMin(episode.duration)}
-            </span>
-            <div className="play-icon">
-              <PlayCircle />
-            </div>
+          <li key={episode.id}>
+            <button
+              onClick={() => onPlayClick(episode)}
+              className="play-button"
+            >
+              <p className="episode-title">{episode.title}</p>
+              <span className="episode-info">
+                {getFormattedDate(episode.uploaded_at)}
+                <b> · </b>
+                {getDurationOnMin(episode.duration)}
+              </span>
+              <span className="subfix">
+                <PlayCircle />
+              </span>
+            </button>
           </li>
         ))}
       </ul>
@@ -70,11 +85,18 @@ const Queue = () => {
         }
         li {
           list-style: none;
+        }
+        .play-button {
+          width: 100%;
+          height: 100%;
+          text-align: left;
           padding: 0.8rem 1rem;
           cursor: pointer;
           position: relative;
+          color: var(--secondary);
         }
-        li:hover {
+
+        .play-button:hover {
           background: var(--primary-95);
         }
         .episode-title {
@@ -91,16 +113,14 @@ const Queue = () => {
           font-size: var(--font-xs);
           margin: 0;
         }
-
-        .play-icon {
+        .subfix {
           position: absolute;
           right: 1rem;
           top: 50%;
           transform: translateY(-50%);
           opacity: 0;
         }
-
-        li:hover > .play-icon {
+        .play-button:hover > .subfix {
           opacity: 1;
         }
 
