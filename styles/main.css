@@ -2,9 +2,8 @@
 @import './fonts.css';
 
 :root {
-  --font-sans: 'Fira Sans', serif, -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
+  --font-sans: 'Fira Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
   /* Font Size */
   --font-xs: 0.75rem;
