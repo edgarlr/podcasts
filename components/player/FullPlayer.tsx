@@ -7,14 +7,30 @@ import Pause from 'components/icons/Pause'
 import PlayArrow from 'components/icons/PlayArrow'
 import Forward30 from 'components/icons/Forward30'
 import IconButton from '@components/ui/IconButton'
+import { useIsMobile } from '@lib/hooks/use-media-queries'
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
+import { useEffect, useRef } from 'react'
 
 const FullPlayer = () => {
   const { loading, isPlaying, current } = usePlayer()
 
   const { seekForward, replay, toggleAudio } = usePlayerControls()
 
+  const isMobile = useIsMobile()
+
+  const playerRef = useRef()
+
+  useEffect(() => {
+    if (playerRef.current && isMobile) {
+      disableBodyScroll(playerRef.current)
+    }
+    return () => {
+      clearAllBodyScrollLocks()
+    }
+  }, [isMobile])
+
   return (
-    <div className="container">
+    <div className="container" ref={playerRef}>
       <TranslucentImage
         url={current.urls.image || current.channel.urls.logo_image.original}
         alt={`${current.title} cover`}

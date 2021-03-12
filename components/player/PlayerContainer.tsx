@@ -12,9 +12,9 @@ const PlayerContainer = ({
 }: {
   onClick?: (event?: MouseEvent) => void
 }) => {
-  const { current } = usePlayer()
-
   const [showPlaylist, setShowPlaylist] = useState(false)
+
+  const { current } = usePlayer()
 
   if (!current) return <FullPlayerSkeleton />
 
@@ -32,63 +32,80 @@ const PlayerContainer = ({
         </div>
       )}
 
-      <button onClick={() => setShowPlaylist(!showPlaylist)}>
-        {!showPlaylist ? (
-          <div className="queue-button">
-            Playing next
-            <span>
-              <PlaylistPlay />
-            </span>
-          </div>
-        ) : (
-          <div className="queue-button now-playing">
-            Queue
-            <span>
-              <ChevronDown />
-            </span>
-          </div>
-        )}
-      </button>
+      {showPlaylist ? (
+        <button
+          onClick={() => setShowPlaylist(false)}
+          className="button close-queue-button"
+        >
+          Queue
+          <span>
+            <ChevronDown />
+          </span>
+        </button>
+      ) : (
+        <button
+          onClick={() => setShowPlaylist(true)}
+          className="button playing-next-button"
+        >
+          Playing next
+          <span>
+            <PlaylistPlay />
+          </span>
+        </button>
+      )}
 
       {!showPlaylist ? <FullPlayer /> : <Queue />}
 
       <style jsx>{`
         .close-button {
-          z-index: 22;
+          z-index: 3;
           position: absolute;
           left: 1rem;
           top: 1.5rem;
         }
-        .queue-button {
-          z-index: 21;
+        .button {
+          transform: scale(1);
+          z-index: 1;
+          transition: transform 0.1s;
+        }
+        .button:hover {
+          transform: scale(1.025);
+        }
+        .playing-next-button {
           position: absolute;
-          top: auto;
-          bottom: 1rem;
-          left: 3rem;
-          right: 3rem;
+          bottom: 0.5rem;
+          left: 2.5rem;
+          right: 2.5rem;
+          width: calc(100% - 5rem);
+          margin: 0;
+          padding: 1rem 0;
+          display: flex;
+          justify-content: space-between;
+          color: var(--white);
+          font-weight: bold;
+          cursor: pointer;
+          border: none;
+          border-top: 1px solid var(--primary-80);
+        }
+        .close-queue-button {
+          z-index: 2;
+          position: absolute;
+          top: 1.5rem;
+          width: 40%;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
           color: white;
           font-weight: bold;
           cursor: pointer;
           display: flex;
           justify-content: space-between;
           padding: 1rem 0 0.5rem;
-          margin: 0;
-          border-top: 1px solid var(--primary-80);
-          transition: transform 0.1s;
         }
-        .queue-button:hover {
-          transform: scale(1.025);
-        }
-        .now-playing {
-          border: none;
-          bottom: auto;
-          top: 1.5rem;
-          left: 30%;
-          right: 30%;
-        }
+
         @media screen and (display-mode: standalone) {
-          .queue-button {
-            bottom: 2rem;
+          .playing-next-button {
+            bottom: 1.5rem;
           }
         }
       `}</style>

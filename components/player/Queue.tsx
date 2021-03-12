@@ -3,8 +3,10 @@ import { usePlayer, usePlayerControls } from 'lib/hooks/use-player'
 import { getDurationOnMin } from 'lib/utils/durationToMinutes'
 import { getFormattedDate } from 'lib/utils/dateFormatter'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import MiniPlayer from './MiniPlayer'
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
+import { useIsMobile } from '@lib/hooks/use-media-queries'
 
 const Queue = () => {
   const { playlist, currentIndex, current, setCurrentIndex } = usePlayer()
@@ -12,6 +14,19 @@ const Queue = () => {
   const { play } = usePlayerControls()
 
   const router = useRouter()
+
+  const isMobile = useIsMobile()
+
+  const playerRef = useRef()
+
+  useEffect(() => {
+    if (playerRef.current && isMobile) {
+      disableBodyScroll(playerRef.current)
+    }
+    return () => {
+      clearAllBodyScrollLocks()
+    }
+  }, [isMobile])
 
   const onNowPlayingClick = (id: TEpisode['id']) => {
     router.push(`/episodes/${id}`)
@@ -28,7 +43,7 @@ const Queue = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container" ref={playerRef}>
       <h4 className="title">Now Playing</h4>
       <MiniPlayer
         onClick={() => onNowPlayingClick(current.id)}
@@ -64,9 +79,10 @@ const Queue = () => {
           height: 100%;
           color: var(--secondary);
           position: relative;
-          overflow-y: scroll;
+          overflow-y: auto;
           position: relative;
           margin-top: 5rem;
+          touch-action: pan-y;
         }
         .title {
           width: 100%;
