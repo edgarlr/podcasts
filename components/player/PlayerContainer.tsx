@@ -65,7 +65,6 @@ const PlayerContainer = ({
         }
         .button {
           transform: scale(1);
-          z-index: 1;
           transition: transform 0.1s;
         }
         .button:hover {
@@ -75,6 +74,7 @@ const PlayerContainer = ({
           position: absolute;
           bottom: 0.5rem;
           left: 2.5rem;
+          z-index: 1;
           right: 2.5rem;
           width: calc(100% - 5rem);
           margin: 0;

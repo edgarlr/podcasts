@@ -22,7 +22,9 @@ const FullPlayer = () => {
 
   useEffect(() => {
     if (playerRef.current && isMobile) {
-      disableBodyScroll(playerRef.current)
+      disableBodyScroll(playerRef.current, {
+        allowTouchMove: (el) => el.id === 'pgrbar',
+      })
     }
     return () => {
       clearAllBodyScrollLocks()
