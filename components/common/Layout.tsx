@@ -3,6 +3,7 @@ import { usePlayer } from 'lib/hooks/use-player'
 import Header from './Header'
 import Footer from './Footer'
 import cn from 'classnames'
+import { DefaultOgImage, SITE_URL } from '@lib/constants'
 
 type Props = {
   children: React.ReactNode
@@ -11,6 +12,7 @@ type Props = {
   navigation?: boolean
   pageTitle?: string
   metaDescription?: string
+  image?: string
 }
 
 export default function Layout({
@@ -20,6 +22,7 @@ export default function Layout({
   navigation = true,
   pageTitle = 'Listen and discover free podcasts',
   metaDescription = 'Next.js, SWR and AudioBoom API',
+  image = DefaultOgImage,
 }: Props) {
   const { isPlaying, current } = usePlayer()
 
@@ -31,7 +34,19 @@ export default function Layout({
             ? `Playing: ${current.title} | ${current.channel.title}`
             : `${pageTitle} | Podcasts`}
         </title>
+
+        {/* SEO */}
+        <meta name="og:title" content={pageTitle} />
+
         <meta name="description" content={metaDescription} />
+        <meta name="og:description" content={metaDescription} />
+
+        <meta name="twitter:image" content={image} />
+        <meta name="og:image" content={image} />
+
+        <meta name="og:url" content={SITE_URL} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@edgarlr_" />
       </Head>
 
       <Header navigation={navigation} headerText={headerText} button={button} />
