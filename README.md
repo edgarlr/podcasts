@@ -1,21 +1,23 @@
-<p align="center">
-  <img width="200" height="200" src="public/static/assets/logo.png">
-</p>
-
 # [Podcasts App](https://podcast-app.vercel.app/)
 
 Podcasts web app using Next.js and the AudioBoom API
 
 Open [Podcasts](https://podcast-app.verce.app)
 
-![Podcasts App Screenshot](public/static/assets/screenshot.png)
+<p align="center">
+  <img src="https://res.cloudinary.com/dliiwavlg/image/upload/v1615252490/podcasts_dirbxp.png" width="450px" />
+</p>
 
 ## Built with:
 
 - Framework: [Next.js](https://nextjs.org)
+
   - [TypeScript](https://nextjs.org/docs/basic-features/typescript)
   - [Styled Jsx](https://github.com/vercel/styled-jsx)
   - [SWR](https://swr.vercel.app/)
+
+- Designed on Figma
+  - [Figma File](https://www.figma.com/community/file/945882274406205263/Podcasts---UI-Kit)
 
 ## Contribution
 
