@@ -24,7 +24,7 @@ export default function Layout({
   button = null,
   navigation = true,
   pageTitle = 'Listen and discover free podcasts',
-  metaDescription = 'Next.js, SWR and AudioBoom API',
+  metaDescription = 'Open source podcast webapp with no login and no privacy invading tracking.',
   image = DefaultOgImage,
   type = 'website',
   date,

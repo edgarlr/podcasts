@@ -38,8 +38,10 @@ export default function podcast({
   return (
     <Layout
       headerText={episode.title}
-      pageTitle={episode.title}
-      metaDescription={episode.description}
+      pageTitle={`${episode.title} | ${channel.title}`}
+      metaDescription={
+        episode.description || `Listen to ${channel.title} on Podcasts.`
+      }
       image={episode.urls?.image || channel.urls.logo_image.original}
       type="article"
       date={episode.uploaded_at && new Date(episode.uploaded_at).toISOString()}

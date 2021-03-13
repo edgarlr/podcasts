@@ -49,7 +49,9 @@ export default function channel({
   return (
     <Layout
       headerText={channel.title}
-      metaDescription={channel.description}
+      metaDescription={
+        channel.description || `Listen to ${channel.title} on Podcasts.`
+      }
       pageTitle={channel.title}
       image={channel.urls.logo_image.original}
     >
