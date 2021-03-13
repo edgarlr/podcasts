@@ -51,6 +51,7 @@ export default function channel({
       headerText={channel.title}
       metaDescription={channel.description}
       pageTitle={channel.title}
+      image={channel.urls.logo_image.original}
     >
       <ChannelHeader channel={channel} />
 

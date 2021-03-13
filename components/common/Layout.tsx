@@ -14,7 +14,7 @@ type Props = {
   pageTitle?: string
   metaDescription?: string
   image?: string
-  type: 'website' | 'article'
+  type?: 'website' | 'article'
   date?: string
 }
 

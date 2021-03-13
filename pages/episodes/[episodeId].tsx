@@ -40,6 +40,9 @@ export default function podcast({
       headerText={episode.title}
       pageTitle={episode.title}
       metaDescription={episode.description}
+      image={episode.urls?.image || channel.urls.logo_image.original}
+      type="article"
+      date={episode.uploaded_at && new Date(episode.uploaded_at).toISOString()}
     >
       <EpisodeHeader episode={episode} />
 
