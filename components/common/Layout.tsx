@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import cn from 'classnames'
 import { DefaultOgImage, SITE_URL } from '@lib/constants'
+import { useRouter } from 'next/router'
 
 type Props = {
   children: React.ReactNode
@@ -13,6 +14,8 @@ type Props = {
   pageTitle?: string
   metaDescription?: string
   image?: string
+  type: 'website' | 'article'
+  date?: string
 }
 
 export default function Layout({
@@ -23,8 +26,11 @@ export default function Layout({
   pageTitle = 'Listen and discover free podcasts',
   metaDescription = 'Next.js, SWR and AudioBoom API',
   image = DefaultOgImage,
+  type = 'website',
+  date,
 }: Props) {
   const { isPlaying, current } = usePlayer()
+  const router = useRouter()
 
   return (
     <>
@@ -38,15 +44,27 @@ export default function Layout({
         {/* SEO */}
         <meta name="og:title" content={pageTitle} />
 
+        <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
+
+        <meta name="robots" content="follow, index" />
+
         <meta name="description" content={metaDescription} />
-        <meta name="og:description" content={metaDescription} />
 
+        <link rel="canonical" href={`${SITE_URL}${router.asPath}`} />
+
+        <meta property="og:type" content={type} />
+        <meta property="og:site_name" content="Podcasts" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:image" content={image} />
+        <meta property="og:description" content={metaDescription} />
+
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={image} />
-        <meta name="og:image" content={image} />
-
-        <meta name="og:url" content={SITE_URL} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@edgarlr_" />
+        {date && <meta property="article:published_time" content={date} />}
       </Head>
 
       <Header navigation={navigation} headerText={headerText} button={button} />
