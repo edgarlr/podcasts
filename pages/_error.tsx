@@ -6,7 +6,6 @@ type ErrorPageprops = {
   hasGetInitialPropsRun: boolean
   err: Error
   statusCode: number
-  children?: React.ReactElement
 }
 
 type ErrorProps = NextErrorProps & {
@@ -17,7 +16,6 @@ const CustomError = ({
   statusCode,
   hasGetInitialPropsRun,
   err,
-  children,
 }: ErrorPageprops) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
@@ -28,9 +26,7 @@ const CustomError = ({
   }
 
   // render the children if provided or return the NextError Component
-  return (
-    <>{children ? children : <NextErrorComponent statusCode={statusCode} />}</>
-  )
+  return <NextErrorComponent statusCode={statusCode} />
 }
 
 CustomError.getInitialProps = async ({ res, err, asPath }: NextPageContext) => {

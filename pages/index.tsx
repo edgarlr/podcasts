@@ -12,6 +12,11 @@ export async function getStaticProps() {
     getRecommendedChannels(),
     getRecommendedEpisodes(5),
   ])
+
+  if (channels.length === 0 || episodes.length === 0) {
+    throw new Error('Error fetching home data')
+  }
+
   return {
     props: { channels, episodes },
     revalidate: 60 * 60 * 24, // Once a day
