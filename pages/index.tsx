@@ -5,6 +5,7 @@ import Layout from 'components/common/Layout'
 import { ChannelsCarousel } from 'components/channel/ChannelsCarousel'
 import ChannelsList from 'components/channel/ChannelList'
 import { Hero } from '@components/common/Hero'
+import Link from 'next/link'
 
 export async function getStaticProps() {
   const [channels, episodes]: [TChannel[], TEpisode[]] = await Promise.all([
@@ -31,6 +32,13 @@ export default function Home({
         className="home-carousel followed"
       />
       {favs.length > 0 && <hr />}
+
+      <Link href="/ServerTest">
+        <a>Perform client side navigation</a>
+      </Link>
+      <Link href="/ClientTest">
+        <a>Perform client side navigation</a>
+      </Link>
 
       <h2>Explore</h2>
       <div className="list-container">
