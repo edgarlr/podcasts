@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import type { AppProps } from 'next/app'
+import type { AppProps as NextAppProps } from 'next/app'
 import FavsProvider from 'components/FavsProvider'
 import Head from 'components/common/head'
 import Player from '@components/player/Player'
@@ -10,7 +10,11 @@ import { init } from '@lib/sentry'
 
 init()
 
-function MyApp({ Component, pageProps }: AppProps) {
+type AppProps = NextAppProps & {
+  err: Error
+}
+
+function MyApp({ Component, pageProps, err }: AppProps) {
   useEffect(() => {
     document.body.classList?.remove('loading')
   }, [])
@@ -20,7 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <AudioPlayerProvider>
         <ToastProvider>
           <Head />
-          <Component {...pageProps} />
+          <Component {...pageProps} err={err} />
           <Player />
         </ToastProvider>
       </AudioPlayerProvider>
