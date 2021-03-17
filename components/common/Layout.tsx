@@ -16,6 +16,10 @@ type Props = {
   image?: string
   type?: 'website' | 'article'
   date?: string
+  author?: {
+    name: string
+    url: string
+  }
 }
 
 export default function Layout({
@@ -28,6 +32,7 @@ export default function Layout({
   image = DefaultOgImage,
   type = 'website',
   date,
+  author,
 }: Props) {
   const { isPlaying, current } = usePlayer()
   const router = useRouter()
@@ -65,6 +70,9 @@ export default function Layout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@edgarlr_" />
         {date && <meta property="article:published_time" content={date} />}
+
+        {author && <meta name="author" content={author.name} />}
+        {author && <meta property="article:author" content={author.url} />}
       </Head>
 
       <Header navigation={navigation} headerText={headerText} button={button} />

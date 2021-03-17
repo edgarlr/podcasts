@@ -7,6 +7,7 @@ import Custom404 from 'pages/404'
 import { ChannelsCarousel } from '@components/channel/ChannelsCarousel'
 import EpisodeHeader from '@components/episodes/EpisodeHeader'
 import SectionTitle from '@components/SectionTitle'
+import { SITE_URL } from '@lib/constants'
 
 export async function getStaticPaths() {
   return { paths: [], fallback: 'blocking' }
@@ -45,6 +46,10 @@ export default function podcast({
       image={episode.urls?.image || channel.urls.logo_image.original}
       type="article"
       date={episode.uploaded_at && new Date(episode.uploaded_at).toISOString()}
+      author={{
+        name: channel.title,
+        url: `${SITE_URL}/channels/${channel.id}`,
+      }}
     >
       <EpisodeHeader episode={episode} />
 
