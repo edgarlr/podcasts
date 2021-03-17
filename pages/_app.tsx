@@ -6,6 +6,9 @@ import Player from '@components/player/Player'
 import { AudioPlayerProvider } from '@components/audioplayer/AudioPlayerProvider'
 import ToastProvider from '@components/ui/Toast/ToastProvider'
 import '../styles/main.css'
+import { init } from '@lib/sentry'
+
+init()
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
