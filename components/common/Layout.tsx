@@ -5,6 +5,9 @@ import Footer from './Footer'
 import cn from 'classnames'
 import { DefaultOgImage, SITE_URL } from '@lib/constants'
 import { useRouter } from 'next/router'
+import { useIsOffline } from '@lib/hooks/use-is-offline'
+import { useToast } from '@lib/hooks/use-toast'
+import { useEffect } from 'react'
 
 type Props = {
   children: React.ReactNode
@@ -35,7 +38,15 @@ export default function Layout({
   author,
 }: Props) {
   const { isPlaying, current } = usePlayer()
+  const { isOffline } = useIsOffline()
   const router = useRouter()
+  const { addToast } = useToast()
+
+  useEffect(() => {
+    if (isOffline) {
+      addToast('No Internet Connection.')
+    }
+  }, [addToast, isOffline])
 
   return (
     <>
