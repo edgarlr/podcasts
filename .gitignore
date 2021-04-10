@@ -101,3 +101,9 @@ package-lock.json
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,react,now
 
 .env.local
+
+# SW from next-pwa
+**/public/workbox-*.js
+**/public/sw.js
+**/public/sw.js.map
+**/public/fallback-*.js
