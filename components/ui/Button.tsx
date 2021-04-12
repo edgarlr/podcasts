@@ -1,7 +1,15 @@
-import { CSSProperties, MouseEvent } from 'react'
+import {
+  ButtonHTMLAttributes,
+  CSSProperties,
+  DetailedHTMLProps,
+  MouseEvent,
+} from 'react'
 import cn from 'classnames'
 
-type Props = {
+type Props = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
   children: React.ReactNode
   prefix?: React.ReactNode
   subfix?: React.ReactNode
@@ -23,6 +31,7 @@ const Button = ({
   className,
   ariaLabel,
   disabled = false,
+  ...rest
 }: Props) => {
   return (
     <button
@@ -37,6 +46,7 @@ const Button = ({
       style={style}
       aria-label={ariaLabel}
       disabled={disabled}
+      {...rest}
     >
       {prefix && <span className="prefix">{prefix}</span>}
       {children}
@@ -63,6 +73,11 @@ const Button = ({
         }
         button:hover {
           transform: scale(1.015);
+        }
+        button:focus {
+          color: var(--primary);
+          background: var(--secondary);
+          border: 1px solid var(--primary);
         }
         button:disabled {
           opacity: 0.25;

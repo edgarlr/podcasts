@@ -3,13 +3,17 @@ import { getChannelEpisodesUrl } from 'lib/api'
 import { useFetch } from 'lib/hooks/use-fetch'
 import PlayArrow from 'components/icons/PlayArrow'
 import Button from './ui/Button'
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 
-type Props = {
+type Props = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
   episode: TEpisode
   channelId: TChannel['id']
 }
 
-const PlayButton = ({ episode, channelId }: Props) => {
+const PlayButton = ({ episode, channelId, ...rest }: Props) => {
   const channelEpisodesUrl = getChannelEpisodesUrl(channelId)
   const { data: episodesData, isLoading } = useFetch<TEpisode[]>(
     channelEpisodesUrl,
@@ -41,6 +45,7 @@ const PlayButton = ({ episode, channelId }: Props) => {
       disabled={isLoading || isActive}
       subfix={!isActive ? <PlayArrow /> : null}
       variant={!isActive ? 'primary' : 'secondary'}
+      {...rest}
     >
       {isActive ? 'Playing' : 'Play'}
     </Button>

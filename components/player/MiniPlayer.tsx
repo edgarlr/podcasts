@@ -26,7 +26,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
         aria-label="Expand Player"
       />
 
-      <div className="img-container" onClick={onClick}>
+      <button className="img-container" onClick={onClick}>
         <TranslucentImage
           url={current.urls.image || current.channel.urls.logo_image.original}
           alt={`${current.title} cover`}
@@ -34,12 +34,12 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
           height={48}
           blur="large"
         />
-      </div>
+      </button>
 
-      <div className="info" onClick={onClick}>
+      <button className="info" onClick={onClick}>
         <PodcastTitle title={current.title} />
         <p>{current.channel.title}</p>
-      </div>
+      </button>
 
       <button
         className="play-button"
@@ -97,6 +97,7 @@ export default function MiniPlayer({ onClick, style = {} }: Props) {
           overflow: hidden;
           margin: 0 1rem;
           z-index: 2;
+          text-align: left;
         }
         .play-button {
           flex: 0 0 3rem;

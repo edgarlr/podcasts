@@ -71,6 +71,10 @@ const EpisodeCard = ({ clip, info = null }: Props) => {
           .active h2 {
             width: 80%;
           }
+          .active p,
+          .active :global(p) {
+            color: var(--primary-80);
+          }
           .active h2 {
             white-space: nowrap;
             overflow: hidden;

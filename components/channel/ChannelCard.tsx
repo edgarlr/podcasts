@@ -10,7 +10,7 @@ const ChannelCard = ({ channel, index }: Props) => {
   return (
     <>
       <Link href={`/channels/${channel.id}`}>
-        <div className="channel">
+        <a className="channel">
           <p className="number">{index + 1}</p>
           <div className="image-container">
             <Image
@@ -27,7 +27,7 @@ const ChannelCard = ({ channel, index }: Props) => {
             <h2 className="title">{channel.title}</h2>
             <p className="description">{channel.description}</p>
           </div>
-        </div>
+        </a>
       </Link>
 
       <style jsx>{`

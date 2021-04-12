@@ -1,7 +1,15 @@
 import cn from 'classnames'
-import { CSSProperties, MouseEvent } from 'react'
+import {
+  ButtonHTMLAttributes,
+  CSSProperties,
+  DetailedHTMLProps,
+  MouseEvent,
+} from 'react'
 
-type Props = {
+type Props = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
   children: React.ReactNode
   ariaLabel: string
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
@@ -19,6 +27,7 @@ const IconButton = ({
   className,
   ariaLabel,
   disabled = false,
+  ...rest
 }: Props) => (
   <button
     className={cn(
@@ -33,6 +42,7 @@ const IconButton = ({
     aria-label={ariaLabel}
     style={style}
     disabled={disabled}
+    {...rest}
   >
     {children}
     <style jsx>{`
@@ -47,6 +57,9 @@ const IconButton = ({
         border-radius: 50%;
         line-height: 0.5;
         padding: 0.625rem;
+      }
+      button:focus {
+        background: var(--primary-20);
       }
       .primary:hover {
         background: var(--primary-05);

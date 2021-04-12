@@ -36,7 +36,10 @@ const HeroCard = ({
   return (
     <div className={cn('card-container', { ['active-card']: isActive })}>
       <Link href={`/episodes/${episode.id}`}>
-        <div
+        <a
+          tabIndex={isActive ? 0 : -1}
+          aria-hidden={!isActive}
+          aria-label={`Link to ${episode.title}`}
           className={cn('image-container', {
             ['active-img']: isActive,
             ['rotate-img']: !isActive,
@@ -49,7 +52,7 @@ const HeroCard = ({
             width={200}
             height={200}
           />
-        </div>
+        </a>
       </Link>
 
       <div className={cn('info-container', { ['active-info']: isActive })}>
@@ -58,6 +61,8 @@ const HeroCard = ({
             onClick={onPrevClick}
             disabled={index === 0}
             ariaLabel="Prev Episode"
+            tabIndex={isActive ? 0 : -1}
+            aria-hidden={!isActive}
           >
             <ArrowLeft width={28} height={28} />
           </IconButton>
@@ -65,34 +70,55 @@ const HeroCard = ({
             disabled={index + 1 === listLength}
             ariaLabel="Prev Episode"
             onClick={onNextClick}
+            tabIndex={isActive ? 0 : -1}
+            aria-hidden={!isActive}
           >
             <ArrowRight width={28} height={28} />
           </IconButton>
         </div>
         <Link href={`/channels/${episode.channel.id}`}>
-          <a className="channel-title">{episode.channel.title}</a>
+          <a
+            tabIndex={isActive ? 0 : -1}
+            aria-hidden={!isActive}
+            className="channel-title"
+          >
+            {episode.channel.title}
+          </a>
         </Link>
         <Link href={`/episodes/${episode.id}`}>
-          <h1
-            className={cn('title', {
-              ['md']: episode.title.length < 80 && episode.title.length >= 60,
-              ['lg']: episode.title.length < 60 && episode.title.length >= 40,
-              ['xl']: episode.title.length < 40,
-            })}
-          >
-            {episode.title}
-          </h1>
+          <a tabIndex={isActive ? 0 : -1} aria-hidden={!isActive}>
+            <h1
+              className={cn('title', {
+                ['md']: episode.title.length < 80 && episode.title.length >= 60,
+                ['lg']: episode.title.length < 60 && episode.title.length >= 40,
+                ['xl']: episode.title.length < 40,
+              })}
+            >
+              {episode.title}
+            </h1>
+          </a>
         </Link>
         {episode.description && (
           <Link href={`/episodes/${episode.id}`}>
-            <p className="description">{episode.description}</p>
+            <a
+              tabIndex={isActive ? 0 : -1}
+              aria-hidden={!isActive}
+              className="description"
+            >
+              {episode.description}
+            </a>
           </Link>
         )}
 
         <p className="meta-info">{`${getFormattedDate(
           episode.uploaded_at
         )} · ${getDurationOnMin(episode.duration)}`}</p>
-        <PlayButton episode={episode} channelId={episode.channel.id} />
+        <PlayButton
+          episode={episode}
+          channelId={episode.channel.id}
+          tabIndex={isActive ? 0 : -1}
+          aria-hidden={!isActive}
+        />
       </div>
 
       <style jsx>{`

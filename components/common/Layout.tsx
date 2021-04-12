@@ -86,6 +86,10 @@ export default function Layout({
         {author && <meta property="article:author" content={author.url} />}
       </Head>
 
+      <a className="skip-nav-link" href="#skip-nav" tabIndex={1}>
+        Skip to Content
+      </a>
+
       <Header navigation={navigation} headerText={headerText} button={button} />
 
       <main
@@ -93,6 +97,7 @@ export default function Layout({
           ['playing']: current,
         })}
       >
+        <div id="skip-nav" />
         {children}
       </main>
 
@@ -104,6 +109,25 @@ export default function Layout({
           min-height: 100vh;
           display: flex;
           flex-direction: column;
+        }
+
+        .skip-nav-link {
+          height: 0;
+        }
+
+        .skip-nav-link:focus,
+        .skip-nav-link:active {
+          height: auto;
+          font-size: var(--text-lg);
+          position: fixed;
+          top: 0.5rem;
+          left: 0.5rem;
+          margin: 0;
+          z-index: 100000;
+          width: max-content;
+          padding: 0.5rem 1rem;
+          text-decoration: underline;
+          background: var(--secondary);
         }
 
         @media screen and (min-width: 768px) {

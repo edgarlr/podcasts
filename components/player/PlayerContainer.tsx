@@ -32,7 +32,7 @@ const PlayerContainer = ({
         </div>
       )}
 
-      {showPlaylist ? (
+      {showPlaylist && (
         <button
           onClick={() => setShowPlaylist(false)}
           className="button close-queue-button"
@@ -42,10 +42,16 @@ const PlayerContainer = ({
             <ChevronDown />
           </span>
         </button>
-      ) : (
+      )}
+
+      {!showPlaylist ? <FullPlayer /> : <Queue />}
+
+      {!showPlaylist && (
         <button
           onClick={() => setShowPlaylist(true)}
           className="button playing-next-button"
+          tabIndex={current ? 6 : -1}
+          aria-hidden={!current}
         >
           Playing next
           <span>
@@ -53,8 +59,6 @@ const PlayerContainer = ({
           </span>
         </button>
       )}
-
-      {!showPlaylist ? <FullPlayer /> : <Queue />}
 
       <style jsx>{`
         .close-button {
