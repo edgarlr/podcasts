@@ -16,6 +16,9 @@ import {
   cleanupOutdatedCaches,
 } from 'workbox-precaching'
 
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
+import { RangeRequestsPlugin } from 'workbox-range-requests'
+
 skipWaiting()
 clientsClaim()
 
@@ -49,10 +52,14 @@ registerRoute(
 
 // Self-hosted Fonts
 registerRoute(
-  /\/fonts\/.*$/i,
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.startsWith('/fonts/'),
   new CacheFirst({
     cacheName: 'fonts',
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
         maxEntries: 4,
         maxAgeSeconds: 365 * 24 * 60 * 60, // 365 days
@@ -65,10 +72,13 @@ registerRoute(
 
 // Images Caches
 registerRoute(
-  /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+  ({ request }) => request.destination === 'image',
   new StaleWhileRevalidate({
     cacheName: 'static-image-assets',
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
         maxEntries: 64,
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -79,17 +89,14 @@ registerRoute(
   'GET'
 )
 
-// MP3 Files
+// Media Files
 registerRoute(
-  /\.(?:mp3)$/i,
+  ({ url }) => url.pathname.endsWith('.mp3'),
   new StaleWhileRevalidate({
     cacheName: 'static-audio-assets',
     plugins: [
-      new ExpirationPlugin({
-        maxEntries: 20,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
-        purgeOnQuotaError: !0,
-      }),
+      new CacheableResponsePlugin({ statuses: [200] }),
+      new RangeRequestsPlugin(),
     ],
   }),
   'GET'
@@ -97,10 +104,13 @@ registerRoute(
 
 // JS Files
 registerRoute(
-  /\.(?:js)$/i,
+  ({ request }) => request.destination === 'script',
   new StaleWhileRevalidate({
     cacheName: 'static-js-assets',
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
         maxEntries: 32,
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -113,10 +123,13 @@ registerRoute(
 
 // CSS Files
 registerRoute(
-  /\.(?:css)$/i,
+  ({ request }) => request.destination === 'style',
   new StaleWhileRevalidate({
     cacheName: 'static-style-assets',
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
         maxEntries: 32,
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -133,6 +146,9 @@ registerRoute(
   new NetworkFirst({
     cacheName: 'static-data-assets',
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
         maxEntries: 32,
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -150,6 +166,9 @@ registerRoute(
     cacheName: 'others',
     networkTimeoutSeconds: 10,
     plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
       new ExpirationPlugin({
         maxEntries: 32,
         maxAgeSeconds: 24 * 60 * 60, // 24 hours
@@ -163,8 +182,27 @@ registerRoute(
 // following lines gives you control of the offline fallback strategies
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#comprehensive_fallbacks
 
+const defaultStategy = new StaleWhileRevalidate({
+  cacheName: 'default',
+  plugins: [
+    new CacheableResponsePlugin({
+      statuses: [0, 200],
+    }),
+    new ExpirationPlugin({
+      maxEntries: 128,
+      maxAgeSeconds: 7 * 24 * 60 * 60, // 1 week
+      purgeOnQuotaError: true,
+    }),
+  ],
+})
+
 // Use a stale-while-revalidate strategy for all other requests.
-setDefaultHandler(new StaleWhileRevalidate())
+setDefaultHandler((args) => {
+  if (args.event.request.method === 'GET') {
+    return defaultStategy
+  }
+  return fetch(args.event.request)
+})
 
 // This "catch" handler is triggered when any of the other routes fail to
 // generate a response.
