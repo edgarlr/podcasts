@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef } from 'react'
 
 type Props = {
   searchKeyword: string
@@ -8,6 +8,7 @@ type Props = {
 
 const SearchInput = ({ searchKeyword, setSearchKeyword }: Props) => {
   const router = useRouter()
+  const searchInputRef = useRef<HTMLInputElement | null>(null)
 
   const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
@@ -15,9 +16,15 @@ const SearchInput = ({ searchKeyword, setSearchKeyword }: Props) => {
     router.replace(`/search?q=${value}`, undefined, { shallow: true })
   }
 
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus()
+    }
+  }, [])
   return (
     <>
       <input
+        ref={searchInputRef}
         type="search"
         name="main-search"
         id="searchInput"
