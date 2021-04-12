@@ -116,13 +116,5 @@ module.exports = withPWA({
       },
     ]
   },
-  async headers() {
-    return [
-      {
-        source: 'https://api.audioboom.com/:path*',
-        headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
-      },
-    ]
-  },
   basePath,
 })

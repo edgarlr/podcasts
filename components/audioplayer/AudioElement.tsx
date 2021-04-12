@@ -24,7 +24,7 @@ const AudioElement = () => {
         setCurrentTime((e.target as HTMLAudioElement).currentTime)
       }}
       src={null}
-      crossOrigin="anonymous"
+      // crossOrigin="anonymous"
     />
   )
 }
