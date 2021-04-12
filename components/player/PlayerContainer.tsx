@@ -50,6 +50,8 @@ const PlayerContainer = ({
         <button
           onClick={() => setShowPlaylist(true)}
           className="button playing-next-button"
+          tabIndex={current ? 6 : -1}
+          aria-hidden={!current}
         >
           Playing next
           <span>

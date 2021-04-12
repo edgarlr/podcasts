@@ -86,7 +86,7 @@ export default function Layout({
         {author && <meta property="article:author" content={author.url} />}
       </Head>
 
-      <a className="skip-nav-link" href="#skip-nav">
+      <a className="skip-nav-link" href="#skip-nav" tabIndex={1}>
         Skip to Content
       </a>
 

@@ -7,7 +7,7 @@ import { getDurationInMSS } from 'lib/utils/durationToMSS'
 import { useEffect, useState } from 'react'
 
 export const ProgressBar = () => {
-  const { duration } = usePlayer()
+  const { duration, current } = usePlayer()
   const { currentTime } = usePlayerCurrentTime()
   const { updateTime } = usePlayerControls()
   const [computedCurrentTime, setComputedCurrentTime] = useState(0)
@@ -33,6 +33,8 @@ export const ProgressBar = () => {
         name="progressbar"
         id="pgrbar"
         className="slider"
+        tabIndex={current ? 5 : -1}
+        aria-hidden={!current}
       />
       <div
         className="progressbar-fill"

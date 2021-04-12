@@ -18,7 +18,15 @@ const FullPlayer = () => {
 
   const isMobile = useIsMobile()
 
-  const playerRef = useRef()
+  const playerRef = useRef<HTMLDivElement>(null)
+
+  const playButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (playButtonRef.current) {
+      playButtonRef.current.focus()
+    }
+  }, [loading])
 
   useEffect(() => {
     if (playerRef.current && isMobile) {
@@ -52,6 +60,8 @@ const FullPlayer = () => {
           onClick={() => replay(10)}
           ariaLabel="Seek backawards 10 Seconds"
           className="controller-button"
+          tabIndex={current ? 2 : -1}
+          aria-hidden={!current}
         >
           <Replay30 width={40} height={40} />
         </IconButton>
@@ -61,6 +71,9 @@ const FullPlayer = () => {
           disabled={loading}
           onClick={() => toggleAudio()}
           aria-label="Toggle play"
+          ref={playButtonRef}
+          tabIndex={current ? 3 : -1}
+          aria-hidden={!current}
         >
           {isPlaying ? (
             <Pause width={44} height={44} />
@@ -73,6 +86,8 @@ const FullPlayer = () => {
           onClick={() => seekForward(30)}
           ariaLabel="Seek forward 30 seconds"
           className="controller-button"
+          tabIndex={current ? 4 : -1}
+          aria-hidden={!current}
         >
           <Forward30 width={40} height={40} />
         </IconButton>
