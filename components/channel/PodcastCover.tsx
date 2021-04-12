@@ -4,7 +4,7 @@ import Image from 'next/image'
 export const PodcastCover = ({ channel }: { channel: TChannel }) => {
   return (
     <Link href={`/channels/${channel.id}`}>
-      <div className="container">
+      <a className="container">
         <Image
           src={channel.urls.logo_image.original}
           alt={channel.title}
@@ -42,7 +42,7 @@ export const PodcastCover = ({ channel }: { channel: TChannel }) => {
             -webkit-box-orient: vertical;
           }
         `}</style>
-      </div>
+      </a>
     </Link>
   )
 }

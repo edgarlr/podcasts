@@ -27,14 +27,14 @@ const CarouselGrid = ({ children }: { children: React.ReactNode }) => {
         .channels-carousel::-webkit-scrollbar {
           display: none;
         }
-        .channels-carousel > :global(div) {
+        .channels-carousel > :global(a) {
           scroll-snap-align: start;
           flex: 0 0 auto;
           width: 8.5rem;
           margin-right: 1.4rem;
         }
         @media screen and (min-width: 768px) {
-          .channels-carousel > :global(div) {
+          .channels-carousel > :global(a) {
             margin-right: 2.5rem;
           }
           .channels-carousel::after {
