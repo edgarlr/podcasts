@@ -37,7 +37,8 @@ const HeroCard = ({
     <div className={cn('card-container', { ['active-card']: isActive })}>
       <Link href={`/episodes/${episode.id}`}>
         <a
-          aria-hidden={!isActive}
+          tabIndex={isActive ? 0 : -1}
+          aria-hidden={true}
           aria-label={`Link to ${episode.title}`}
           className={cn('image-container', {
             ['active-img']: isActive,
@@ -72,12 +73,16 @@ const HeroCard = ({
           </IconButton>
         </div>
         <Link href={`/channels/${episode.channel.id}`}>
-          <a aria-hidden={!isActive} className="channel-title">
+          <a
+            tabIndex={isActive ? 0 : -1}
+            aria-hidden={true}
+            className="channel-title"
+          >
             {episode.channel.title}
           </a>
         </Link>
         <Link href={`/episodes/${episode.id}`}>
-          <a aria-hidden={!isActive}>
+          <a tabIndex={isActive ? 0 : -1} aria-hidden={true}>
             <h1
               className={cn('title', {
                 ['md']: episode.title.length < 80 && episode.title.length >= 60,
@@ -91,7 +96,13 @@ const HeroCard = ({
         </Link>
         {episode.description && (
           <Link href={`/episodes/${episode.id}`}>
-            <a className="description">{episode.description}</a>
+            <a
+              tabIndex={isActive ? 0 : -1}
+              aria-hidden={true}
+              className="description"
+            >
+              {episode.description}
+            </a>
           </Link>
         )}
 
