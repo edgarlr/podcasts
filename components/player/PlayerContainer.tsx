@@ -32,7 +32,7 @@ const PlayerContainer = ({
         </div>
       )}
 
-      {showPlaylist ? (
+      {showPlaylist && (
         <button
           onClick={() => setShowPlaylist(false)}
           className="button close-queue-button"
@@ -42,7 +42,11 @@ const PlayerContainer = ({
             <ChevronDown />
           </span>
         </button>
-      ) : (
+      )}
+
+      {!showPlaylist ? <FullPlayer /> : <Queue />}
+
+      {!showPlaylist && (
         <button
           onClick={() => setShowPlaylist(true)}
           className="button playing-next-button"
@@ -53,8 +57,6 @@ const PlayerContainer = ({
           </span>
         </button>
       )}
-
-      {!showPlaylist ? <FullPlayer /> : <Queue />}
 
       <style jsx>{`
         .close-button {
