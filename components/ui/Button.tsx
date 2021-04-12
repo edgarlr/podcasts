@@ -61,9 +61,13 @@ const Button = ({
           margin: 0;
           border: 1px solid transparent;
         }
-        button:hover,
-        button:focus {
+        button:hover {
           transform: scale(1.015);
+        }
+        button:focus {
+          color: var(--primary);
+          background: var(--secondary);
+          border: 1px solid var(--primary);
         }
         button:disabled {
           opacity: 0.25;
