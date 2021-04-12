@@ -1,5 +1,6 @@
 // Use the SentryWebpack plugin to upload the source maps during build step
 const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+
 const {
   NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN,
   SENTRY_ORG,
@@ -11,6 +12,8 @@ const {
   VERCEL_BITBUCKET_COMMIT_SHA,
 } = process.env
 
+const withPWA = require('next-pwa')
+
 const COMMIT_SHA =
   VERCEL_GITHUB_COMMIT_SHA ||
   VERCEL_GITLAB_COMMIT_SHA ||
@@ -19,11 +22,27 @@ const COMMIT_SHA =
 process.env.SENTRY_DSN = SENTRY_DSN
 const basePath = ''
 
-module.exports = {
-  productionBrowserSourceMaps: true,
+module.exports = withPWA({
+  future: {
+    webpack5: true,
+  },
+  /* NEXT-PWA */
+  pwa: {
+    dest: 'public',
+    swSrc: 'service-worker.js',
+    disable: process.env.NODE_ENV === 'development',
+    fallbacks: {
+      document: '/offline',
+    },
+  },
+
+  /* NEXT/IMAGE */
   images: {
     domains: ['images.theabcdn.com'],
   },
+
+  /* SENTRY */
+  productionBrowserSourceMaps: true,
   env: {
     // Make the COMMIT_SHA available to the client so that Sentry events can be
     // marked for the release they belong to. It may be undefined if running
@@ -31,6 +50,10 @@ module.exports = {
     NEXT_PUBLIC_COMMIT_SHA: COMMIT_SHA,
   },
   webpack: (config, options) => {
+    // Fixes npm packages that depend on `fs` module
+    // config.node = {
+    //   fs: 'empty',
+    // }
     // In `pages/_app.js`, Sentry is imported from @sentry/browser. While
     // @sentry/node will run in a Node.js environment. @sentry/node will use
     // Node.js-only APIs to catch even more unhandled exceptions.
@@ -84,5 +107,14 @@ module.exports = {
     }
     return config
   },
+
+  async rewrites() {
+    return [
+      {
+        source: '/public/sw.js.map',
+        destination: '/sw.js.map',
+      },
+    ]
+  },
   basePath,
-}
+})
