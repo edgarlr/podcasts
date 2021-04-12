@@ -102,7 +102,7 @@ body {
 button {
   cursor: pointer;
   border: none;
-  outline: none;
+  /* outline: none; */
   background: transparent;
   padding: 0;
 }

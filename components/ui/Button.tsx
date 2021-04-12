@@ -61,7 +61,8 @@ const Button = ({
           margin: 0;
           border: 1px solid transparent;
         }
-        button:hover {
+        button:hover,
+        button:focus {
           transform: scale(1.015);
         }
         button:disabled {

@@ -48,6 +48,9 @@ const IconButton = ({
         line-height: 0.5;
         padding: 0.625rem;
       }
+      button:focus {
+        background: var(--primary-20);
+      }
       .primary:hover {
         background: var(--primary-05);
       }

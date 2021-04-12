@@ -36,7 +36,8 @@ const HeroCard = ({
   return (
     <div className={cn('card-container', { ['active-card']: isActive })}>
       <Link href={`/episodes/${episode.id}`}>
-        <div
+        <a
+          aria-label={`Link to ${episode.title}`}
           className={cn('image-container', {
             ['active-img']: isActive,
             ['rotate-img']: !isActive,
@@ -49,7 +50,7 @@ const HeroCard = ({
             width={200}
             height={200}
           />
-        </div>
+        </a>
       </Link>
 
       <div className={cn('info-container', { ['active-info']: isActive })}>
